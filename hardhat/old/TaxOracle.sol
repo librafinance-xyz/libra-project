@@ -19,27 +19,32 @@ contract TombTaxOracle is Ownable {
     using SafeMath for uint256;
 
     IERC20 public tomb;
-    IERC20 public wftm;
+    // IERC20 public wftm;
+    IERC20 public wastr;
     address public pair;
 
     constructor(
         address _tomb,
-        address _wftm,
+        // address _wftm,
+        address _wastr;
         address _pair
     ) public {
         require(_tomb != address(0), "tomb address cannot be 0");
-        require(_wftm != address(0), "wftm address cannot be 0");
+        // require(_wftm != address(0), "wftm address cannot be 0");
+        require(_wastr != address(0), "wastr address cannot be 0");
         require(_pair != address(0), "pair address cannot be 0");
         tomb = IERC20(_tomb);
-        wftm = IERC20(_wftm);
+        wastr = IERC20(_wastr);
         pair = _pair;
     }
 
     function consult(address _token, uint256 _amountIn) external view returns (uint144 amountOut) {
         require(_token == address(tomb), "token needs to be tomb");
         uint256 tombBalance = tomb.balanceOf(pair);
-        uint256 wftmBalance = wftm.balanceOf(pair);
-        return uint144(tombBalance.div(wftmBalance));
+        // uint256 wftmBalance = wftm.balanceOf(pair);
+        uint256 wastrBalance = wastr.balanceOf(pair);
+        // return uint144(tombBalance.div(wftmBalance));
+        return uint144(tombBalance.div(wastrBalance));
     }
 
     function setTomb(address _tomb) external onlyOwner {
@@ -47,9 +52,13 @@ contract TombTaxOracle is Ownable {
         tomb = IERC20(_tomb);
     }
 
-    function setWftm(address _wftm) external onlyOwner {
-        require(_wftm != address(0), "wftm address cannot be 0");
-        wftm = IERC20(_wftm);
+    // function setWftm(address _wftm) external onlyOwner {
+    //     require(_wftm != address(0), "wftm address cannot be 0");
+    //     wftm = IERC20(_wftm);
+    // }
+    function setWastr(address _wastr) external onlyOwner {
+        require(_wastr != address(0), "wastr address cannot be 0");
+        wastr = IERC20(_wastr);
     }
 
     function setPair(address _pair) external onlyOwner {
