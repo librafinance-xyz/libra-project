@@ -6,7 +6,7 @@ import Spacer from '../../components/Spacer';
 import Harvest from './components/Harvest';
 import Stake from './components/Stake';
 import { makeStyles } from '@material-ui/core/styles';
-import useRebateTreasury from "../../hooks/useRebateTreasury"
+import useRebateTreasury from '../../hooks/useRebateTreasury';
 
 import { Box, Card, CardContent, Button, Typography, Grid } from '@material-ui/core';
 
@@ -71,7 +71,7 @@ const Masonry = () => {
   const canWithdraw = useWithdrawCheck();
   const scalingFactor = useMemo(() => (cashStat ? Number(cashStat.priceInDollars).toFixed(4) : null), [cashStat]);
   const { to } = useTreasuryAllocationTimes();
-  const rebateStats = useRebateTreasury()
+  const rebateStats = useRebateTreasury();
 
   return (
     <Page>
@@ -103,7 +103,7 @@ const Masonry = () => {
                 <Card className={classes.gridItem}>
                   <CardContent align="center">
                     <Typography>
-                      3OMB Price<small> (TWAP)</small>
+                      LIBRA Price<small> (TWAP)</small>
                     </Typography>
                     <Typography>{rebateStats.tombPrice.toFixed(4)} FTM</Typography>
                   </CardContent>
@@ -120,7 +120,7 @@ const Masonry = () => {
               <Grid item xs={12} md={2} lg={2}>
                 <Card className={classes.gridItem}>
                   <CardContent align="center">
-                    <Typography>3SHARES Staked</Typography>
+                    <Typography>LSHARES Staked</Typography>
                     <Typography>{getDisplayBalance(totalStaked)}</Typography>
                   </CardContent>
                 </Card>
@@ -130,7 +130,7 @@ const Masonry = () => {
             <Grid container justify="center">
               <Box mt={3} style={{ width: '525px' }}>
                 <Alert variant="transparent" severity="info">
-                  Staked 3SHARES can only be withdrawn after 3 epochs since deposit.
+                  Staked LSHARES can only be withdrawn after 3 epochs since deposit.
                 </Alert>
               </Box>
             </Grid>
