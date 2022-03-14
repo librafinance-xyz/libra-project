@@ -1,5 +1,5 @@
 import { Deployments } from './deployments';
-import { ChainId } from '@spookyswap/sdk';
+import { ChainId } from '@librafinance-xyz/sdk';
 
 export type Configuration = {
   chainId: ChainId;

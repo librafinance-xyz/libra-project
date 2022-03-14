@@ -87,7 +87,13 @@ const ProvideLiquidity = () => {
       <Grid container justify="center">
         <Box style={{ width: '600px' }}>
           <Alert variant="filled" severity="warning" style={{ marginBottom: '10px' }}>
-            <b>This and <a href="https://spookyswap.finance/"  rel="noopener noreferrer" target="_blank">Spookyswap</a> are the only ways to provide Liquidity on TOMB-FTM pair without paying tax.</b>
+            <b>
+              This and{' '}
+              <a href="https://spookyswap.finance/" rel="noopener noreferrer" target="_blank">
+                Spookyswap
+              </a>{' '}
+              are the only ways to provide Liquidity on TOMB-FTM pair without paying tax.
+            </b>
           </Alert>
           <Grid item xs={12} sm={12}>
             <Paper>
@@ -114,8 +120,8 @@ const ProvideLiquidity = () => {
                         ></TokenInput>
                       </Grid>
                       <Grid item xs={12}>
-                        <p>1 TOMB = {tombPriceInFTM} FTM</p>
-                        <p>1 FTM = {ftmPriceInTOMB} TOMB</p>
+                        <p>1 LIBRA = {tombPriceInFTM} ASTR</p>
+                        <p>1 ASTR = {ftmPriceInTOMB} LIBRA</p>
                         <p>LP tokens ≈ {lpTokensAmount.toFixed(2)}</p>
                       </Grid>
                       <Grid xs={12} justifyContent="center" style={{ textAlign: 'center' }}>

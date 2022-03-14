@@ -105,7 +105,7 @@ const Masonry = () => {
                     <Typography>
                       LIBRA Price<small> (TWAP)</small>
                     </Typography>
-                    <Typography>{rebateStats.tombPrice.toFixed(4)} FTM</Typography>
+                    <Typography>{rebateStats.tombPrice.toFixed(4)} ASTR</Typography>
                   </CardContent>
                 </Card>
               </Grid>

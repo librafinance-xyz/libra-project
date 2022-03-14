@@ -249,7 +249,7 @@ const Home = () => {
               >
                 Buy LSHARES
               </Button>
-              <Button
+              {/* <Button
                 variant="contained"
                 target="_blank"
                 href="https://dexscreener.com/fantom/0x83a52eff2e9d112e9b022399a9fd22a9db7d33ae"
@@ -265,7 +265,7 @@ const Home = () => {
                 className={classes.button}
               >
                 LSHARES Chart
-              </Button>
+              </Button> */}
             </CardContent>
           </Card>
         </Grid>
