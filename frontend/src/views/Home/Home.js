@@ -168,7 +168,7 @@ const Home = () => {
                 .
               </p>
               <p>
-                Stake your LIBRA-WFTM LP in the <StyledLink href="/farms">3Farms</StyledLink> to earn LSHARES rewards.
+                Stake your LIBRA-ASTR LP in the <StyledLink href="/farms">3Farms</StyledLink> to earn LSHARES rewards.
                 Then stake your earned LSHARES in the <StyledLink href="/">3Room</StyledLink> to maximize profits!
               </p>
             </Box>
