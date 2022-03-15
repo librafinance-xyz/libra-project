@@ -1,7 +1,7 @@
 import React, { useMemo } from 'react';
 import Page from '../../components/Page';
 import HomeImage from '../../assets/img/home.png';
-import CashImage from '../../assets/img/3OMB.svg';
+import CashImage from '../../assets/img/LIBRA.svg';
 import Image from 'material-ui-image';
 import styled from 'styled-components';
 import { Alert } from '@material-ui/lab';
@@ -148,29 +148,40 @@ const Home = () => {
         {/* Logo */}
         <Grid container item xs={12} sm={3} justify="center">
           {/* <Paper>xs=6 sm=3</Paper> */}
-		      <Image className="ombImg-home" color="none" style={{ width: '300px', paddingTop: '0px' }} src={CashImage} />
+          <Image className="ombImg-home" color="none" style={{ width: '300px', paddingTop: '0px' }} src={CashImage} />
         </Grid>
         {/* Explanation text */}
         <Grid item xs={12} sm={6}>
-          <Paper style={{ backgroundColor: "transparent", boxShadow: "none", border: "1px solid var(--white)" }}>
+          <Paper style={{ backgroundColor: 'transparent', boxShadow: 'none', border: '1px solid var(--white)' }}>
             <Box p={4}>
-              <h2>Welcome to 3omb Finance!</h2>
-              <p>An algorithmic stablecoin on the Fantom Opera blockchain, pegged to the price of 1 FTM</p>
-              <p>3omb utilizes multiple bonding mechanisms at the <StyledLink href="/">3DAO</StyledLink> as well as seigniorage.</p>
-              <p>Built on top of <StyledLink target="_blank" href="https://2omb.finance">2omb.finance</StyledLink>.</p>
+              <h2>Welcome to Libra Finance!</h2>
+              <p>An algorithmic stablecoin on the Astar Network blockchain, pegged to the price of 1 ASTR</p>
               <p>
-                Stake your 3OMB-WFTM LP in the <StyledLink href="/farms">3Farms</StyledLink> to earn 3SHARES rewards.
-                Then stake your earned 3SHARES in the <StyledLink href="/">3Room</StyledLink> to maximize profits!
+                Libra utilizes multiple bonding mechanisms at the <StyledLink href="/">3DAO</StyledLink> as well as
+                seigniorage.
+              </p>
+              <p>
+                Built on top of{' '}
+                <StyledLink target="_blank" href="https://2omb.finance">
+                  2omb.finance
+                </StyledLink>
+                .
+              </p>
+              <p>
+                Stake your LIBRA-WFTM LP in the <StyledLink href="/farms">3Farms</StyledLink> to earn LSHARES rewards.
+                Then stake your earned LSHARES in the <StyledLink href="/">3Room</StyledLink> to maximize profits!
               </p>
             </Box>
           </Paper>
-				</Grid>
+        </Grid>
         <Grid container justify="center">
-            <Box mt={3} style={{ width: '1000px' }}>
+          <Box mt={3} style={{ width: '1000px' }}>
             <Alert variant="filled" severity="warning">
-                Do your own research before investing. Investing is risky and may result in monetary loss. 3omb is beta software and may contain bugs. By using 3omb, you agree that the 2omb and 3omb team is not responsible for any financial losses from investing in 2omb or 3omb.
+              Do your own research before investing. Investing is risky and may result in monetary loss. libra is beta
+              software and may contain bugs. By using libra, you agree that the 2omb and libra team is not responsible
+              for any financial losses from investing in 2omb or libra.
             </Alert>
-            </Box>
+          </Box>
         </Grid>
 
         {/* <Grid container spacing={3}>
@@ -184,7 +195,7 @@ const Home = () => {
 
         {/* TVL */}
         <Grid item xs={12} sm={4}>
-          <Card style={{ backgroundColor: "transparent", boxShadow: "none", border: "1px solid var(--white)" }}>
+          <Card style={{ backgroundColor: 'transparent', boxShadow: 'none', border: '1px solid var(--white)' }}>
             <CardContent align="center">
               <h2>Total Value Locked</h2>
               <CountUp style={{ fontSize: '25px' }} end={totalTVL} separator="," prefix="$" />
@@ -194,7 +205,18 @@ const Home = () => {
 
         {/* Wallet */}
         <Grid item xs={12} sm={8}>
-          <Card style={{ height: '100%', backgroundColor: "transparent", boxShadow: "none", border: "1px solid var(--white)", display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center" }}>
+          <Card
+            style={{
+              height: '100%',
+              backgroundColor: 'transparent',
+              boxShadow: 'none',
+              border: '1px solid var(--white)',
+              display: 'flex',
+              flexDirection: 'column',
+              justifyContent: 'center',
+              alignItems: 'center',
+            }}
+          >
             <CardContent align="center">
               {/* <h2 style={{ marginBottom: '20px' }}>Wallet Balance</h2> */}
               <Button color="primary" href="/farms" variant="contained" style={{ marginRight: '10px' }}>
@@ -216,16 +238,33 @@ const Home = () => {
                 style={{ marginRight: '10px' }}
                 className={classes.button}
               >
-                Buy 3OMB
+                Buy LIBRA
               </Button>
-              <Button variant="contained" target="_blank" href="https://spookyswap.finance/swap?outputCurrency=0x6437adac543583c4b31bf0323a0870430f5cc2e7" style={{ marginRight: '10px' }} className={classes.button}>
-                Buy 3SHARES
+              <Button
+                variant="contained"
+                target="_blank"
+                href="https://spookyswap.finance/swap?outputCurrency=0x6437adac543583c4b31bf0323a0870430f5cc2e7"
+                style={{ marginRight: '10px' }}
+                className={classes.button}
+              >
+                Buy LSHARES
               </Button>
-              <Button variant="contained" target="_blank" href="https://dexscreener.com/fantom/0x83a52eff2e9d112e9b022399a9fd22a9db7d33ae" style={{ marginRight: '10px' }} className={classes.button}>
-                3OMB Chart
+              <Button
+                variant="contained"
+                target="_blank"
+                href="https://dexscreener.com/fantom/0x83a52eff2e9d112e9b022399a9fd22a9db7d33ae"
+                style={{ marginRight: '10px' }}
+                className={classes.button}
+              >
+                LIBRA Chart
               </Button>
-              <Button variant="contained" target="_blank" href="https://dexscreener.com/fantom/0xd352dac95a91afefb112dbbb3463ccfa5ec15b65" className={classes.button}>
-                3SHARES Chart
+              <Button
+                variant="contained"
+                target="_blank"
+                href="https://dexscreener.com/fantom/0xd352dac95a91afefb112dbbb3463ccfa5ec15b65"
+                className={classes.button}
+              >
+                LSHARES Chart
               </Button>
             </CardContent>
           </Card>
@@ -233,12 +272,12 @@ const Home = () => {
 
         {/* TOMB */}
         <Grid item xs={12} sm={3}>
-          <Card style={{ backgroundColor: "transparent", boxShadow: "none", border: "1px solid var(--white)" }}>
+          <Card style={{ backgroundColor: 'transparent', boxShadow: 'none', border: '1px solid var(--white)' }}>
             <CardContent align="center" style={{ position: 'relative' }}>
-              <h2>FTM</h2>
-              <Box mt={2} style={{ backgroundColor: "transparent !important" }}>
-                <CardIcon style={{ backgroundColor: "transparent !important" }}>
-                  <TokenSymbol symbol="wFTM" style={{ backgroundColor: "transparent !important" }} />
+              <h2>ASTR</h2>
+              <Box mt={2} style={{ backgroundColor: 'transparent !important' }}>
+                <CardIcon style={{ backgroundColor: 'transparent !important' }}>
+                  <TokenSymbol symbol="wFTM" style={{ backgroundColor: 'transparent !important' }} />
                 </CardIcon>
               </Box>
               Current Price
@@ -257,9 +296,9 @@ const Home = () => {
 
         {/* TOMB */}
         <Grid item xs={12} sm={3}>
-          <Card style={{ backgroundColor: "transparent", boxShadow: "none", border: "1px solid var(--white)" }}>
+          <Card style={{ backgroundColor: 'transparent', boxShadow: 'none', border: '1px solid var(--white)' }}>
             <CardContent align="center" style={{ position: 'relative' }}>
-              <h2>3OMB</h2>
+              <h2>LIBRA</h2>
               {/* <Button
                 onClick={() => {
                   tombFinance.watchAssetInMetamask('TOMB');
@@ -271,14 +310,14 @@ const Home = () => {
                 +&nbsp;
                 <img alt="metamask fox" style={{ width: '20px' }} src={MetamaskFox} />
               </Button> */}
-              <Box mt={2} style={{ backgroundColor: "transparent !important" }}>
-                <CardIcon style={{ backgroundColor: "transparent !important" }}>
-                  <TokenSymbol symbol="TOMB" style={{ backgroundColor: "transparent !important" }} />
+              <Box mt={2} style={{ backgroundColor: 'transparent !important' }}>
+                <CardIcon style={{ backgroundColor: 'transparent !important' }}>
+                  <TokenSymbol symbol="TOMB" style={{ backgroundColor: 'transparent !important' }} />
                 </CardIcon>
               </Box>
               Current Price
               <Box>
-                <span style={{ fontSize: '30px' }}>{tombPriceInFTM ? tombPriceInFTM : '-.----'} FTM</span>
+                <span style={{ fontSize: '30px' }}>{tombPriceInFTM ? tombPriceInFTM : '-.----'} ASTR </span>
               </Box>
               <Box>
                 <span style={{ fontSize: '16px', alignContent: 'flex-start' }}>
@@ -296,9 +335,9 @@ const Home = () => {
 
         {/* TSHARE */}
         <Grid item xs={12} sm={3}>
-          <Card style={{ backgroundColor: "transparent", boxShadow: "none", border: "1px solid var(--white)" }}>
+          <Card style={{ backgroundColor: 'transparent', boxShadow: 'none', border: '1px solid var(--white)' }}>
             <CardContent align="center" style={{ position: 'relative' }}>
-              <h2>3SHARES</h2>
+              <h2>LSHARES</h2>
               {/* <Button
                 onClick={() => {
                   tombFinance.watchAssetInMetamask('TSHARE');
@@ -317,7 +356,7 @@ const Home = () => {
               </Box>
               Current Price
               <Box>
-                <span style={{ fontSize: '30px' }}>{tSharePriceInFTM ? tSharePriceInFTM : '-.----'} FTM</span>
+                <span style={{ fontSize: '30px' }}>{tSharePriceInFTM ? tSharePriceInFTM : '-.----'} ASTR</span>
               </Box>
               <Box>
                 <span style={{ fontSize: '16px' }}>${tSharePriceInDollars ? tSharePriceInDollars : '-.--'}</span>
@@ -333,9 +372,9 @@ const Home = () => {
 
         {/* TBOND */}
         <Grid item xs={12} sm={3}>
-          <Card style={{ backgroundColor: "transparent", boxShadow: "none", border: "1px solid var(--white)" }}>
+          <Card style={{ backgroundColor: 'transparent', boxShadow: 'none', border: '1px solid var(--white)' }}>
             <CardContent align="center" style={{ position: 'relative' }}>
-              <h2>3BOND</h2>
+              <h2>LBOND</h2>
               {/* <Button
                 onClick={() => {
                   tombFinance.watchAssetInMetamask('TBOND');
@@ -354,7 +393,7 @@ const Home = () => {
               </Box>
               Current Price
               <Box>
-                <span style={{ fontSize: '30px' }}>{tBondPriceInFTM ? tBondPriceInFTM : '-.----'} FTM</span>
+                <span style={{ fontSize: '30px' }}>{tBondPriceInFTM ? tBondPriceInFTM : '-.----'} ASTR</span>
               </Box>
               <Box>
                 <span style={{ fontSize: '16px' }}>${tBondPriceInDollars ? tBondPriceInDollars : '-.--'}</span>
@@ -368,9 +407,9 @@ const Home = () => {
           </Card>
         </Grid>
         <Grid item xs={12} sm={6}>
-          <Card style={{ backgroundColor: "transparent", boxShadow: "none", border: "1px solid var(--white)" }}>
+          <Card style={{ backgroundColor: 'transparent', boxShadow: 'none', border: '1px solid var(--white)' }}>
             <CardContent align="center">
-              <h2>3OMB-WFTM Spooky LP</h2>
+              <h2>LIBRA-WASTR Arthswap LP</h2>
               <Box mt={2}>
                 <CardIcon>
                   <TokenSymbol symbol="TOMB-FTM-LP" />
@@ -384,8 +423,8 @@ const Home = () => {
               </Box>*/}
               <Box mt={2}>
                 <span style={{ fontSize: '26px' }}>
-                  {tombLPStats?.tokenAmount ? tombLPStats?.tokenAmount : '-.--'} 3OMB /{' '}
-                  {tombLPStats?.ftmAmount ? tombLPStats?.ftmAmount : '-.--'} FTM
+                  {tombLPStats?.tokenAmount ? tombLPStats?.tokenAmount : '-.--'} LIBRA /{' '}
+                  {tombLPStats?.ftmAmount ? tombLPStats?.ftmAmount : '-.--'} ASTR
                 </span>
               </Box>
               <Box>${tombLPStats?.priceOfOne ? tombLPStats.priceOfOne : '-.--'}</Box>
@@ -397,9 +436,9 @@ const Home = () => {
           </Card>
         </Grid>
         <Grid item xs={12} sm={6}>
-          <Card style={{ backgroundColor: "transparent", boxShadow: "none", border: "1px solid var(--white)" }}>
+          <Card style={{ backgroundColor: 'transparent', boxShadow: 'none', border: '1px solid var(--white)' }}>
             <CardContent align="center">
-              <h2>3SHARES-WFTM Spooky LP</h2>
+              <h2>LSHARES-WASTR Arthswap LP</h2>
               <Box mt={2}>
                 <CardIcon>
                   <TokenSymbol symbol="TSHARE-FTM-LP" />
@@ -412,7 +451,7 @@ const Home = () => {
             </Box>*/}
               <Box mt={2}>
                 <span style={{ fontSize: '26px' }}>
-                  {tshareLPStats?.tokenAmount ? tshareLPStats?.tokenAmount : '-.--'} 3SHARE /{' '}
+                  {tshareLPStats?.tokenAmount ? tshareLPStats?.tokenAmount : '-.--'} LSHARE /{' '}
                   {tshareLPStats?.ftmAmount ? tshareLPStats?.ftmAmount : '-.--'} FTM
                 </span>
               </Box>
