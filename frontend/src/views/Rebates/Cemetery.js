@@ -111,7 +111,7 @@ const Cemetery = () => {
                         <Typography variant="h5">
                           LIBRA Price <small>(TWAP)</small>
                         </Typography>
-                        <Typography variant="h6">{tombPriceInFTM ? tombPriceInFTM : '-.----'} FTM</Typography>
+                        <Typography variant="h6">{tombPriceInFTM ? tombPriceInFTM : '-.----'} ASTR</Typography>
                       </CardContent>
                     </Card>
                   </Grid>
