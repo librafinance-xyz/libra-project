@@ -2,18 +2,26 @@
 
 pragma solidity 0.6.12;
 
-import "@openzeppelin/contracts/token/ERC20/extensions/ERC20Burnable.sol";
+import "@openzeppelin/contracts/token/ERC20/ERC20Burnable.sol";
 
 import "./owner/Operator.sol";
 
-contract DummyToken is ERC20Burnable, Operator {
+// UNITE FINANCE
+contract UBond is ERC20Burnable, Operator {
+    /**
+     * @notice Constructs the UNITE Bond ERC-20 contract.
+     */
+    constructor() public ERC20("UBOND", "UBOND") {}
 
-    constructor() public ERC20("DummyToken", "DUMMY") {}
-
+    /**
+     * @notice Operator mints basis bonds to a recipient
+     * @param recipient_ The address of recipient
+     * @param amount_ The amount of basis bonds to mint to
+     * @return whether the process has been done
+     */
     function mint(address recipient_, uint256 amount_) public onlyOperator returns (bool) {
         uint256 balanceBefore = balanceOf(recipient_);
         _mint(recipient_, amount_);
-        super.burnFrom(recipient_, amount_);
         uint256 balanceAfter = balanceOf(recipient_);
 
         return balanceAfter > balanceBefore;
