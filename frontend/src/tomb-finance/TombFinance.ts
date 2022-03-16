@@ -46,9 +46,9 @@ export class TombFinance {
     for (const [symbol, [address, decimal]] of Object.entries(externalTokens)) {
       this.externalTokens[symbol] = new ERC20(address, provider, symbol, decimal);
     }
-    this.TOMB = new ERC20(deployments.tomb.address, provider, '3OMB');
-    this.TSHARE = new ERC20(deployments.tShare.address, provider, '3SHARE');
-    this.TBOND = new ERC20(deployments.tBond.address, provider, '3BOND');
+    this.TOMB = new ERC20(deployments.tomb.address, provider, 'LIBRA');
+    this.TSHARE = new ERC20(deployments.tShare.address, provider, 'LSHARE');
+    this.TBOND = new ERC20(deployments.tBond.address, provider, 'LBOND');
     this.FTM = this.externalTokens['WFTM'];
 
     // Uniswap V2 Pair
@@ -104,7 +104,7 @@ export class TombFinance {
       .sub(tombRewardPoolSupply2)
       .sub(tombRewardPoolSupplyOld);
     const priceInFTM = await this.getTokenPriceFromPancakeswap(this.TOMB);
-    console.log("price in ftm:", priceInFTM)
+    console.log('price in ftm:', priceInFTM);
     const priceOfOneFTM = await this.getWFTMPriceFromPancakeswap();
     const priceOfTombInDollars = (Number(priceInFTM) * Number(priceOfOneFTM)).toFixed(2);
 
@@ -231,10 +231,10 @@ export class TombFinance {
     const depositToken = bank.depositToken;
     const poolContract = this.contracts[bank.contract];
     const depositTokenPrice = await this.getDepositTokenPriceInDollars(bank.depositTokenName, depositToken);
-    console.log("deposit token price:", depositTokenPrice)
+    console.log('deposit token price:', depositTokenPrice);
     const stakeInPool = await depositToken.balanceOf(bank.address);
     const TVL = Number(depositTokenPrice) * Number(getDisplayBalance(stakeInPool, depositToken.decimal));
-    const stat = bank.earnTokenName === '3OMB' ? await this.getTombStat() : await this.getShareStat();
+    const stat = bank.earnTokenName === 'LIBRA' ? await this.getTombStat() : await this.getShareStat();
     const tokenPerSecond = await this.getTokenPerSecond(
       bank.earnTokenName,
       bank.contract,
@@ -270,7 +270,7 @@ export class TombFinance {
     poolContract: Contract,
     depositTokenName: string,
   ) {
-    if (earnTokenName === '3OMB') {
+    if (earnTokenName === 'LIBRA') {
       if (!contractName.endsWith('TombRewardPool')) {
         const rewardPerSecond = await poolContract.tombPerSecond();
         if (depositTokenName === '2SHARES') {
@@ -301,7 +301,7 @@ export class TombFinance {
       return await poolContract.epochTombPerSecond(0);
     }
     const rewardPerSecond = await poolContract.tSharePerSecond();
-    if (depositTokenName.startsWith('3OMB')) {
+    if (depositTokenName.startsWith('LIBRA')) {
       return rewardPerSecond.mul(35500).div(89500);
     } else if (depositTokenName.startsWith('2OMB')) {
       return rewardPerSecond.mul(15000).div(89500);
@@ -326,22 +326,34 @@ export class TombFinance {
     if (tokenName === 'wFTM') {
       tokenPrice = priceOfOneFtmInDollars;
     } else {
-      console.log("token name:", tokenName)
-      if (tokenName === '3OMB-WFTM LP') {
+      console.log('token name:', tokenName);
+      if (tokenName === 'LIBRA-WFTM LP') {
         tokenPrice = await this.getLPTokenPrice(token, this.TOMB, true, false);
-      } else if (tokenName === '3SHARES-WFTM LP') {
+      } else if (tokenName === 'LSHARES-WFTM LP') {
         tokenPrice = await this.getLPTokenPrice(token, this.TSHARE, false, false);
-      } else if (tokenName === "2SHARES-WFTM LP") {
-        tokenPrice = await this.getLPTokenPrice(token, new ERC20("0xc54a1684fd1bef1f077a336e6be4bd9a3096a6ca", this.provider, "2SHARES"), false, true);
-      } else if (tokenName === "2OMB-WFTM LP") {
-        console.log("getting the LP token price here")
-        tokenPrice = await this.getLPTokenPrice(token, new ERC20("0x7a6e4e3cc2ac9924605dca4ba31d1831c84b44ae", this.provider, "2OMB"), true, true);
-        console.log("my token price:", tokenPrice)
+      } else if (tokenName === '2SHARES-WFTM LP') {
+        tokenPrice = await this.getLPTokenPrice(
+          token,
+          new ERC20('0xc54a1684fd1bef1f077a336e6be4bd9a3096a6ca', this.provider, '2SHARES'),
+          false,
+          true,
+        );
+      } else if (tokenName === '2OMB-WFTM LP') {
+        console.log('getting the LP token price here');
+        tokenPrice = await this.getLPTokenPrice(
+          token,
+          new ERC20('0x7a6e4e3cc2ac9924605dca4ba31d1831c84b44ae', this.provider, '2OMB'),
+          true,
+          true,
+        );
+        console.log('my token price:', tokenPrice);
       } else if (tokenName === 'BLOOM') {
         tokenPrice = await this.getTokenPriceFromSpiritswap(token);
-      } else if (tokenName === "BELUGA") {
-        const data = await fetch("https://api.coingecko.com/api/v3/simple/price?ids=beluga-fi&vs_currencies=usd").then(res => res.json())
-        tokenPrice = data["beluga-fi"].usd
+      } else if (tokenName === 'BELUGA') {
+        const data = await fetch('https://api.coingecko.com/api/v3/simple/price?ids=beluga-fi&vs_currencies=usd').then(
+          (res) => res.json(),
+        );
+        tokenPrice = data['beluga-fi'].usd;
       } else {
         tokenPrice = await this.getTokenPriceFromPancakeswap(token);
         tokenPrice = (Number(tokenPrice) * Number(priceOfOneFtmInDollars)).toString();
@@ -416,7 +428,14 @@ export class TombFinance {
     const totalSupply = getFullDisplayBalance(await lpToken.totalSupply(), lpToken.decimal);
     //Get amount of tokenA
     const tokenSupply = getFullDisplayBalance(await token.balanceOf(lpToken.address), token.decimal);
-    const stat = isFake === true ? isTomb === true ? await this.get2ombStatFake() : await this.get2ShareStatFake() : isTomb === true ? await this.getTombStat() : await this.getShareStat();
+    const stat =
+      isFake === true
+        ? isTomb === true
+          ? await this.get2ombStatFake()
+          : await this.get2ShareStatFake()
+        : isTomb === true
+        ? await this.getTombStat()
+        : await this.getShareStat();
     const priceOfToken = stat.priceInDollars;
     const tokenInLP = Number(tokenSupply) / Number(totalSupply);
     const tokenPrice = (Number(priceOfToken) * tokenInLP * 2) //We multiply by 2 since half the price of the lp token is the price of each piece of the pair. So twice gives the total
@@ -424,7 +443,7 @@ export class TombFinance {
     return tokenPrice;
   }
 
-    /*
+  /*
   async getTombStatFake() {
     const price = await fetch("https://api.coingecko.com/api/v3/simple/price?ids=2omb-finance&vs_currencies=usd").then(res => res.json())
     return { priceInDollars: price["2omb-finance"].usd }
@@ -435,51 +454,51 @@ export class TombFinance {
     return { priceInDollars: price["2share"].usd }
   }
 */
-async get2ombStatFake(): Promise<TokenStat> {
-  const { TwoOmbFtmRewardPool, TwoOmbFtmLpTombRewardPool, TwoOmbFtmLpTombRewardPoolOld } = this.contracts;
-  const TOMB = new ERC20("0x7a6e4e3cc2ac9924605dca4ba31d1831c84b44ae", this.provider, "2OMB")
-  const supply = await TOMB.totalSupply();
-  const tombRewardPoolSupply = await TOMB.balanceOf(TwoOmbFtmRewardPool.address);
-  const tombRewardPoolSupply2 = await TOMB.balanceOf(TwoOmbFtmLpTombRewardPool.address);
-  const tombRewardPoolSupplyOld = await TOMB.balanceOf(TwoOmbFtmLpTombRewardPoolOld.address);
-  const tombCirculatingSupply = supply
-    .sub(tombRewardPoolSupply)
-    .sub(tombRewardPoolSupply2)
-    .sub(tombRewardPoolSupplyOld);
-  const priceInFTM = await this.getTokenPriceFromPancakeswap(TOMB);
-  const priceOfOneFTM = await this.getWFTMPriceFromPancakeswap();
-  const priceOfTombInDollars = (Number(priceInFTM) * Number(priceOfOneFTM)).toFixed(2);
+  async get2ombStatFake(): Promise<TokenStat> {
+    const { TwoOmbFtmRewardPool, TwoOmbFtmLpTombRewardPool, TwoOmbFtmLpTombRewardPoolOld } = this.contracts;
+    const TOMB = new ERC20('0x7a6e4e3cc2ac9924605dca4ba31d1831c84b44ae', this.provider, '2OMB');
+    const supply = await TOMB.totalSupply();
+    const tombRewardPoolSupply = await TOMB.balanceOf(TwoOmbFtmRewardPool.address);
+    const tombRewardPoolSupply2 = await TOMB.balanceOf(TwoOmbFtmLpTombRewardPool.address);
+    const tombRewardPoolSupplyOld = await TOMB.balanceOf(TwoOmbFtmLpTombRewardPoolOld.address);
+    const tombCirculatingSupply = supply
+      .sub(tombRewardPoolSupply)
+      .sub(tombRewardPoolSupply2)
+      .sub(tombRewardPoolSupplyOld);
+    const priceInFTM = await this.getTokenPriceFromPancakeswap(TOMB);
+    const priceOfOneFTM = await this.getWFTMPriceFromPancakeswap();
+    const priceOfTombInDollars = (Number(priceInFTM) * Number(priceOfOneFTM)).toFixed(2);
 
-  return {
-    tokenInFtm: priceInFTM,
-    priceInDollars: priceOfTombInDollars,
-    totalSupply: getDisplayBalance(supply, TOMB.decimal, 0),
-    circulatingSupply: getDisplayBalance(tombCirculatingSupply, TOMB.decimal, 0),
-  };
-}
+    return {
+      tokenInFtm: priceInFTM,
+      priceInDollars: priceOfTombInDollars,
+      totalSupply: getDisplayBalance(supply, TOMB.decimal, 0),
+      circulatingSupply: getDisplayBalance(tombCirculatingSupply, TOMB.decimal, 0),
+    };
+  }
 
-async get2ShareStatFake(): Promise<TokenStat> {
-  const { TwoOmbFtmRewardPool, TwoOmbFtmLpTombRewardPool, TwoOmbFtmLpTombRewardPoolOld } = this.contracts;
-  const TSHARE = new ERC20("0xc54a1684fd1bef1f077a336e6be4bd9a3096a6ca", this.provider, "2SHARES")
-  const supply = await TSHARE.totalSupply();
-  const tombRewardPoolSupply = await TSHARE.balanceOf(TwoOmbFtmRewardPool.address);
-  const tombRewardPoolSupply2 = await TSHARE.balanceOf(TwoOmbFtmLpTombRewardPool.address);
-  const tombRewardPoolSupplyOld = await TSHARE.balanceOf(TwoOmbFtmLpTombRewardPoolOld.address);
-  const tombCirculatingSupply = supply
-    .sub(tombRewardPoolSupply)
-    .sub(tombRewardPoolSupply2)
-    .sub(tombRewardPoolSupplyOld);
-  const priceInFTM = await this.getTokenPriceFromPancakeswap(TSHARE);
-  const priceOfOneFTM = await this.getWFTMPriceFromPancakeswap();
-  const priceOfTombInDollars = (Number(priceInFTM) * Number(priceOfOneFTM)).toFixed(2);
+  async get2ShareStatFake(): Promise<TokenStat> {
+    const { TwoOmbFtmRewardPool, TwoOmbFtmLpTombRewardPool, TwoOmbFtmLpTombRewardPoolOld } = this.contracts;
+    const TSHARE = new ERC20('0xc54a1684fd1bef1f077a336e6be4bd9a3096a6ca', this.provider, '2SHARES');
+    const supply = await TSHARE.totalSupply();
+    const tombRewardPoolSupply = await TSHARE.balanceOf(TwoOmbFtmRewardPool.address);
+    const tombRewardPoolSupply2 = await TSHARE.balanceOf(TwoOmbFtmLpTombRewardPool.address);
+    const tombRewardPoolSupplyOld = await TSHARE.balanceOf(TwoOmbFtmLpTombRewardPoolOld.address);
+    const tombCirculatingSupply = supply
+      .sub(tombRewardPoolSupply)
+      .sub(tombRewardPoolSupply2)
+      .sub(tombRewardPoolSupplyOld);
+    const priceInFTM = await this.getTokenPriceFromPancakeswap(TSHARE);
+    const priceOfOneFTM = await this.getWFTMPriceFromPancakeswap();
+    const priceOfTombInDollars = (Number(priceInFTM) * Number(priceOfOneFTM)).toFixed(2);
 
-  return {
-    tokenInFtm: priceInFTM,
-    priceInDollars: priceOfTombInDollars,
-    totalSupply: getDisplayBalance(supply, TSHARE.decimal, 0),
-    circulatingSupply: getDisplayBalance(tombCirculatingSupply, TSHARE.decimal, 0),
-  };
-}
+    return {
+      tokenInFtm: priceInFTM,
+      priceInDollars: priceOfTombInDollars,
+      totalSupply: getDisplayBalance(supply, TSHARE.decimal, 0),
+      circulatingSupply: getDisplayBalance(tombCirculatingSupply, TSHARE.decimal, 0),
+    };
+  }
 
   async earnedFromBank(
     poolName: ContractName,
@@ -489,7 +508,7 @@ async get2ShareStatFake(): Promise<TokenStat> {
   ): Promise<BigNumber> {
     const pool = this.contracts[poolName];
     try {
-      if (earnTokenName === '3OMB') {
+      if (earnTokenName === 'LIBRA') {
         return await pool.pendingTOMB(poolId, account);
       } else {
         return await pool.pendingShare(poolId, account);
@@ -834,7 +853,12 @@ async get2ShareStatFake(): Promise<TokenStat> {
     let overrides = {
       value: parseUnits(ftmAmount, 18),
     };
-    return await TaxOffice.addLiquidityETHTaxFree(tombAmount, tombAmount.mul(992).div(1000), parseUnits(ftmAmount, 18).mul(992).div(1000), overrides);
+    return await TaxOffice.addLiquidityETHTaxFree(
+      tombAmount,
+      tombAmount.mul(992).div(1000),
+      parseUnits(ftmAmount, 18).mul(992).div(1000),
+      overrides,
+    );
   }
 
   async quoteFromSpooky(tokenAmount: string, tokenName: string): Promise<string> {
