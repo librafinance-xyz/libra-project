@@ -8,3 +8,7 @@ npx hardhat flatten ./contracts/RebateTreasury.sol >./contracts_flattend/RebateT
 npx hardhat flatten ./contracts/TBond.sol >./contracts_flattend/TBond.sol
 npx hardhat flatten ./contracts/Treasury.sol > ./contracts_flattend/Treasury.sol
 npx hardhat flatten ./contracts/TShare.sol >./contracts_flattend/TShare.sol
+
+npx hardhat flatten contracts/Tomb.sol > contracts_flatten/Tomb_flatten.sol 
+
+
