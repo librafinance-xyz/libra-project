@@ -50,7 +50,9 @@ const useStyles = makeStyles((theme) => ({
 const Home = () => {
   const classes = useStyles();
   const TVL = useTotalValueLocked();
-  const tombFtmLpStats = useLpStats('TOMB-FTM-LP');
+  // const tombFtmLpStats = useLpStats('TOMB-FTM-LP');
+  const tombFtmLpStats = useLpStats('LIBRA-ASTR-LP');
+
   const tShareFtmLpStats = useLpStats('TSHARE-FTM-LP');
   const tombStats = useTombStats();
   const tShareStats = usetShareStats();
@@ -108,7 +110,8 @@ const Home = () => {
   );
   const tBondTotalSupply = useMemo(() => (tBondStats ? String(tBondStats.totalSupply) : null), [tBondStats]);
 
-  const tombLpZap = useZap({ depositTokenName: 'TOMB-FTM-LP' });
+  // const tombLpZap = useZap({ depositTokenName: 'TOMB-FTM-LP' });
+  const tombLpZap = useZap({ depositTokenName: 'LIBRA-WASTR-LP' });
   const tshareLpZap = useZap({ depositTokenName: 'TSHARE-FTM-LP' });
 
   const StyledLink = styled.a`
@@ -125,7 +128,8 @@ const Home = () => {
         tombLpZap.onZap(zappingToken, tokenName, amount);
         onDissmissTombZap();
       }}
-      tokenName={'TOMB-FTM-LP'}
+      // tokenName={'TOMB-FTM-LP'}
+      tokenName={'LIBRA-WASTR-LP'}
     />,
   );
 
@@ -160,13 +164,13 @@ const Home = () => {
                 Libra utilizes multiple bonding mechanisms at the <StyledLink href="/">3DAO</StyledLink> as well as
                 seigniorage.
               </p>
-              <p>
+              {/* <p>
                 Built on top of{' '}
                 <StyledLink target="_blank" href="https://2omb.finance">
                   2omb.finance
                 </StyledLink>
                 .
-              </p>
+              </p> */}
               <p>
                 Stake your LIBRA-ASTR LP in the <StyledLink href="/farms">3Farms</StyledLink> to earn LSHARES rewards.
                 Then stake your earned LSHARES in the <StyledLink href="/">3Room</StyledLink> to maximize profits!
@@ -177,9 +181,11 @@ const Home = () => {
         <Grid container justify="center">
           <Box mt={3} style={{ width: '1000px' }}>
             <Alert variant="filled" severity="warning">
-              Do your own research before investing. Investing is risky and may result in monetary loss. libra is beta
-              software and may contain bugs. By using libra, you agree that the 2omb and libra team is not responsible
+              Do your own research before investing. Investing is risky and may result in monetary loss. Libra Finance
+              is beta software and may contain bugs.
+              {/* By using libra, you agree that the 2omb and libra team is not responsible
               for any financial losses from investing in 2omb or libra.
+               */}
             </Alert>
           </Box>
         </Grid>
@@ -412,7 +418,8 @@ const Home = () => {
               <h2>LIBRA-WASTR Arthswap LP</h2>
               <Box mt={2}>
                 <CardIcon>
-                  <TokenSymbol symbol="TOMB-FTM-LP" />
+                  <TokenSymbol symbol="LIBRA-WASTR-LP" />
+                  {/* <TokenSymbol symbol="TOMB-FTM-LP" /> */}
                 </CardIcon>
               </Box>
               {/*

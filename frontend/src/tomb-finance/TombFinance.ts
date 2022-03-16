@@ -49,10 +49,12 @@ export class TombFinance {
     this.TOMB = new ERC20(deployments.tomb.address, provider, 'LIBRA');
     this.TSHARE = new ERC20(deployments.tShare.address, provider, 'LSHARE');
     this.TBOND = new ERC20(deployments.tBond.address, provider, 'LBOND');
-    this.FTM = this.externalTokens['WFTM'];
+    // this.FTM = this.externalTokens['WFTM'];
+    this.FTM = this.externalTokens['WASTR'];
 
     // Uniswap V2 Pair
-    this.TOMBWFTM_LP = new Contract(externalTokens['TOMB-FTM-LP'][0], IUniswapV2PairABI, provider);
+    // this.TOMBWFTM_LP = new Contract(externalTokens['TOMB-FTM-LP'][0], IUniswapV2PairABI, provider);
+    this.TOMBWFTM_LP = new Contract(externalTokens['LIBRA-ASTR-LP'][0], IUniswapV2PairABI, provider);
 
     this.config = cfg;
     this.provider = provider;
@@ -94,18 +96,28 @@ export class TombFinance {
   //===================================================================
 
   async getTombStat(): Promise<TokenStat> {
+    console.log('getTombStat');
+    console.log('getTombStat:', this.TOMB);
     const { TombFtmRewardPool, TombFtmLpTombRewardPool, TombFtmLpTombRewardPoolOld } = this.contracts;
+    console.log('getTombStat:  TombFtmLpTombRewardPoolOld:', TombFtmLpTombRewardPoolOld);
+    console.log('getTombStat:  TombFtmLpTombRewardPool:', TombFtmLpTombRewardPool);
     const supply = await this.TOMB.totalSupply();
+
+    console.log('getTombStat: supply: ', supply);
     const tombRewardPoolSupply = await this.TOMB.balanceOf(TombFtmRewardPool.address);
     const tombRewardPoolSupply2 = await this.TOMB.balanceOf(TombFtmLpTombRewardPool.address);
     const tombRewardPoolSupplyOld = await this.TOMB.balanceOf(TombFtmLpTombRewardPoolOld.address);
+
     const tombCirculatingSupply = supply
       .sub(tombRewardPoolSupply)
       .sub(tombRewardPoolSupply2)
       .sub(tombRewardPoolSupplyOld);
-    const priceInFTM = await this.getTokenPriceFromPancakeswap(this.TOMB);
-    console.log('price in ftm:', priceInFTM);
+    console.log('getTombStat: tombCirculatingSupply: ', tombCirculatingSupply);
+
     const priceOfOneFTM = await this.getWFTMPriceFromPancakeswap();
+
+    const priceInFTM = await this.getTokenPriceFromPancakeswap(this.TOMB);
+    console.log('getTombStat: price in ftm:', priceInFTM);
     const priceOfTombInDollars = (Number(priceInFTM) * Number(priceOfOneFTM)).toFixed(2);
 
     return {
