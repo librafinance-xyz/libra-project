@@ -13,12 +13,18 @@ TBond
 TShare
 constructor(uint256 \_startTime, address \_communityFund, address \_devFund)
 
-Oracle
+ーーーーーーーーここまで完了
+
+Oracle デプロイ
+
 IUniswapV2Pair \_pair,
 uint256 \_period,
 uint256 \_startTime
 
-treasury
+Masonry デプロイ
+
+treasury デプロイ
+
 function initialize(
 address \_tomb,
 address \_tbond,
@@ -30,11 +36,22 @@ address \_bondTreasury,
 uint256 \_startTime
 
 RebateTreasury
-constructor(address tomb, address tombOracle, address treasury) {
+constructor(address tomb, address tombOracle, address treasury)
 
-Masonry
+Masonry の initialize メソッドを叩く。
+function initialize(
+IERC20 \_tomb,
+IERC20 \_share,
+ITreasury \_treasury
 
-    function initialize(
-        IERC20 _tomb,
-        IERC20 _share,
-        ITreasury _treasury
+treasury の initialize をたたく。
+
+function initialize(
+address \_tomb,
+address \_tbond,
+address \_tshare,
+address \_tombOracle,
+address \_masonry,
+address \_genesisPool, => 要確認。
+address \_bondTreasury, ＝＞ rebate treasury のこと？？要確認。
+uint256 \_startTime
