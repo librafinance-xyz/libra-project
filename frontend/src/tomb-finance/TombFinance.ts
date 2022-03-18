@@ -1,7 +1,4 @@
-// import { Fetcher, Route, Token } from '@uniswap/sdk';
-// import { Fetcher as FetcherSpirit, Token as TokenSpirit } from '@spiritswap/sdk';
 import { Fetcher, Route, Token } from '@twinkleswap/sdk';
-// import { ChainId } from '@twinkleswap/sdk';
 
 import { Configuration } from './config';
 import { ContractName, TokenStat, AllocationTime, LPStat, Bank, PoolStats, TShareSwapperStat } from './types';

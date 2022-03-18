@@ -3,6 +3,14 @@ import { ChainId } from '@twinkleswap/sdk';
 import { Configuration } from './tomb-finance/config';
 import { BankInfo } from './tomb-finance';
 
+export const AppHostEnv = window.location.host.includes('prod-env')
+  ? 'prod'
+  : window.location.host.includes('stag-env')
+  ? 'stag'
+  : 'test'; // basically, test.
+
+// window.location.host.includes('test') || window.location.host.includes('localhost') ? 'test' : window.location.host.includes('librafinance.xyz')? 'test': window.location.host.includes('librafinance.xyz')? '' 'prod';
+
 const configurations: { [env: string]: Configuration } = {
   production: {
     chainId: ChainId.MAINNET,
@@ -12,7 +20,7 @@ const configurations: { [env: string]: Configuration } = {
     defaultProvider: 'https://astar-api.bwarelabs.com/7d1b6401-caba-4a39-8a84-13d4e9f105b4',
     //WSS: wss://astar-api.bwarelabs.com/ws/7d1b6401-caba-4a39-8a84-13d4e9f105b4
 
-    deployments: require('./tomb-finance/deployments/deployments.mainnet.json'),
+    deployments: require('./tomb-finance/deployments/deployments.prod.json'),
     externalTokens: {
       // WFTM: ['0x21be370d5312f44cb42ce377bc9b8a0cef1a4c83', 18],
       // USDC: ['0x04068DA6C83AFCFA0e13ba15A6696662335D5B75', 6],
