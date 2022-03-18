@@ -1,16 +1,17 @@
 import React from 'react';
 
 //Graveyard ecosystem logos
-import tombLogo from '../../assets/img/LIBRA.svg';
-import tShareLogo from '../../assets/img/LSHARES.svg';
-import tombLogoPNG from '../../assets/img/LIBRA.png';
-import tShareLogoPNG from '../../assets/img/LSHARES.png';
-import tBondLogo from '../../assets/img/LBOND-01.png';
+import tombLogo from '../../assets/libra/libra.svg';
+import tShareLogo from '../../assets/libra/lshare.svg';
+import tombLogoPNG from '../../assets/libra/libra.svg';
+import tShareLogoPNG from '../../assets/libra/lshare.svg';
+import tBondLogo from '../../assets/libra/lbond.svg';
 
 import tombFtmLpLogo from '../../assets/img/tomb_ftm_lp.png';
 import tshareFtmLpLogo from '../../assets/img/tshare_ftm_lp.png';
 
 import wftmLogo from '../../assets/libra/ASTR.png';
+import astrLogo from '../../assets/libra/ASTR.png';
 import booLogo from '../../assets/img/spooky.png';
 import belugaLogo from '../../assets/img/BELUGA.png';
 import twoshareLogo from '../../assets/img/t_2SHARE-01.png';
@@ -46,18 +47,28 @@ const logosBySymbol: { [title: string]: string } = {
   MIM: mimLogo,
   USDC: UsdcLogo,
   BLOOM: bloomLogo,
-  '2OMB-WFTM LP': TwoombLPLogo,
-  '2SHARES-WFTM LP': TwosharesLPLogo,
-  '2OMB-2SHARES LP': TwoombTwosharesLPLogo,
+  WASTR: astrLogo,
+  ASTR: astrLogo,
+  // '2OMB-WFTM LP': TwoombLPLogo,
+  // '2OMB-ASTR LP': TwoombLPLogo,
+  'LIBRA-ASTR-LP': TwoombLPLogo,
+  'LIBRA-WFTM-LP': ThreeombLPLogo,
 
-  'LIBRA-WFTM LP': ThreeombLPLogo,
-  'LSHARES-WFTM LP': ThreesharesLPLogo,
+  //
+  // '2SHARES-WFTM LP': TwosharesLPLogo,
+  // '2SHARES-ASTR LP': TwosharesLPLogo,
+  'LSHARE-ASTR-LP': TwosharesLPLogo,
+  //
+  // '2OMB-2SHARES LP': TwoombTwosharesLPLogo,
+
+  // 'LSHARES-WFTM LP': ThreesharesLPLogo,
+  'LSHARES-ASTR-LP': ThreesharesLPLogo,
 
   wFTM: wftmLogo,
-  '2OMB': twoombLogo,
-  '2SHARES': twoshareLogo,
-  'TOMB-FTM-LP': tombFtmLpLogo,
-  'TSHARE-FTM-LP': tshareFtmLpLogo,
+  // '2OMB': twoombLogo,
+  // '2SHARES': twoshareLogo,
+  // 'TOMB-FTM-LP': tombFtmLpLogo,
+  // 'TSHARE-FTM-LP': tshareFtmLpLogo,
 };
 
 type LogoProps = {

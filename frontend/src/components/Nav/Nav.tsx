@@ -108,21 +108,21 @@ const Nav = () => {
               <Link color="color" to="/" className={classes.link}>
                 Home
               </Link>
-              <Link color="textPrimary" to="/farms" className={classes.link}>
-                3Farms
-              </Link>
-              <Link color="textPrimary" to="/boardroom" className={classes.link}>
+              {/* <Link color="textPrimary" to="/farms" className={classes.link}>
+                Farms
+              </Link> */}
+              {/* <Link color="textPrimary" to="/boardroom" className={classes.link}>
                 3Room
-              </Link>
-              <Link color="textPrimary" to="/bonds" className={classes.link}>
+              </Link> */}
+              {/* <Link color="textPrimary" to="/bonds" className={classes.link}>
                 LBonds
-              </Link>
-              <Link color="textPrimary" to="/rebates" className={classes.link}>
+              </Link> */}
+              {/* <Link color="textPrimary" to="/rebates" className={classes.link}>
                 3DAO
-              </Link>
-              <Link color="textPrimary" to="/treasury" className={classes.link}>
+              </Link> */}
+              {/* <Link color="textPrimary" to="/treasury" className={classes.link}>
                 Treasury
-              </Link>
+              </Link> */}
               {/* <Link color="textPrimary" to="/treasury" className={classes.link}>
                 Treasury
               </Link>
@@ -138,12 +138,12 @@ const Nav = () => {
               <Link color="textPrimary" to="/regulations" className={classes.link}>
                 Regulations
               </Link> */}
-              <a href="https://alnair.finance" target="_blank" className={classes.link}>
+              {/* <a href="https://alnair.finance" target="_blank" className={classes.link}>
                 Vaults
-              </a>
-              <a href="https://snapshot.org/#/librafinance.eth" target="_blank" className={classes.link}>
+              </a> */}
+              {/* <a href="https://snapshot.org/#/librafinance.eth" target="_blank" className={classes.link}>
                 Governance
-              </a>
+              </a> */}
               <a href="https://docs.librafinance.xyz" target="_blank" className={classes.link}>
                 Docs
               </a>
@@ -187,7 +187,7 @@ const Nav = () => {
                 <ListItemLink primary="3Farms" to="/farms" />
                 <ListItemLink primary="3Room" to="/boardroom" />
                 <ListItemLink primary="LBonds" to="/bonds" />
-                <ListItemLink primary="3DAO" to="/rebates" />
+                {/* <ListItemLink primary="3DAO" to="/rebates" /> */}
                 <ListItemLink primary="Treasury" to="/treasury" />
                 {/* <ListItemLink primary="Masonry" to="/masonry" />
                 <ListItemLink primary="Pit" to="/pit" />
