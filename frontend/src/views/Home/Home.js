@@ -17,8 +17,11 @@ import useBondStats from '../../hooks/useBondStats';
 import usetShareStats from '../../hooks/usetShareStats';
 import useTotalValueLocked from '../../hooks/useTotalValueLocked';
 import useFantomPrice from '../../hooks/useFantomPrice';
-import { tomb as tombTesting, tShare as tShareTesting } from '../../tomb-finance/deployments/deployments.testing.json';
-import { tomb as tombProd, tShare as tShareProd } from '../../tomb-finance/deployments/deployments.mainnet.json';
+import { tomb as tombStag, tShare as tShareStag } from '../../tomb-finance/deployments/deployments.stag.json';
+import { tomb as tombProd, tShare as tShareProd } from '../../tomb-finance/deployments/deployments.prod.json';
+import { tomb as tombDev, tShare as tShareDev } from '../../tomb-finance/deployments/deployments.dev.json';
+import AppHostEnv from '../../config';
+
 import Countdown from 'react-countdown';
 
 import useTotalTreasuryBalance from '../../hooks/useTotalTreasuryBalance.js';
@@ -63,12 +66,19 @@ const Home = () => {
 
   let tomb;
   let tShare;
-  if (!process.env.NODE_ENV || process.env.NODE_ENV === 'development') {
-    tomb = tombTesting;
-    tShare = tShareTesting;
-  } else {
+  // if (!process.env.NODE_ENV || process.env.NODE_ENV === 'development') {
+  if (AppHostEnv == 'stag') {
+    // stag
+    tomb = tombStag;
+    tShare = tShareStag;
+  } else if (AppHostEnv == 'prod') {
+    // prod
     tomb = tombProd;
     tShare = tShareProd;
+  } else {
+    // dev
+    tomb = tombDev;
+    tShare = tShareDev;
   }
 
   const buyTombAddress = 'https://twinkleswap.finance/swap?outputCurrency=' + tomb.address;
@@ -236,15 +246,11 @@ const Home = () => {
           <Card style={{ backgroundColor: 'transparent', boxShadow: 'none', border: '1px solid var(--white)' }}>
             <CardContent align="center">
               <h2>Total Value Locked</h2>
-              {totalTVL && totalTVL > 0 ? (
-                <>
-                  <CountUp style={{ fontSize: '25px' }} end={totalTVL} separator="," prefix="$" />
-                </>
-              ) : (
-                <>
-                  <div>--</div>
-                </>
-              )}
+              {/* <CountUp style={{ fontSize: '25px' }} end={totalTVL} separator="," prefix="$" />
+               */}
+              <>
+                <div> -- </div>
+              </>
             </CardContent>
           </Card>
         </Grid>
