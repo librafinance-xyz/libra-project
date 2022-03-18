@@ -19,6 +19,7 @@ import useTotalValueLocked from '../../hooks/useTotalValueLocked';
 import useFantomPrice from '../../hooks/useFantomPrice';
 import { tomb as tombTesting, tShare as tShareTesting } from '../../tomb-finance/deployments/deployments.testing.json';
 import { tomb as tombProd, tShare as tShareProd } from '../../tomb-finance/deployments/deployments.mainnet.json';
+import Countdown from 'react-countdown';
 
 import useTotalTreasuryBalance from '../../hooks/useTotalTreasuryBalance.js';
 
@@ -157,13 +158,24 @@ const Home = () => {
           <Paper style={{ backgroundColor: 'transparent', boxShadow: 'none', border: '1px solid var(--white)' }}>
             <Box p={4}>
               <h2>Welcome to Libra Finance!</h2>
+              <Countdown
+                date={1648339200 * 1000} // 3/27 0:0:0 GMT
+                intervalDelay={0}
+                precision={3}
+                renderer={(props) => (
+                  <div>
+                    <h3>
+                      Releasing in ....
+                      {props.days} days {props.hours} hours {props.minutes} mins {props.seconds} seconds
+                    </h3>
+                  </div>
+                )}
+              />
               <p>An algorithmic stablecoin on the Astar Network blockchain, pegged to the price of 1 ASTR</p>
-
               {/* <p>
                 Libra utilizes multiple bonding mechanisms at the <StyledLink href="/">3DAO</StyledLink> as well as
                 seigniorage.
               </p> */}
-
               {/* <p>
                 Built on top of{' '}
                 <StyledLink target="_blank" href="https://2omb.finance">
