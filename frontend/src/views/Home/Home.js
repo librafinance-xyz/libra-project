@@ -165,8 +165,10 @@ const Home = () => {
                 renderer={(props) => (
                   <div>
                     <h3>
-                      Releasing in ....
+                      Revealing in ....
                       {props.days} days {props.hours} hours {props.minutes} mins {props.seconds} seconds
+                      <br />
+                      Please follow us on Twitter and join our discord community.
                     </h3>
                   </div>
                 )}
