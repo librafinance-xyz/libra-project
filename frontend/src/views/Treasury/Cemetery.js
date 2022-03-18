@@ -25,13 +25,13 @@ const assetList = [
     depositTokenName: '2SHARES-WFTM LP',
   },
   {
-    depositTokenName: 'LIBRA-WFTM LP',
+    depositTokenName: 'LIBRA-ASTR LP',
   },
   {
     depositTokenName: 'LSHARES',
   },
   {
-    depositTokenName: 'LSHARES-WFTM LP',
+    depositTokenName: 'LSHARES-ASTR LP',
   },
 ];
 

@@ -50,7 +50,9 @@ const useStyles = makeStyles((theme) => ({
 const Home = () => {
   const classes = useStyles();
   const TVL = useTotalValueLocked();
-  const tombFtmLpStats = useLpStats('TOMB-FTM-LP');
+  // const tombFtmLpStats = useLpStats('TOMB-FTM-LP');
+  const tombFtmLpStats = useLpStats('LIBRA-ASTR-LP');
+
   const tShareFtmLpStats = useLpStats('TSHARE-FTM-LP');
   const tombStats = useTombStats();
   const tShareStats = usetShareStats();
@@ -108,7 +110,8 @@ const Home = () => {
   );
   const tBondTotalSupply = useMemo(() => (tBondStats ? String(tBondStats.totalSupply) : null), [tBondStats]);
 
-  const tombLpZap = useZap({ depositTokenName: 'TOMB-FTM-LP' });
+  // const tombLpZap = useZap({ depositTokenName: 'TOMB-FTM-LP' });
+  const tombLpZap = useZap({ depositTokenName: 'LIBRA-WASTR-LP' });
   const tshareLpZap = useZap({ depositTokenName: 'TSHARE-FTM-LP' });
 
   const StyledLink = styled.a`
@@ -125,7 +128,8 @@ const Home = () => {
         tombLpZap.onZap(zappingToken, tokenName, amount);
         onDissmissTombZap();
       }}
-      tokenName={'TOMB-FTM-LP'}
+      // tokenName={'TOMB-FTM-LP'}
+      tokenName={'LIBRA-WASTR-LP'}
     />,
   );
 
@@ -156,20 +160,25 @@ const Home = () => {
             <Box p={4}>
               <h2>Welcome to Libra Finance!</h2>
               <p>An algorithmic stablecoin on the Astar Network blockchain, pegged to the price of 1 ASTR</p>
-              <p>
+
+              {/* <p>
                 Libra utilizes multiple bonding mechanisms at the <StyledLink href="/">3DAO</StyledLink> as well as
                 seigniorage.
-              </p>
-              <p>
+              </p> */}
+
+              {/* <p>
                 Built on top of{' '}
                 <StyledLink target="_blank" href="https://2omb.finance">
                   2omb.finance
                 </StyledLink>
                 .
-              </p>
+              </p> */}
               <p>
-                Stake your LIBRA-WFTM LP in the <StyledLink href="/farms">3Farms</StyledLink> to earn LSHARES rewards.
-                Then stake your earned LSHARES in the <StyledLink href="/">3Room</StyledLink> to maximize profits!
+                {/* Stake your LIBRA-ASTR LP in the <StyledLink href="/farms">Farms</StyledLink> to earn LSHARES rewards.
+                Then stake your earned LSHARES in the <StyledLink href="/">Room</StyledLink> to maximize profits! */}
+                Stake your LIBRA-ASTR LP in the Farms to earn LSHARES seigniorage rewards.
+                {/* Then stake your earned LSHARES in the Room to maximize profits! */}
+                Then stake your earned TSHARE to earn more LIBRA!
               </p>
             </Box>
           </Paper>
@@ -177,9 +186,11 @@ const Home = () => {
         <Grid container justify="center">
           <Box mt={3} style={{ width: '1000px' }}>
             <Alert variant="filled" severity="warning">
-              Do your own research before investing. Investing is risky and may result in monetary loss. libra is beta
-              software and may contain bugs. By using libra, you agree that the 2omb and libra team is not responsible
+              Do your own research before investing. Investing is risky and may result in monetary loss. Libra Finance
+              is beta software and may contain bugs.
+              {/* By using libra, you agree that the 2omb and libra team is not responsible
               for any financial losses from investing in 2omb or libra.
+               */}
             </Alert>
           </Box>
         </Grid>
@@ -219,19 +230,27 @@ const Home = () => {
           >
             <CardContent align="center">
               {/* <h2 style={{ marginBottom: '20px' }}>Wallet Balance</h2> */}
-              <Button color="primary" href="/farms" variant="contained" style={{ marginRight: '10px' }}>
+              <Button color="primary" href="/#" variant="contained" style={{ marginRight: '10px' }}>
+                Farms
+              </Button>
+              <Button color="primary" href="/#" variant="contained" style={{ marginRight: '25px' }}>
+                Stake
+              </Button>
+
+              {/* <Button color="primary" href="/farms" variant="contained" style={{ marginRight: '10px' }}>
                 Farms
               </Button>
               <Button color="primary" href="/boardroom" variant="contained" style={{ marginRight: '25px' }}>
                 Stake
-              </Button>
+              </Button> */}
+
               {/* <Button color="primary" href="/masonry" variant="contained" style={{ marginRight: '10px' }}>
                 Stake Now
               </Button> */}
               {/* <Button href="/cemetery" variant="contained" style={{ marginRight: '10px' }}>
                 Farm Now
               </Button> */}
-              <Button
+              {/* <Button
                 target="_blank"
                 href="https://spookyswap.finance/swap?outputCurrency=0x14def7584a6c52f470ca4f4b9671056b22f4ffde"
                 variant="contained"
@@ -239,17 +258,14 @@ const Home = () => {
                 className={classes.button}
               >
                 Buy LIBRA
+              </Button> */}
+              <Button href="/#" variant="contained" style={{ marginRight: '10px' }} className={classes.button}>
+                Buy LIBRA
               </Button>
-              <Button
-                variant="contained"
-                target="_blank"
-                href="https://spookyswap.finance/swap?outputCurrency=0x6437adac543583c4b31bf0323a0870430f5cc2e7"
-                style={{ marginRight: '10px' }}
-                className={classes.button}
-              >
+              <Button variant="contained" href="/#" style={{ marginRight: '10px' }} className={classes.button}>
                 Buy LSHARES
               </Button>
-              <Button
+              {/* <Button
                 variant="contained"
                 target="_blank"
                 href="https://dexscreener.com/fantom/0x83a52eff2e9d112e9b022399a9fd22a9db7d33ae"
@@ -265,7 +281,7 @@ const Home = () => {
                 className={classes.button}
               >
                 LSHARES Chart
-              </Button>
+              </Button> */}
             </CardContent>
           </Card>
         </Grid>
@@ -277,7 +293,8 @@ const Home = () => {
               <h2>ASTR</h2>
               <Box mt={2} style={{ backgroundColor: 'transparent !important' }}>
                 <CardIcon style={{ backgroundColor: 'transparent !important' }}>
-                  <TokenSymbol symbol="wFTM" style={{ backgroundColor: 'transparent !important' }} />
+                  {/* <TokenSymbol symbol="wFTM" style={{ backgroundColor: 'transparent !important' }} /> */}
+                  <TokenSymbol symbol="WASTR" style={{ backgroundColor: 'transparent !important' }} />
                 </CardIcon>
               </Box>
               Current Price
@@ -412,7 +429,8 @@ const Home = () => {
               <h2>LIBRA-WASTR Arthswap LP</h2>
               <Box mt={2}>
                 <CardIcon>
-                  <TokenSymbol symbol="TOMB-FTM-LP" />
+                  <TokenSymbol symbol="LIBRA-WASTR-LP" />
+                  {/* <TokenSymbol symbol="TOMB-FTM-LP" /> */}
                 </CardIcon>
               </Box>
               {/*
@@ -452,7 +470,7 @@ const Home = () => {
               <Box mt={2}>
                 <span style={{ fontSize: '26px' }}>
                   {tshareLPStats?.tokenAmount ? tshareLPStats?.tokenAmount : '-.--'} LSHARE /{' '}
-                  {tshareLPStats?.ftmAmount ? tshareLPStats?.ftmAmount : '-.--'} FTM
+                  {tshareLPStats?.ftmAmount ? tshareLPStats?.ftmAmount : '-.--'} ASTR
                 </span>
               </Box>
               <Box>${tshareLPStats?.priceOfOne ? tshareLPStats.priceOfOne : '-.--'}</Box>

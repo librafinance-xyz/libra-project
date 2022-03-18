@@ -1,6 +1,6 @@
 // import { Fetcher, Route, Token } from '@uniswap/sdk';
-import { Fetcher as FetcherSpirit, Token as TokenSpirit } from '@spiritswap/sdk';
-import { Fetcher, Route, Token } from '@spookyswap/sdk';
+// import { Fetcher as FetcherSpirit, Token as TokenSpirit } from '@spiritswap/sdk';
+import { Fetcher, Route, Token } from '@librafinance-xyz/sdk';
 import { Configuration } from './config';
 import { ContractName, TokenStat, AllocationTime, LPStat, Bank, PoolStats, TShareSwapperStat } from './types';
 import { BigNumber, Contract, ethers, EventFilter } from 'ethers';
@@ -49,10 +49,12 @@ export class TombFinance {
     this.TOMB = new ERC20(deployments.tomb.address, provider, 'LIBRA');
     this.TSHARE = new ERC20(deployments.tShare.address, provider, 'LSHARE');
     this.TBOND = new ERC20(deployments.tBond.address, provider, 'LBOND');
-    this.FTM = this.externalTokens['WFTM'];
+    // this.FTM = this.externalTokens['WFTM'];
+    this.FTM = this.externalTokens['WASTR'];
 
     // Uniswap V2 Pair
-    this.TOMBWFTM_LP = new Contract(externalTokens['TOMB-FTM-LP'][0], IUniswapV2PairABI, provider);
+    // this.TOMBWFTM_LP = new Contract(externalTokens['TOMB-FTM-LP'][0], IUniswapV2PairABI, provider);
+    this.TOMBWFTM_LP = new Contract(externalTokens['LIBRA-ASTR-LP'][0], IUniswapV2PairABI, provider);
 
     this.config = cfg;
     this.provider = provider;
@@ -94,18 +96,28 @@ export class TombFinance {
   //===================================================================
 
   async getTombStat(): Promise<TokenStat> {
+    console.log('getTombStat');
+    console.log('getTombStat:', this.TOMB);
     const { TombFtmRewardPool, TombFtmLpTombRewardPool, TombFtmLpTombRewardPoolOld } = this.contracts;
+    console.log('getTombStat:  TombFtmLpTombRewardPoolOld:', TombFtmLpTombRewardPoolOld);
+    console.log('getTombStat:  TombFtmLpTombRewardPool:', TombFtmLpTombRewardPool);
     const supply = await this.TOMB.totalSupply();
+
+    console.log('getTombStat: supply: ', supply);
     const tombRewardPoolSupply = await this.TOMB.balanceOf(TombFtmRewardPool.address);
     const tombRewardPoolSupply2 = await this.TOMB.balanceOf(TombFtmLpTombRewardPool.address);
     const tombRewardPoolSupplyOld = await this.TOMB.balanceOf(TombFtmLpTombRewardPoolOld.address);
+
     const tombCirculatingSupply = supply
       .sub(tombRewardPoolSupply)
       .sub(tombRewardPoolSupply2)
       .sub(tombRewardPoolSupplyOld);
-    const priceInFTM = await this.getTokenPriceFromPancakeswap(this.TOMB);
-    console.log('price in ftm:', priceInFTM);
+    console.log('getTombStat: tombCirculatingSupply: ', tombCirculatingSupply);
+
     const priceOfOneFTM = await this.getWFTMPriceFromPancakeswap();
+
+    const priceInFTM = await this.getTokenPriceFromPancakeswap(this.TOMB);
+    console.log('getTombStat: price in ftm:', priceInFTM);
     const priceOfTombInDollars = (Number(priceInFTM) * Number(priceOfOneFTM)).toFixed(2);
 
     return {
@@ -347,13 +359,13 @@ export class TombFinance {
           true,
         );
         console.log('my token price:', tokenPrice);
-      } else if (tokenName === 'BLOOM') {
-        tokenPrice = await this.getTokenPriceFromSpiritswap(token);
-      } else if (tokenName === 'BELUGA') {
-        const data = await fetch('https://api.coingecko.com/api/v3/simple/price?ids=beluga-fi&vs_currencies=usd').then(
-          (res) => res.json(),
-        );
-        tokenPrice = data['beluga-fi'].usd;
+        // } else if (tokenName === 'BLOOM') {
+        //   tokenPrice = await this.getTokenPriceFromSpiritswap(token);
+        // } else if (tokenName === 'BELUGA') {
+        //   const data = await fetch('https://api.coingecko.com/api/v3/simple/price?ids=beluga-fi&vs_currencies=usd').then(
+        //     (res) => res.json(),
+        //   );
+        //   tokenPrice = data['beluga-fi'].usd;
       } else {
         tokenPrice = await this.getTokenPriceFromPancakeswap(token);
         tokenPrice = (Number(tokenPrice) * Number(priceOfOneFtmInDollars)).toString();
@@ -603,29 +615,29 @@ export class TombFinance {
     }
   }
 
-  async getTokenPriceFromSpiritswap(tokenContract: ERC20): Promise<string> {
-    const ready = await this.provider.ready;
-    if (!ready) return;
-    const { chainId } = this.config;
+  // async getTokenPriceFromSpiritswap(tokenContract: ERC20): Promise<string> {
+  //   const ready = await this.provider.ready;
+  //   if (!ready) return;
+  //   const { chainId } = this.config;
 
-    const { WFTM } = this.externalTokens;
+  //   const { WFTM } = this.externalTokens;
 
-    const wftm = new TokenSpirit(chainId, WFTM.address, WFTM.decimal);
-    const token = new TokenSpirit(chainId, tokenContract.address, tokenContract.decimal, tokenContract.symbol);
-    try {
-      const wftmToToken = await FetcherSpirit.fetchPairData(wftm, token, this.provider);
-      const liquidityToken = wftmToToken.liquidityToken;
-      let ftmBalanceInLP = await WFTM.balanceOf(liquidityToken.address);
-      let ftmAmount = Number(getFullDisplayBalance(ftmBalanceInLP, WFTM.decimal));
-      let shibaBalanceInLP = await tokenContract.balanceOf(liquidityToken.address);
-      let shibaAmount = Number(getFullDisplayBalance(shibaBalanceInLP, tokenContract.decimal));
-      const priceOfOneFtmInDollars = await this.getWFTMPriceFromPancakeswap();
-      let priceOfShiba = (ftmAmount / shibaAmount) * Number(priceOfOneFtmInDollars);
-      return priceOfShiba.toString();
-    } catch (err) {
-      console.error(`Failed to fetch token price of ${tokenContract.symbol}: ${err}`);
-    }
-  }
+  //   const wftm = new TokenSpirit(chainId, WFTM.address, WFTM.decimal);
+  //   const token = new TokenSpirit(chainId, tokenContract.address, tokenContract.decimal, tokenContract.symbol);
+  //   try {
+  //     const wftmToToken = await FetcherSpirit.fetchPairData(wftm, token, this.provider);
+  //     const liquidityToken = wftmToToken.liquidityToken;
+  //     let ftmBalanceInLP = await WFTM.balanceOf(liquidityToken.address);
+  //     let ftmAmount = Number(getFullDisplayBalance(ftmBalanceInLP, WFTM.decimal));
+  //     let shibaBalanceInLP = await tokenContract.balanceOf(liquidityToken.address);
+  //     let shibaAmount = Number(getFullDisplayBalance(shibaBalanceInLP, tokenContract.decimal));
+  //     const priceOfOneFtmInDollars = await this.getWFTMPriceFromPancakeswap();
+  //     let priceOfShiba = (ftmAmount / shibaAmount) * Number(priceOfOneFtmInDollars);
+  //     return priceOfShiba.toString();
+  //   } catch (err) {
+  //     console.error(`Failed to fetch token price of ${tokenContract.symbol}: ${err}`);
+  //   }
+  // }
 
   async getWFTMPriceFromPancakeswap(): Promise<string> {
     const ready = await this.provider.ready;

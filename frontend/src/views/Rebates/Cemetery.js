@@ -100,9 +100,9 @@ const Cemetery = () => {
           <BackgroundImage />
           {!!account ? (
             <>
-              <Typography color="textPrimary" align="center" variant="h3" gutterBottom style={{ marginBottom: '40px' }}>
+              {/* <Typography color="textPrimary" align="center" variant="h3" gutterBottom style={{ marginBottom: '40px' }}>
                 3DAO - Treasury * Still under Mantance 70% done *
-              </Typography>
+              </Typography> */}
               <Box mt={2}>
                 <Grid container justify="center" spacing={3}>
                   <Grid item xs={12} md={3} lg={3} className={classes.gridItem}>

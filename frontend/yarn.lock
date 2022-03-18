@@ -2821,7 +2821,7 @@
     tiny-warning "^1.0.3"
     toformat "^2.0.0"
 
-"@spookyswap/sdk@https://github.com/SpookySwap/spookyswap-sdk":
+"@librafinance-xyz/sdk@https://github.com/SpookySwap/spookyswap-sdk":
   version "1.0.0"
   resolved "https://github.com/SpookySwap/spookyswap-sdk#c5c85de6a324f190b44ce1d9aa26f87e1a54e9c5"
   dependencies:
