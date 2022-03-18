@@ -1,5 +1,5 @@
 import { Deployments } from './deployments';
-import { ChainId } from '@librafinance-xyz/sdk';
+import { ChainId } from '@twinkleswap/sdk';
 
 export type Configuration = {
   chainId: ChainId;
