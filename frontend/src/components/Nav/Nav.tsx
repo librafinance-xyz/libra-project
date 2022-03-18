@@ -33,8 +33,8 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   appBar: {
-    color: 'var(--white)',
-    'background-color': '#ff494922',
+    color: 'var(--blue)',
+    'background-color': '#ffffff',
     'backdrop-filter': 'blur(2px)',
     // borderBottom: `1px solid ${theme.palette.divider}`,
     padding: '0 10px',
@@ -43,7 +43,7 @@ const useStyles = makeStyles((theme) => ({
   drawer: {
     width: 240,
     flexShrink: 0,
-    backgroundColor: 'var(--accent)',
+    backgroundColor: 'var(--pureWhite)',
   },
   drawerPaper: {
     width: 240,
@@ -61,7 +61,7 @@ const useStyles = makeStyles((theme) => ({
   },
   link: {
     textTransform: 'uppercase',
-    color: 'var(--white)',
+    color: 'var(--textWhite)',
     fontSize: '14px',
     margin: theme.spacing(1, 2),
     textDecoration: 'none',
@@ -71,7 +71,7 @@ const useStyles = makeStyles((theme) => ({
   },
   brandLink: {
     textDecoration: 'none',
-    color: 'var(--white)',
+    color: 'var(--accent)',
     '&:hover': {
       textDecoration: 'none',
     },
