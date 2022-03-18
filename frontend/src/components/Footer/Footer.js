@@ -43,7 +43,7 @@ const Footer = () => {
       <Container maxWidth="lg">
         <Grid container>
           <Grid item xs={6}>
-            <Typography variant="body2" color="textPrimary" align="left">
+            <Typography align="left">
               {'Copyright © Libra Finance '}
               {new Date().getFullYear()}
             </Typography>

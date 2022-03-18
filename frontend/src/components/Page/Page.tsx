@@ -12,7 +12,7 @@ const Page: React.FC = ({ children }) => {
       style={{
         position: 'relative',
         minHeight: '100vh',
-        backgroundColor: `#260d0d`,
+        backgroundColor: `#F5F8FB`,
       }}
     >
       <Nav />
