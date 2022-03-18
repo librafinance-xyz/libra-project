@@ -144,9 +144,9 @@ const Nav = () => {
               {/* <a href="https://snapshot.org/#/librafinance.eth" target="_blank" className={classes.link}>
                 Governance
               </a> */}
-              <a href="https://docs.librafinance.xyz" target="_blank" className={classes.link}>
+              {/* <a href="https://docs.librafinance.xyz" target="_blank" className={classes.link}>
                 Docs
-              </a>
+              </a> */}
             </Box>
             <AccountButton text="Connect" />
           </>
@@ -184,25 +184,25 @@ const Nav = () => {
               <Divider />
               <List>
                 <ListItemLink primary="Home" to="/" />
-                <ListItemLink primary="3Farms" to="/farms" />
-                <ListItemLink primary="3Room" to="/boardroom" />
-                <ListItemLink primary="LBonds" to="/bonds" />
+                {/* <ListItemLink primary="3Farms" to="/farms" /> */}
+                {/* <ListItemLink primary="3Room" to="/boardroom" /> */}
+                {/* <ListItemLink primary="LBonds" to="/bonds" /> */}
                 {/* <ListItemLink primary="3DAO" to="/rebates" /> */}
-                <ListItemLink primary="Treasury" to="/treasury" />
+                {/* <ListItemLink primary="Treasury" to="/treasury" /> */}
                 {/* <ListItemLink primary="Masonry" to="/masonry" />
                 <ListItemLink primary="Pit" to="/pit" />
                 <ListItemLink primary="SBS" to="/sbs" />
                 <ListItemLink primary="Liquidity" to="/liquidity" />
                 <ListItemLink primary="Regulations" to="/regulations" /> */}
-                <ListItem button component="a" href="https://beluga.fi">
+                {/* <ListItem button component="a" href="https://beluga.fi">
                   <ListItemText>Vaults</ListItemText>
-                </ListItem>
-                <ListItem button component="a" href="https://snapshot.org/#/forgiving.forg.eth">
+                </ListItem> */}
+                {/* <ListItem button component="a" href="https://snapshot.org/#/forgiving.forg.eth">
                   <ListItemText>Governance</ListItemText>
-                </ListItem>
-                <ListItem button component="a" href="https://docs.librafinance.xyz/">
+                </ListItem> */}
+                {/* <ListItem button component="a" href="https://docs.librafinance.xyz/">
                   <ListItemText>Docs</ListItemText>
-                </ListItem>
+                </ListItem> */}
                 <ListItem style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                   <AccountButton text="Connect" onOpen={handleDrawerClose} />
                 </ListItem>
