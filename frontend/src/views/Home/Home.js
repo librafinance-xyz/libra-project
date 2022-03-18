@@ -168,7 +168,14 @@ const Home = () => {
                       Revealing in ....
                       {props.days} days {props.hours} hours {props.minutes} mins {props.seconds} seconds
                       <br />
-                      Please follow us on Twitter and join our discord community.
+                      Please{' '}
+                      <a target="_blank" style={{ color: '#fff' }} href="https://twitter.com/LibraAstar">
+                        follow us on Twitter
+                      </a>{' '}
+                      and{' '}
+                      <a target="_blank" style={{ color: '#fff' }} href="https://discord.com/invite/Y8WWfBmq7R">
+                        join our discord community!!{' '}
+                      </a>
                     </h3>
                   </div>
                 )}
