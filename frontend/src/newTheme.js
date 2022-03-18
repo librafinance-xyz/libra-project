@@ -34,17 +34,17 @@ const newTheme = createMuiTheme({
     fontFamily: ['"Gilroy"', 'sans-serif'].join(','),
   },
   components: {
-      MuiButton: {
-          variants: [
-              {
-                  props: { variant: "standard" },
-                  style: {
-                      border: "1px solid var(--white)"
-                  }
-              }
-          ]
-      }
-  }
+    MuiButton: {
+      variants: [
+        {
+          props: { variant: 'standard' },
+          style: {
+            border: '1px solid var(--white)',
+          },
+        },
+      ],
+    },
+  },
 });
 
 export default newTheme;

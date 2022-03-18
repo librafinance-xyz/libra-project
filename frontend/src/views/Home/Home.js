@@ -31,9 +31,7 @@ import useTombFinance from '../../hooks/useTombFinance';
 const BackgroundImage = createGlobalStyle`
   body {
     background-color: var(--black);
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='32' viewBox='0 0 16 32'%3E%3Cg fill='%231D1E1F' fill-opacity='0.4'%3E%3Cpath fill-rule='evenodd' d='M0 24h4v2H0v-2zm0 4h6v2H0v-2zm0-8h2v2H0v-2zM0 0h4v2H0V0zm0 4h2v2H0V4zm16 20h-6v2h6v-2zm0 4H8v2h8v-2zm0-8h-4v2h4v-2zm0-20h-6v2h6V0zm0 4h-4v2h4V4zm-2 12h2v2h-2v-2zm0-8h2v2h-2V8zM2 8h10v2H2V8zm0 8h10v2H2v-2zm-2-4h14v2H0v-2zm4-8h6v2H4V4zm0 16h6v2H4v-2zM6 0h2v2H6V0zm0 24h2v2H6v-2z'/%3E%3C/g%3E%3C/svg%3E");
 }
-
 * {
     border-radius: 0 !important;
 }
@@ -188,6 +186,14 @@ const Home = () => {
             <Alert variant="filled" severity="warning">
               Do your own research before investing. Investing is risky and may result in monetary loss. Libra Finance
               is beta software and may contain bugs.
+              {/* By using libra, you agree that the 2omb and libra team is not responsible
+              for any financial losses from investing in 2omb or libra.
+               */}
+            </Alert>
+          </Box>{' '}
+          <Box mt={3} style={{ width: '1000px' }}>
+            <Alert variant="filled" severity="error">
+              THIS IS CURRENRY UNDER TEST VERSION. YOU MIGHT BE ABLE TO GET "DUMMY TOKEN", HOWEVER IT'S ZERO VALUE.
               {/* By using libra, you agree that the 2omb and libra team is not responsible
               for any financial losses from investing in 2omb or libra.
                */}
