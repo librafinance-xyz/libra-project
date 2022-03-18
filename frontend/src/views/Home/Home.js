@@ -71,8 +71,8 @@ const Home = () => {
     tShare = tShareProd;
   }
 
-  const buyTombAddress = 'https://spookyswap.finance/swap?outputCurrency=' + tomb.address;
-  const buyTShareAddress = 'https://spookyswap.finance/swap?outputCurrency=' + tShare.address;
+  const buyTombAddress = 'https://twinkleswap.finance/swap?outputCurrency=' + tomb.address;
+  const buyTShareAddress = 'https://twinkleswap.finance/swap?outputCurrency=' + tShare.address;
 
   const tombLPStats = useMemo(() => (tombFtmLpStats ? tombFtmLpStats : null), [tombFtmLpStats]);
   const tshareLPStats = useMemo(() => (tShareFtmLpStats ? tShareFtmLpStats : null), [tShareFtmLpStats]);
@@ -236,7 +236,15 @@ const Home = () => {
           <Card style={{ backgroundColor: 'transparent', boxShadow: 'none', border: '1px solid var(--white)' }}>
             <CardContent align="center">
               <h2>Total Value Locked</h2>
-              <CountUp style={{ fontSize: '25px' }} end={totalTVL} separator="," prefix="$" />
+              {totalTVL && totalTVL > 0 ? (
+                <>
+                  <CountUp style={{ fontSize: '25px' }} end={totalTVL} separator="," prefix="$" />
+                </>
+              ) : (
+                <>
+                  <div>--</div>
+                </>
+              )}
             </CardContent>
           </Card>
         </Grid>

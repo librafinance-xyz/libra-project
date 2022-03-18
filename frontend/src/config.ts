@@ -1,5 +1,5 @@
 // import { ChainId } from '@pancakeswap-libs/sdk';
-import { ChainId } from '@librafinance-xyz/sdk';
+import { ChainId } from '@twinkleswap/sdk';
 import { Configuration } from './tomb-finance/config';
 import { BankInfo } from './tomb-finance';
 

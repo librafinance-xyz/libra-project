@@ -1,6 +1,8 @@
 // import { Fetcher, Route, Token } from '@uniswap/sdk';
 // import { Fetcher as FetcherSpirit, Token as TokenSpirit } from '@spiritswap/sdk';
-import { Fetcher, Route, Token } from '@librafinance-xyz/sdk';
+import { Fetcher, Route, Token } from '@twinkleswap/sdk';
+// import { ChainId } from '@twinkleswap/sdk';
+
 import { Configuration } from './config';
 import { ContractName, TokenStat, AllocationTime, LPStat, Bank, PoolStats, TShareSwapperStat } from './types';
 import { BigNumber, Contract, ethers, EventFilter } from 'ethers';
@@ -411,19 +413,19 @@ export class TombFinance {
 
   async getTotalValueLocked(): Promise<Number> {
     let totalValue = 0;
-    for (const bankInfo of Object.values(bankDefinitions)) {
-      const pool = this.contracts[bankInfo.contract];
-      const token = this.externalTokens[bankInfo.depositTokenName];
-      const tokenPrice = await this.getDepositTokenPriceInDollars(bankInfo.depositTokenName, token);
-      const tokenAmountInPool = await token.balanceOf(pool.address);
-      const value = Number(getDisplayBalance(tokenAmountInPool, token.decimal)) * Number(tokenPrice);
-      const poolValue = Number.isNaN(value) ? 0 : value;
-      totalValue += poolValue;
-    }
-
-    const TSHAREPrice = (await this.getShareStat()).priceInDollars;
-    const masonrytShareBalanceOf = await this.TSHARE.balanceOf(this.currentMasonry().address);
-    const masonryTVL = Number(getDisplayBalance(masonrytShareBalanceOf, this.TSHARE.decimal)) * Number(TSHAREPrice);
+    // for (const bankInfo of Object.values(bankDefinitions)) {
+    //   const pool = this.contracts[bankInfo.contract];
+    //   const token = this.externalTokens[bankInfo.depositTokenName];
+    //   const tokenPrice = await this.getDepositTokenPriceInDollars(bankInfo.depositTokenName, token);
+    //   const tokenAmountInPool = await token.balanceOf(pool.address);
+    //   const value = Number(getDisplayBalance(tokenAmountInPool, token.decimal)) * Number(tokenPrice);
+    //   const poolValue = Number.isNaN(value) ? 0 : value;
+    //   totalValue += poolValue;
+    // }
+    let masonryTVL = 0;
+    // const TSHAREPrice = (await this.getShareStat()).priceInDollars;
+    // const masonrytShareBalanceOf = await this.TSHARE.balanceOf(this.currentMasonry().address);
+    // masonryTVL = Number(getDisplayBalance(masonrytShareBalanceOf, this.TSHARE.decimal)) * Number(TSHAREPrice);
 
     return totalValue + masonryTVL;
   }
