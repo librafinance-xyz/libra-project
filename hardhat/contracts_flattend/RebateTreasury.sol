@@ -1,8 +1,8 @@
-// Sources flattened with hardhat v2.9.1 https://hardhat.org
 
+// SPDX-License-Identifier: MIXED
 // File @openzeppelin/contracts-0.8/token/ERC20/IERC20.sol@v4.4.2
 
-// SPDX-License-Identifier: MIT
+//  MIT
 // OpenZeppelin Contracts v4.4.1 (token/ERC20/IERC20.sol)
 
 pragma solidity ^0.8.0;
@@ -88,7 +88,7 @@ interface IERC20 {
 
 // File @openzeppelin/contracts-0.8/utils/Context.sol@v4.4.2
 
-// SPDX-License-Identifier: MIT
+//  MIT
 // OpenZeppelin Contracts v4.4.1 (utils/Context.sol)
 
 pragma solidity ^0.8.0;
@@ -116,7 +116,7 @@ abstract contract Context {
 
 // File @openzeppelin/contracts-0.8/access/Ownable.sol@v4.4.2
 
-// SPDX-License-Identifier: MIT
+//  MIT
 // OpenZeppelin Contracts v4.4.1 (access/Ownable.sol)
 
 pragma solidity ^0.8.0;
@@ -194,7 +194,7 @@ abstract contract Ownable is Context {
 
 // File contracts/RebateTreasury.sol
 
-// SPDX-License-Identifier: MIT
+//  MIT
 pragma solidity ^0.8.7;
 
 

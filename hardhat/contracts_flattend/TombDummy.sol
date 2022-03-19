@@ -1,8 +1,8 @@
-// Sources flattened with hardhat v2.9.1 https://hardhat.org
 
+// SPDX-License-Identifier: MIXED 
 // File @openzeppelin/contracts/utils/Context.sol@v3.4.2
 
-// SPDX-License-Identifier: MIT
+//  MIT
 
 pragma solidity >=0.6.0 <0.8.0;
 
@@ -30,7 +30,7 @@ abstract contract Context {
 
 // File @openzeppelin/contracts/token/ERC20/IERC20.sol@v3.4.2
 
-// SPDX-License-Identifier: MIT
+//  MIT
 
 pragma solidity >=0.6.0 <0.8.0;
 
@@ -111,7 +111,7 @@ interface IERC20 {
 
 // File @openzeppelin/contracts/math/SafeMath.sol@v3.4.2
 
-// SPDX-License-Identifier: MIT
+//  MIT
 
 pragma solidity >=0.6.0 <0.8.0;
 
@@ -329,7 +329,7 @@ library SafeMath {
 
 // File @openzeppelin/contracts/token/ERC20/ERC20.sol@v3.4.2
 
-// SPDX-License-Identifier: MIT
+//  MIT
 
 pragma solidity >=0.6.0 <0.8.0;
 
@@ -637,7 +637,7 @@ contract ERC20 is Context, IERC20 {
 
 // File @openzeppelin/contracts/token/ERC20/ERC20Burnable.sol@v3.4.2
 
-// SPDX-License-Identifier: MIT
+//  MIT
 
 pragma solidity >=0.6.0 <0.8.0;
 
@@ -681,7 +681,7 @@ abstract contract ERC20Burnable is Context, ERC20 {
 
 // File @openzeppelin/contracts/math/Math.sol@v3.4.2
 
-// SPDX-License-Identifier: MIT
+//  MIT
 
 pragma solidity >=0.6.0 <0.8.0;
 
@@ -716,7 +716,7 @@ library Math {
 
 // File contracts/lib/SafeMath8.sol
 
-// SPDX-License-Identifier: MIT
+//  MIT
 
 pragma solidity 0.6.12;
 
@@ -879,14 +879,14 @@ library SafeMath8 {
 
 // File @openzeppelin/contracts/GSN/Context.sol@v3.4.2
 
-// SPDX-License-Identifier: MIT
+//  MIT
 
 pragma solidity >=0.6.0 <0.8.0;
 
 
 // File @openzeppelin/contracts/access/Ownable.sol@v3.4.2
 
-// SPDX-License-Identifier: MIT
+//  MIT
 
 pragma solidity >=0.6.0 <0.8.0;
 
@@ -957,7 +957,7 @@ abstract contract Ownable is Context {
 
 // File contracts/owner/Operator.sol
 
-// SPDX-License-Identifier: MIT
+//  MIT
 
 pragma solidity 0.6.12;
 
@@ -999,7 +999,7 @@ contract Operator is Context, Ownable {
 
 // File contracts/interfaces/IOracle.sol
 
-// SPDX-License-Identifier: MIT
+//  MIT
 
 pragma solidity 0.6.12;
 
@@ -1014,7 +1014,7 @@ interface IOracle {
 
 // File contracts/TombDummy.sol
 
-// SPDX-License-Identifier: MIT
+//  MIT
 
 pragma solidity 0.6.12;
 

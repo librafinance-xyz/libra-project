@@ -1,9 +1,8 @@
-//  SPDX-License-Identifier: MIXED 
-// Sources flattened with hardhat v2.9.1 https://hardhat.org
+// SPDX-License-Identifier: MIXED 
 
 // File @openzeppelin/contracts/token/ERC20/IERC20.sol@v3.4.2
 
-//MIT
+//  MIT
 
 pragma solidity >=0.6.0 <0.8.0;
 
@@ -84,7 +83,7 @@ interface IERC20 {
 
 // File @openzeppelin/contracts/math/SafeMath.sol@v3.4.2
 
-//MIT
+//  MIT
 
 pragma solidity >=0.6.0 <0.8.0;
 
@@ -302,7 +301,7 @@ library SafeMath {
 
 // File @openzeppelin/contracts/utils/Address.sol@v3.4.2
 
-//MIT
+//  MIT
 
 pragma solidity >=0.6.2 <0.8.0;
 
@@ -495,7 +494,7 @@ library Address {
 
 // File @openzeppelin/contracts/token/ERC20/SafeERC20.sol@v3.4.2
 
-//MIT
+//  MIT
 
 pragma solidity >=0.6.0 <0.8.0;
 
@@ -570,323 +569,292 @@ library SafeERC20 {
 }
 
 
-// File contracts/utils/ContractGuard.sol
+// File contracts/TombGenesisRewardPool.sol
 
-pragma solidity 0.6.12;
-
-contract ContractGuard {
-    mapping(uint256 => mapping(address => bool)) private _status;
-
-    function checkSameOriginReentranted() internal view returns (bool) {
-        return _status[block.number][tx.origin];
-    }
-
-    function checkSameSenderReentranted() internal view returns (bool) {
-        return _status[block.number][msg.sender];
-    }
-
-    modifier onlyOneBlock() {
-        require(!checkSameOriginReentranted(), "ContractGuard: one block, one function");
-        require(!checkSameSenderReentranted(), "ContractGuard: one block, one function");
-
-        _;
-
-        _status[block.number][tx.origin] = true;
-        _status[block.number][msg.sender] = true;
-    }
-}
-
-
-// File contracts/interfaces/IBasisAsset.sol
-
-pragma solidity ^0.6.0;
-
-interface IBasisAsset {
-    function mint(address recipient, uint256 amount) external returns (bool);
-
-    function burn(uint256 amount) external;
-
-    function burnFrom(address from, uint256 amount) external;
-
-    function isOperator() external returns (bool);
-
-    function operator() external view returns (address);
-
-    function transferOperator(address newOperator_) external;
-}
-
-
-// File contracts/interfaces/ITreasury.sol
-
-//MIT
-
-pragma solidity 0.6.12;
-
-interface ITreasury {
-    function epoch() external view returns (uint256);
-
-    function nextEpochPoint() external view returns (uint256);
-
-    function getTombPrice() external view returns (uint256);
-
-    function buyBonds(uint256 amount, uint256 targetPrice) external;
-
-    function redeemBonds(uint256 amount, uint256 targetPrice) external;
-}
-
-
-// File contracts/Masonry.sol
-
-//MIT
+//  MIT
 
 pragma solidity 0.6.12;
 
 
 
-
-contract ShareWrapper {
+// Note that this pool has no minter key of TOMB (rewards).
+// Instead, the governance will call TOMB distributeReward method and send reward to this pool at the beginning.
+contract TombGenesisRewardPool {
     using SafeMath for uint256;
     using SafeERC20 for IERC20;
-
-    IERC20 public share;
-
-    uint256 private _totalSupply;
-    mapping(address => uint256) private _balances;
-
-    function totalSupply() public view returns (uint256) {
-        return _totalSupply;
-    }
-
-    function balanceOf(address account) public view returns (uint256) {
-        return _balances[account];
-    }
-
-    function stake(uint256 amount) public virtual {
-        _totalSupply = _totalSupply.add(amount);
-        _balances[msg.sender] = _balances[msg.sender].add(amount);
-        share.safeTransferFrom(msg.sender, address(this), amount);
-    }
-
-    function withdraw(uint256 amount) public virtual {
-        uint256 masonShare = _balances[msg.sender];
-        require(masonShare >= amount, "Masonry: withdraw request greater than staked amount");
-        _totalSupply = _totalSupply.sub(amount);
-        _balances[msg.sender] = masonShare.sub(amount);
-        share.safeTransfer(msg.sender, amount);
-    }
-}
-
-contract Masonry is ShareWrapper, ContractGuard {
-    using SafeERC20 for IERC20;
-    using Address for address;
-    using SafeMath for uint256;
-
-    /* ========== DATA STRUCTURES ========== */
-
-    struct Masonseat {
-        uint256 lastSnapshotIndex;
-        uint256 rewardEarned;
-        uint256 epochTimerStart;
-    }
-
-    struct MasonrySnapshot {
-        uint256 time;
-        uint256 rewardReceived;
-        uint256 rewardPerShare;
-    }
-
-    /* ========== STATE VARIABLES ========== */
 
     // governance
     address public operator;
 
-    // flags
-    bool public initialized = false;
+    // Info of each user.
+    struct UserInfo {
+        uint256 amount; // How many tokens the user has provided.
+        uint256 rewardDebt; // Reward debt. See explanation below.
+    }
+
+    // Info of each pool.
+    struct PoolInfo {
+        IERC20 token; // Address of LP token contract.
+        uint256 allocPoint; // How many allocation points assigned to this pool. TOMB to distribute.
+        uint256 lastRewardTime; // Last time that TOMB distribution occurs.
+        uint256 accTombPerShare; // Accumulated TOMB per share, times 1e18. See below.
+        bool isStarted; // if lastRewardBlock has passed
+    }
 
     IERC20 public tomb;
-    ITreasury public treasury;
+    address public shiba;
 
-    mapping(address => Masonseat) public masons;
-    MasonrySnapshot[] public masonryHistory;
+    // Info of each pool.
+    PoolInfo[] public poolInfo;
 
-    uint256 public withdrawLockupEpochs;
-    uint256 public rewardLockupEpochs;
+    // Info of each user that stakes LP tokens.
+    mapping(uint256 => mapping(address => UserInfo)) public userInfo;
 
-    /* ========== EVENTS ========== */
+    // Total allocation points. Must be the sum of all allocation points in all pools.
+    uint256 public totalAllocPoint = 0;
 
-    event Initialized(address indexed executor, uint256 at);
-    event Staked(address indexed user, uint256 amount);
-    event Withdrawn(address indexed user, uint256 amount);
-    event RewardPaid(address indexed user, uint256 reward);
-    event RewardAdded(address indexed user, uint256 reward);
+    // The time when TOMB mining starts.
+    uint256 public poolStartTime;
 
-    /* ========== Modifiers =============== */
+    // The time when TOMB mining ends.
+    uint256 public poolEndTime;
+
+    // TESTNET
+    uint256 public tombPerSecond = 3.0555555 ether; // 11000 TOMB / (1h * 60min * 60s)
+    uint256 public runningTime = 24 hours; // 1 hours
+    uint256 public constant TOTAL_REWARDS = 11000 ether;
+    // END TESTNET
+
+    // MAINNET
+    // uint256 public tombPerSecond = 0.11574 ether; // 10000 TOMB / (24h * 60min * 60s)
+    // uint256 public runningTime = 1 days; // 1 days
+    // uint256 public constant TOTAL_REWARDS = 10000 ether;
+    // END MAINNET
+
+    event Deposit(address indexed user, uint256 indexed pid, uint256 amount);
+    event Withdraw(address indexed user, uint256 indexed pid, uint256 amount);
+    event EmergencyWithdraw(address indexed user, uint256 indexed pid, uint256 amount);
+    event RewardPaid(address indexed user, uint256 amount);
+
+    constructor(
+        address _tomb,
+        address _shiba,
+        uint256 _poolStartTime
+    ) public {
+        require(block.timestamp < _poolStartTime, "late");
+        if (_tomb != address(0)) tomb = IERC20(_tomb);
+        if (_shiba != address(0)) shiba = _shiba;
+        poolStartTime = _poolStartTime;
+        poolEndTime = poolStartTime + runningTime;
+        operator = msg.sender;
+    }
 
     modifier onlyOperator() {
-        require(operator == msg.sender, "Masonry: caller is not the operator");
+        require(operator == msg.sender, "TombGenesisPool: caller is not the operator");
         _;
     }
 
-    modifier masonExists {
-        require(balanceOf(msg.sender) > 0, "Masonry: The mason does not exist");
-        _;
-    }
-
-    modifier updateReward(address mason) {
-        if (mason != address(0)) {
-            Masonseat memory seat = masons[mason];
-            seat.rewardEarned = earned(mason);
-            seat.lastSnapshotIndex = latestSnapshotIndex();
-            masons[mason] = seat;
+    function checkPoolDuplicate(IERC20 _token) internal view {
+        uint256 length = poolInfo.length;
+        for (uint256 pid = 0; pid < length; ++pid) {
+            require(poolInfo[pid].token != _token, "TombGenesisPool: existing pool?");
         }
-        _;
     }
 
-    modifier notInitialized {
-        require(!initialized, "Masonry: already initialized");
-        _;
+    // Add a new token to the pool. Can only be called by the owner.
+    function add(
+        uint256 _allocPoint,
+        IERC20 _token,
+        bool _withUpdate,
+        uint256 _lastRewardTime
+    ) public onlyOperator {
+        checkPoolDuplicate(_token);
+        if (_withUpdate) {
+            massUpdatePools();
+        }
+        if (block.timestamp < poolStartTime) {
+            // chef is sleeping
+            if (_lastRewardTime == 0) {
+                _lastRewardTime = poolStartTime;
+            } else {
+                if (_lastRewardTime < poolStartTime) {
+                    _lastRewardTime = poolStartTime;
+                }
+            }
+        } else {
+            // chef is cooking
+            if (_lastRewardTime == 0 || _lastRewardTime < block.timestamp) {
+                _lastRewardTime = block.timestamp;
+            }
+        }
+        bool _isStarted =
+        (_lastRewardTime <= poolStartTime) ||
+        (_lastRewardTime <= block.timestamp);
+        poolInfo.push(PoolInfo({
+            token : _token,
+            allocPoint : _allocPoint,
+            lastRewardTime : _lastRewardTime,
+            accTombPerShare : 0,
+            isStarted : _isStarted
+            }));
+        if (_isStarted) {
+            totalAllocPoint = totalAllocPoint.add(_allocPoint);
+        }
     }
 
-    /* ========== GOVERNANCE ========== */
+    // Update the given pool's TOMB allocation point. Can only be called by the owner.
+    function set(uint256 _pid, uint256 _allocPoint) public onlyOperator {
+        massUpdatePools();
+        PoolInfo storage pool = poolInfo[_pid];
+        if (pool.isStarted) {
+            totalAllocPoint = totalAllocPoint.sub(pool.allocPoint).add(
+                _allocPoint
+            );
+        }
+        pool.allocPoint = _allocPoint;
+    }
 
-    function initialize(
-        IERC20 _tomb,
-        IERC20 _share,
-        ITreasury _treasury
-    ) public notInitialized {
-        tomb = _tomb;
-        share = _share;
-        treasury = _treasury;
+    // Return accumulate rewards over the given _from to _to block.
+    function getGeneratedReward(uint256 _fromTime, uint256 _toTime) public view returns (uint256) {
+        if (_fromTime >= _toTime) return 0;
+        if (_toTime >= poolEndTime) {
+            if (_fromTime >= poolEndTime) return 0;
+            if (_fromTime <= poolStartTime) return poolEndTime.sub(poolStartTime).mul(tombPerSecond);
+            return poolEndTime.sub(_fromTime).mul(tombPerSecond);
+        } else {
+            if (_toTime <= poolStartTime) return 0;
+            if (_fromTime <= poolStartTime) return _toTime.sub(poolStartTime).mul(tombPerSecond);
+            return _toTime.sub(_fromTime).mul(tombPerSecond);
+        }
+    }
 
-        MasonrySnapshot memory genesisSnapshot = MasonrySnapshot({time : block.number, rewardReceived : 0, rewardPerShare : 0});
-        masonryHistory.push(genesisSnapshot);
+    // View function to see pending TOMB on frontend.
+    function pendingTOMB(uint256 _pid, address _user) external view returns (uint256) {
+        PoolInfo storage pool = poolInfo[_pid];
+        UserInfo storage user = userInfo[_pid][_user];
+        uint256 accTombPerShare = pool.accTombPerShare;
+        uint256 tokenSupply = pool.token.balanceOf(address(this));
+        if (block.timestamp > pool.lastRewardTime && tokenSupply != 0) {
+            uint256 _generatedReward = getGeneratedReward(pool.lastRewardTime, block.timestamp);
+            uint256 _tombReward = _generatedReward.mul(pool.allocPoint).div(totalAllocPoint);
+            accTombPerShare = accTombPerShare.add(_tombReward.mul(1e18).div(tokenSupply));
+        }
+        return user.amount.mul(accTombPerShare).div(1e18).sub(user.rewardDebt);
+    }
 
-        withdrawLockupEpochs = 3; // Lock for 6 epochs (36h) before release withdraw
-        rewardLockupEpochs = 1; // Lock for 3 epochs (18h) before release claimReward
+    // Update reward variables for all pools. Be careful of gas spending!
+    function massUpdatePools() public {
+        uint256 length = poolInfo.length;
+        for (uint256 pid = 0; pid < length; ++pid) {
+            updatePool(pid);
+        }
+    }
 
-        initialized = true;
-        operator = msg.sender;
-        emit Initialized(msg.sender, block.number);
+    // Update reward variables of the given pool to be up-to-date.
+    function updatePool(uint256 _pid) public {
+        PoolInfo storage pool = poolInfo[_pid];
+        if (block.timestamp <= pool.lastRewardTime) {
+            return;
+        }
+        uint256 tokenSupply = pool.token.balanceOf(address(this));
+        if (tokenSupply == 0) {
+            pool.lastRewardTime = block.timestamp;
+            return;
+        }
+        if (!pool.isStarted) {
+            pool.isStarted = true;
+            totalAllocPoint = totalAllocPoint.add(pool.allocPoint);
+        }
+        if (totalAllocPoint > 0) {
+            uint256 _generatedReward = getGeneratedReward(pool.lastRewardTime, block.timestamp);
+            uint256 _tombReward = _generatedReward.mul(pool.allocPoint).div(totalAllocPoint);
+            pool.accTombPerShare = pool.accTombPerShare.add(_tombReward.mul(1e18).div(tokenSupply));
+        }
+        pool.lastRewardTime = block.timestamp;
+    }
+
+    // Deposit LP tokens.
+    function deposit(uint256 _pid, uint256 _amount) public {
+        address _sender = msg.sender;
+        PoolInfo storage pool = poolInfo[_pid];
+        UserInfo storage user = userInfo[_pid][_sender];
+        updatePool(_pid);
+        if (user.amount > 0) {
+            uint256 _pending = user.amount.mul(pool.accTombPerShare).div(1e18).sub(user.rewardDebt);
+            if (_pending > 0) {
+                safeTombTransfer(_sender, _pending);
+                emit RewardPaid(_sender, _pending);
+            }
+        }
+        if (_amount > 0) {
+            pool.token.safeTransferFrom(_sender, address(this), _amount);
+            if(address(pool.token) == shiba) {
+                user.amount = user.amount.add(_amount.mul(9900).div(10000));
+            } else {
+                user.amount = user.amount.add(_amount);
+            }
+        }
+        user.rewardDebt = user.amount.mul(pool.accTombPerShare).div(1e18);
+        emit Deposit(_sender, _pid, _amount);
+    }
+
+    // Withdraw LP tokens.
+    function withdraw(uint256 _pid, uint256 _amount) public {
+        address _sender = msg.sender;
+        PoolInfo storage pool = poolInfo[_pid];
+        UserInfo storage user = userInfo[_pid][_sender];
+        require(user.amount >= _amount, "withdraw: not good");
+        updatePool(_pid);
+        uint256 _pending = user.amount.mul(pool.accTombPerShare).div(1e18).sub(user.rewardDebt);
+        if (_pending > 0) {
+            safeTombTransfer(_sender, _pending);
+            emit RewardPaid(_sender, _pending);
+        }
+        if (_amount > 0) {
+            user.amount = user.amount.sub(_amount);
+            pool.token.safeTransfer(_sender, _amount);
+        }
+        user.rewardDebt = user.amount.mul(pool.accTombPerShare).div(1e18);
+        emit Withdraw(_sender, _pid, _amount);
+    }
+
+    // Withdraw without caring about rewards. EMERGENCY ONLY.
+    function emergencyWithdraw(uint256 _pid) public {
+        PoolInfo storage pool = poolInfo[_pid];
+        UserInfo storage user = userInfo[_pid][msg.sender];
+        uint256 _amount = user.amount;
+        user.amount = 0;
+        user.rewardDebt = 0;
+        pool.token.safeTransfer(msg.sender, _amount);
+        emit EmergencyWithdraw(msg.sender, _pid, _amount);
+    }
+
+    // Safe TOMB transfer function, just in case if rounding error causes pool to not have enough TOMBs.
+    function safeTombTransfer(address _to, uint256 _amount) internal {
+        uint256 _tombBalance = tomb.balanceOf(address(this));
+        if (_tombBalance > 0) {
+            if (_amount > _tombBalance) {
+                tomb.safeTransfer(_to, _tombBalance);
+            } else {
+                tomb.safeTransfer(_to, _amount);
+            }
+        }
     }
 
     function setOperator(address _operator) external onlyOperator {
         operator = _operator;
     }
 
-    function setLockUp(uint256 _withdrawLockupEpochs, uint256 _rewardLockupEpochs) external onlyOperator {
-        require(_withdrawLockupEpochs >= _rewardLockupEpochs && _withdrawLockupEpochs <= 56, "_withdrawLockupEpochs: out of range"); // <= 2 week
-        withdrawLockupEpochs = _withdrawLockupEpochs;
-        rewardLockupEpochs = _rewardLockupEpochs;
-    }
-
-    /* ========== VIEW FUNCTIONS ========== */
-
-    // =========== Snapshot getters
-
-    function latestSnapshotIndex() public view returns (uint256) {
-        return masonryHistory.length.sub(1);
-    }
-
-    function getLatestSnapshot() internal view returns (MasonrySnapshot memory) {
-        return masonryHistory[latestSnapshotIndex()];
-    }
-
-    function getLastSnapshotIndexOf(address mason) public view returns (uint256) {
-        return masons[mason].lastSnapshotIndex;
-    }
-
-    function getLastSnapshotOf(address mason) internal view returns (MasonrySnapshot memory) {
-        return masonryHistory[getLastSnapshotIndexOf(mason)];
-    }
-
-    function canWithdraw(address mason) external view returns (bool) {
-        return masons[mason].epochTimerStart.add(withdrawLockupEpochs) <= treasury.epoch();
-    }
-
-    function canClaimReward(address mason) external view returns (bool) {
-        return masons[mason].epochTimerStart.add(rewardLockupEpochs) <= treasury.epoch();
-    }
-
-    function epoch() external view returns (uint256) {
-        return treasury.epoch();
-    }
-
-    function nextEpochPoint() external view returns (uint256) {
-        return treasury.nextEpochPoint();
-    }
-
-    function getTombPrice() external view returns (uint256) {
-        return treasury.getTombPrice();
-    }
-
-    // =========== Mason getters
-
-    function rewardPerShare() public view returns (uint256) {
-        return getLatestSnapshot().rewardPerShare;
-    }
-
-    function earned(address mason) public view returns (uint256) {
-        uint256 latestRPS = getLatestSnapshot().rewardPerShare;
-        uint256 storedRPS = getLastSnapshotOf(mason).rewardPerShare;
-
-        return balanceOf(mason).mul(latestRPS.sub(storedRPS)).div(1e18).add(masons[mason].rewardEarned);
-    }
-
-    /* ========== MUTATIVE FUNCTIONS ========== */
-
-    function stake(uint256 amount) public override onlyOneBlock updateReward(msg.sender) {
-        require(amount > 0, "Masonry: Cannot stake 0");
-        super.stake(amount);
-        masons[msg.sender].epochTimerStart = treasury.epoch(); // reset timer
-        emit Staked(msg.sender, amount);
-    }
-
-    function withdraw(uint256 amount) public override onlyOneBlock masonExists updateReward(msg.sender) {
-        require(amount > 0, "Masonry: Cannot withdraw 0");
-        require(masons[msg.sender].epochTimerStart.add(withdrawLockupEpochs) <= treasury.epoch(), "Masonry: still in withdraw lockup");
-        claimReward();
-        super.withdraw(amount);
-        emit Withdrawn(msg.sender, amount);
-    }
-
-    function exit() external {
-        withdraw(balanceOf(msg.sender));
-    }
-
-    function claimReward() public updateReward(msg.sender) {
-        uint256 reward = masons[msg.sender].rewardEarned;
-        if (reward > 0) {
-            require(masons[msg.sender].epochTimerStart.add(rewardLockupEpochs) <= treasury.epoch(), "Masonry: still in reward lockup");
-            masons[msg.sender].epochTimerStart = treasury.epoch(); // reset timer
-            masons[msg.sender].rewardEarned = 0;
-            tomb.safeTransfer(msg.sender, reward);
-            emit RewardPaid(msg.sender, reward);
+    function governanceRecoverUnsupported(IERC20 _token, uint256 amount, address to) external onlyOperator {
+        if (block.timestamp < poolEndTime + 90 days) {
+            // do not allow to drain core token (TOMB or lps) if less than 90 days after pool ends
+            require(_token != tomb, "tomb");
+            uint256 length = poolInfo.length;
+            for (uint256 pid = 0; pid < length; ++pid) {
+                PoolInfo storage pool = poolInfo[pid];
+                require(_token != pool.token, "pool.token");
+            }
         }
-    }
-
-    function allocateSeigniorage(uint256 amount) external onlyOneBlock onlyOperator {
-        require(amount > 0, "Masonry: Cannot allocate 0");
-        require(totalSupply() > 0, "Masonry: Cannot allocate when totalSupply is 0");
-
-        // Create & add new snapshot
-        uint256 prevRPS = getLatestSnapshot().rewardPerShare;
-        uint256 nextRPS = prevRPS.add(amount.mul(1e18).div(totalSupply()));
-
-        MasonrySnapshot memory newSnapshot = MasonrySnapshot({
-            time: block.number,
-            rewardReceived: amount,
-            rewardPerShare: nextRPS
-        });
-        masonryHistory.push(newSnapshot);
-
-        tomb.safeTransferFrom(msg.sender, address(this), amount);
-        emit RewardAdded(msg.sender, amount);
-    }
-
-    function governanceRecoverUnsupported(IERC20 _token, uint256 _amount, address _to) external onlyOperator {
-        // do not allow to drain core tokens
-        require(address(_token) != address(tomb), "tomb");
-        require(address(_token) != address(share), "share");
-        _token.safeTransfer(_to, _amount);
+        _token.safeTransfer(to, amount);
     }
 }
