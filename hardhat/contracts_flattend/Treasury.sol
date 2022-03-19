@@ -1,8 +1,7 @@
-// Sources flattened with hardhat v2.9.1 https://hardhat.org
-
+//  SPDX-License-Identifier: MIXED 
 // File @openzeppelin/contracts/math/Math.sol@v3.4.2
 
-// SPDX-License-Identifier: MIT
+//MIT
 
 pragma solidity >=0.6.0 <0.8.0;
 
@@ -37,7 +36,7 @@ library Math {
 
 // File @openzeppelin/contracts/token/ERC20/IERC20.sol@v3.4.2
 
-// SPDX-License-Identifier: MIT
+//MIT
 
 pragma solidity >=0.6.0 <0.8.0;
 
@@ -118,7 +117,7 @@ interface IERC20 {
 
 // File @openzeppelin/contracts/math/SafeMath.sol@v3.4.2
 
-// SPDX-License-Identifier: MIT
+//MIT
 
 pragma solidity >=0.6.0 <0.8.0;
 
@@ -336,7 +335,7 @@ library SafeMath {
 
 // File @openzeppelin/contracts/utils/Address.sol@v3.4.2
 
-// SPDX-License-Identifier: MIT
+//MIT
 
 pragma solidity >=0.6.2 <0.8.0;
 
@@ -529,7 +528,7 @@ library Address {
 
 // File @openzeppelin/contracts/token/ERC20/SafeERC20.sol@v3.4.2
 
-// SPDX-License-Identifier: MIT
+//MIT
 
 pragma solidity >=0.6.0 <0.8.0;
 
@@ -606,7 +605,7 @@ library SafeERC20 {
 
 // File @openzeppelin/contracts/utils/ReentrancyGuard.sol@v3.4.2
 
-// SPDX-License-Identifier: MIT
+//MIT
 
 pragma solidity >=0.6.0 <0.8.0;
 
@@ -693,7 +692,7 @@ library Babylonian {
 
 // File @openzeppelin/contracts/utils/Context.sol@v3.4.2
 
-// SPDX-License-Identifier: MIT
+//MIT
 
 pragma solidity >=0.6.0 <0.8.0;
 
@@ -721,14 +720,14 @@ abstract contract Context {
 
 // File @openzeppelin/contracts/GSN/Context.sol@v3.4.2
 
-// SPDX-License-Identifier: MIT
+//MIT
 
 pragma solidity >=0.6.0 <0.8.0;
 
 
 // File @openzeppelin/contracts/access/Ownable.sol@v3.4.2
 
-// SPDX-License-Identifier: MIT
+//MIT
 
 pragma solidity >=0.6.0 <0.8.0;
 
@@ -799,7 +798,7 @@ abstract contract Ownable is Context {
 
 // File contracts/owner/Operator.sol
 
-// SPDX-License-Identifier: MIT
+//MIT
 
 pragma solidity 0.6.12;
 
@@ -887,7 +886,7 @@ interface IBasisAsset {
 
 // File contracts/interfaces/IOracle.sol
 
-// SPDX-License-Identifier: MIT
+//MIT
 
 pragma solidity 0.6.12;
 
@@ -902,7 +901,7 @@ interface IOracle {
 
 // File contracts/interfaces/IMasonry.sol
 
-// SPDX-License-Identifier: MIT
+//MIT
 
 pragma solidity 0.6.12;
 
@@ -941,7 +940,7 @@ interface IMasonry {
 
 // File contracts/Treasury.sol
 
-// SPDX-License-Identifier: MIT
+//MIT
 
 pragma solidity 0.6.12;
 

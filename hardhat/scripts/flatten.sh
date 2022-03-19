@@ -10,8 +10,10 @@
 # npx hardhat flatten ./contracts/TShare.sol >./contracts_flattend/TShare.sol
 # npx hardhat flatten contracts/Tomb.sol > ./contracts_flattend/Tomb.sol 
 
-npx hardhat flatten contracts/TombDummy.sol > ./contracts_flattend/TombDummy.sol 
-npx hardhat flatten contracts/TShareDummy.sol > ./contracts_flattend/TShareDummy.sol 
-npx hardhat flatten contracts/TBondDummy.sol > ./contracts_flattend/TBondDummy.sol 
+# npx hardhat flatten contracts/TombDummy.sol > ./contracts_flattend/TombDummy.sol 
+# npx hardhat flatten contracts/TShareDummy.sol > ./contracts_flattend/TShareDummy.sol 
+# npx hardhat flatten contracts/TBondDummy.sol > ./contracts_flattend/TBondDummy.sol 
+
+npx hardhat flatten contracts/TombGenesisRewardPool.sol > ./contracts_flattend/TombGenesisRewardPool.sol 
 
 
