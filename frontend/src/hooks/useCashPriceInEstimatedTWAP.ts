@@ -6,13 +6,13 @@ import useRefresh from './useRefresh';
 const useCashPriceInEstimatedTWAP = () => {
   const [stat, setStat] = useState<TokenStat>();
   const tombFinance = useTombFinance();
-  const { slowRefresh } = useRefresh(); 
+  const { slowRefresh } = useRefresh();
 
   useEffect(() => {
     async function fetchCashPrice() {
       try {
         setStat(await tombFinance.getTombStatInEstimatedTWAP());
-      }catch(err) {
+      } catch (err) {
         console.error(err);
       }
     }

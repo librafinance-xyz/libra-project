@@ -17,8 +17,11 @@ import useBondStats from '../../hooks/useBondStats';
 import usetShareStats from '../../hooks/usetShareStats';
 import useTotalValueLocked from '../../hooks/useTotalValueLocked';
 import useFantomPrice from '../../hooks/useFantomPrice';
-import { tomb as tombStag, tShare as tShareStag } from '../../tomb-finance/deployments/deployments.stag.json';
-import { tomb as tombProd, tShare as tShareProd } from '../../tomb-finance/deployments/deployments.prod.json';
+// import { tomb as tombStag, tShare as tShareStag } from '../../tomb-finance/deployments/deployments.stag.json';
+// import { tomb as tombProd, tShare as tShareProd } from '../../tomb-finance/deployments/deployments.prod.json';
+// temporary
+import { tomb as tombStag, tShare as tShareStag } from '../../tomb-finance/deployments/deployments.dev.json';
+import { tomb as tombProd, tShare as tShareProd } from '../../tomb-finance/deployments/deployments.dev.json';
 import { tomb as tombDev, tShare as tShareDev } from '../../tomb-finance/deployments/deployments.dev.json';
 import AppHostEnv from '../../config';
 
@@ -98,7 +101,7 @@ const Home = () => {
     () => (tShareStats ? Number(tShareStats.priceInDollars).toFixed(2) : null),
     [tShareStats],
   );
-  const tSharePriceInFTM = useMemo(
+  const tSharePriceInASTR = useMemo(
     () => (tShareStats ? Number(tShareStats.tokenInFtm).toFixed(4) : null),
     [tShareStats],
   );
@@ -414,7 +417,7 @@ const Home = () => {
               </Box>
               Current Price
               <Box>
-                <span style={{ fontSize: '30px' }}>{tSharePriceInFTM ? tSharePriceInFTM : '-.----'} ASTR</span>
+                <span style={{ fontSize: '30px' }}>{tSharePriceInASTR ? tSharePriceInASTR : '-.----'} ASTR</span>
               </Box>
               <Box>
                 <span style={{ fontSize: '16px' }}>${tSharePriceInDollars ? tSharePriceInDollars : '-.--'}</span>

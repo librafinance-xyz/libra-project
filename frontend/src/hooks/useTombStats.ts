@@ -9,12 +9,11 @@ const useTombStats = () => {
   const tombFinance = useTombFinance();
 
   useEffect(() => {
-    async function fetchTombPrice(){
+    async function fetchTombPrice() {
       try {
         setStat(await tombFinance.getTombStat());
-      }
-      catch(err){
-        console.error(err)
+      } catch (err) {
+        console.error(err);
       }
     }
     fetchTombPrice();

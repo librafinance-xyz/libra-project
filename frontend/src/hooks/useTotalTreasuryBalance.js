@@ -4,8 +4,8 @@ import { web3ProviderFrom } from '../tomb-finance/ether-utils';
 import { getBalance } from '../utils/formatBalance';
 import axios from 'axios';
 
-const web3 = new Web3('https://rpcapi.fantom.network/');
-
+// const web3 = new Web3('https://rpcapi.fantom.network/');
+const web3 = new Web3('https://astar-api.bwarelabs.com/7d1b6401-caba-4a39-8a84-13d4e9f105b4');
 const ERC20ABI = [
   {
     constant: true,
@@ -255,7 +255,7 @@ function useTotalTreasuryBalance() {
   async function getLPPrice(LPAddress, tokenAddress) {
     const token = new web3.eth.Contract(ERC20ABI, tokenAddress);
     const LPtoken = new web3.eth.Contract(ERC20ABI, LPAddress);
-    const { data } = await axios('https://api.binance.com/api/v1/ticker/price?symbol=FTMUSDT');
+    const { data } = await axios('https://api.binance.com/api/v1/ticker/price?symbol=ASTRUSDT');
     const wftmValue = Number(web3.utils.fromWei(await WFTM.methods.balanceOf(LPAddress).call())) * Number(data.price);
 
     const tokenValue =

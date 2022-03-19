@@ -20,11 +20,12 @@ const configurations: { [env: string]: Configuration } = {
     defaultProvider: 'https://astar-api.bwarelabs.com/7d1b6401-caba-4a39-8a84-13d4e9f105b4',
     //WSS: wss://astar-api.bwarelabs.com/ws/7d1b6401-caba-4a39-8a84-13d4e9f105b4
 
-    deployments: require('./tomb-finance/deployments/deployments.prod.json'),
+    deployments: require('./tomb-finance/deployments/deployments.dev.json'),
     externalTokens: {
       // WFTM: ['0x21be370d5312f44cb42ce377bc9b8a0cef1a4c83', 18],
       // USDC: ['0x04068DA6C83AFCFA0e13ba15A6696662335D5B75', 6],
-      USDC: ['0x6a2d262D56735DbA19Dd70682B39F6bE9a931D98', 6],
+      USDC: ['0x6a2d262D56735DbA19Dd70682B39F6bE9a931D98', 6], // Astar USDC
+
       // BOO: ['0x841FAD6EAe12c286d1Fd18d1d525DFfA75C7EFFE', 18],
       // ZOO: ['0x09e145a1d53c0045f41aeef25d8ff982ae74dd56', 0],
       // SHIBA: ['0x9ba3e4f84a34df4e08c112e1a0ff148b81655615', 9],
@@ -36,16 +37,20 @@ const configurations: { [env: string]: Configuration } = {
       wASTR: ['0xAeaaf0e2c81Af264101B9129C00F4440cCF0F720', 18],
       WASTR: ['0xAeaaf0e2c81Af264101B9129C00F4440cCF0F720', 18],
       // '2OMB': ['0x067e31D66Eb9376790ADFB1522F6Bef634D56a70', 18],
-      LIBRA: ['0x067e31D66Eb9376790ADFB1522F6Bef634D56a70', 18],
+      LIBRA: ['0x09679d9DfA42146115988C6A84FEe0933D53b313', 18], // DUMMY
+
       // '2OMB-2SHARES LP': ['0xd9B5f00d183df52D717046521152303129F088DD', 18],
       // '2OMB-WFTM LP': ['0xbdC7DFb7B88183e87f003ca6B5a2F81202343478', 18],
       // '2SHARES-WFTM LP': ['0x6398ACBBAB2561553a9e458Ab67dCFbD58944e52', 18],
       // '2SHARES': ['0xc54A1684fD1bef1f077a336E6be4Bd9a3096a6Ca', 18],
       // 'LIBRA-WFTM LP': ['0x83A52eff2E9D112E9B022399A9fD22a9DB7d33Ae', 18],
-      'LIBRA-ASTR-LP': ['0x83A52eff2E9D112E9B022399A9fD22a9DB7d33Ae', 18],
-      LBOND: ['0x96d8b911bDB86a3A11a7C4F64779bD1DC374713c', 18],
+      'ASTR-USDC-LP': ['0xBB1290c1829007F440C771b37718FAbf309cd527', 18],
+      'LIBRA-ASTR-LP': ['0xF3C8aC387E2254b92C0edD5e8307373099e394c6', 18], //DUMMY
+      'LSHARE-ASTR-LP': ['0x4d40e2647F7b5D68a818af4b9eF17DD97b305A69', 18], //DUMMY
+      LBOND: ['0x5508C3b4598D0a80a20EFD45d12717b8De4ad723', 18], // DUMMY
       // 'LSHARES-WFTM LP': ['0xd352daC95a91AfeFb112DBBB3463ccfA5EC15b65', 18],
-      LSHARES: ['0xb2835340c32928bE17448f1eA95fAac85aAEe0C4', 18],
+      LSHARES: ['0xD86AE6E031b2277bd55e19A6DA73445280F838e9', 18], // DUMMY
+      LSHARE: ['0xD86AE6E031b2277bd55e19A6DA73445280F838e9', 18], // DUMMY
       // 'USDT-FTM-LP': ['0x2b4C76d0dc16BE1C31D4C1DC53bF9B45987Fc75c', 18],
       // 'TOMB-FTM-LP': ['0x83a52eff2e9d112e9b022399a9fd22a9db7d33ae', 18],
       // 'TOMB-FTM-LP': ['0x83a52eff2e9d112e9b022399a9fd22a9db7d33ae', 18],
