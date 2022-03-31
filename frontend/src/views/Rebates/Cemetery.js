@@ -52,7 +52,7 @@ const Cemetery = () => {
 
   console.log(cashStat);
 
-  const tombPriceInFTM = useMemo(() => (tombStats ? Number(tombStats.tokenInFtm).toFixed(4) : null), [tombStats]);
+  const tombPriceInFTM = useMemo(() => (tombStats ? Number(tombStats.tokenInAstar).toFixed(4) : null), [tombStats]);
 
   const rebateStats = useRebateTreasury();
   console.log(rebateStats);

@@ -9,10 +9,45 @@ import ERC20 from './ERC20';
 import { getFullDisplayBalance, getDisplayBalance } from '../utils/formatBalance';
 import { getDefaultProvider } from '../utils/provider';
 import IUniswapV2PairABI from './IUniswapV2Pair.abi.json';
+import WeightedPoolAbi from './WeightedPool.sbi.json';
+import VaultAbi from './Vault.abi.json';
+
 import config, { bankDefinitions } from '../config';
 import moment from 'moment';
 import { parseUnits } from 'ethers/lib/utils';
 import { FTM_TICKER, SPOOKY_ROUTER_ADDR, TOMB_TICKER } from '../utils/constants';
+
+// export async function getSBXPrice(
+//   poolId: string,
+//   sbxAddress: string,
+//   usdcAddress: string
+// ) {
+//   const [sbxPool] = await balancerSubgraphService.pools.get({
+//     where: {
+//       id: poolId.toLowerCase(),
+//       totalShares_gt: -1 // Avoid the filtering for low liquidity pools
+//     }
+//   });
+
+//   const twinkle = sbxPool?.tokens.find(
+//     token => token.address.toLowerCase() === sbxAddress.toLowerCase()
+//   );
+//   const usdc = sbxPool?.tokens.find(
+//     token => token.address.toLowerCase() === usdcAddress.toLowerCase()
+//   );
+//   console.log('@@@useProtocolDataQuery.ts: twinkle=', twinkle);
+//   console.log('@@@useProtocolDataQuery.ts: usdc=', usdc);
+//   if (!twinkle || !usdc) {
+//     return 0;
+//   }
+
+//   return (
+//     ((parseFloat(twinkle.weight) / parseFloat(usdc.weight)) *
+//       parseFloat(usdc.balance)) /
+//     parseFloat(twinkle.balance)
+//   );
+// }
+
 /**
  * An API module of 2omb Finance contracts.
  * All contract-interacting domain logic should be defined in here.
@@ -31,6 +66,8 @@ export class TombFinance {
   TSHARE: ERC20;
   TBOND: ERC20;
   FTM: ERC20;
+  STARBANK_VAULT: Contract;
+  LIBRA_ASTR_SPT: Contract;
 
   constructor(cfg: Configuration) {
     const { deployments, externalTokens } = cfg;
@@ -47,7 +84,9 @@ export class TombFinance {
     }
     // this.TOMB = new ERC20(deployments.tomb.address, provider, 'LIBRA');
     this.TOMB = new ERC20(deployments.tomb.address, provider, 'LIBRA');
+    // console.log('@@deployments.tShare.address = ', deployments.tShare.address);
     this.TSHARE = new ERC20(deployments.tShare.address, provider, 'LSHARE');
+    // console.log('@@deployments.this.TSHARE = ', this.TSHARE);
     this.TBOND = new ERC20(deployments.tBond.address, provider, 'LBOND');
     // this.FTM = this.externalTokens['WFTM'];
     this.FTM = this.externalTokens['WASTR'];
@@ -55,7 +94,18 @@ export class TombFinance {
     // Uniswap V2 Pair
     // this.TOMBWFTM_LP = new Contract(externalTokens['TOMB-FTM-LP'][0], IUniswapV2PairABI, provider);
     this.TOMBWFTM_LP = new Contract(externalTokens['LIBRA-ASTR-LP'][0], IUniswapV2PairABI, provider);
+    this.STARBANK_VAULT = new Contract('0x7Cd0C38850A3AaBb773311AAAADA3444D31DCE03', VaultAbi, provider);
+    this.LIBRA_ASTR_SPT = new Contract(externalTokens['LIBRA-ASTR-LP2'][0], WeightedPoolAbi, provider);
 
+    // this.LIBRA_ASTR_SPT.getPoolId().then((a: string) => {
+    //   console.log('LIBRA_ASTR_SPT: ' + a);
+    // });
+    // console.log('this.LIBRA_ASTR_SPT.getPoolId(): ' + this.LIBRA_ASTR_SPT.getPoolId());
+    // this.LIBRA_ASTR_SPT.balances().then((balances: number[]) => {
+    //   //
+    //   console.log('@@balances=', balances);
+    //   //
+    // });
     this.config = cfg;
     this.provider = provider;
   }
@@ -89,12 +139,6 @@ export class TombFinance {
     return !!this.myAccount;
   }
 
-  //===================================================================
-  //===================== GET ASSET STATS =============================
-  //===================FROM SPOOKY TO DISPLAY =========================
-  //=========================IN HOME PAGE==============================
-  //===================================================================
-
   async getTombStat(): Promise<TokenStat> {
     console.log('getTombStat');
     console.log('getTombStat:', this.TOMB);
@@ -116,12 +160,14 @@ export class TombFinance {
     const priceOfOneASTR = await this.getWASTRPriceFromArthswapASTRUSDC();
     console.log('getTombStat: priceOfOneASTR: ', priceOfOneASTR);
     const priceInASTR = await this.getLibraPriceFromLibraAstr();
+    // const priceInASTR = await this.getLibraPriceFromStarbank();
+
     // const priceInASTR = await this.getTokenPriceFromLP(this.TOMB);
     console.log('getTombStat: price in astr :', priceInASTR);
     const priceOfTombInDollars = (Number(priceInASTR) * Number(priceOfOneASTR)).toFixed(2);
 
     return {
-      tokenInFtm: priceInASTR,
+      tokenInAstar: priceInASTR,
       priceInDollars: priceOfTombInDollars,
       totalSupply: getDisplayBalance(supply, this.TOMB.decimal, 0),
       circulatingSupply: getDisplayBalance(tombCirculatingSupply, this.TOMB.decimal, 0),
@@ -171,11 +217,11 @@ export class TombFinance {
     const tombStat = await this.getTombStat();
     const bondTombRatioBN = await Treasury.getBondPremiumRate();
     const modifier = bondTombRatioBN / 1e18 > 1 ? bondTombRatioBN / 1e18 : 1;
-    const bondpriceInASTR = (Number(tombStat.tokenInFtm) * modifier).toFixed(2);
+    const bondpriceInASTR = (Number(tombStat.tokenInAstar) * modifier).toFixed(2);
     const priceOfTBondInDollars = (Number(tombStat.priceInDollars) * modifier).toFixed(2);
     const supply = await this.TBOND.displayedTotalSupply();
     return {
-      tokenInFtm: bondpriceInASTR,
+      tokenInAstar: bondpriceInASTR,
       priceInDollars: priceOfTBondInDollars,
       totalSupply: supply,
       circulatingSupply: supply,
@@ -190,27 +236,29 @@ export class TombFinance {
    * CirculatingSupply (always equal to total supply for bonds)
    */
   async getShareStat(): Promise<TokenStat> {
-    console.log('getShareStat ');
+    console.log('@@getShareStat ');
 
     const { TombFtmLPTShareRewardPool } = this.contracts;
 
-    console.log('getShareStat TombFtmLPTShareRewardPool=', TombFtmLPTShareRewardPool);
+    // console.log('@@getShareStat TombFtmLPTShareRewardPool=', TombFtmLPTShareRewardPool);
+    console.log('@@getShareStat TSHARE=', this.TSHARE);
     const supply = await this.TSHARE.totalSupply();
-    console.log('getShareStat supply=', supply);
+    console.log('@@getShareStat supply=', supply.toString());
 
     const priceInASTR = await this.getTokenPriceFromLP(this.TSHARE);
-    console.log('getShareStat priceInASTR=', priceInASTR);
+    console.log('@@getShareStat priceInASTR=', priceInASTR);
     const tombRewardPoolSupply = await this.TSHARE.balanceOf(TombFtmLPTShareRewardPool.address);
-    console.log('getShareStat tombRewardPoolSupply=', tombRewardPoolSupply);
+    console.log('@@getShareStat tombRewardPoolSupply=', tombRewardPoolSupply);
     const tShareCirculatingSupply = supply.sub(tombRewardPoolSupply);
-    console.log('getShareStat tShareCirculatingSupply=', tShareCirculatingSupply);
+    console.log('@@getShareStat tShareCirculatingSupply=', tShareCirculatingSupply);
     const priceOfOneFTM = await this.getWASTRPriceFromArthswapASTRUSDC();
-    console.log('getShareStat priceOfOneFTM=', priceOfOneFTM);
+    console.log('@@getShareStat priceOfOneFTM=', priceOfOneFTM);
     const priceOfSharesInDollars = (Number(priceInASTR) * Number(priceOfOneFTM)).toFixed(2);
-    console.log('getShareStat priceOfSharesInDollars=', priceOfSharesInDollars);
-
+    console.log('@@getShareStat priceOfSharesInDollars=', priceOfSharesInDollars);
+    const priceInAstar = (await this.getLSharePriceFromLShareAstr()).toString();
+    console.log('priceInAstar: ', priceInAstar);
     return {
-      tokenInFtm: priceInASTR,
+      tokenInAstar: priceInAstar,
       priceInDollars: priceOfSharesInDollars,
       totalSupply: getDisplayBalance(supply, this.TSHARE.decimal, 0),
       circulatingSupply: getDisplayBalance(tShareCirculatingSupply, this.TSHARE.decimal, 0),
@@ -225,7 +273,7 @@ export class TombFinance {
     const tombRewardPoolSupply = await this.TOMB.balanceOf(TombFtmRewardPool.address);
     const tombCirculatingSupply = supply.sub(tombRewardPoolSupply);
     return {
-      tokenInFtm: getDisplayBalance(expectedPrice),
+      tokenInAstar: getDisplayBalance(expectedPrice),
       priceInDollars: getDisplayBalance(expectedPrice),
       totalSupply: getDisplayBalance(supply, this.TOMB.decimal, 0),
       circulatingSupply: getDisplayBalance(tombCirculatingSupply, this.TOMB.decimal, 0),
@@ -491,7 +539,7 @@ export class TombFinance {
   //   const priceOfTombInDollars = (Number(priceInASTR) * Number(priceOfOneFTM)).toFixed(2);
 
   //   return {
-  //     tokenInFtm: priceInASTR,
+  //     tokenInAstar: priceInASTR,
   //     priceInDollars: priceOfTombInDollars,
   //     totalSupply: getDisplayBalance(supply, TOMB.decimal, 0),
   //     circulatingSupply: getDisplayBalance(tombCirculatingSupply, TOMB.decimal, 0),
@@ -514,7 +562,7 @@ export class TombFinance {
   //   const priceOfTombInDollars = (Number(priceInASTR) * Number(priceOfOneFTM)).toFixed(2);
 
   //   return {
-  //     tokenInFtm: priceInASTR,
+  //     tokenInAstar: priceInASTR,
   //     priceInDollars: priceOfTombInDollars,
   //     totalSupply: getDisplayBalance(supply, TSHARE.decimal, 0),
   //     circulatingSupply: getDisplayBalance(tombCirculatingSupply, TSHARE.decimal, 0),
@@ -650,6 +698,14 @@ export class TombFinance {
   //   } catch (err) {
   //     console.error(`Failed to fetch token price of ${tokenContract.symbol}: ${err}`);
   //   }
+  async getLibraPriceFromStarbank(): Promise<string> {
+    const poolId = '0x7bed318e12e481b543733ecc802eaee7f048c2b6000200000000000000000026';
+    const poolInfo = await this.STARBANK_VAULT.getPoolTokens(poolId);
+
+    console.log('poolInfo[balances][0]: ', poolInfo['balances'][0]);
+    console.log('poolInfo[balances][1]: ', poolInfo['balances'][1]);
+    return (Number(poolInfo['balances'][1]) / Number(poolInfo['balances'][0])).toString();
+  }
 
   async getLibraPriceFromLibraAstr(): Promise<string> {
     const ready = await this.provider.ready;
@@ -664,27 +720,44 @@ export class TombFinance {
     console.log('TombFinance: getLibraPriceFromLibraAstr() 8. LIBRA_amount=', LIBRA_amount);
     return (LIBRA_amount / astr_amount).toString();
   }
+
+  async getLSharePriceFromLShareAstr(): Promise<string> {
+    const ready = await this.provider.ready;
+    if (!ready) return;
+
+    const { WASTR, LSHARE } = this.externalTokens;
+    const lshare_astr_lp_pair = this.externalTokens['LSHARE-ASTR-LP'];
+    let astr_amount_BN = await WASTR.balanceOf(lshare_astr_lp_pair.address);
+    let astr_amount = Number(getFullDisplayBalance(astr_amount_BN, WASTR.decimal));
+    console.log('TombFinance: getLSharePriceFromLShareAstr() 7. astr_amount=', astr_amount);
+    let LSHARE_amount_BN = await LSHARE.balanceOf(lshare_astr_lp_pair.address);
+    let LSHARE_amount = Number(getFullDisplayBalance(LSHARE_amount_BN, lshare_astr_lp_pair.decimal));
+    console.log('TombFinance: getLSharePriceFromLShareAstr() 8. LSHARE_amount_BN=', LSHARE_amount);
+    const ret = (LSHARE_amount / astr_amount).toString();
+    console.log('TombFinance: getLSharePriceFromLShareAstr(): ret = ', ret);
+    return ret;
+  }
   // }
 
   async getWASTRPriceFromArthswapASTRUSDC(): Promise<string> {
-    console.log('TombFinance: getWASTRPriceFromArthswapASTRUSDC() ');
+    // console.log('TombFinance: getWASTRPriceFromArthswapASTRUSDC() ');
     const ready = await this.provider.ready;
-    console.log('TombFinance: getWASTRPriceFromArthswapASTRUSDC() 2');
+    // console.log('TombFinance: getWASTRPriceFromArthswapASTRUSDC() 2');
     if (!ready) return;
-    console.log('TombFinance: getWASTRPriceFromArthswapASTRUSDC() 3');
+    // console.log('TombFinance: getWASTRPriceFromArthswapASTRUSDC() 3');
     // const { WFTM, USDC } = this.externalTokens;
     const { WASTR, USDC } = this.externalTokens;
-    console.log('TombFinance: getWASTRPriceFromArthswapASTRUSDC() 4');
+    // console.log('TombFinance: getWASTRPriceFromArthswapASTRUSDC() 4');
     try {
-      console.log('TombFinance: getWASTRPriceFromArthswapASTRUSDC() 5');
+      // console.log('TombFinance: getWASTRPriceFromArthswapASTRUSDC() 5');
       const astr_usdc_lp_pair = this.externalTokens['ASTR-USDC-LP'];
       console.log('TombFinance: getWASTRPriceFromArthswapASTRUSDC() 6. astr_usdc_lp_pair=', astr_usdc_lp_pair);
       let astr_amount_BN = await WASTR.balanceOf(astr_usdc_lp_pair.address);
       let astr_amount = Number(getFullDisplayBalance(astr_amount_BN, WASTR.decimal));
-      console.log('TombFinance: getWASTRPriceFromArthswapASTRUSDC() 7. astr_amount=', astr_amount);
+      // console.log('TombFinance: getWASTRPriceFromArthswapASTRUSDC() 7. astr_amount=', astr_amount);
       let USDC_amount_BN = await USDC.balanceOf(astr_usdc_lp_pair.address);
       let USDC_amount = Number(getFullDisplayBalance(USDC_amount_BN, USDC.decimal));
-      console.log('TombFinance: getWASTRPriceFromArthswapASTRUSDC() 8. USDC_amount=', USDC_amount);
+      // console.log('TombFinance: getWASTRPriceFromArthswapASTRUSDC() 8. USDC_amount=', USDC_amount);
       return (USDC_amount / astr_amount).toString();
     } catch (err) {
       console.error(`Failed to fetch token price of WASTR: ${err}`);
