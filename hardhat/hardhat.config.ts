@@ -3,7 +3,7 @@ import "@nomiclabs/hardhat-etherscan";
 import "@nomiclabs/hardhat-solhint";
 import "@nomiclabs/hardhat-ethers";
 import "@nomiclabs/hardhat-waffle";
-import "@typechain/hardhat";
+// import "@typechain/hardhat";
 import "@tenderly/hardhat-tenderly";
 // import "hardhat-abi-exporter";
 import "hardhat-gas-reporter";
