@@ -14,6 +14,6 @@
 # npx hardhat flatten contracts/TShareDummy.sol > ./contracts_flattend/TShareDummy.sol 
 # npx hardhat flatten contracts/TBondDummy.sol > ./contracts_flattend/TBondDummy.sol 
 
-npx hardhat flatten contracts/TombGenesisRewardPool.sol > ./contracts_flattend/TombGenesisRewardPool.sol 
+npx hardhat flatten contracts/LibraGenesisRewardPool.sol > ./contracts_flattend/LibraGenesisRewardPool.sol 
 
 
