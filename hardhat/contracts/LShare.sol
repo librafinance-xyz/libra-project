@@ -7,52 +7,63 @@ import "@openzeppelin/contracts/token/ERC20/ERC20Burnable.sol";
 
 import "./owner/Operator.sol";
 
-contract TShare is ERC20Burnable, Operator {
+contract LShare is ERC20Burnable, Operator {
     using SafeMath for uint256;
 
-    // TOTAL MAX SUPPLY = 70,000 tSHAREs
-    uint256 public constant FARMING_POOL_REWARD_ALLOCATION = 60000 ether;
-    uint256 public constant COMMUNITY_FUND_POOL_ALLOCATION = 0 ether;
-    uint256 public constant DEV_FUND_POOL_ALLOCATION = 5000 ether;
+    // TOTAL MAX SUPPLY = 70,000 LSHAREs
+    uint256 public constant FARMING_POOL_REWARD_ALLOCATION = 49000 ether;
+    uint256 public constant TREASURY_FUND_POOL_ALLOCATION = 3500 ether;
+    uint256 public constant COMMUNITY_FUND_POOL_ALLOCATION = 10500 ether;
+    uint256 public constant DEV_FUND_POOL_ALLOCATION = 7000 ether;
 
     uint256 public constant VESTING_DURATION = 365 days;
     uint256 public startTime;
     uint256 public endTime;
 
     uint256 public communityFundRewardRate;
+    uint256 public treasuryFundRewardRate;
     uint256 public devFundRewardRate;
-
+    
+    address public treasuryFund;
     address public communityFund;
     address public devFund;
 
-    uint256 public communityFundLastClaimed;
-    uint256 public devFundLastClaimed;
+    uint256 public lastClaimedTime;
 
     bool public rewardPoolDistributed = false;
 
-    constructor(uint256 _startTime, address _communityFund, address _devFund) public ERC20("LSHARES", "LSHARE Token") {
-        _mint(msg.sender, 1 ether); // mint 1 TOMB Share for initial pools deployment
+    constructor(uint256 _startTime, address _communityFund, address _devFund, address _treasuryFund) public ERC20("Libra Finance SHARE", "LSHARE") {
+        _mint(msg.sender, 1 ether); // mint 1 LSHARE for initial pools deployment
 
         startTime = _startTime;
         endTime = startTime + VESTING_DURATION;
 
-        communityFundLastClaimed = startTime;
-        devFundLastClaimed = startTime;
+        lastClaimedTime = startTime;
 
         communityFundRewardRate = COMMUNITY_FUND_POOL_ALLOCATION.div(VESTING_DURATION);
         devFundRewardRate = DEV_FUND_POOL_ALLOCATION.div(VESTING_DURATION);
+        treasuryFundRewardRate = TREASURY_FUND_POOL_ALLOCATION.div(VESTING_DURATION);
 
         require(_devFund != address(0), "Address cannot be 0");
         devFund = _devFund;
 
-        //require(_communityFund != address(0), "Address cannot be 0");
+        require(_communityFund != address(0), "Address cannot be 0");
         communityFund = _communityFund;
+
+        require(_treasuryFund != address(0), "Address cannot be 0");
+        treasuryFund = _treasuryFund;
     }
 
-    function setTreasuryFund(address _communityFund) external {
-        require(msg.sender == devFund, "!dev");
-        communityFund = _communityFund;
+    function setCommunityFund(address _communityFund) external onlyOperator {	
+        require(_daoFund != address(0), "zero");
+        daoFund = _daoFund;
     }
+
+    function setTreasuryFund(address _treasuryFund) external onlyOperator {	
+        require(_treasuryFund != address(0), "zero");
+        treasuryFund = _treasuryFund;
+    }
+
 
     function setDevFund(address _devFund) external {
         require(msg.sender == devFund, "!dev");
@@ -60,34 +71,44 @@ contract TShare is ERC20Burnable, Operator {
         devFund = _devFund;
     }
 
-    function unclaimedTreasuryFund() public view returns (uint256 _pending) {
+    function unclaimedCommunityFund() public view returns (uint256 _pending) {
         uint256 _now = block.timestamp;
         if (_now > endTime) _now = endTime;
-        if (communityFundLastClaimed >= _now) return 0;
-        _pending = _now.sub(communityFundLastClaimed).mul(communityFundRewardRate);
+        if (lastClaimedTime >= _now) return 0;
+        _pending = _now.sub(lastClaimedTime).mul(communityFundRewardRate);
     }
 
     function unclaimedDevFund() public view returns (uint256 _pending) {
         uint256 _now = block.timestamp;
         if (_now > endTime) _now = endTime;
-        if (devFundLastClaimed >= _now) return 0;
-        _pending = _now.sub(devFundLastClaimed).mul(devFundRewardRate);
+        if (lastClaimedTime >= _now) return 0;
+        _pending = _now.sub(lastClaimedTime).mul(devFundRewardRate);
+    }
+
+    function unclaimedTreasuryFund() public view returns (uint256 _pending) {	
+        uint256 _now = block.timestamp;
+        if (_now > endTime) _now = endTime;
+        if (lastClaimedTime >= _now) return 0;	
+        _pending = _now.sub(lastClaimedTime).mul(treasuryFundRewardRate);	
     }
 
     /**
      * @dev Claim pending rewards to community and dev fund
      */
     function claimRewards() external {
-        uint256 _pending = unclaimedTreasuryFund();
+        uint256 _pending = unclaimedCommunityFund();
         if (_pending > 0 && communityFund != address(0)) {
             _mint(communityFund, _pending);
-            communityFundLastClaimed = block.timestamp;
         }
         _pending = unclaimedDevFund();
         if (_pending > 0 && devFund != address(0)) {
             _mint(devFund, _pending);
-            devFundLastClaimed = block.timestamp;
         }
+        _pending = unclaimedTreasuryFund();	
+        if (_pending > 0 && treasuryFund != address(0)) {	
+            _mint(treasuryFund, _pending);
+        }
+        lastClaimedTime = block.timestamp;
     }
 
     /**
