@@ -2,20 +2,20 @@
 
 pragma solidity 0.6.12;
 
-interface IMasonry {
-    function balanceOf(address _mason) external view returns (uint256);
+interface IBoardroom {
+    function balanceOf(address _director) external view returns (uint256);
 
-    function earned(address _mason) external view returns (uint256);
+    function earned(address _director) external view returns (uint256);
 
-    function canWithdraw(address _mason) external view returns (bool);
+    function canWithdraw(address _director) external view returns (bool);
 
-    function canClaimReward(address _mason) external view returns (bool);
+    function canClaimReward(address _director) external view returns (bool);
 
     function epoch() external view returns (uint256);
 
     function nextEpochPoint() external view returns (uint256);
 
-    function getTombPrice() external view returns (uint256);
+    function getLibraPrice() external view returns (uint256);
 
     function setOperator(address _operator) external;
 
