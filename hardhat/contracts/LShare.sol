@@ -55,8 +55,8 @@ contract LShare is ERC20Burnable, Operator {
     }
 
     function setCommunityFund(address _communityFund) external onlyOperator {	
-        require(_daoFund != address(0), "zero");
-        daoFund = _daoFund;
+        require(_communityFund != address(0), "zero");
+        communityFund = _communityFund;
     }
 
     function setTreasuryFund(address _treasuryFund) external onlyOperator {	

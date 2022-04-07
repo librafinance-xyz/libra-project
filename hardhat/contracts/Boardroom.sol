@@ -13,7 +13,7 @@ contract ShareWrapper {
     using SafeMath for uint256;
     using SafeERC20 for IERC20;
 
-    IERC20 public share;
+    IERC20 public lshare;
 
     uint256 private _totalSupply;
     mapping(address => uint256) private _balances;
@@ -29,7 +29,7 @@ contract ShareWrapper {
     function stake(uint256 amount) public virtual {
         _totalSupply = _totalSupply.add(amount);
         _balances[msg.sender] = _balances[msg.sender].add(amount);
-        share.safeTransferFrom(msg.sender, address(this), amount);
+        lshare.safeTransferFrom(msg.sender, address(this), amount);
     }
 
     function withdraw(uint256 amount) public virtual {
@@ -37,7 +37,7 @@ contract ShareWrapper {
         require(memberShare >= amount, "Boardroom: withdraw request greater than staked amount");
         _totalSupply = _totalSupply.sub(amount);
         _balances[msg.sender] = memberShare.sub(amount);
-        share.safeTransfer(msg.sender, amount);
+        lshare.safeTransfer(msg.sender, amount);
     }
 }
 
