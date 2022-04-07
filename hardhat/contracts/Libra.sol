@@ -250,17 +250,17 @@ contract Libra is ERC20Burnable, Operator {
      */
     function distributeReward(
         address _genesisPool
-        //address _libraPool,
-        //address _airdropWallet
+        address _libraPool,
+        address _airdropWallet
     ) external onlyOperator {
         require(!rewardPoolDistributed, "only can distribute once");
         require(_genesisPool != address(0), "!_genesisPool");
-        //require(_libraPool != address(0), "!_libraPool");
-        //require(_airdropWallet != address(0), "!_airdropWallet");
+        require(_libraPool != address(0), "!_libraPool");
+        require(_airdropWallet != address(0), "!_airdropWallet");
         rewardPoolDistributed = true;
         _mint(_genesisPool, INITIAL_GENESIS_POOL_DISTRIBUTION);
-        //_mint(_libraPool, INITIAL_LIBRA_POOL_DISTRIBUTION);
-        //_mint(_airdropWallet, INITIAL_AIRDROP_WALLET_DISTRIBUTION);
+        _mint(_libraPool, INITIAL_LIBRA_POOL_DISTRIBUTION);
+        _mint(_airdropWallet, INITIAL_AIRDROP_WALLET_DISTRIBUTION);
     }
 
     function governanceRecoverUnsupported(
