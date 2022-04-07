@@ -5,6 +5,9 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "hardhat compile",
+    "watch:build": "hardhat watch build",
+    "watch:test": "hardhat watch test",
     "flatten": "sh ./scripts/flatten.sh"
   },
   "repository": {
