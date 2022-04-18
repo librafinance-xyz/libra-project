@@ -249,7 +249,7 @@ contract Libra is ERC20Burnable, Operator {
      * @notice distribute to reward pool (only once)
      */
     function distributeReward(
-        address _genesisPool
+        address _genesisPool,
         address _libraPool,
         address _airdropWallet
     ) external onlyOperator {
