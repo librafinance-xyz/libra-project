@@ -31,7 +31,6 @@ contract LibraGenesisRewardPool {
     }
 
     IERC20 public libra;
-    address public shiba; //->->
 
     // Info of each pool.
     PoolInfo[] public poolInfo;
@@ -49,9 +48,9 @@ contract LibraGenesisRewardPool {
     uint256 public poolEndTime;
 
     // MAINNET
-    uint256 public libraPerSecond = 0.09645 ether; // 25000 LIBRA / (72h * 60min * 60s)  // ->-> 
-    uint256 public runningTime = 3 days; // 1 days ->-> 3day??
-    uint256 public constant TOTAL_REWARDS = 25000 ether; // ->-> 
+    uint256 public libraPerSecond = 0.11574 ether; // 10000 LIBRA / (24h * 60min * 60s)
+    uint256 public runningTime = 24 hours;
+    uint256 public constant TOTAL_REWARDS = 10000 ether;
     // END MAINNET
 
     event Deposit(address indexed user, uint256 indexed pid, uint256 amount);
@@ -61,12 +60,10 @@ contract LibraGenesisRewardPool {
 
     constructor(
         address _libra, 
-        address _shiba,  // ->-> 
         uint256 _poolStartTime
     ) public {
         require(block.timestamp < _poolStartTime, "late");
         if (_libra != address(0)) libra = IERC20(_libra);
-        if (_shiba != address(0)) shiba = _shiba;
         poolStartTime = _poolStartTime;
         poolEndTime = poolStartTime + runningTime;
         operator = msg.sender;
@@ -211,11 +208,7 @@ contract LibraGenesisRewardPool {
         }
         if (_amount > 0) {
             pool.token.safeTransferFrom(_sender, address(this), _amount);
-            if(address(pool.token) == shiba) {
-                user.amount = user.amount.add(_amount.mul(9900).div(10000));
-            } else {
-                user.amount = user.amount.add(_amount);
-            }
+            user.amount = user.amount.add(_amount);
         }
         user.rewardDebt = user.amount.mul(pool.accLibraPerShare).div(1e18);
         emit Deposit(_sender, _pid, _amount);
