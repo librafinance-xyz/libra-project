@@ -14,11 +14,11 @@ contract Libra is ERC20Burnable, Operator {
     using SafeMath for uint256;
 
     // Initial distribution for the first 24h genesis pools
-    uint256 public constant INITIAL_GENESIS_POOL_DISTRIBUTION = 25000 ether;
+    uint256 public constant INITIAL_GENESIS_POOL_DISTRIBUTION = 11000 ether;
     // Initial distribution for the day 2-5 LIBRA-WASTR LP -> LIBRA pool
-    uint256 public constant INITIAL_LIBRA_POOL_DISTRIBUTION = 0 ether;
+    uint256 public constant INITIAL_LIBRA_POOL_DISTRIBUTION = 140000 ether;
     // Distribution for airdrops wallet
-    uint256 public constant INITIAL_AIRDROP_WALLET_DISTRIBUTION = 0 ether;
+    uint256 public constant INITIAL_AIRDROP_WALLET_DISTRIBUTION = 9000 ether;
 
     // Have the rewards been distributed to the pools
     bool public rewardPoolDistributed = false;
