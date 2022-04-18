@@ -1,7 +1,8 @@
-// SPDX-License-Identifier: MIXED 
+// Sources flattened with hardhat v2.9.1 https://hardhat.org
+
 // File @openzeppelin/contracts/math/SafeMath.sol@v3.4.2
 
-//  MIT
+// SPDX-License-Identifier: MIT
 
 pragma solidity >=0.6.0 <0.8.0;
 
@@ -219,6 +220,8 @@ library SafeMath {
 
 // File contracts/lib/Babylonian.sol
 
+// SPDX-License-Identifier: MIT
+
 pragma solidity ^0.6.0;
 
 library Babylonian {
@@ -239,6 +242,8 @@ library Babylonian {
 
 
 // File contracts/lib/FixedPoint.sol
+
+// SPDX-License-Identifier: MIT
 
 pragma solidity ^0.6.0;
 
@@ -409,6 +414,8 @@ interface IUniswapV2Pair {
 
 // File contracts/lib/UniswapV2OracleLibrary.sol
 
+// SPDX-License-Identifier: MIT
+
 pragma solidity ^0.6.0;
 
 
@@ -452,7 +459,7 @@ library UniswapV2OracleLibrary {
 
 // File @openzeppelin/contracts/utils/Context.sol@v3.4.2
 
-//  MIT
+// SPDX-License-Identifier: MIT
 
 pragma solidity >=0.6.0 <0.8.0;
 
@@ -480,14 +487,14 @@ abstract contract Context {
 
 // File @openzeppelin/contracts/GSN/Context.sol@v3.4.2
 
-//  MIT
+// SPDX-License-Identifier: MIT
 
 pragma solidity >=0.6.0 <0.8.0;
 
 
 // File @openzeppelin/contracts/access/Ownable.sol@v3.4.2
 
-//  MIT
+// SPDX-License-Identifier: MIT
 
 pragma solidity >=0.6.0 <0.8.0;
 
@@ -558,7 +565,7 @@ abstract contract Ownable is Context {
 
 // File contracts/owner/Operator.sol
 
-//  MIT
+// SPDX-License-Identifier: MIT
 
 pragma solidity 0.6.12;
 
@@ -599,6 +606,8 @@ contract Operator is Context, Ownable {
 
 
 // File contracts/utils/Epoch.sol
+
+// SPDX-License-Identifier: MIT
 
 pragma solidity ^0.6.0;
 
@@ -685,7 +694,7 @@ contract Epoch is Operator {
 
 // File contracts/Oracle.sol
 
-//  MIT
+// SPDX-License-Identifier: MIT
 
 pragma solidity 0.6.12;
 

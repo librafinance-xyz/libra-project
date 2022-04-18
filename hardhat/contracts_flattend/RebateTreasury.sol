@@ -1,8 +1,8 @@
+// Sources flattened with hardhat v2.9.1 https://hardhat.org
 
-// SPDX-License-Identifier: MIXED
 // File @openzeppelin/contracts-0.8/token/ERC20/IERC20.sol@v4.4.2
 
-//  MIT
+// SPDX-License-Identifier: MIT
 // OpenZeppelin Contracts v4.4.1 (token/ERC20/IERC20.sol)
 
 pragma solidity ^0.8.0;
@@ -88,7 +88,7 @@ interface IERC20 {
 
 // File @openzeppelin/contracts-0.8/utils/Context.sol@v4.4.2
 
-//  MIT
+// SPDX-License-Identifier: MIT
 // OpenZeppelin Contracts v4.4.1 (utils/Context.sol)
 
 pragma solidity ^0.8.0;
@@ -116,7 +116,7 @@ abstract contract Context {
 
 // File @openzeppelin/contracts-0.8/access/Ownable.sol@v4.4.2
 
-//  MIT
+// SPDX-License-Identifier: MIT
 // OpenZeppelin Contracts v4.4.1 (access/Ownable.sol)
 
 pragma solidity ^0.8.0;
@@ -194,7 +194,7 @@ abstract contract Ownable is Context {
 
 // File contracts/RebateTreasury.sol
 
-//  MIT
+// SPDX-License-Identifier: MIT
 pragma solidity ^0.8.7;
 
 
@@ -277,8 +277,8 @@ contract RebateTreasury is Ownable {
         uint256 lastClaimed;
     }
 
-    IERC20 public Tomb;
-    IOracle public TombOracle;
+    IERC20 public Libra;
+    IOracle public LibraOracle;
     ITreasury public Treasury;
 
     mapping (address => Asset) public assets;
@@ -321,32 +321,32 @@ contract RebateTreasury is Ownable {
 
     // Initialize parameters
 
-    constructor(address tomb, address tombOracle, address treasury) {
-        Tomb = IERC20(tomb);
-        TombOracle = IOracle(tombOracle);
+    constructor(address libra, address libraOracle, address treasury) {
+        Libra = IERC20(libra);
+        LibraOracle = IOracle(libraOracle);
         Treasury = ITreasury(treasury);
     }
     
-    // Bond asset for discounted Tomb at bond rate
+    // Bond asset for discounted Libra at bond rate
 
     function bond(address token, uint256 amount) external onlyAsset(token) {
         require(amount > 0, "RebateTreasury: invalid bond amount");
-        uint256 tombAmount = getTombReturn(token, amount);
-        require(tombAmount <= Tomb.balanceOf(address(this)) - totalVested, "RebateTreasury: insufficient tomb balance");
+        uint256 libraAmount = getLibraReturn(token, amount);
+        require(libraAmount <= Libra.balanceOf(address(this)) - totalVested, "RebateTreasury: insufficient libra balance");
 
         IERC20(token).transferFrom(msg.sender, address(this), amount);
         _claimVested(msg.sender);
 
         VestingSchedule storage schedule = vesting[msg.sender];
-        schedule.amount = schedule.amount - schedule.claimed + tombAmount;
+        schedule.amount = schedule.amount - schedule.claimed + libraAmount;
         schedule.period = bondVesting;
         schedule.end = block.timestamp + bondVesting;
         schedule.claimed = 0;
         schedule.lastClaimed = block.timestamp;
-        totalVested += tombAmount;
+        totalVested += libraAmount;
     }
 
-    // Claim available Tomb rewards from bonding
+    // Claim available Libra rewards from bonding
 
     function claimRewards() external {
         _claimVested(msg.sender);
@@ -358,19 +358,19 @@ contract RebateTreasury is Ownable {
      * --------------------
      */
     
-    // Set Tomb token
+    // Set Libra token
 
-    function setTomb(address tomb) external onlyOwner {
-        Tomb = IERC20(tomb);
+    function setLibra(address libra) external onlyOwner {
+        Libra = IERC20(libra);
     }
 
-    // Set Tomb oracle
+    // Set Libra oracle
 
-    function setTombOracle(address oracle) external onlyOwner {
-        TombOracle = IOracle(oracle);
+    function setLibraOracle(address oracle) external onlyOwner {
+        LibraOracle = IOracle(oracle);
     }
 
-    // Set Tomb treasury
+    // Set Libra treasury
 
     function setTreasury(address treasury) external onlyOwner {
         Treasury = ITreasury(treasury);
@@ -412,7 +412,7 @@ contract RebateTreasury is Ownable {
     // Redeem assets for buyback under peg
 
     function redeemAssetsForBuyback(address[] calldata tokens) external onlyOwner {
-        require(getTombPrice() < 1e18, "RebateTreasury: unable to buy back");
+        require(getLibraPrice() < 1e18, "RebateTreasury: unable to buy back");
         uint256 epoch = Treasury.epoch();
         require(lastBuyback != epoch, "RebateTreasury: already bought back");
         lastBuyback = epoch;
@@ -442,7 +442,7 @@ contract RebateTreasury is Ownable {
         schedule.claimed += claimable;
         schedule.lastClaimed = block.timestamp > schedule.end ? schedule.end : block.timestamp;
         totalVested -= claimable;
-        Tomb.transfer(account, claimable);
+        Libra.transfer(account, claimable);
     }
 
     /*
@@ -451,35 +451,35 @@ contract RebateTreasury is Ownable {
      * --------------
      */
 
-    // Calculate Tomb return of bonding amount of token
+    // Calculate Libra return of bonding amount of token
 
-    function getTombReturn(address token, uint256 amount) public view onlyAsset(token) returns (uint256) {
-        uint256 tombPrice = getTombPrice();
+    function getLibraReturn(address token, uint256 amount) public view onlyAsset(token) returns (uint256) {
+        uint256 libraPrice = getLibraPrice();
         uint256 tokenPrice = getTokenPrice(token);
         uint256 bondPremium = getBondPremium();
-        return amount * tokenPrice * (bondPremium + DENOMINATOR) * assets[token].multiplier / (DENOMINATOR * DENOMINATOR) / tombPrice;
+        return amount * tokenPrice * (bondPremium + DENOMINATOR) * assets[token].multiplier / (DENOMINATOR * DENOMINATOR) / libraPrice;
     }
 
     // Calculate premium for bonds based on bonding curve
 
     function getBondPremium() public view returns (uint256) {
-        uint256 tombPrice = getTombPrice();
-        if (tombPrice < 1e18) return 0;
+        uint256 libraPrice = getLibraPrice();
+        if (libraPrice < 1e18) return 0;
 
-        uint256 tombPremium = tombPrice * DENOMINATOR / 1e18 - DENOMINATOR;
-        if (tombPremium < bondThreshold) return 0;
-        if (tombPremium <= secondaryThreshold) {
-            return (tombPremium - bondThreshold) * bondFactor / DENOMINATOR;
+        uint256 libraPremium = libraPrice * DENOMINATOR / 1e18 - DENOMINATOR;
+        if (libraPremium < bondThreshold) return 0;
+        if (libraPremium <= secondaryThreshold) {
+            return (libraPremium - bondThreshold) * bondFactor / DENOMINATOR;
         } else {
             uint256 primaryPremium = (secondaryThreshold - bondThreshold) * bondFactor / DENOMINATOR;
-            return primaryPremium + (tombPremium - secondaryThreshold) * secondaryFactor / DENOMINATOR;
+            return primaryPremium + (libraPremium - secondaryThreshold) * secondaryFactor / DENOMINATOR;
         }
     }
 
-    // Get TOMB price from Oracle
+    // Get LIBRA price from Oracle
 
-    function getTombPrice() public view returns (uint256) {
-        return TombOracle.consult(address(Tomb), 1e18);
+    function getLibraPrice() public view returns (uint256) {
+        return LibraOracle.consult(address(Libra), 1e18);
     }
 
     // Get token price from Oracle
@@ -509,9 +509,9 @@ contract RebateTreasury is Ownable {
         }
     }
 
-    // Get claimable vested Tomb for account
+    // Get claimable vested Libra for account
 
-    function claimableTomb(address account) external view returns (uint256) {
+    function claimableLibra(address account) external view returns (uint256) {
         VestingSchedule memory schedule = vesting[account];
         if (block.timestamp <= schedule.lastClaimed || schedule.lastClaimed >= schedule.end) return 0;
         uint256 duration = (block.timestamp > schedule.end ? schedule.end : block.timestamp) - schedule.lastClaimed;
