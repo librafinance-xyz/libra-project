@@ -48,9 +48,9 @@ contract LibraGenesisRewardPool {
     uint256 public poolEndTime;
 
     // MAINNET
-    uint256 public libraPerSecond = 0.09645 ether; // 25000 LIBRA / (72h * 60min * 60s)  // ->-> 
-    uint256 public runningTime = 3 days; // 1 days ->-> 3day??
-    uint256 public constant TOTAL_REWARDS = 25000 ether; // ->-> 
+    uint256 public libraPerSecond = 0.11574 ether; // 10000 LIBRA / (24h * 60min * 60s)
+    uint256 public runningTime = 24 hours;
+    uint256 public constant TOTAL_REWARDS = 10000 ether;
     // END MAINNET
 
     event Deposit(address indexed user, uint256 indexed pid, uint256 amount);
