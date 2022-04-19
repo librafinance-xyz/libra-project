@@ -1,4 +1,4 @@
-// npx hardhat deploy --network astar --tags LibraDummy_LBondDummy
+// npx hardhat deploy --network astar --tags Dummy
 
 import { ethers } from "hardhat";
 import { HardhatRuntimeEnvironment } from "hardhat/types";
@@ -35,7 +35,7 @@ const func: DeployFunction = async function (hre: HardhatRuntimeEnvironment) {
   const gasLimit = 5000000;
   console.log("deployer = " + deployer);
 
-  // LIBRA
+  // LIBRA ( DUMMY )
   const taxRate = "0";
   const taxCollectorAddress = "0x0000000000000000000000000000000000000000";
   const LibraDummy = await mydeploy(
@@ -59,7 +59,7 @@ const func: DeployFunction = async function (hre: HardhatRuntimeEnvironment) {
       " " +
       " --contract contracts/mocks/LibraDummy.sol:LibraDummy "
   );
-  // LBondDummy
+  // LBOND (Dummy )
   const LBondDummy = await mydeploy(
     hre,
     "LBondDummy",
@@ -77,9 +77,78 @@ const func: DeployFunction = async function (hre: HardhatRuntimeEnvironment) {
       " " +
       " --contract contracts/mocks/LBondDummy.sol:LBondDummy "
   );
+
+  // Treasury
+  const Treasury = await mydeploy(
+    hre,
+    "Treasury",
+    deployer,
+    [],
+    true,
+    gasLimit
+  );
+  console.log("#Treasury");
+  console.log(
+    "npx hardhat verify --network " +
+      hre.network.name +
+      " " +
+      Treasury.address +
+      " " +
+      " --contract contracts/Treasury.sol:Treasury "
+  );
+
+  // Boardroom
+  const Boardroom = await mydeploy(
+    hre,
+    "Boardroom",
+    deployer,
+    [],
+    true,
+    gasLimit
+  );
+  console.log("#Boardroom");
+  console.log(
+    "npx hardhat verify --network " +
+      hre.network.name +
+      " " +
+      Boardroom.address +
+      " " +
+      " --contract contracts/Boardroom.sol:Boardroom "
+  );
+
+  // // LShare ( DUMMY )
+  // const startTime = "";
+  // const communityFund = "";
+  // const devFund = "";
+  // const treasuryFund = "";
+  // const LShareDummy = await mydeploy(
+  //   hre,
+  //   "LShareDummy",
+  //   deployer,
+  //   [startTime, communityFund, devFund, treasuryFund],
+  //   true,
+  //   gasLimit
+  // );
+  // console.log("#LShareDummy");
+  // console.log(
+  //   "npx hardhat verify --network " +
+  //     hre.network.name +
+  //     " " +
+  //     LShareDummy.address +
+  //     " " +
+  //     startTime +
+  //     " " +
+  //     communityFund +
+  //     " " +
+  //     devFund +
+  //     " " +
+  //     treasuryFund +
+  //     " " +
+  //     " --contract contracts/mocks/LShareDummy.sol:LShareDummy "
+  // );
 };
 
-func.tags = ["LibraDummy_LBondDummy"];
+func.tags = ["Dummy"];
 
 func.skip = async (hre) => {
   return (
