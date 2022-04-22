@@ -1,5 +1,5 @@
 import "dotenv/config";
-import "@nomiclabs/hardhat-etherscan";
+import "@librax/hardhat-etherscan";
 import "@nomiclabs/hardhat-solhint";
 import "@nomiclabs/hardhat-ethers";
 import "@nomiclabs/hardhat-waffle";
@@ -48,7 +48,10 @@ const config: HardhatUserConfig = {
   etherscan: {
     // apiKey: polygonScanToken, // polygonscan
     // apiKey: ftmScanToken, // ftmscan
-    apiKey: ETHERSCAN_TOKEN, // ETHERSCAN_TOKEN
+    // apiKey: ETHERSCAN_TOKEN, // ETHERSCAN_TOKEN,
+    apiKey: {
+      astar: "your API key",
+    },
   },
   gasReporter: {
     coinmarketcap: process.env.COINMARKETCAP_API_KEY,
@@ -485,6 +488,15 @@ const config: HardhatUserConfig = {
       },
       {
         version: "0.8.12",
+        settings: {
+          optimizer: {
+            enabled: true,
+            runs: 200,
+          },
+        },
+      },
+      {
+        version: "0.8.13",
         settings: {
           optimizer: {
             enabled: true,
