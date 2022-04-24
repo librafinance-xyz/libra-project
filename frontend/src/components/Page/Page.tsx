@@ -12,7 +12,6 @@ const Page: React.FC = ({ children }) => {
       style={{
         position: 'relative',
         minHeight: '100vh',
-        backgroundColor: `#F5F8FB`,
       }}
     >
       <Nav />

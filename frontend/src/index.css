@@ -4,13 +4,13 @@
 
 :root {
     --black: #bbbbbb;
-    --white: #020202;
+    --white: #ffffff;
     --textWhite: #7C98BB;
     --pureWhite: #ffffff;
     --blue: #7C99B9;
-    --accent: #1B6DC1;
-    --accent-light: #1f7ad5;
-    --backcolor: #1B6DC1;
+    --accent: #41A0D6;
+    --accent-light: #41A0D6;
+    --backcolor: #41A0D6;
 }
 
 body,
@@ -34,24 +34,17 @@ body {
     height: 100%;
 }
 
-.makeStyles-paper-11,
-.makeStyles-paper-11 h2,
-.MuiTypography-body1,
-.MuiPaper-root,
-.MuiPaper-root h2 {
-    color: var(--white) !important;
-}
 
 .MuiPaper-elevation1 {
     box-shadow: none !important;
-    background-color: #ffffff !important;
+    background-color: rgba(255,255,255,0.3) !important;
     backdrop-filter: blur(5px);
     border-radius: 10px !important;
-    border: 1px solid var(--white);
+    box-shadow: 12px 12px 2px 1px rgba(0, 0, 255, .2);
 }
 
 .MuiCard-root {
-    background-color: #ffffff !important;
+    background-color: rgba(255,255,255,0.3) !important;
     backdrop-filter: blur(5px);
     border-radius: 10px !important;
 }

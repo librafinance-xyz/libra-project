@@ -33,8 +33,8 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   appBar: {
-    color: 'var(--blue)',
-    'background-color': '#ffffff',
+    color: 'var(--white)',
+    'background-color': 'rgba(255,255,255,0.1)',
     'backdrop-filter': 'blur(2px)',
     // borderBottom: `1px solid ${theme.palette.divider}`,
     padding: '0 10px',
@@ -71,7 +71,7 @@ const useStyles = makeStyles((theme) => ({
   },
   brandLink: {
     textDecoration: 'none',
-    color: 'var(--accent)',
+    color: 'var(--white)',
     '&:hover': {
       textDecoration: 'none',
     },
@@ -101,7 +101,7 @@ const Nav = () => {
             <Typography variant="h6" color="inherit" noWrap className={classes.toolbarTitle}>
               {/* <a className={ classes.brandLink } href="/">2omb Finance</a> */}
               <Link to="/" color="inherit" className={classes.brandLink}>
-                Libra Finance TEST VERSION
+                Libra Finance
               </Link>
             </Typography>
             <Box mr={5}>
