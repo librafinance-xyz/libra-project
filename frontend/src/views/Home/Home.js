@@ -1,7 +1,7 @@
 import React, { useMemo } from 'react';
 import Page from '../../components/Page';
 import HomeImage from '../../assets/img/home.png';
-import CashImage from '../../assets/img/LIBRA.svg';
+import CashImage from '../../assets/img/libra_main.svg';
 import Image from 'material-ui-image';
 import styled from 'styled-components';
 import { Alert } from '@material-ui/lab';
@@ -56,9 +56,9 @@ const Home = () => {
   const classes = useStyles();
   const TVL = useTotalValueLocked();
   // const tombFtmLpStats = useLpStats('TOMB-FTM-LP');
-  const tombFtmLpStats = useLpStats('LIBRA-ASTR-LP');
+  const tombFtmLpStats = useLpStats('LIBRA-WASTR-LP');
 
-  const tShareFtmLpStats = useLpStats('TSHARE-FTM-LP');
+  const tShareFtmLpStats = useLpStats('LSHARE-WASTR-LP');
   const tombStats = useTombStats();
   const tShareStats = usetShareStats();
   const tBondStats = useBondStats();
@@ -122,9 +122,9 @@ const Home = () => {
   );
   const tBondTotalSupply = useMemo(() => (tBondStats ? String(tBondStats.totalSupply) : null), [tBondStats]);
 
-  // const tombLpZap = useZap({ depositTokenName: 'TOMB-FTM-LP' });
+
   const tombLpZap = useZap({ depositTokenName: 'LIBRA-WASTR-LP' });
-  const tshareLpZap = useZap({ depositTokenName: 'TSHARE-FTM-LP' });
+  const tshareLpZap = useZap({ depositTokenName: 'LSHARE-WASTR-LP' });
 
   const StyledLink = styled.a`
     font-weight: 700;
@@ -470,11 +470,10 @@ const Home = () => {
         <Grid item xs={12} sm={6}>
           <Card style={{ backgroundColor: 'transparent', boxShadow: 'none', border: '1px solid var(--white)' }}>
             <CardContent align="center">
-              <h2>LIBRA-WASTR Arthswap LP</h2>
+              <h2>LIBRA-WASTR LP</h2>
               <Box mt={2}>
                 <CardIcon>
                   <TokenSymbol symbol="LIBRA-WASTR-LP" />
-                  {/* <TokenSymbol symbol="TOMB-FTM-LP" /> */}
                 </CardIcon>
               </Box>
               {/*
@@ -500,10 +499,10 @@ const Home = () => {
         <Grid item xs={12} sm={6}>
           <Card style={{ backgroundColor: 'transparent', boxShadow: 'none', border: '1px solid var(--white)' }}>
             <CardContent align="center">
-              <h2>LSHARES-WASTR Arthswap LP</h2>
+              <h2>LSHARES-WASTR LP</h2>
               <Box mt={2}>
                 <CardIcon>
-                  <TokenSymbol symbol="TSHARE-FTM-LP" />
+                  <TokenSymbol symbol="LSHARE-WASTR-LP" />
                 </CardIcon>
               </Box>
               {/*<Box mt={2}>
