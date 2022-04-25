@@ -35,7 +35,7 @@ const useStyles = makeStyles((theme) => ({
   appBar: {
     color: 'var(--white)',
     'max-width': '80%',
-    'margin': '16px auto 3rem',
+    'margin': '16px auto 2rem',
     'background-color': 'rgba(255,255,255,0.01)',
     'backdrop-filter': 'blur(2px)',
     // borderBottom: `1px solid ${theme.palette.divider}`,
@@ -57,7 +57,7 @@ const useStyles = makeStyles((theme) => ({
     flexWrap: 'wrap',
   },
   toolbarTitle: {
-    fontFamily: '"Gilroy"',
+    fontFamily: 'Avenir',
     fontSize: '30px',
     flexGrow: 1,
   },

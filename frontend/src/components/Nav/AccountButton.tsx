@@ -4,6 +4,8 @@ import { useWallet } from 'use-wallet';
 import useModal from '../../hooks/useModal';
 import WalletProviderModal from '../WalletProviderModal';
 import AccountModal from './AccountModal';
+import LightningImage from '../../assets/img/lightning.svg';
+import Image from 'material-ui-image';
 
 interface AccountButtonProps {
   text?: string;
@@ -36,6 +38,7 @@ const AccountButton: React.FC<AccountButtonProps> = ({ text, onOpen }) => {
     <div>
       {!account ? (
         <Button onClick={handleWalletProviderOpen} variant="contained">
+          <Image className="ombImg-home" color="none" style={{ height: '16px', width: '16px', marginRight: '4px'}} src={LightningImage} />
           {buttonText}
         </Button>
       ) : (
