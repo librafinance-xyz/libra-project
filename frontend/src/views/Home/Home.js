@@ -211,22 +211,14 @@ const Home = () => {
                 Then stake your earned LSHARES in the <StyledLink href="/">Room</StyledLink> to maximize profits! */}
                 Stake your LIBRA-ASTR LP in the Farms to earn LSHARES seigniorage rewards.
                 {/* Then stake your earned LSHARES in the Room to maximize profits! */}
-                Then stake your earned TSHARE to earn more LIBRA!
+                Then stake your earned LSHARE to earn more LIBRA!
               </p>
             </Box>
           </Paper>
         </Grid>
         <Grid container justify="center">
-          <Box mt={3} style={{ width: '1000px' }}>
-            <Alert variant="filled" severity="warning">
-              Do your own research before investing. Investing is risky and may result in monetary loss. Libra Finance
-              is beta software and may contain bugs.
-              {/* By using libra, you agree that the 2omb and libra team is not responsible
-              for any financial losses from investing in 2omb or libra.
-               */}
-            </Alert>
-          </Box>{' '}
-          <Box mt={3} style={{ width: '1000px' }}>
+         
+          <Box mt={3} style={{ width: '98%' }}>
             <Alert variant="filled" severity="error">
               THIS IS CURRENRY UNDER TEST VERSION. YOU MIGHT BE ABLE TO GET "DUMMY TOKEN", HOWEVER IT'S ZERO VALUE.
               {/* By using libra, you agree that the 2omb and libra team is not responsible
