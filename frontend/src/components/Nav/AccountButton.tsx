@@ -35,7 +35,7 @@ const AccountButton: React.FC<AccountButtonProps> = ({ text, onOpen }) => {
   return (
     <div>
       {!account ? (
-        <Button onClick={handleWalletProviderOpen} color="primary" variant="contained">
+        <Button onClick={handleWalletProviderOpen} variant="contained">
           {buttonText}
         </Button>
       ) : (

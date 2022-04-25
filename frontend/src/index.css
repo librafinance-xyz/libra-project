@@ -5,7 +5,7 @@
 :root {
     --black: #bbbbbb;
     --white: #ffffff;
-    --textWhite: #7C98BB;
+    --textWhite: #ffffff;
     --pureWhite: #ffffff;
     --blue: #7C99B9;
     --accent: #41A0D6;
@@ -81,13 +81,9 @@ footer .a:hover {
 
 .MuiButton-contained {
     color: var(--black) !important;
-    background-color: var(--white) !important;
+    background-color: rgba(255,255,255,0)  !important;
 }
 
-.MuiButton-containedPrimary {
-    color: var(--white) !important;
-    background-color: var(--accent) !important;
-}
 .MuiButton-label {
     color: white !important;
 }

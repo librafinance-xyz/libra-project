@@ -34,11 +34,13 @@ const useStyles = makeStyles((theme) => ({
   },
   appBar: {
     color: 'var(--white)',
-    'background-color': 'rgba(255,255,255,0.1)',
+    'max-width': '80%',
+    'margin': '16px auto 3rem',
+    'background-color': 'rgba(255,255,255,0.01)',
     'backdrop-filter': 'blur(2px)',
     // borderBottom: `1px solid ${theme.palette.divider}`,
     padding: '0 10px',
-    marginBottom: '3rem',
+    'border-radius': '16px 16px 16px 16px',
   },
   drawer: {
     width: 240,
