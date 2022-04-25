@@ -35,7 +35,7 @@ const useStyles = makeStyles((theme) => ({
   appBar: {
     color: 'var(--white)',
     'max-width': '80%',
-    'margin': '16px auto 2rem',
+    margin: '16px auto 2rem',
     'background-color': 'rgba(255,255,255,0.001)',
     'backdrop-filter': 'blur(2px)',
     // borderBottom: `1px solid ${theme.palette.divider}`,
@@ -110,15 +110,15 @@ const Nav = () => {
               <Link color="color" to="/" className={classes.link}>
                 Home
               </Link>
-              {/* <Link color="textPrimary" to="/farms" className={classes.link}>
+              <Link color="textPrimary" to="/farms" className={classes.link}>
                 Farms
-              </Link> */}
-              {/* <Link color="textPrimary" to="/boardroom" className={classes.link}>
-                3Room
-              </Link> */}
-              {/* <Link color="textPrimary" to="/bonds" className={classes.link}>
+              </Link>
+              <Link color="textPrimary" to="/boardroom" className={classes.link}>
+                Bordroom
+              </Link>
+              <Link color="textPrimary" to="/bonds" className={classes.link}>
                 LBonds
-              </Link> */}
+              </Link>
               {/* <Link color="textPrimary" to="/rebates" className={classes.link}>
                 3DAO
               </Link> */}
@@ -186,9 +186,9 @@ const Nav = () => {
               <Divider />
               <List>
                 <ListItemLink primary="Home" to="/" />
-                {/* <ListItemLink primary="3Farms" to="/farms" /> */}
-                {/* <ListItemLink primary="3Room" to="/boardroom" /> */}
-                {/* <ListItemLink primary="LBonds" to="/bonds" /> */}
+                <ListItemLink primary="Farms" to="/farms" />
+                <ListItemLink primary="Room" to="/boardroom" />
+                <ListItemLink primary="LBonds" to="/bonds" />
                 {/* <ListItemLink primary="3DAO" to="/rebates" /> */}
                 {/* <ListItemLink primary="Treasury" to="/treasury" /> */}
                 {/* <ListItemLink primary="Masonry" to="/masonry" />
