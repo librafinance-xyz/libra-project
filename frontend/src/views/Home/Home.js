@@ -1,7 +1,7 @@
 import React, { useMemo } from 'react';
 import Page from '../../components/Page';
 import HomeImage from '../../assets/img/home.png';
-import CashImage from '../../assets/img/LIBRA.svg';
+import CashImage from '../../assets/img/libra_main.svg';
 import Image from 'material-ui-image';
 import styled from 'styled-components';
 import { Alert } from '@material-ui/lab';
@@ -37,8 +37,9 @@ import useTombFinance from '../../hooks/useTombFinance';
 
 const BackgroundImage = createGlobalStyle`
   body {
-    background-color: var(--black);
-}
+    background: url(${HomeImage}) no-repeat !important;
+    background-size: cover !important;
+  }
 * {
     border-radius: 0 !important;
 }
@@ -56,9 +57,9 @@ const Home = () => {
   const classes = useStyles();
   const TVL = useTotalValueLocked();
   // const tombFtmLpStats = useLpStats('TOMB-FTM-LP');
-  const tombFtmLpStats = useLpStats('LIBRA-ASTR-LP');
+  const tombFtmLpStats = useLpStats('LIBRA-WASTR-LP');
 
-  const tShareFtmLpStats = useLpStats('TSHARE-FTM-LP');
+  const tShareFtmLpStats = useLpStats('LSHARE-WASTR-LP');
   const tombStats = useTombStats();
   const tShareStats = usetShareStats();
   const tBondStats = useBondStats();
@@ -122,9 +123,9 @@ const Home = () => {
   );
   const tBondTotalSupply = useMemo(() => (tBondStats ? String(tBondStats.totalSupply) : null), [tBondStats]);
 
-  // const tombLpZap = useZap({ depositTokenName: 'TOMB-FTM-LP' });
+
   const tombLpZap = useZap({ depositTokenName: 'LIBRA-WASTR-LP' });
-  const tshareLpZap = useZap({ depositTokenName: 'TSHARE-FTM-LP' });
+  const tshareLpZap = useZap({ depositTokenName: 'LSHARE-WASTR-LP' });
 
   const StyledLink = styled.a`
     font-weight: 700;
@@ -167,8 +168,8 @@ const Home = () => {
           <Image className="ombImg-home" color="none" style={{ width: '300px', paddingTop: '0px' }} src={CashImage} />
         </Grid>
         {/* Explanation text */}
-        <Grid item xs={12} sm={6}>
-          <Paper style={{ backgroundColor: 'transparent', boxShadow: 'none', border: '1px solid var(--white)' }}>
+        <Grid item xs={12} sm={8}>
+          <Paper style={{ backgroundColor: 'transparent', boxShadow: 'none' }}>
             <Box p={4}>
               <h2>Welcome to Libra Finance!</h2>
               <Countdown
@@ -182,11 +183,11 @@ const Home = () => {
                       {props.days} days {props.hours} hours {props.minutes} mins {props.seconds} seconds
                       <br />
                       Please{' '}
-                      <a target="_blank" style={{ color: '#7C99B9' }} href="https://twitter.com/LibraAstar">
+                      <a target="_blank" style={{ color: '#ffffff' }} href="https://twitter.com/LibraAstar">
                         follow us on Twitter
                       </a>{' '}
                       and{' '}
-                      <a target="_blank" style={{ color: '#7C99B9' }} href="https://discord.com/invite/Y8WWfBmq7R">
+                      <a target="_blank" style={{ color: '#ffffff' }} href="https://discord.com/invite/Y8WWfBmq7R">
                         join our discord community!!{' '}
                       </a>
                     </h3>
@@ -210,22 +211,14 @@ const Home = () => {
                 Then stake your earned LSHARES in the <StyledLink href="/">Room</StyledLink> to maximize profits! */}
                 Stake your LIBRA-ASTR LP in the Farms to earn LSHARES seigniorage rewards.
                 {/* Then stake your earned LSHARES in the Room to maximize profits! */}
-                Then stake your earned TSHARE to earn more LIBRA!
+                Then stake your earned LSHARE to earn more LIBRA!
               </p>
             </Box>
           </Paper>
         </Grid>
         <Grid container justify="center">
-          <Box mt={3} style={{ width: '1000px' }}>
-            <Alert variant="filled" severity="warning">
-              Do your own research before investing. Investing is risky and may result in monetary loss. Libra Finance
-              is beta software and may contain bugs.
-              {/* By using libra, you agree that the 2omb and libra team is not responsible
-              for any financial losses from investing in 2omb or libra.
-               */}
-            </Alert>
-          </Box>{' '}
-          <Box mt={3} style={{ width: '1000px' }}>
+         
+          <Box mt={3} style={{ width: '98%' }}>
             <Alert variant="filled" severity="error">
               THIS IS CURRENRY UNDER TEST VERSION. YOU MIGHT BE ABLE TO GET "DUMMY TOKEN", HOWEVER IT'S ZERO VALUE.
               {/* By using libra, you agree that the 2omb and libra team is not responsible
@@ -246,7 +239,7 @@ const Home = () => {
 
         {/* TVL */}
         <Grid item xs={12} sm={4}>
-          <Card style={{ backgroundColor: 'transparent', boxShadow: 'none', border: '1px solid var(--white)' }}>
+          <Card style={{ backgroundColor: 'transparent', boxShadow: 'none' }}>
             <CardContent align="center">
               <h2>Total Value Locked</h2>
               {/* <CountUp style={{ fontSize: '25px' }} end={totalTVL} separator="," prefix="$" />
@@ -264,8 +257,6 @@ const Home = () => {
             style={{
               height: '100%',
               backgroundColor: 'transparent',
-              boxShadow: 'none',
-              border: '1px solid var(--white)',
               display: 'flex',
               flexDirection: 'column',
               justifyContent: 'center',
@@ -274,10 +265,10 @@ const Home = () => {
           >
             <CardContent align="center">
               {/* <h2 style={{ marginBottom: '20px' }}>Wallet Balance</h2> */}
-              <Button color="primary" href="/#" variant="contained" style={{ marginRight: '10px' }}>
+              <Button color="primary" href="/#" variant="contained" style={{ marginRight: '8px' }}>
                 Farms
               </Button>
-              <Button color="primary" href="/#" variant="contained" style={{ marginRight: '25px' }}>
+              <Button color="primary" href="/#" variant="contained" style={{ marginRight: '8px' }}>
                 Stake
               </Button>
 
@@ -332,7 +323,7 @@ const Home = () => {
 
         {/* TOMB */}
         <Grid item xs={12} sm={3}>
-          <Card style={{ backgroundColor: 'transparent', boxShadow: 'none', border: '1px solid var(--white)' }}>
+          <Card style={{ backgroundColor: 'transparent', boxShadow: 'none'}}>
             <CardContent align="center" style={{ position: 'relative' }}>
               <h2>ASTR</h2>
               <Box mt={2} style={{ backgroundColor: 'transparent !important' }}>
@@ -357,7 +348,7 @@ const Home = () => {
 
         {/* TOMB */}
         <Grid item xs={12} sm={3}>
-          <Card style={{ backgroundColor: 'transparent', boxShadow: 'none', border: '1px solid var(--white)' }}>
+          <Card style={{ backgroundColor: 'transparent', boxShadow: 'none' }}>
             <CardContent align="center" style={{ position: 'relative' }}>
               <h2>LIBRA</h2>
               {/* <Button
@@ -371,8 +362,8 @@ const Home = () => {
                 +&nbsp;
                 <img alt="metamask fox" style={{ width: '20px' }} src={MetamaskFox} />
               </Button> */}
-              <Box mt={2} style={{ backgroundColor: 'transparent !important' }}>
-                <CardIcon style={{ backgroundColor: 'transparent !important' }}>
+              <Box mt={2}>
+                <CardIcon>
                   <TokenSymbol symbol="TOMB" style={{ backgroundColor: 'transparent !important' }} />
                 </CardIcon>
               </Box>
@@ -396,7 +387,7 @@ const Home = () => {
 
         {/* TSHARE */}
         <Grid item xs={12} sm={3}>
-          <Card style={{ backgroundColor: 'transparent', boxShadow: 'none', border: '1px solid var(--white)' }}>
+          <Card style={{ backgroundColor: 'transparent', boxShadow: 'none' }}>
             <CardContent align="center" style={{ position: 'relative' }}>
               <h2>LSHARES</h2>
               {/* <Button
@@ -433,7 +424,7 @@ const Home = () => {
 
         {/* TBOND */}
         <Grid item xs={12} sm={3}>
-          <Card style={{ backgroundColor: 'transparent', boxShadow: 'none', border: '1px solid var(--white)' }}>
+          <Card style={{ backgroundColor: 'transparent', boxShadow: 'none' }}>
             <CardContent align="center" style={{ position: 'relative' }}>
               <h2>LBOND</h2>
               {/* <Button
@@ -468,13 +459,12 @@ const Home = () => {
           </Card>
         </Grid>
         <Grid item xs={12} sm={6}>
-          <Card style={{ backgroundColor: 'transparent', boxShadow: 'none', border: '1px solid var(--white)' }}>
+          <Card style={{ backgroundColor: 'transparent', boxShadow: 'none' }}>
             <CardContent align="center">
-              <h2>LIBRA-WASTR Arthswap LP</h2>
+              <h2>LIBRA-WASTR LP</h2>
               <Box mt={2}>
                 <CardIcon>
                   <TokenSymbol symbol="LIBRA-WASTR-LP" />
-                  {/* <TokenSymbol symbol="TOMB-FTM-LP" /> */}
                 </CardIcon>
               </Box>
               {/*
@@ -498,12 +488,12 @@ const Home = () => {
           </Card>
         </Grid>
         <Grid item xs={12} sm={6}>
-          <Card style={{ backgroundColor: 'transparent', boxShadow: 'none', border: '1px solid var(--white)' }}>
+          <Card style={{ backgroundColor: 'transparent', boxShadow: 'none' }}>
             <CardContent align="center">
-              <h2>LSHARES-WASTR Arthswap LP</h2>
+              <h2>LSHARE-WASTR LP</h2>
               <Box mt={2}>
                 <CardIcon>
-                  <TokenSymbol symbol="TSHARE-FTM-LP" />
+                  <TokenSymbol symbol="LSHARE-WASTR-LP" />
                 </CardIcon>
               </Box>
               {/*<Box mt={2}>

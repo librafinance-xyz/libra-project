@@ -33,12 +33,14 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   appBar: {
-    color: 'var(--blue)',
-    'background-color': '#ffffff',
+    color: 'var(--white)',
+    'max-width': '80%',
+    'margin': '16px auto 2rem',
+    'background-color': 'rgba(255,255,255,0.001)',
     'backdrop-filter': 'blur(2px)',
     // borderBottom: `1px solid ${theme.palette.divider}`,
     padding: '0 10px',
-    marginBottom: '3rem',
+    'border-radius': '16px 16px 16px 16px',
   },
   drawer: {
     width: 240,
@@ -55,7 +57,7 @@ const useStyles = makeStyles((theme) => ({
     flexWrap: 'wrap',
   },
   toolbarTitle: {
-    fontFamily: '"Gilroy"',
+    fontFamily: 'Avenir',
     fontSize: '30px',
     flexGrow: 1,
   },
@@ -71,7 +73,7 @@ const useStyles = makeStyles((theme) => ({
   },
   brandLink: {
     textDecoration: 'none',
-    color: 'var(--accent)',
+    color: 'var(--white)',
     '&:hover': {
       textDecoration: 'none',
     },
@@ -101,7 +103,7 @@ const Nav = () => {
             <Typography variant="h6" color="inherit" noWrap className={classes.toolbarTitle}>
               {/* <a className={ classes.brandLink } href="/">2omb Finance</a> */}
               <Link to="/" color="inherit" className={classes.brandLink}>
-                Libra Finance TEST VERSION
+                Libra Finance
               </Link>
             </Typography>
             <Box mr={5}>

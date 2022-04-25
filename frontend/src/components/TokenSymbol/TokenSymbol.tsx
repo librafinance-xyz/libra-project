@@ -9,6 +9,7 @@ import tBondLogo from '../../assets/libra/lbond.svg';
 
 import tombFtmLpLogo from '../../assets/img/tomb_ftm_lp.png';
 import tshareFtmLpLogo from '../../assets/img/tshare_ftm_lp.png';
+import libraMainLogo from '../../assets/img/libra_main.svg';
 
 import wftmLogo from '../../assets/libra/ASTR.png';
 import astrLogo from '../../assets/libra/ASTR.png';
@@ -69,6 +70,8 @@ const logosBySymbol: { [title: string]: string } = {
   // '2SHARES': twoshareLogo,
   // 'TOMB-FTM-LP': tombFtmLpLogo,
   // 'TSHARE-FTM-LP': tshareFtmLpLogo,
+  'LIBRA-WASTR-LP': libraMainLogo,
+  'LSHARE-WASTR-LP': libraMainLogo,
 };
 
 type LogoProps = {

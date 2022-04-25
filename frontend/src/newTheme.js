@@ -13,8 +13,8 @@ const newTheme = createMuiTheme({
     },
     primary: {
       light: '#757CE8',
-      main: '#571EB1',
-      dark: '#571EB1',
+      main: '#41A0D6',
+      dark: '#41A0D6',
       contrastText: '#16191E',
     },
     secondary: {
@@ -31,7 +31,7 @@ const newTheme = createMuiTheme({
   },
   typography: {
     color: '#E6E9EE',
-    fontFamily: ['"Gilroy"', 'sans-serif'].join(','),
+    fontFamily: ['Avenir', 'sans-serif'].join(','),
   },
   components: {
     MuiButton: {
