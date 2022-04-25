@@ -168,7 +168,7 @@ const Home = () => {
           <Image className="ombImg-home" color="none" style={{ width: '300px', paddingTop: '0px' }} src={CashImage} />
         </Grid>
         {/* Explanation text */}
-        <Grid item xs={12} sm={6}>
+        <Grid item xs={12} sm={8}>
           <Paper style={{ backgroundColor: 'transparent', boxShadow: 'none' }}>
             <Box p={4}>
               <h2>Welcome to Libra Finance!</h2>
@@ -265,10 +265,10 @@ const Home = () => {
           >
             <CardContent align="center">
               {/* <h2 style={{ marginBottom: '20px' }}>Wallet Balance</h2> */}
-              <Button color="primary" href="/#" variant="contained" style={{ marginRight: '10px' }}>
+              <Button color="primary" href="/#" variant="contained" style={{ marginRight: '8px' }}>
                 Farms
               </Button>
-              <Button color="primary" href="/#" variant="contained" style={{ marginRight: '25px' }}>
+              <Button color="primary" href="/#" variant="contained" style={{ marginRight: '8px' }}>
                 Stake
               </Button>
 

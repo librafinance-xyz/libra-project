@@ -36,7 +36,7 @@ const useStyles = makeStyles((theme) => ({
     color: 'var(--white)',
     'max-width': '80%',
     'margin': '16px auto 2rem',
-    'background-color': 'rgba(255,255,255,0.01)',
+    'background-color': 'rgba(255,255,255,0.001)',
     'backdrop-filter': 'blur(2px)',
     // borderBottom: `1px solid ${theme.palette.divider}`,
     padding: '0 10px',

@@ -81,8 +81,13 @@ footer .a:hover {
 
 .MuiButton-contained {
     color: var(--black) !important;
-    background-color: rgba(255,255,255,0)  !important;
+    /* background-color: rgba(255,255,255,0); */
 }
+.makeStyles-button-1 {
+    background-color: rgba(121,120,153,1)  !important;
+}
+
+
 
 .MuiButton-label {
     color: white !important;

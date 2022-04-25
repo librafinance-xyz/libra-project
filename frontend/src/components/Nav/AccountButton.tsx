@@ -37,7 +37,7 @@ const AccountButton: React.FC<AccountButtonProps> = ({ text, onOpen }) => {
   return (
     <div>
       {!account ? (
-        <Button onClick={handleWalletProviderOpen} variant="contained">
+        <Button onClick={handleWalletProviderOpen} variant="contained"  style={{ backgroundColor: 'rgba(255,255,255,0)'}} >
           <Image className="ombImg-home" color="none" style={{ height: '16px', width: '16px', marginRight: '4px'}} src={LightningImage} />
           {buttonText}
         </Button>
