@@ -18,7 +18,7 @@ contract LibraDummy is ERC20Burnable, Operator {
     // Initial distribution for the day 2-5 LIBRA-WASTR LP -> LIBRA pool
     uint256 public constant INITIAL_LIBRA_POOL_DISTRIBUTION = 140000 ether;
     // Distribution for airdrops wallet
-    uint256 public constant INITIAL_AIRDROP_WALLET_DISTRIBUTION = 9000 ether;
+    uint256 public constant INITIAL_AIRDROP_WALLET_DISTRIBUTION = 10000 ether;
 
     // Have the rewards been distributed to the pools
     bool public rewardPoolDistributed = false;
