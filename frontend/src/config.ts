@@ -270,7 +270,7 @@ export const bankDefinitions: { [contractName: string]: BankInfo } = {
     depositTokenName: 'LIBRA-WASTR LP',
     earnTokenName: 'LSHARES',
     finished: false,
-    multiplier: '35500x',
+    multiplier: '24000x',
     buyLink: 'https://spookyswap.finance/add/FTM/0x14DEf7584A6c52f470Ca4F4b9671056b22f4FfDE',
     site: '/',
     sort: 8,
