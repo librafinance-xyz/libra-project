@@ -267,7 +267,7 @@ export const bankDefinitions: { [contractName: string]: BankInfo } = {
     poolId: 0,
     sectionInUI: 2,
     contract: 'TombFtmLPTShareRewardPool',
-    depositTokenName: 'LIBRA-WASTRLP',
+    depositTokenName: 'LIBRA-WASTR LP',
     earnTokenName: 'LSHARES',
     finished: false,
     multiplier: '35500x',
