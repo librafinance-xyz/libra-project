@@ -45,8 +45,8 @@ const configurations: { [env: string]: Configuration } = {
       // '2SHARES': ['0xc54A1684fD1bef1f077a336E6be4Bd9a3096a6Ca', 18],
       // 'LIBRA-WFTM LP': ['0x83A52eff2E9D112E9B022399A9fD22a9DB7d33Ae', 18],
       'ASTR-USDC-LP': ['0xBB1290c1829007F440C771b37718FAbf309cd527', 18],
-      'LIBRA-ASTR-LP': ['0xF3C8aC387E2254b92C0edD5e8307373099e394c6', 18], //DUMMY
-      'LSHARE-ASTR-LP': ['0x4d40e2647F7b5D68a818af4b9eF17DD97b305A69', 18], //DUMMY
+      'LIBRA-WASTR-LP': ['0xF3C8aC387E2254b92C0edD5e8307373099e394c6', 18], //DUMMY
+      'LSHARE-WASTR-LP': ['0x4d40e2647F7b5D68a818af4b9eF17DD97b305A69', 18], //DUMMY
       LBOND: ['0x5508C3b4598D0a80a20EFD45d12717b8De4ad723', 18], // DUMMY
       // 'LSHARES-WFTM LP': ['0xd352daC95a91AfeFb112DBBB3463ccfA5EC15b65', 18],
       LSHARES: ['0xD86AE6E031b2277bd55e19A6DA73445280F838e9', 18], // DUMMY
@@ -263,11 +263,11 @@ export const bankDefinitions: { [contractName: string]: BankInfo } = {
     closedForStaking: true,
   },
   TombFtmLPTShareRewardPool: {
-    name: 'Earn LSHARES by LIBRA-WFTM LP',
+    name: 'Earn LSHARES by LIBRA-WASTR LP',
     poolId: 0,
     sectionInUI: 2,
     contract: 'TombFtmLPTShareRewardPool',
-    depositTokenName: 'LIBRA-WFTM LP',
+    depositTokenName: 'LIBRA-WASTRLP',
     earnTokenName: 'LSHARES',
     finished: false,
     multiplier: '35500x',
@@ -375,11 +375,11 @@ export const bankDefinitions: { [contractName: string]: BankInfo } = {
     closedForStaking: false,
   },
   // TombLIBRAFTMRebates: {
-  //   name: 'Bond LIBRA-WFTM LP, earn LIBRA',
+  //   name: 'Bond LIBRA-WASTR LP, earn LIBRA',
   //   poolId: 3,
   //   sectionInUI: 3,
   //   contract: 'TombFtmRewardPool',
-  //   depositTokenName: 'LIBRA-WFTM LP',
+  //   depositTokenName: 'LIBRA-WASTR LP',
   //   earnTokenName: 'LIBRA',
   //   finished: false,
   //   multiplier: '6000x',

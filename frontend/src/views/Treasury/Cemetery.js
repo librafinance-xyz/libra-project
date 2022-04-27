@@ -132,7 +132,7 @@ const Cemetery = () => {
                   <Grid item xs={12} md={4} lg={4} className={classes.gridItem}>
                     <Card style={{ height: 'auto' }}>
                       <CardContent align="center">
-                        <Typography variant="h5">LIBRA-WFTM LP:</Typography>
+                        <Typography variant="h5">LIBRA-WASTR LP:</Typography>
                         <CountUp style={{ fontSize: '25px' }} end={balance_libra_wftm} separator="," prefix="$" />
                       </CardContent>
                       <CardContent align="center">
