@@ -2444,10 +2444,10 @@
     memory-cache "^0.2.0"
     web3-utils "^1.3.3"
 
-"@twinkleswap/sdk@^0.0.3":
-  version "0.0.3"
-  resolved "https://registry.yarnpkg.com/@twinkleswap/sdk/-/sdk-0.0.3.tgz#85b4054b15715c13145e4850a522e9b586d02747"
-  integrity sha512-DFTxmwLeAudOwaPFdBvlv2K84BSQS/RRae1IjyQ4YHcBMnGH5bSbKptS3ILoghOtgRsnXnokAaPcHPGw1oo1mw==
+"@twinkleswap/sdk@^0.0.4":
+  version "0.0.4"
+  resolved "https://registry.yarnpkg.com/@twinkleswap/sdk/-/sdk-0.0.4.tgz#6c76228b3c78d4324704263ba3c369a2c043d97b"
+  integrity sha512-BXTLeH3mjTfIhHrsLs1TLLcMBR4paLEZgI7X6oQ3pqv+TkD6+KQoRMg0C+hxDagK57lC7tPaz03vUjfXbtDAXQ==
   dependencies:
     big.js "^5.2.2"
     decimal.js-light "^2.5.0"
