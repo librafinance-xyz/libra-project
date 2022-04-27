@@ -136,7 +136,7 @@ const Cemetery = () => {
                         <CountUp style={{ fontSize: '25px' }} end={balance_libra_wftm} separator="," prefix="$" />
                       </CardContent>
                       <CardContent align="center">
-                        <Typography variant="h5">LSHARES-WFTM LP:</Typography>
+                        <Typography variant="h5">LSHARES-WASTR LP:</Typography>
                         <CountUp style={{ fontSize: '25px' }} end={balance_Lshares_wftm} separator="," prefix="$" />
                       </CardContent>
                       <CardContent align="center">

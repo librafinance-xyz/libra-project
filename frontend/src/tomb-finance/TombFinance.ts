@@ -350,7 +350,7 @@ export class TombFinance {
       console.log('token name:', tokenName);
       if (tokenName === 'LIBRA-WASTR LP') {
         tokenPrice = await this.getLPTokenPrice(token, this.TOMB, true, false);
-      } else if (tokenName === 'LSHARES-WFTM LP') {
+      } else if (tokenName === 'LSHARES-WASTR LP') {
         tokenPrice = await this.getLPTokenPrice(token, this.TSHARE, false, false);
       } else if (tokenName === '2SHARES-WFTM LP') {
         tokenPrice = await this.getLPTokenPrice(
