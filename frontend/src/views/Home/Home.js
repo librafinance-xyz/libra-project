@@ -14,7 +14,7 @@ import useLpStats from '../../hooks/useLpStats';
 import useModal from '../../hooks/useModal';
 import useZap from '../../hooks/useZap';
 import useBondStats from '../../hooks/useBondStats';
-import usetShareStats from '../../hooks/usetShareStats';
+import useLShareStats from '../../hooks/useLShareStats';
 import useTotalValueLocked from '../../hooks/useTotalValueLocked';
 import useFantomPrice from '../../hooks/useFantomPrice';
 // import { tomb as tombStag, tShare as tShareStag } from '../../tomb-finance/deployments/deployments.stag.json';
@@ -61,7 +61,7 @@ const Home = () => {
 
   const tShareFtmLpStats = useLpStats('LSHARE-ASTR-LP');
   const libraStats = useLibraStats();
-  const tShareStats = usetShareStats();
+  const LShareStats = useLShareStats();
   const tBondStats = useBondStats();
   const libraFinance = useLibraFinance();
   const { price: ftmPrice, marketCap: astarMarketCap, priceChange: astarPriceChange } = useFantomPrice();
@@ -104,19 +104,19 @@ const Home = () => {
   );
   const libraTotalSupply = useMemo(() => (libraStats ? String(libraStats.totalSupply) : null), [libraStats]);
 
-  const tSharePriceInDollars = useMemo(
-    () => (tShareStats ? Number(tShareStats.priceInDollars).toFixed(2) : null),
-    [tShareStats],
+  const LSharePriceInDollars = useMemo(
+    () => (LShareStats ? Number(LShareStats.priceInDollars).toFixed(2) : null),
+    [LShareStats],
   );
-  const tSharePriceInASTR = useMemo(
-    () => (tShareStats ? Number(tShareStats.tokenInAstar).toFixed(4) : null),
-    [tShareStats],
+  const LSharePriceInASTR = useMemo(
+    () => (LShareStats ? Number(LShareStats.tokenInAstar).toFixed(4) : null),
+    [LShareStats],
   );
   const tShareCirculatingSupply = useMemo(
-    () => (tShareStats ? String(tShareStats.circulatingSupply) : null),
-    [tShareStats],
+    () => (LShareStats ? String(LShareStats.circulatingSupply) : null),
+    [LShareStats],
   );
-  const tShareTotalSupply = useMemo(() => (tShareStats ? String(tShareStats.totalSupply) : null), [tShareStats]);
+  const tShareTotalSupply = useMemo(() => (LShareStats ? String(LShareStats.totalSupply) : null), [LShareStats]);
 
   const tBondPriceInDollars = useMemo(
     () => (tBondStats ? Number(tBondStats.priceInDollars).toFixed(2) : null),
@@ -412,13 +412,13 @@ const Home = () => {
               </Box>
               Current Price
               <Box>
-                <span style={{ fontSize: '30px' }}>{tSharePriceInASTR ? tSharePriceInASTR : '-.----'} ASTR</span>
+                <span style={{ fontSize: '30px' }}>{LSharePriceInASTR ? LSharePriceInASTR : '-.----'} ASTR</span>
               </Box>
               <Box>
-                <span style={{ fontSize: '16px' }}>${tSharePriceInDollars ? tSharePriceInDollars : '-.--'}</span>
+                <span style={{ fontSize: '16px' }}>${LSharePriceInDollars ? LSharePriceInDollars : '-.--'}</span>
               </Box>
               <span style={{ fontSize: '12px' }}>
-                Market Cap: ${(tShareCirculatingSupply * tSharePriceInDollars).toFixed(2)} <br />
+                Market Cap: ${(tShareCirculatingSupply * LSharePriceInDollars).toFixed(2)} <br />
                 Circulating Supply: {tShareCirculatingSupply} <br />
                 Total Supply: {tShareTotalSupply}
               </span>

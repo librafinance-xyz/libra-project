@@ -3,11 +3,11 @@ import { useWallet } from 'use-wallet';
 import TombFinance from '../../tomb-finance';
 import config from '../../config';
 
-export interface TombFinanceContext {
+export interface LibraFinanceContext {
   libraFinance?: TombFinance;
 }
 
-export const Context = createContext<TombFinanceContext>({ libraFinance: null });
+export const Context = createContext<LibraFinanceContext>({ libraFinance: null });
 
 export const TombFinanceProvider: React.FC = ({ children }) => {
   const { ethereum, account } = useWallet();
