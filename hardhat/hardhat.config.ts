@@ -49,9 +49,9 @@ const config: HardhatUserConfig = {
     // apiKey: polygonScanToken, // polygonscan
     // apiKey: ftmScanToken, // ftmscan
     // apiKey: ETHERSCAN_TOKEN, // ETHERSCAN_TOKEN,
-    apiKey: {
-      astar: "your API key",
-    },
+    // apiKey: {
+    //   "astar": "your API key",
+    // },
   },
   gasReporter: {
     coinmarketcap: process.env.COINMARKETCAP_API_KEY,
