@@ -7,7 +7,7 @@ const useRedeemOnMasonry = (description?: string) => {
   const handleTransactionReceipt = useHandleTransactionReceipt();
 
   const handleRedeem = useCallback(() => {
-    const alertDesc = description || 'Redeem LSHARES from 3Room ';
+    const alertDesc = description || 'Redeem LSHARE from 3Room ';
     handleTransactionReceipt(libraFinance.exitFromMasonry(), alertDesc);
   }, [libraFinance, description, handleTransactionReceipt]);
   return { onRedeem: handleRedeem };

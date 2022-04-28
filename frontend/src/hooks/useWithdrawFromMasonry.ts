@@ -10,7 +10,7 @@ const useWithdrawFromMasonry = () => {
     (amount: string) => {
       handleTransactionReceipt(
         libraFinance.withdrawShareFromMasonry(amount),
-        `Withdraw ${amount} LSHARES from the 3Room `,
+        `Withdraw ${amount} LSHARE from the 3Room `,
       );
     },
     [libraFinance, handleTransactionReceipt],

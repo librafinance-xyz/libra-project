@@ -64,7 +64,7 @@ const Home = () => {
   const LShareStats = useLShareStats();
   const tBondStats = useBondStats();
   const libraFinance = useLibraFinance();
-  const { price: ftmPrice, marketCap: astarMarketCap, priceChange: astarPriceChange } = useFantomPrice();
+  const { price: astarPrice, marketCap: astarMarketCap, priceChange: astarPriceChange } = useFantomPrice();
   const { balance: rebatesTVL } = useTotalTreasuryBalance();
   const totalTVL = TVL + rebatesTVL;
 
@@ -212,10 +212,10 @@ const Home = () => {
                 .
               </p> */}
               <p>
-                {/* Stake your LIBRA-ASTR LP in the <StyledLink href="/farms">Farms</StyledLink> to earn LSHARES rewards.
-                Then stake your earned LSHARES in the <StyledLink href="/">Room</StyledLink> to maximize profits! */}
-                Stake your LIBRA-ASTR LP in the Farms to earn LSHARES seigniorage rewards.
-                {/* Then stake your earned LSHARES in the Room to maximize profits! */}
+                {/* Stake your LIBRA-ASTR LP in the <StyledLink href="/farms">Farms</StyledLink> to earn LSHARE rewards.
+                Then stake your earned LSHARE in the <StyledLink href="/">Room</StyledLink> to maximize profits! */}
+                Stake your LIBRA-ASTR LP in the Farms to earn LSHARE seigniorage rewards.
+                {/* Then stake your earned LSHARE in the Room to maximize profits! */}
                 Then stake your earned LSHARE to earn more LIBRA!
               </p>
             </Box>
@@ -302,7 +302,7 @@ const Home = () => {
                 Buy LIBRA
               </Button>
               <Button variant="contained" href="/#" style={{ marginRight: '10px' }} className={classes.button}>
-                Buy LSHARES
+                Buy LSHARE
               </Button>
               {/* <Button
                 variant="contained"
@@ -319,7 +319,7 @@ const Home = () => {
                 href="https://dexscreener.com/fantom/0xd352dac95a91afefb112dbbb3463ccfa5ec15b65"
                 className={classes.button}
               >
-                LSHARES Chart
+                LSHARE Chart
               </Button> */}
             </CardContent>
           </Card>
@@ -338,7 +338,7 @@ const Home = () => {
               </Box>
               Current Price
               <Box>
-                <span style={{ fontSize: '30px' }}>${ftmPrice ? ftmPrice : '-.----'} USD</span>
+                <span style={{ fontSize: '30px' }}>${astarPrice ? astarPrice : '-.----'} USD</span>
               </Box>
               <span style={{ fontSize: '12px' }}>
                 Market Cap: ${astarMarketCap} <br />
@@ -393,7 +393,7 @@ const Home = () => {
         <Grid item xs={12} sm={3}>
           <Card style={{ backgroundColor: 'transparent', boxShadow: 'none' }}>
             <CardContent align="center" style={{ position: 'relative' }}>
-              <h2>LSHARES</h2>
+              <h2>LSHARE</h2>
               {/* <Button
                 onClick={() => {
                   libraFinance.watchAssetInMetamask('TSHARE');

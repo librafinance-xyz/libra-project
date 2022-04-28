@@ -44,7 +44,7 @@ const ProvideLiquidity = () => {
     () => (libraStats ? Number(libraStats.tokenInAstar).toFixed(2) : null),
     [libraStats],
   );
-  const ftmPriceInTOMB = useMemo(
+  const astarPriceInTOMB = useMemo(
     () => (libraStats ? Number(1 / libraStats.tokenInAstar).toFixed(2) : null),
     [libraStats],
   );
@@ -128,9 +128,9 @@ const ProvideLiquidity = () => {
                       </Grid>
                       <Grid item xs={12}>
                         <p>1 LIBRA = {libraPriceInASTR} ASTR</p>
-                        <p>1 ASTR = {ftmPriceInTOMB} LIBRA</p>
+                        <p>1 ASTR = {astarPriceInTOMB} LIBRA</p>
                         {/* <p>1 TOMB = {libraPriceInASTR} ASTR</p>
-                        <p>1 FTM = {ftmPriceInTOMB} TOMB</p> */}
+                        <p>1 FTM = {astarPriceInTOMB} TOMB</p> */}
                         <p>LP tokens ≈ {lpTokensAmount.toFixed(2)}</p>
                       </Grid>
                       <Grid xs={12} justifyContent="center" style={{ textAlign: 'center' }}>

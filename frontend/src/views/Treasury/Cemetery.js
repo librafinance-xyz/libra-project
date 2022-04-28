@@ -28,13 +28,13 @@ const assetList = [
     depositTokenName: 'LIBRA-ASTR LP',
   },
   // {
-  //   depositTokenName: 'LSHARES',
+  //   depositTokenName: 'LSHARE',
   // },
   {
-    depositTokenName: 'LSHARES',
+    depositTokenName: 'LSHARE',
   },
   // {
-  //   depositTokenName: 'LSHARES-ASTR LP',
+  //   depositTokenName: 'LSHARE-ASTR LP',
   // },
   {
     depositTokenName: 'LSHARE-ASTR LP',
@@ -158,7 +158,7 @@ const Cemetery = () => {
                         <CountUp style={{ fontSize: '25px' }} end={balance_libra} separator="," prefix="$" />
                       </CardContent>
                       <CardContent align="center">
-                        <Typography variant="h5">LSHARES:</Typography>
+                        <Typography variant="h5">LSHARE:</Typography>
                         <CountUp style={{ fontSize: '25px' }} end={balance_Lshares} separator="," prefix="$" />
                       </CardContent>
                       <CardContent align="center">

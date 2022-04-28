@@ -31,7 +31,7 @@ import bloomLogo from '../../assets/img/BLOOM.jpg';
 import UsdcLogo from '../../assets/img/USDC.png';
 
 // import ThreeombLPLogo from '../../assets/img/LIBRA-WFTM.png';
-// import ThreesharesLPLogo from '../../assets/img/LSHARES-WFTM.png';
+// import ThreesharesLPLogo from '../../assets/img/LSHARE-WFTM.png';
 
 const logosBySymbol: { [title: string]: string } = {
   //Real tokens
@@ -53,7 +53,7 @@ const logosBySymbol: { [title: string]: string } = {
   WASTR: astrLogo,
   ASTR: astrLogo,
   // 'LSHARE-ASTR-LP': TwosharesLPLogo,
-  // 'LSHARES-ASTR-LP': ThreesharesLPLogo,
+  // 'LSHARE-ASTR-LP': ThreesharesLPLogo,
   wFTM: wftmLogo,
   'LIBRA-ASTR-LP': LibraWastrLPlogo,
   'LSHARE-ASTR-LP': LshareWastrLPlogo,
