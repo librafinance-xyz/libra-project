@@ -90,7 +90,7 @@ const Home = () => {
 
   const tombLPStats = useMemo(() => (libraAstarLpStats ? libraAstarLpStats : null), [libraAstarLpStats]);
   const tshareLPStats = useMemo(() => (tShareFtmLpStats ? tShareFtmLpStats : null), [tShareFtmLpStats]);
-  const tombPriceInDollars = useMemo(
+  const astarPriceInDollars = useMemo(
     () => (libraStats ? Number(libraStats.priceInDollars).toFixed(2) : null),
     [libraStats],
   );
@@ -377,11 +377,11 @@ const Home = () => {
               </Box>
               <Box>
                 <span style={{ fontSize: '16px', alignContent: 'flex-start' }}>
-                  ${tombPriceInDollars ? tombPriceInDollars : '-.--'}
+                  ${astarPriceInDollars ? astarPriceInDollars : '-.--'}
                 </span>
               </Box>
               <span style={{ fontSize: '12px' }}>
-                Market Cap: ${(libraCirculatingSupply * tombPriceInDollars).toFixed(2)} <br />
+                Market Cap: ${(libraCirculatingSupply * astarPriceInDollars).toFixed(2)} <br />
                 Circulating Supply: {libraCirculatingSupply} <br />
                 Total Supply: {libraTotalSupply}
               </span>
