@@ -32,13 +32,13 @@ import useWithdrawFromMasonry from '../../../hooks/useWithdrawFromMasonry';
 
 const Stake: React.FC = () => {
   const libraFinance = useLibraFinance();
-  const [approveStatus, approve] = useApprove(libraFinance.TSHARE, libraFinance.contracts.Masonry.address);
+  const [approveStatus, approve] = useApprove(libraFinance.LSHARE, libraFinance.contracts.Masonry.address);
 
-  const tokenBalance = useTokenBalance(libraFinance.TSHARE);
+  const tokenBalance = useTokenBalance(libraFinance.LSHARE);
   const stakedBalance = useStakedBalanceOnMasonry();
   const { from, to } = useUnstakeTimerMasonry();
 
-  const stakedTokenPriceInDollars = useStakedTokenPriceInDollars('TSHARE', libraFinance.TSHARE);
+  const stakedTokenPriceInDollars = useStakedTokenPriceInDollars('TSHARE', libraFinance.LSHARE);
   const tokenPriceInDollars = useMemo(
     () =>
       stakedTokenPriceInDollars

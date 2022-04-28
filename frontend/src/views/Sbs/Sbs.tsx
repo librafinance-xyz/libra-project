@@ -144,7 +144,7 @@ const Sbs: React.FC = () => {
                             <StyledExchanger>
                               <StyledToken>
                                 <StyledCardIcon>
-                                  <TokenSymbol symbol={libraFinance.TSHARE.symbol} size={54} />
+                                  <TokenSymbol symbol={libraFinance.LSHARE.symbol} size={54} />
                                 </StyledCardIcon>
                               </StyledToken>
                             </StyledExchanger>

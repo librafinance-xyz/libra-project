@@ -29,7 +29,7 @@ const ZapModal: React.FC<ZapProps> = ({ onConfirm, onDismiss, tokenName = '', de
   const { balance } = useWallet();
   const ftmBalance = (Number(balance) / 1e18).toFixed(4).toString();
   const tombBalance = useTokenBalance(libraFinance.TOMB);
-  const tshareBalance = useTokenBalance(libraFinance.TSHARE);
+  const tshareBalance = useTokenBalance(libraFinance.LSHARE);
   const [val, setVal] = useState('');
   const [zappingToken, setZappingToken] = useState(FTM_TICKER);
   const [zappingTokenBalance, setZappingTokenBalance] = useState(ftmBalance);

@@ -22,7 +22,7 @@ function useApproveZapper(zappingToken: string): [ApprovalState, () => Promise<v
   let token: ERC20;
   if (zappingToken === FTM_TICKER) token = libraFinance.FTM;
   else if (zappingToken === TOMB_TICKER) token = libraFinance.TOMB;
-  else if (zappingToken === TSHARE_TICKER) token = libraFinance.TSHARE;
+  else if (zappingToken === TSHARE_TICKER) token = libraFinance.LSHARE;
   const pendingApproval = useHasPendingApproval(token.address, ZAPPER_ROUTER_ADDR);
   const currentAllowance = useAllowance(token, ZAPPER_ROUTER_ADDR, pendingApproval);
 
