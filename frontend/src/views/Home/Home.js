@@ -9,7 +9,7 @@ import { createGlobalStyle } from 'styled-components';
 import CountUp from 'react-countup';
 import CardIcon from '../../components/CardIcon';
 import TokenSymbol from '../../components/TokenSymbol';
-import useTombStats from '../../hooks/useTombStats';
+import useLibraStats from '../../hooks/useLibraStats';
 import useLpStats from '../../hooks/useLpStats';
 import useModal from '../../hooks/useModal';
 import useZap from '../../hooks/useZap';
@@ -60,7 +60,7 @@ const Home = () => {
   const libraAstarLpStats = useLpStats('LIBRA-WASTR-LP');
 
   const tShareFtmLpStats = useLpStats('LSHARE-WASTR-LP');
-  const tombStats = useTombStats();
+  const libraStats = useLibraStats();
   const tShareStats = usetShareStats();
   const tBondStats = useBondStats();
   const tombFinance = useTombFinance();
@@ -91,12 +91,18 @@ const Home = () => {
   const tombLPStats = useMemo(() => (libraAstarLpStats ? libraAstarLpStats : null), [libraAstarLpStats]);
   const tshareLPStats = useMemo(() => (tShareFtmLpStats ? tShareFtmLpStats : null), [tShareFtmLpStats]);
   const tombPriceInDollars = useMemo(
-    () => (tombStats ? Number(tombStats.priceInDollars).toFixed(2) : null),
-    [tombStats],
+    () => (libraStats ? Number(libraStats.priceInDollars).toFixed(2) : null),
+    [libraStats],
   );
-  const libraPriceInASTR = useMemo(() => (tombStats ? Number(tombStats.tokenInAstar).toFixed(4) : null), [tombStats]);
-  const libraCirculatingSupply = useMemo(() => (tombStats ? String(tombStats.circulatingSupply) : null), [tombStats]);
-  const tombTotalSupply = useMemo(() => (tombStats ? String(tombStats.totalSupply) : null), [tombStats]);
+  const libraPriceInASTR = useMemo(
+    () => (libraStats ? Number(libraStats.tokenInAstar).toFixed(4) : null),
+    [libraStats],
+  );
+  const libraCirculatingSupply = useMemo(
+    () => (libraStats ? String(libraStats.circulatingSupply) : null),
+    [libraStats],
+  );
+  const libraTotalSupply = useMemo(() => (libraStats ? String(libraStats.totalSupply) : null), [libraStats]);
 
   const tSharePriceInDollars = useMemo(
     () => (tShareStats ? Number(tShareStats.priceInDollars).toFixed(2) : null),
@@ -377,7 +383,7 @@ const Home = () => {
               <span style={{ fontSize: '12px' }}>
                 Market Cap: ${(libraCirculatingSupply * tombPriceInDollars).toFixed(2)} <br />
                 Circulating Supply: {libraCirculatingSupply} <br />
-                Total Supply: {tombTotalSupply}
+                Total Supply: {libraTotalSupply}
               </span>
             </CardContent>
           </Card>

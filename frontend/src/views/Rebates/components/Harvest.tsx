@@ -12,18 +12,18 @@ import useClaimRewardCheck from '../../../hooks/masonry/useClaimRewardCheck';
 import ProgressCountdown from './../components/ProgressCountdown';
 import useHarvestFromMasonry from '../../../hooks/useHarvestFromMasonry';
 import useEarningsOnMasonry from '../../../hooks/useEarningsOnMasonry';
-import useTombStats from '../../../hooks/useTombStats';
+import useLibraStats from '../../../hooks/useLibraStats';
 import { getDisplayBalance } from '../../../utils/formatBalance';
 
 const Harvest: React.FC = () => {
-  const tombStats = useTombStats();
+  const libraStats = useLibraStats();
   const { onReward } = useHarvestFromMasonry();
   const earnings = useEarningsOnMasonry();
   const canClaimReward = useClaimRewardCheck();
 
   const tokenPriceInDollars = useMemo(
-    () => (tombStats ? Number(tombStats.priceInDollars).toFixed(2) : null),
-    [tombStats],
+    () => (libraStats ? Number(libraStats.priceInDollars).toFixed(2) : null),
+    [libraStats],
   );
 
   const earnedInDollars = (Number(tokenPriceInDollars) * Number(getDisplayBalance(earnings))).toFixed(2);

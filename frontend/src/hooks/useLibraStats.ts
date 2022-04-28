@@ -3,7 +3,7 @@ import useTombFinance from './useTombFinance';
 import { TokenStat } from '../tomb-finance/types';
 import useRefresh from './useRefresh';
 
-const useTombStats = () => {
+const useLibraStats = () => {
   const [stat, setStat] = useState<TokenStat>();
   const { fastRefresh } = useRefresh();
   const tombFinance = useTombFinance();
@@ -22,4 +22,4 @@ const useTombStats = () => {
   return stat;
 };
 
-export default useTombStats;
+export default useLibraStats;

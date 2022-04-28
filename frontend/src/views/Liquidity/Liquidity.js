@@ -4,7 +4,7 @@ import { createGlobalStyle } from 'styled-components';
 import HomeImage from '../../assets/img/home.png';
 import useLpStats from '../../hooks/useLpStats';
 import { Box, Button, Grid, Paper, Typography } from '@material-ui/core';
-import useTombStats from '../../hooks/useTombStats';
+import useLibraStats from '../../hooks/useLibraStats';
 import TokenInput from '../../components/TokenInput';
 import useTombFinance from '../../hooks/useTombFinance';
 import { useWallet } from 'use-wallet';
@@ -30,7 +30,7 @@ const ProvideLiquidity = () => {
   const [ftmAmount, setFtmAmount] = useState(0);
   const [lpTokensAmount, setLpTokensAmount] = useState(0);
   const { balance } = useWallet();
-  const tombStats = useTombStats();
+  const libraStats = useLibraStats();
   const tombFinance = useTombFinance();
   const [approveTaxOfficeStatus, approveTaxOffice] = useApproveTaxOffice();
   const tombBalance = useTokenBalance(tombFinance.TOMB);
@@ -40,8 +40,14 @@ const ProvideLiquidity = () => {
   const libraAstarLpStats = useLpStats('LIBRA-WASTR-LP');
 
   const tombLPStats = useMemo(() => (libraAstarLpStats ? libraAstarLpStats : null), [libraAstarLpStats]);
-  const libraPriceInASTR = useMemo(() => (tombStats ? Number(tombStats.tokenInAstar).toFixed(2) : null), [tombStats]);
-  const ftmPriceInTOMB = useMemo(() => (tombStats ? Number(1 / tombStats.tokenInAstar).toFixed(2) : null), [tombStats]);
+  const libraPriceInASTR = useMemo(
+    () => (libraStats ? Number(libraStats.tokenInAstar).toFixed(2) : null),
+    [libraStats],
+  );
+  const ftmPriceInTOMB = useMemo(
+    () => (libraStats ? Number(1 / libraStats.tokenInAstar).toFixed(2) : null),
+    [libraStats],
+  );
   // const classes = useStyles();
 
   const handleTombChange = async (e) => {
