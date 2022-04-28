@@ -33,6 +33,15 @@ const useStyles = makeStyles((theme) => ({
     textDecoration: 'none',
   },
 
+  linkLeft: {
+    width: '24px',
+    height: '24px',
+    display: 'inline',
+ 
+    color: 'var(--white)',
+    textDecoration: 'none',
+  },
+
   margin: {
     marginRight: '24px',
     height: '40px',
@@ -51,7 +60,7 @@ const Footer = () => {
         <Grid container>
           <Grid item xs={6} style={{ margin: 'auto' }}>
             <Typography align="left">
-            <a href="https://docs.librafinance.xyz" rel="noopener noreferrer" target="_blank" className={classes.link}>
+            <a href="https://docs.librafinance.xyz" rel="noopener noreferrer" target="_blank" className={classes.linkLeft}>
               Docs
             </a>
             <a href="https://twitter.com/LibraAstar" rel="noopener noreferrer" target="_blank" className={classes.link}>
