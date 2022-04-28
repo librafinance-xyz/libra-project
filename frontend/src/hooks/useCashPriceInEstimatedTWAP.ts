@@ -11,7 +11,7 @@ const useCashPriceInEstimatedTWAP = () => {
   useEffect(() => {
     async function fetchCashPrice() {
       try {
-        setStat(await libraFinance.getTombStatInEstimatedTWAP());
+        setStat(await libraFinance.getLibraStatInEstimatedTWAP());
       } catch (err) {
         console.error(err);
       }

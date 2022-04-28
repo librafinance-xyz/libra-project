@@ -95,29 +95,29 @@ export class TombFinance {
   //=========================IN HOME PAGE==============================
   //===================================================================
 
-  async getTombStat(): Promise<TokenStat> {
-    console.log('getTombStat');
-    console.log('getTombStat:', this.TOMB);
+  async getLibraStat(): Promise<TokenStat> {
+    console.log('getLibraStat');
+    console.log('getLibraStat:', this.TOMB);
     const { TombFtmRewardPool, TombFtmLpTombRewardPool, TombFtmLpTombRewardPoolOld } = this.contracts;
-    console.log('getTombStat:  TombFtmLpTombRewardPoolOld:', TombFtmLpTombRewardPoolOld);
-    console.log('getTombStat:  TombFtmLpTombRewardPool:', TombFtmLpTombRewardPool);
-    console.log('getTombStat:', this.TOMB);
+    console.log('getLibraStat:  TombFtmLpTombRewardPoolOld:', TombFtmLpTombRewardPoolOld);
+    console.log('getLibraStat:  TombFtmLpTombRewardPool:', TombFtmLpTombRewardPool);
+    console.log('getLibraStat:', this.TOMB);
     const supply = await this.TOMB.totalSupply();
 
-    console.log('getTombStat: supply: ', supply.toString());
+    console.log('getLibraStat: supply: ', supply.toString());
     const tombRewardPoolSupply = await this.TOMB.balanceOf(TombFtmRewardPool.address);
     const tombRewardPoolSupply2 = await this.TOMB.balanceOf(TombFtmLpTombRewardPool.address);
     // const tombRewardPoolSupplyOld = await this.TOMB.balanceOf(TombFtmLpTombRewardPoolOld.address);
 
     const libraCirculatingSupply = supply.sub(tombRewardPoolSupply).sub(tombRewardPoolSupply2);
     // .sub(tombRewardPoolSupplyOld);
-    console.log('getTombStat: libraCirculatingSupply: ', libraCirculatingSupply);
+    console.log('getLibraStat: libraCirculatingSupply: ', libraCirculatingSupply);
 
     const priceOfOneASTR = await this.getWASTRPriceFromArthswapASTRUSDC();
-    console.log('getTombStat: priceOfOneASTR: ', priceOfOneASTR);
+    console.log('getLibraStat: priceOfOneASTR: ', priceOfOneASTR);
     const priceInASTR = await this.getLibraPriceFromLibraAstr();
     // const priceInASTR = await this.getTokenPriceFromLP(this.TOMB);
-    console.log('getTombStat: price in astr :', priceInASTR);
+    console.log('getLibraStat: price in astr :', priceInASTR);
     const priceOfTombInDollars = (Number(priceInASTR) * Number(priceOfOneASTR)).toFixed(2);
 
     return {
@@ -168,7 +168,7 @@ export class TombFinance {
    */
   async getBondStat(): Promise<TokenStat> {
     const { Treasury } = this.contracts;
-    const tombStat = await this.getTombStat();
+    const tombStat = await this.getLibraStat();
     const bondTombRatioBN = await Treasury.getBondPremiumRate();
     const modifier = bondTombRatioBN / 1e18 > 1 ? bondTombRatioBN / 1e18 : 1;
     const bondpriceInASTR = (Number(tombStat.tokenInAstar) * modifier).toFixed(2);
@@ -217,7 +217,7 @@ export class TombFinance {
     };
   }
 
-  async getTombStatInEstimatedTWAP(): Promise<TokenStat> {
+  async getLibraStatInEstimatedTWAP(): Promise<TokenStat> {
     const { SeigniorageOracle, TombFtmRewardPool } = this.contracts;
     const expectedPrice = await SeigniorageOracle.twap(this.TOMB.address, ethers.utils.parseEther('1'));
 
@@ -255,7 +255,7 @@ export class TombFinance {
     console.log('deposit token price:', depositTokenPrice);
     const stakeInPool = await depositToken.balanceOf(bank.address);
     const TVL = Number(depositTokenPrice) * Number(getDisplayBalance(stakeInPool, depositToken.decimal));
-    const stat = bank.earnTokenName === 'LIBRA' ? await this.getTombStat() : await this.getShareStat();
+    const stat = bank.earnTokenName === 'LIBRA' ? await this.getLibraStat() : await this.getShareStat();
     const tokenPerSecond = await this.getTokenPerSecond(
       bank.earnTokenName,
       bank.contract,
@@ -455,7 +455,7 @@ export class TombFinance {
       //   ? await this.get2ombStatFake()
       //   : await this.get2ShareStatFake()
       // :
-      isTomb === true ? await this.getTombStat() : await this.getShareStat();
+      isTomb === true ? await this.getLibraStat() : await this.getShareStat();
 
     const priceOfToken = stat.priceInDollars;
     const tokenInLP = Number(tokenSupply) / Number(totalSupply);
@@ -465,7 +465,7 @@ export class TombFinance {
   }
 
   /*
-  async getTombStatFake() {
+  async getLibraStatFake() {
     const price = await fetch("https://api.coingecko.com/api/v3/simple/price?ids=2omb-finance&vs_currencies=usd").then(res => res.json())
     return { priceInDollars: price["2omb-finance"].usd }
   }
@@ -705,7 +705,7 @@ export class TombFinance {
     const lastRewardsReceived = lastHistory[1];
 
     const TSHAREPrice = (await this.getShareStat()).priceInDollars;
-    const TOMBPrice = (await this.getTombStat()).priceInDollars;
+    const TOMBPrice = (await this.getLibraStat()).priceInDollars;
     const epochRewardsPerShare = lastRewardsReceived / 1e18;
 
     //Mgod formula

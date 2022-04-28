@@ -11,7 +11,7 @@ const useLibraStats = () => {
   useEffect(() => {
     async function fetchLibraPrice() {
       try {
-        setStat(await libraFinance.getTombStat());
+        setStat(await libraFinance.getLibraStat());
       } catch (err) {
         console.error(err);
       }
