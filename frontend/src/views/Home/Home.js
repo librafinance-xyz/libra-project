@@ -57,7 +57,7 @@ const Home = () => {
   const classes = useStyles();
   const TVL = useTotalValueLocked();
   // const libraAstarLpStats = useLpStats('TOMB-FTM-LP');
-  const libraAstarLpStats = useLpStats('LIBRA-WASTR-LP');
+  const libraAstarLpStats = useLpStats('LIBRA-ASTR-LP');
 
   const tShareFtmLpStats = useLpStats('LSHARE-WASTR-LP');
   const libraStats = useLibraStats();
@@ -129,7 +129,7 @@ const Home = () => {
   );
   const tBondTotalSupply = useMemo(() => (tBondStats ? String(tBondStats.totalSupply) : null), [tBondStats]);
 
-  const tombLpZap = useZap({ depositTokenName: 'LIBRA-WASTR-LP' });
+  const tombLpZap = useZap({ depositTokenName: 'LIBRA-ASTR-LP' });
   const tshareLpZap = useZap({ depositTokenName: 'LSHARE-WASTR-LP' });
 
   const StyledLink = styled.a`
@@ -147,7 +147,7 @@ const Home = () => {
         onDissmissTombZap();
       }}
       // tokenName={'TOMB-FTM-LP'}
-      tokenName={'LIBRA-WASTR-LP'}
+      tokenName={'LIBRA-ASTR-LP'}
     />,
   );
 
@@ -468,7 +468,7 @@ const Home = () => {
               <h2>LIBRA-WASTR LP</h2>
               <Box mt={2}>
                 <CardIcon>
-                  <TokenSymbol symbol="LIBRA-WASTR-LP" />
+                  <TokenSymbol symbol="LIBRA-ASTR-LP" />
                 </CardIcon>
               </Box>
               {/*

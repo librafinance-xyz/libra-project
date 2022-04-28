@@ -37,7 +37,7 @@ const ProvideLiquidity = () => {
   const ftmBalance = (balance / 1e18).toFixed(4);
   const { onProvideTombFtmLP } = useProvideTombFtmLP();
   // const libraAstarLpStats = useLpStats('TOMB-FTM-LP');
-  const libraAstarLpStats = useLpStats('LIBRA-WASTR-LP');
+  const libraAstarLpStats = useLpStats('LIBRA-ASTR-LP');
 
   const tombLPStats = useMemo(() => (libraAstarLpStats ? libraAstarLpStats : null), [libraAstarLpStats]);
   const libraPriceInASTR = useMemo(

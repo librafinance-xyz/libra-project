@@ -54,7 +54,7 @@ const logosBySymbol: { [title: string]: string } = {
   ASTR: astrLogo,
   // '2OMB-WFTM LP': TwoombLPLogo,
   // '2OMB-ASTR LP': TwoombLPLogo,
-  'LIBRA-ASTR-LP': TwoombLPLogo,
+  // 'LIBRA-ASTR-LP': TwoombLPLogo,
   'LIBRA-WFTM-LP': ThreeombLPLogo,
 
   //
@@ -72,7 +72,7 @@ const logosBySymbol: { [title: string]: string } = {
   // '2SHARES': twoshareLogo,
   // 'TOMB-FTM-LP': tombFtmLpLogo,
   // 'TSHARE-FTM-LP': tshareFtmLpLogo,
-  'LIBRA-WASTR-LP': LibraWastrLPlogo,
+  'LIBRA-ASTR-LP': LibraWastrLPlogo,
   'LSHARE-WASTR-LP': LshareWastrLPlogo,
 };
 

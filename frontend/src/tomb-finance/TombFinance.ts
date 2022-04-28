@@ -54,7 +54,7 @@ export class TombFinance {
 
     // Uniswap V2 Pair
     // this.TOMBWFTM_LP = new Contract(externalTokens['TOMB-FTM-LP'][0], IUniswapV2PairABI, provider);
-    this.TOMBWFTM_LP = new Contract(externalTokens['LIBRA-WASTR-LP'][0], IUniswapV2PairABI, provider);
+    this.TOMBWFTM_LP = new Contract(externalTokens['LIBRA-ASTR-LP'][0], IUniswapV2PairABI, provider);
 
     this.config = cfg;
     this.provider = provider;
@@ -652,10 +652,14 @@ export class TombFinance {
   //   }
 
   async getLibraPriceFromLibraAstr(): Promise<string> {
+    console.log('TombFinance: getLibraPriceFromLibraAstr.');
     const ready = await this.provider.ready;
     if (!ready) return;
+    console.log('TombFinance: getLibraPriceFromLibraAstr..');
     const { WASTR, LIBRA } = this.externalTokens;
+    console.log('TombFinance: getLibraPriceFromLibraAstr....');
     const libra_astr_lp_pair = this.externalTokens['LIBRA-ASTR-LP'];
+    console.log('TombFinance: getLibraPriceFromLibraAstr.......libra_astr_lp_pair = ' + libra_astr_lp_pair);
     let astr_amount_BN = await WASTR.balanceOf(libra_astr_lp_pair.address);
     let astr_amount = Number(getFullDisplayBalance(astr_amount_BN, WASTR.decimal));
     console.log('TombFinance: getLibraPriceFromLibraAstr() 7. astr_amount=', astr_amount);
