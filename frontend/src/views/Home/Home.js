@@ -9,12 +9,12 @@ import { createGlobalStyle } from 'styled-components';
 import CountUp from 'react-countup';
 import CardIcon from '../../components/CardIcon';
 import TokenSymbol from '../../components/TokenSymbol';
-import useTombStats from '../../hooks/useTombStats';
+import useLibraStats from '../../hooks/useLibraStats';
 import useLpStats from '../../hooks/useLpStats';
 import useModal from '../../hooks/useModal';
 import useZap from '../../hooks/useZap';
 import useBondStats from '../../hooks/useBondStats';
-import usetShareStats from '../../hooks/usetShareStats';
+import useLShareStats from '../../hooks/useLShareStats';
 import useTotalValueLocked from '../../hooks/useTotalValueLocked';
 import useFantomPrice from '../../hooks/useFantomPrice';
 // import { tomb as tombStag, tShare as tShareStag } from '../../tomb-finance/deployments/deployments.stag.json';
@@ -33,7 +33,7 @@ import { Box, Button, Card, CardContent, Grid, Paper } from '@material-ui/core';
 import ZapModal from '../Bank/components/ZapModal';
 
 import { makeStyles } from '@material-ui/core/styles';
-import useTombFinance from '../../hooks/useTombFinance';
+import useLibraFinance from '../../hooks/useLibraFinance';
 
 const BackgroundImage = createGlobalStyle`
   body {
@@ -56,15 +56,15 @@ const useStyles = makeStyles((theme) => ({
 const Home = () => {
   const classes = useStyles();
   const TVL = useTotalValueLocked();
-  // const tombFtmLpStats = useLpStats('TOMB-FTM-LP');
-  const tombFtmLpStats = useLpStats('LIBRA-WASTR-LP');
+  // const libraAstarLpStats = useLpStats('TOMB-FTM-LP');
+  const libraAstarLpStats = useLpStats('LIBRA-ASTR-LP');
 
-  const tShareFtmLpStats = useLpStats('LSHARE-WASTR-LP');
-  const tombStats = useTombStats();
-  const tShareStats = usetShareStats();
-  const tBondStats = useBondStats();
-  const tombFinance = useTombFinance();
-  const { price: ftmPrice, marketCap: ftmMarketCap, priceChange: ftmPriceChange } = useFantomPrice();
+  const tShareFtmLpStats = useLpStats('LSHARE-ASTR-LP');
+  const libraStats = useLibraStats();
+  const LShareStats = useLShareStats();
+  const LBondStats = useBondStats();
+  const libraFinance = useLibraFinance();
+  const { price: astarPrice, marketCap: astarMarketCap, priceChange: astarPriceChange } = useFantomPrice();
   const { balance: rebatesTVL } = useTotalTreasuryBalance();
   const totalTVL = TVL + rebatesTVL;
 
@@ -88,44 +88,49 @@ const Home = () => {
   const buyTombAddress = 'https://twinkleswap.finance/swap?outputCurrency=' + tomb.address;
   const buyTShareAddress = 'https://twinkleswap.finance/swap?outputCurrency=' + tShare.address;
 
-  const tombLPStats = useMemo(() => (tombFtmLpStats ? tombFtmLpStats : null), [tombFtmLpStats]);
+  const tombLPStats = useMemo(() => (libraAstarLpStats ? libraAstarLpStats : null), [libraAstarLpStats]);
   const tshareLPStats = useMemo(() => (tShareFtmLpStats ? tShareFtmLpStats : null), [tShareFtmLpStats]);
-  const tombPriceInDollars = useMemo(
-    () => (tombStats ? Number(tombStats.priceInDollars).toFixed(2) : null),
-    [tombStats],
+  const astarPriceInDollars = useMemo(
+    () => (libraStats ? Number(libraStats.priceInDollars).toFixed(2) : null),
+    [libraStats],
   );
-  const tombPriceInFTM = useMemo(() => (tombStats ? Number(tombStats.tokenInFtm).toFixed(4) : null), [tombStats]);
-  const tombCirculatingSupply = useMemo(() => (tombStats ? String(tombStats.circulatingSupply) : null), [tombStats]);
-  const tombTotalSupply = useMemo(() => (tombStats ? String(tombStats.totalSupply) : null), [tombStats]);
+  const libraPriceInASTR = useMemo(
+    () => (libraStats ? Number(libraStats.tokenInAstar).toFixed(4) : null),
+    [libraStats],
+  );
+  const libraCirculatingSupply = useMemo(
+    () => (libraStats ? String(libraStats.circulatingSupply) : null),
+    [libraStats],
+  );
+  const libraTotalSupply = useMemo(() => (libraStats ? String(libraStats.totalSupply) : null), [libraStats]);
 
-  const tSharePriceInDollars = useMemo(
-    () => (tShareStats ? Number(tShareStats.priceInDollars).toFixed(2) : null),
-    [tShareStats],
+  const LSharePriceInDollars = useMemo(
+    () => (LShareStats ? Number(LShareStats.priceInDollars).toFixed(2) : null),
+    [LShareStats],
   );
-  const tSharePriceInASTR = useMemo(
-    () => (tShareStats ? Number(tShareStats.tokenInFtm).toFixed(4) : null),
-    [tShareStats],
+  const LSharePriceInASTR = useMemo(
+    () => (LShareStats ? Number(LShareStats.tokenInAstar).toFixed(4) : null),
+    [LShareStats],
   );
   const tShareCirculatingSupply = useMemo(
-    () => (tShareStats ? String(tShareStats.circulatingSupply) : null),
-    [tShareStats],
+    () => (LShareStats ? String(LShareStats.circulatingSupply) : null),
+    [LShareStats],
   );
-  const tShareTotalSupply = useMemo(() => (tShareStats ? String(tShareStats.totalSupply) : null), [tShareStats]);
+  const tShareTotalSupply = useMemo(() => (LShareStats ? String(LShareStats.totalSupply) : null), [LShareStats]);
 
   const tBondPriceInDollars = useMemo(
-    () => (tBondStats ? Number(tBondStats.priceInDollars).toFixed(2) : null),
-    [tBondStats],
+    () => (LBondStats ? Number(LBondStats.priceInDollars).toFixed(2) : null),
+    [LBondStats],
   );
-  const tBondPriceInFTM = useMemo(() => (tBondStats ? Number(tBondStats.tokenInFtm).toFixed(4) : null), [tBondStats]);
+  const tBondPriceInFTM = useMemo(() => (LBondStats ? Number(LBondStats.tokenInAstar).toFixed(4) : null), [LBondStats]);
   const tBondCirculatingSupply = useMemo(
-    () => (tBondStats ? String(tBondStats.circulatingSupply) : null),
-    [tBondStats],
+    () => (LBondStats ? String(LBondStats.circulatingSupply) : null),
+    [LBondStats],
   );
-  const tBondTotalSupply = useMemo(() => (tBondStats ? String(tBondStats.totalSupply) : null), [tBondStats]);
+  const tBondTotalSupply = useMemo(() => (LBondStats ? String(LBondStats.totalSupply) : null), [LBondStats]);
 
-
-  const tombLpZap = useZap({ depositTokenName: 'LIBRA-WASTR-LP' });
-  const tshareLpZap = useZap({ depositTokenName: 'LSHARE-WASTR-LP' });
+  const tombLpZap = useZap({ depositTokenName: 'LIBRA-ASTR-LP' });
+  const tshareLpZap = useZap({ depositTokenName: 'LSHARE-ASTR-LP' });
 
   const StyledLink = styled.a`
     font-weight: 700;
@@ -142,7 +147,7 @@ const Home = () => {
         onDissmissTombZap();
       }}
       // tokenName={'TOMB-FTM-LP'}
-      tokenName={'LIBRA-WASTR-LP'}
+      tokenName={'LIBRA-ASTR-LP'}
     />,
   );
 
@@ -161,7 +166,7 @@ const Home = () => {
   return (
     <Page>
       <BackgroundImage />
-      <Grid container spacing={3} style={{ marginBottom: '100px' }} >
+      <Grid container spacing={3} style={{ marginBottom: '100px' }}>
         {/* Logo */}
         <Grid container item xs={12} sm={3} justify="center">
           {/* <Paper>xs=6 sm=3</Paper> */}
@@ -207,16 +212,16 @@ const Home = () => {
                 .
               </p> */}
               <p>
-                {/* Stake your LIBRA-ASTR LP in the <StyledLink href="/farms">Farms</StyledLink> to earn LSHARES rewards.
-                Then stake your earned LSHARES in the <StyledLink href="/">Room</StyledLink> to maximize profits! */}
-                Stake your LIBRA-ASTR LP in the Farms to earn LSHARES seigniorage rewards.
-                {/* Then stake your earned LSHARES in the Room to maximize profits! */}
+                {/* Stake your LIBRA-ASTR LP in the <StyledLink href="/farms">Farms</StyledLink> to earn LSHARE rewards.
+                Then stake your earned LSHARE in the <StyledLink href="/">Room</StyledLink> to maximize profits! */}
+                Stake your LIBRA-ASTR LP in the Farms to earn LSHARE seigniorage rewards.
+                {/* Then stake your earned LSHARE in the Room to maximize profits! */}
                 Then stake your earned LSHARE to earn more LIBRA!
               </p>
             </Box>
           </Paper>
         </Grid>
-        <Grid container justify="center">  
+        <Grid container justify="center">
           <Box mt={3} style={{ width: '98%' }}>
             <Alert variant="filled" severity="error">
               THIS IS CURRENRY UNDER TEST VERSION. YOU MIGHT BE ABLE TO GET "DUMMY TOKEN", HOWEVER IT'S ZERO VALUE.
@@ -297,7 +302,7 @@ const Home = () => {
                 Buy LIBRA
               </Button>
               <Button variant="contained" href="/#" style={{ marginRight: '10px' }} className={classes.button}>
-                Buy LSHARES
+                Buy LSHARE
               </Button>
               {/* <Button
                 variant="contained"
@@ -314,7 +319,7 @@ const Home = () => {
                 href="https://dexscreener.com/fantom/0xd352dac95a91afefb112dbbb3463ccfa5ec15b65"
                 className={classes.button}
               >
-                LSHARES Chart
+                LSHARE Chart
               </Button> */}
             </CardContent>
           </Card>
@@ -322,7 +327,7 @@ const Home = () => {
 
         {/* TOMB */}
         <Grid item xs={12} sm={3}>
-          <Card style={{ backgroundColor: 'transparent', boxShadow: 'none'}}>
+          <Card style={{ backgroundColor: 'transparent', boxShadow: 'none' }}>
             <CardContent align="center" style={{ position: 'relative' }}>
               <h2>ASTR</h2>
               <Box mt={2} style={{ backgroundColor: 'transparent !important' }}>
@@ -333,11 +338,11 @@ const Home = () => {
               </Box>
               Current Price
               <Box>
-                <span style={{ fontSize: '30px' }}>${ftmPrice ? ftmPrice : '-.----'} USD</span>
+                <span style={{ fontSize: '30px' }}>${astarPrice ? astarPrice : '-.----'} USD</span>
               </Box>
               <span style={{ fontSize: '12px' }}>
-                Market Cap: ${ftmMarketCap} <br />
-                Price Change 24h: {ftmPriceChange.toFixed(2)}% <br />
+                Market Cap: ${astarMarketCap} <br />
+                Price Change 24h: {astarPriceChange.toFixed(2)}% <br />
                 <br />
                 <br />
               </span>
@@ -352,7 +357,7 @@ const Home = () => {
               <h2>LIBRA</h2>
               {/* <Button
                 onClick={() => {
-                  tombFinance.watchAssetInMetamask('TOMB');
+                  libraFinance.watchAssetInMetamask('TOMB');
                 }}
                 color="secondary"
                 variant="outlined"
@@ -368,17 +373,17 @@ const Home = () => {
               </Box>
               Current Price
               <Box>
-                <span style={{ fontSize: '30px' }}>{tombPriceInFTM ? tombPriceInFTM : '-.----'} ASTR </span>
+                <span style={{ fontSize: '30px' }}>{libraPriceInASTR ? libraPriceInASTR : '-.----'} ASTR </span>
               </Box>
               <Box>
                 <span style={{ fontSize: '16px', alignContent: 'flex-start' }}>
-                  ${tombPriceInDollars ? tombPriceInDollars : '-.--'}
+                  ${astarPriceInDollars ? astarPriceInDollars : '-.--'}
                 </span>
               </Box>
               <span style={{ fontSize: '12px' }}>
-                Market Cap: ${(tombCirculatingSupply * tombPriceInDollars).toFixed(2)} <br />
-                Circulating Supply: {tombCirculatingSupply} <br />
-                Total Supply: {tombTotalSupply}
+                Market Cap: ${(libraCirculatingSupply * astarPriceInDollars).toFixed(2)} <br />
+                Circulating Supply: {libraCirculatingSupply} <br />
+                Total Supply: {libraTotalSupply}
               </span>
             </CardContent>
           </Card>
@@ -388,10 +393,10 @@ const Home = () => {
         <Grid item xs={12} sm={3}>
           <Card style={{ backgroundColor: 'transparent', boxShadow: 'none' }}>
             <CardContent align="center" style={{ position: 'relative' }}>
-              <h2>LSHARES</h2>
+              <h2>LSHARE</h2>
               {/* <Button
                 onClick={() => {
-                  tombFinance.watchAssetInMetamask('TSHARE');
+                  libraFinance.watchAssetInMetamask('TSHARE');
                 }}
                 color="secondary"
                 variant="outlined"
@@ -407,13 +412,13 @@ const Home = () => {
               </Box>
               Current Price
               <Box>
-                <span style={{ fontSize: '30px' }}>{tSharePriceInASTR ? tSharePriceInASTR : '-.----'} ASTR</span>
+                <span style={{ fontSize: '30px' }}>{LSharePriceInASTR ? LSharePriceInASTR : '-.----'} ASTR</span>
               </Box>
               <Box>
-                <span style={{ fontSize: '16px' }}>${tSharePriceInDollars ? tSharePriceInDollars : '-.--'}</span>
+                <span style={{ fontSize: '16px' }}>${LSharePriceInDollars ? LSharePriceInDollars : '-.--'}</span>
               </Box>
               <span style={{ fontSize: '12px' }}>
-                Market Cap: ${(tShareCirculatingSupply * tSharePriceInDollars).toFixed(2)} <br />
+                Market Cap: ${(tShareCirculatingSupply * LSharePriceInDollars).toFixed(2)} <br />
                 Circulating Supply: {tShareCirculatingSupply} <br />
                 Total Supply: {tShareTotalSupply}
               </span>
@@ -428,7 +433,7 @@ const Home = () => {
               <h2>LBOND</h2>
               {/* <Button
                 onClick={() => {
-                  tombFinance.watchAssetInMetamask('TBOND');
+                  libraFinance.watchAssetInMetamask('TBOND');
                 }}
                 color="secondary"
                 variant="outlined"
@@ -463,7 +468,7 @@ const Home = () => {
               <h2>LIBRA-WASTR LP</h2>
               <Box mt={2}>
                 <CardIcon>
-                  <TokenSymbol symbol="LIBRA-WASTR-LP" />
+                  <TokenSymbol symbol="LIBRA-ASTR-LP" />
                 </CardIcon>
               </Box>
               {/*
@@ -492,7 +497,7 @@ const Home = () => {
               <h2>LSHARE-WASTR LP</h2>
               <Box mt={2}>
                 <CardIcon>
-                  <TokenSymbol symbol="LSHARE-WASTR-LP" />
+                  <TokenSymbol symbol="LSHARE-ASTR-LP" />
                 </CardIcon>
               </Box>
               {/*<Box mt={2}>

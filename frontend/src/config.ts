@@ -1,5 +1,5 @@
 // import { ChainId } from '@pancakeswap-libs/sdk';
-import { ChainId } from '@twinkleswap/sdk';
+import { ChainId } from '@librax/sdk';
 import { Configuration } from './tomb-finance/config';
 import { BankInfo } from './tomb-finance';
 
@@ -37,7 +37,7 @@ const configurations: { [env: string]: Configuration } = {
       wASTR: ['0xAeaaf0e2c81Af264101B9129C00F4440cCF0F720', 18],
       WASTR: ['0xAeaaf0e2c81Af264101B9129C00F4440cCF0F720', 18],
       // '2OMB': ['0x067e31D66Eb9376790ADFB1522F6Bef634D56a70', 18],
-      LIBRA: ['0x09679d9DfA42146115988C6A84FEe0933D53b313', 18], // DUMMY
+      LIBRA: ['0x6d664cfe0ce55bced5250b9cc3f04e98a239ef22', 18], // DUMMY
 
       // '2OMB-2SHARES LP': ['0xd9B5f00d183df52D717046521152303129F088DD', 18],
       // '2OMB-WFTM LP': ['0xbdC7DFb7B88183e87f003ca6B5a2F81202343478', 18],
@@ -45,12 +45,14 @@ const configurations: { [env: string]: Configuration } = {
       // '2SHARES': ['0xc54A1684fD1bef1f077a336E6be4Bd9a3096a6Ca', 18],
       // 'LIBRA-WFTM LP': ['0x83A52eff2E9D112E9B022399A9fD22a9DB7d33Ae', 18],
       'ASTR-USDC-LP': ['0xBB1290c1829007F440C771b37718FAbf309cd527', 18],
-      'LIBRA-WASTR-LP': ['0xF3C8aC387E2254b92C0edD5e8307373099e394c6', 18], //DUMMY
-      'LSHARE-WASTR-LP': ['0x4d40e2647F7b5D68a818af4b9eF17DD97b305A69', 18], //DUMMY
-      LBOND: ['0x5508C3b4598D0a80a20EFD45d12717b8De4ad723', 18], // DUMMY
-      // 'LSHARES-WFTM LP': ['0xd352daC95a91AfeFb112DBBB3463ccfA5EC15b65', 18],
-      LSHARES: ['0xD86AE6E031b2277bd55e19A6DA73445280F838e9', 18], // DUMMY
-      LSHARE: ['0xD86AE6E031b2277bd55e19A6DA73445280F838e9', 18], // DUMMY
+      // 'LIBRA-ASTR-LP': ['0xf4E19B3960a3ae1c08209f7709BFe15D4E19470a', 18], //DUMMY
+      'LIBRA-ASTR-LP': ['0xf4E19B3960a3ae1c08209f7709BFe15D4E19470a', 18], //DUMMY
+
+      'LSHARE-ASTR-LP': ['0x6e33b35C2dFB2fAC7c384A0c64B563a1B118681c', 18], //DUMMY
+      LBOND: ['0xe14beD310c733b6011785eA3728C31F2f017e71B', 18], // DUMMY
+      // 'LSHARE-WFTM LP': ['0xd352daC95a91AfeFb112DBBB3463ccfA5EC15b65', 18],
+      // LSHARE: ['0xedFF72F95f0574cb74812237dA3B099f3Ef2bf2E', 18], // DUMMY
+      LSHARE: ['0xedFF72F95f0574cb74812237dA3B099f3Ef2bf2E', 18], // DUMMY
       // 'USDT-FTM-LP': ['0x2b4C76d0dc16BE1C31D4C1DC53bF9B45987Fc75c', 18],
       // 'TOMB-FTM-LP': ['0x83a52eff2e9d112e9b022399a9fd22a9db7d33ae', 18],
       // 'TOMB-FTM-LP': ['0x83a52eff2e9d112e9b022399a9fd22a9db7d33ae', 18],
@@ -178,11 +180,11 @@ export const bankDefinitions: { [contractName: string]: BankInfo } = {
   //   sort: 6,
   //   closedForStaking: true,
   // },
-  // TombWrappedFtmRewardPool: {
+  // LibraAstarRewardPool: {
   //   name: 'Earn LIBRA by staking WFTM',
   //   poolId: 0,
   //   sectionInUI: 0,
-  //   contract: 'TombWrappedFtmRewardPool',
+  //   contract: 'LibraAstarRewardPool',
   //   depositTokenName: 'wFTM',
   //   earnTokenName: 'LIBRA',
   //   finished: false,
@@ -192,11 +194,11 @@ export const bankDefinitions: { [contractName: string]: BankInfo } = {
   //   sort: 7,
   //   closedForStaking: true,
   // },
-  TombWrappedAstarRewardPool: {
+  LibraAstarRewardPool: {
     name: 'Earn LIBRA by staking WASTR',
     poolId: 0,
     sectionInUI: 0,
-    contract: 'TombWrappedFtmRewardPool',
+    contract: 'LibraAstarRewardPool',
     depositTokenName: 'WASTR',
     earnTokenName: 'LIBRA',
     finished: false,
@@ -262,13 +264,13 @@ export const bankDefinitions: { [contractName: string]: BankInfo } = {
     sort: 9,
     closedForStaking: true,
   },
-  TombFtmLPTShareRewardPool: {
-    name: 'Earn LSHARES by LIBRA-WASTR LP',
+  LibraAstarLPTShareRewardPool: {
+    name: 'Earn LSHARE by LIBRA-WASTR LP',
     poolId: 0,
     sectionInUI: 2,
-    contract: 'TombFtmLPTShareRewardPool',
-    depositTokenName: 'LIBRA-WASTR-LP',
-    earnTokenName: 'LSHARES',
+    contract: 'LibraAstarLPTShareRewardPool',
+    depositTokenName: 'LIBRA-ASTR-LP',
+    earnTokenName: 'LSHARE',
     finished: false,
     multiplier: '24000x',
     buyLink: 'https://www.librax.finance/add/ASTR', //[LIBRA FINANCE]token address will be added
@@ -276,13 +278,13 @@ export const bankDefinitions: { [contractName: string]: BankInfo } = {
     sort: 8,
     closedForStaking: false,
   },
-  TshareFtmLPTShareRewardPool: {
-    name: 'Earn LSHARES by LSHARE-WASTR LP',
+  LshareAstarLPTShareRewardPool: {
+    name: 'Earn LSHARE by LSHARE-WASTR LP',
     poolId: 1,
     sectionInUI: 2,
-    contract: 'TshareFtmLPTShareRewardPool',
-    depositTokenName: 'LSHARE-WASTR-LP',
-    earnTokenName: 'LSHARES',
+    contract: 'LshareAstarLPTShareRewardPool',
+    depositTokenName: 'LSHARE-ASTR-LP',
+    earnTokenName: 'LSHARE',
     finished: false,
     multiplier: '35500x',
     buyLink: 'https://www.librax.finance/add/ASTR', //[LIBRA FINANCE]token address will be added
@@ -292,7 +294,7 @@ export const bankDefinitions: { [contractName: string]: BankInfo } = {
   },
 
   // TwoombTwosharesLPTShareRewardPool: {
-  //   name: 'Earn LSHARES by 2OMB-2SHARES LP',
+  //   name: 'Earn LSHARE by 2OMB-2SHARES LP',
   //   poolId: 4,
   //   sectionInUI: 2,
   //   contract: 'TwoombTwosharesLPTShareRewardPool',
@@ -361,12 +363,12 @@ export const bankDefinitions: { [contractName: string]: BankInfo } = {
   //   sort: 1,
   //   closedForStaking: false,
   // },
-  TombLSHARESRebates: {
-    name: 'Bond LSHARES, earn LIBRA',
+  TombLSHARERebates: {
+    name: 'Bond LSHARE, earn LIBRA',
     poolId: 4,
     sectionInUI: 3,
     contract: 'TombFtmRewardPool',
-    depositTokenName: 'LSHARES',
+    depositTokenName: 'LSHARE',
     earnTokenName: 'LIBRA',
     finished: false,
     multiplier: '5000x',
@@ -375,12 +377,12 @@ export const bankDefinitions: { [contractName: string]: BankInfo } = {
     sort: 3,
     closedForStaking: false,
   },
-  //TombLSHARESFTMRebates: {
-  // name: 'Bond LSHARES-WASTR LP, earn LIBRA',
+  //TombLSHAREFTMRebates: {
+  // name: 'Bond LSHARE-WASTR LP, earn LIBRA',
   // poolId: 5,
   // sectionInUI: 3,
   //  contract: 'TombFtmRewardPool',
-  //  depositTokenName: 'LSHARES-WASTR LP',
+  //  depositTokenName: 'LSHARE-WASTR LP',
   //  earnTokenName: 'LIBRA',
   //  finished: false,
   //  multiplier: '6000x',

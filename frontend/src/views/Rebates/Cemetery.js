@@ -17,7 +17,7 @@ import useCashPriceInEstimatedTWAP from '../../hooks/useCashPriceInEstimatedTWAP
 
 import useBanks from '../../hooks/useBanks';
 import useRebateTreasury from '../../hooks/useRebateTreasury';
-import useTombStats from '../../hooks/useTombStats';
+import useLibraStats from '../../hooks/useLibraStats';
 
 const web3 = new Web3();
 const BN = (n) => new web3.utils.BN(n);
@@ -46,13 +46,16 @@ const Cemetery = () => {
   const { path } = useRouteMatch();
   const { account } = useWallet();
   const cashStat = useCashPriceInEstimatedTWAP();
-  const tombStats = useTombStats();
+  const libraStats = useLibraStats();
   const scalingFactor = useMemo(() => (cashStat ? Number(cashStat.priceInDollars).toFixed(4) : null), [cashStat]);
   const activeBanks = banks.filter((bank) => !bank.finished);
 
   console.log(cashStat);
 
-  const tombPriceInFTM = useMemo(() => (tombStats ? Number(tombStats.tokenInFtm).toFixed(4) : null), [tombStats]);
+  const libraPriceInASTR = useMemo(
+    () => (libraStats ? Number(libraStats.tokenInAstar).toFixed(4) : null),
+    [libraStats],
+  );
 
   const rebateStats = useRebateTreasury();
   console.log(rebateStats);
@@ -111,7 +114,7 @@ const Cemetery = () => {
                         <Typography variant="h5">
                           LIBRA Price <small>(TWAP)</small>
                         </Typography>
-                        <Typography variant="h6">{tombPriceInFTM ? tombPriceInFTM : '-.----'} ASTR</Typography>
+                        <Typography variant="h6">{libraPriceInASTR ? libraPriceInASTR : '-.----'} ASTR</Typography>
                       </CardContent>
                     </Card>
                   </Grid>

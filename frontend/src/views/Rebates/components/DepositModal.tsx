@@ -8,7 +8,7 @@ import ModalActions from '../../../components/ModalActions';
 import ModalTitle from '../../../components/ModalTitle';
 import TokenInput from '../../../components/TokenInput';
 import useRebateTreasury from '../../../hooks/useRebateTreasury';
-import useTombFinance from '../../../hooks/useTombFinance';
+import useLibraFinance from '../../../hooks/useLibraFinance';
 import useFantomPrice from '../../../hooks/useFantomPrice';
 
 import { getFullDisplayBalance } from '../../../utils/formatBalance';
@@ -25,9 +25,9 @@ const DepositModal: React.FC<DepositModalProps> = ({ max, onConfirm, onDismiss, 
   const [val, setVal] = useState('');
   const [out, setOut] = useState(0);
 
-  const tombFinance = useTombFinance();
+  const libraFinance = useLibraFinance();
   const rebateStats = useRebateTreasury();
-  const { price: ftmPrice, marketCap: ftmMarketCap, priceChange: ftmPriceChange } = useFantomPrice();
+  const { price: astarPrice, marketCap: astarMarketCap, priceChange: astarPriceChange } = useFantomPrice();
 
   const fullBalance = useMemo(() => {
     return getFullDisplayBalance(max, tokenName === 'USDC' ? 6 : 18);
@@ -45,7 +45,7 @@ const DepositModal: React.FC<DepositModalProps> = ({ max, onConfirm, onDismiss, 
   }, [fullBalance, setVal, rebateStats]);
 
   function getAssetPrice(token: String) {
-    const address = tombFinance.externalTokens[tokenName].address;
+    const address = libraFinance.externalTokens[tokenName].address;
     const assetPrice = rebateStats.assets.find((a: any) => a.token === address).price;
     return assetPrice;
   }
@@ -62,11 +62,11 @@ const DepositModal: React.FC<DepositModalProps> = ({ max, onConfirm, onDismiss, 
 
   function formatOutAmount() {
     const outAmount = getOutAmount();
-    return `Receiving: ${outAmount.toFixed(4)} LIBRA ($${(outAmount * rebateStats.tombPrice * ftmPrice).toFixed(2)})`;
+    return `Receiving: ${outAmount.toFixed(4)} LIBRA ($${(outAmount * rebateStats.tombPrice * astarPrice).toFixed(2)})`;
   }
 
   function formatInAmount() {
-    return `Input: ${(+val).toFixed(4)} ${tokenName} ($${(+val * getAssetPrice(tokenName) * ftmPrice).toFixed(2)})`;
+    return `Input: ${(+val).toFixed(4)} ${tokenName} ($${(+val * getAssetPrice(tokenName) * astarPrice).toFixed(2)})`;
   }
 
   return (

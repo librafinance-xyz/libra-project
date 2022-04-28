@@ -4,9 +4,9 @@ import { createGlobalStyle } from 'styled-components';
 import HomeImage from '../../assets/img/home.png';
 import useLpStats from '../../hooks/useLpStats';
 import { Box, Button, Grid, Paper, Typography } from '@material-ui/core';
-import useTombStats from '../../hooks/useTombStats';
+import useLibraStats from '../../hooks/useLibraStats';
 import TokenInput from '../../components/TokenInput';
-import useTombFinance from '../../hooks/useTombFinance';
+import useLibraFinance from '../../hooks/useLibraFinance';
 import { useWallet } from 'use-wallet';
 import useTokenBalance from '../../hooks/useTokenBalance';
 import { getDisplayBalance } from '../../utils/formatBalance';
@@ -30,18 +30,24 @@ const ProvideLiquidity = () => {
   const [ftmAmount, setFtmAmount] = useState(0);
   const [lpTokensAmount, setLpTokensAmount] = useState(0);
   const { balance } = useWallet();
-  const tombStats = useTombStats();
-  const tombFinance = useTombFinance();
+  const libraStats = useLibraStats();
+  const libraFinance = useLibraFinance();
   const [approveTaxOfficeStatus, approveTaxOffice] = useApproveTaxOffice();
-  const tombBalance = useTokenBalance(tombFinance.TOMB);
+  const tombBalance = useTokenBalance(libraFinance.TOMB);
   const ftmBalance = (balance / 1e18).toFixed(4);
   const { onProvideTombFtmLP } = useProvideTombFtmLP();
-  // const tombFtmLpStats = useLpStats('TOMB-FTM-LP');
-  const tombFtmLpStats = useLpStats('LIBRA-WASTR-LP');
+  // const libraAstarLpStats = useLpStats('TOMB-FTM-LP');
+  const libraAstarLpStats = useLpStats('LIBRA-ASTR-LP');
 
-  const tombLPStats = useMemo(() => (tombFtmLpStats ? tombFtmLpStats : null), [tombFtmLpStats]);
-  const tombPriceInFTM = useMemo(() => (tombStats ? Number(tombStats.tokenInFtm).toFixed(2) : null), [tombStats]);
-  const ftmPriceInTOMB = useMemo(() => (tombStats ? Number(1 / tombStats.tokenInFtm).toFixed(2) : null), [tombStats]);
+  const tombLPStats = useMemo(() => (libraAstarLpStats ? libraAstarLpStats : null), [libraAstarLpStats]);
+  const libraPriceInASTR = useMemo(
+    () => (libraStats ? Number(libraStats.tokenInAstar).toFixed(2) : null),
+    [libraStats],
+  );
+  const astarPriceInTOMB = useMemo(
+    () => (libraStats ? Number(1 / libraStats.tokenInAstar).toFixed(2) : null),
+    [libraStats],
+  );
   // const classes = useStyles();
 
   const handleTombChange = async (e) => {
@@ -50,7 +56,7 @@ const ProvideLiquidity = () => {
     }
     if (!isNumeric(e.currentTarget.value)) return;
     setTombAmount(e.currentTarget.value);
-    const quoteFromSpooky = await tombFinance.quoteFromSpooky(e.currentTarget.value, 'TOMB');
+    const quoteFromSpooky = await libraFinance.quoteFromSpooky(e.currentTarget.value, 'TOMB');
     setFtmAmount(quoteFromSpooky);
     setLpTokensAmount(quoteFromSpooky / tombLPStats.ftmAmount);
   };
@@ -61,19 +67,19 @@ const ProvideLiquidity = () => {
     }
     if (!isNumeric(e.currentTarget.value)) return;
     setFtmAmount(e.currentTarget.value);
-    const quoteFromSpooky = await tombFinance.quoteFromSpooky(e.currentTarget.value, 'FTM');
+    const quoteFromSpooky = await libraFinance.quoteFromSpooky(e.currentTarget.value, 'FTM');
     setTombAmount(quoteFromSpooky);
 
     setLpTokensAmount(quoteFromSpooky / tombLPStats.tokenAmount);
   };
   const handleTombSelectMax = async () => {
-    const quoteFromSpooky = await tombFinance.quoteFromSpooky(getDisplayBalance(tombBalance), 'TOMB');
+    const quoteFromSpooky = await libraFinance.quoteFromSpooky(getDisplayBalance(tombBalance), 'TOMB');
     setTombAmount(getDisplayBalance(tombBalance));
     setFtmAmount(quoteFromSpooky);
     setLpTokensAmount(quoteFromSpooky / tombLPStats.ftmAmount);
   };
   const handleFtmSelectMax = async () => {
-    const quoteFromSpooky = await tombFinance.quoteFromSpooky(ftmBalance, 'FTM');
+    const quoteFromSpooky = await libraFinance.quoteFromSpooky(ftmBalance, 'FTM');
     setFtmAmount(ftmBalance);
     setTombAmount(quoteFromSpooky);
     setLpTokensAmount(ftmBalance / tombLPStats.ftmAmount);
@@ -121,10 +127,10 @@ const ProvideLiquidity = () => {
                         ></TokenInput>
                       </Grid>
                       <Grid item xs={12}>
-                        <p>1 LIBRA = {tombPriceInFTM} ASTR</p>
-                        <p>1 ASTR = {ftmPriceInTOMB} LIBRA</p>
-                        {/* <p>1 TOMB = {tombPriceInFTM} ASTR</p>
-                        <p>1 FTM = {ftmPriceInTOMB} TOMB</p> */}
+                        <p>1 LIBRA = {libraPriceInASTR} ASTR</p>
+                        <p>1 ASTR = {astarPriceInTOMB} LIBRA</p>
+                        {/* <p>1 TOMB = {libraPriceInASTR} ASTR</p>
+                        <p>1 FTM = {astarPriceInTOMB} TOMB</p> */}
                         <p>LP tokens ≈ {lpTokensAmount.toFixed(2)}</p>
                       </Grid>
                       <Grid xs={12} justifyContent="center" style={{ textAlign: 'center' }}>

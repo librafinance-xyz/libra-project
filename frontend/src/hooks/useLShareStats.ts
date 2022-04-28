@@ -1,25 +1,25 @@
 import { useEffect, useState } from 'react';
-import useTombFinance from './useTombFinance';
+import useLibraFinance from './useLibraFinance';
 import { TokenStat } from '../tomb-finance/types';
 import useRefresh from './useRefresh';
 
-const useShareStats = () => {
+const useLShareStats = () => {
   const [stat, setStat] = useState<TokenStat>();
   const { slowRefresh } = useRefresh();
-  const tombFinance = useTombFinance();
+  const libraFinance = useLibraFinance();
 
   useEffect(() => {
     async function fetchSharePrice() {
       try {
-        setStat(await tombFinance.getShareStat());
-      } catch(err){
-        console.error(err)
+        setStat(await libraFinance.getShareStat());
+      } catch (err) {
+        console.error(err);
       }
     }
     fetchSharePrice();
-  }, [setStat, tombFinance, slowRefresh]);
+  }, [setStat, libraFinance, slowRefresh]);
 
   return stat;
 };
 
-export default useShareStats;
+export default useLShareStats;

@@ -15,8 +15,8 @@ import useHarvest from '../../../hooks/useHarvest';
 import { getDisplayBalance } from '../../../utils/formatBalance';
 import TokenSymbol from '../../../components/TokenSymbol';
 import { Bank } from '../../../tomb-finance';
-import useTombStats from '../../../hooks/useTombStats';
-import useShareStats from '../../../hooks/usetShareStats';
+import useLibraStats from '../../../hooks/useLibraStats';
+import useShareStats from '../../../hooks/useLShareStats';
 
 interface HarvestProps {
   bank: Bank;
@@ -25,12 +25,12 @@ interface HarvestProps {
 const Harvest: React.FC<HarvestProps> = ({ bank }) => {
   const earnings = useEarnings(bank.contract, bank.earnTokenName, bank.poolId);
   const { onReward } = useHarvest(bank);
-  const tombStats = useTombStats();
-  const tShareStats = useShareStats();
+  const libraStats = useLibraStats();
+  const LShareStats = useShareStats();
 
-  const tokenName = bank.earnTokenName === 'LSHARES' ? 'LSHARES' : 'LIBRA';
+  const tokenName = bank.earnTokenName === 'LSHARE' ? 'LSHARE' : 'LIBRA';
   const tokenEarn = bank.earnTokenName === 'LIBRA' ? 'TOMB' : 'TSHARE';
-  const tokenStats = bank.earnTokenName === 'LSHARES' ? tShareStats : tombStats;
+  const tokenStats = bank.earnTokenName === 'LSHARE' ? LShareStats : libraStats;
   const tokenPriceInDollars = useMemo(
     () => (tokenStats ? Number(tokenStats.priceInDollars).toFixed(2) : null),
     [tokenStats],

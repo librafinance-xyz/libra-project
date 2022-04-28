@@ -18,20 +18,26 @@ import { createGlobalStyle } from 'styled-components';
 import useBanks from '../../hooks/useBanks';
 
 const assetList = [
-  {
-    depositTokenName: '2SHARES',
-  },
-  {
-    depositTokenName: '2SHARES-WFTM LP',
-  },
+  // {
+  //   depositTokenName: '2SHARES',
+  // },
+  // {
+  //   depositTokenName: '2SHARES-WFTM LP',
+  // },
   {
     depositTokenName: 'LIBRA-ASTR LP',
   },
+  // {
+  //   depositTokenName: 'LSHARE',
+  // },
   {
-    depositTokenName: 'LSHARES',
+    depositTokenName: 'LSHARE',
   },
+  // {
+  //   depositTokenName: 'LSHARE-ASTR LP',
+  // },
   {
-    depositTokenName: 'LSHARES-ASTR LP',
+    depositTokenName: 'LSHARE-ASTR LP',
   },
 ];
 
@@ -152,7 +158,7 @@ const Cemetery = () => {
                         <CountUp style={{ fontSize: '25px' }} end={balance_libra} separator="," prefix="$" />
                       </CardContent>
                       <CardContent align="center">
-                        <Typography variant="h5">LSHARES:</Typography>
+                        <Typography variant="h5">LSHARE:</Typography>
                         <CountUp style={{ fontSize: '25px' }} end={balance_Lshares} separator="," prefix="$" />
                       </CardContent>
                       <CardContent align="center">

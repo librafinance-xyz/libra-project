@@ -31,8 +31,6 @@ import ProgressCountdown from './components/ProgressCountdown';
 import MasonryImage from '../../assets/img/home.png'; //  Subject to change;
 import { createGlobalStyle } from 'styled-components';
 
-
-
 const BackgroundImage = createGlobalStyle`
   body {
     background: url(${MasonryImage}) no-repeat !important;
@@ -114,7 +112,7 @@ const Masonry = () => {
               <Grid item xs={12} md={2} lg={2}>
                 <Card className={classes.gridItem}>
                   <CardContent align="center">
-                    <Typography>LSHARES Staked</Typography>
+                    <Typography>LSHARE Staked</Typography>
                     <Typography>{getDisplayBalance(totalStaked)}</Typography>
                   </CardContent>
                 </Card>
@@ -124,7 +122,7 @@ const Masonry = () => {
             <Grid container justify="center">
               <Box mt={3} style={{ width: '525px' }}>
                 <Alert variant="transparent" severity="info">
-                  Staked LSHARES can only be withdrawn after 3 epochs since deposit.
+                  Staked LSHARE can only be withdrawn after 3 epochs since deposit.
                 </Alert>
               </Box>
             </Grid>
