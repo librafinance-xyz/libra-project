@@ -36,10 +36,10 @@ const ProvideLiquidity = () => {
   const tombBalance = useTokenBalance(tombFinance.TOMB);
   const ftmBalance = (balance / 1e18).toFixed(4);
   const { onProvideTombFtmLP } = useProvideTombFtmLP();
-  // const tombFtmLpStats = useLpStats('TOMB-FTM-LP');
-  const tombFtmLpStats = useLpStats('LIBRA-WASTR-LP');
+  // const libraAstarLpStats = useLpStats('TOMB-FTM-LP');
+  const libraAstarLpStats = useLpStats('LIBRA-WASTR-LP');
 
-  const tombLPStats = useMemo(() => (tombFtmLpStats ? tombFtmLpStats : null), [tombFtmLpStats]);
+  const tombLPStats = useMemo(() => (libraAstarLpStats ? libraAstarLpStats : null), [libraAstarLpStats]);
   const libraPriceInASTR = useMemo(() => (tombStats ? Number(tombStats.tokenInAstar).toFixed(2) : null), [tombStats]);
   const ftmPriceInTOMB = useMemo(() => (tombStats ? Number(1 / tombStats.tokenInAstar).toFixed(2) : null), [tombStats]);
   // const classes = useStyles();

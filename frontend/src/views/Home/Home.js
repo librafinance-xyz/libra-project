@@ -56,8 +56,8 @@ const useStyles = makeStyles((theme) => ({
 const Home = () => {
   const classes = useStyles();
   const TVL = useTotalValueLocked();
-  // const tombFtmLpStats = useLpStats('TOMB-FTM-LP');
-  const tombFtmLpStats = useLpStats('LIBRA-WASTR-LP');
+  // const libraAstarLpStats = useLpStats('TOMB-FTM-LP');
+  const libraAstarLpStats = useLpStats('LIBRA-WASTR-LP');
 
   const tShareFtmLpStats = useLpStats('LSHARE-WASTR-LP');
   const tombStats = useTombStats();
@@ -88,7 +88,7 @@ const Home = () => {
   const buyTombAddress = 'https://twinkleswap.finance/swap?outputCurrency=' + tomb.address;
   const buyTShareAddress = 'https://twinkleswap.finance/swap?outputCurrency=' + tShare.address;
 
-  const tombLPStats = useMemo(() => (tombFtmLpStats ? tombFtmLpStats : null), [tombFtmLpStats]);
+  const tombLPStats = useMemo(() => (libraAstarLpStats ? libraAstarLpStats : null), [libraAstarLpStats]);
   const tshareLPStats = useMemo(() => (tShareFtmLpStats ? tShareFtmLpStats : null), [tShareFtmLpStats]);
   const tombPriceInDollars = useMemo(
     () => (tombStats ? Number(tombStats.priceInDollars).toFixed(2) : null),
