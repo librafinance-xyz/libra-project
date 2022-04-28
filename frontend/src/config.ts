@@ -178,11 +178,11 @@ export const bankDefinitions: { [contractName: string]: BankInfo } = {
   //   sort: 6,
   //   closedForStaking: true,
   // },
-  // TombWrappedFtmRewardPool: {
+  // LibraAstarRewardPool: {
   //   name: 'Earn LIBRA by staking WFTM',
   //   poolId: 0,
   //   sectionInUI: 0,
-  //   contract: 'TombWrappedFtmRewardPool',
+  //   contract: 'LibraAstarRewardPool',
   //   depositTokenName: 'wFTM',
   //   earnTokenName: 'LIBRA',
   //   finished: false,
@@ -196,7 +196,7 @@ export const bankDefinitions: { [contractName: string]: BankInfo } = {
     name: 'Earn LIBRA by staking WASTR',
     poolId: 0,
     sectionInUI: 0,
-    contract: 'TombWrappedFtmRewardPool',
+    contract: 'LibraAstarRewardPool',
     depositTokenName: 'WASTR',
     earnTokenName: 'LIBRA',
     finished: false,
@@ -262,11 +262,11 @@ export const bankDefinitions: { [contractName: string]: BankInfo } = {
     sort: 9,
     closedForStaking: true,
   },
-  TombFtmLPTShareRewardPool: {
+  LibraAstarLPTShareRewardPool: {
     name: 'Earn LSHARES by LIBRA-WASTR LP',
     poolId: 0,
     sectionInUI: 2,
-    contract: 'TombFtmLPTShareRewardPool',
+    contract: 'LibraAstarLPTShareRewardPool',
     depositTokenName: 'LIBRA-WASTR-LP',
     earnTokenName: 'LSHARES',
     finished: false,
@@ -276,11 +276,11 @@ export const bankDefinitions: { [contractName: string]: BankInfo } = {
     sort: 8,
     closedForStaking: false,
   },
-  TshareFtmLPTShareRewardPool: {
+  LshareAstarLPTShareRewardPool: {
     name: 'Earn LSHARES by LSHARE-WASTR LP',
     poolId: 1,
     sectionInUI: 2,
-    contract: 'TshareFtmLPTShareRewardPool',
+    contract: 'LshareAstarLPTShareRewardPool',
     depositTokenName: 'LSHARE-WASTR-LP',
     earnTokenName: 'LSHARES',
     finished: false,

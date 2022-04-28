@@ -192,15 +192,15 @@ export class TombFinance {
   async getShareStat(): Promise<TokenStat> {
     console.log('getShareStat ');
 
-    const { TombFtmLPTShareRewardPool } = this.contracts;
+    const { LibraAstarLPTShareRewardPool } = this.contracts;
 
-    console.log('getShareStat TombFtmLPTShareRewardPool=', TombFtmLPTShareRewardPool);
+    console.log('getShareStat LibraAstarLPTShareRewardPool=', LibraAstarLPTShareRewardPool);
     const supply = await this.TSHARE.totalSupply();
     console.log('getShareStat supply=', supply);
 
     const priceInASTR = await this.getTokenPriceFromLP(this.TSHARE);
     console.log('getShareStat priceInASTR=', priceInASTR);
-    const tombRewardPoolSupply = await this.TSHARE.balanceOf(TombFtmLPTShareRewardPool.address);
+    const tombRewardPoolSupply = await this.TSHARE.balanceOf(LibraAstarLPTShareRewardPool.address);
     console.log('getShareStat tombRewardPoolSupply=', tombRewardPoolSupply);
     const tShareCirculatingSupply = supply.sub(tombRewardPoolSupply);
     console.log('getShareStat tShareCirculatingSupply=', tShareCirculatingSupply);
