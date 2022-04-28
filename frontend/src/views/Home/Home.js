@@ -94,7 +94,7 @@ const Home = () => {
     () => (tombStats ? Number(tombStats.priceInDollars).toFixed(2) : null),
     [tombStats],
   );
-  const tombPriceInFTM = useMemo(() => (tombStats ? Number(tombStats.tokenInFtm).toFixed(4) : null), [tombStats]);
+  const libraPriceInASTR = useMemo(() => (tombStats ? Number(tombStats.tokenInAstar).toFixed(4) : null), [tombStats]);
   const tombCirculatingSupply = useMemo(() => (tombStats ? String(tombStats.circulatingSupply) : null), [tombStats]);
   const tombTotalSupply = useMemo(() => (tombStats ? String(tombStats.totalSupply) : null), [tombStats]);
 
@@ -103,7 +103,7 @@ const Home = () => {
     [tShareStats],
   );
   const tSharePriceInASTR = useMemo(
-    () => (tShareStats ? Number(tShareStats.tokenInFtm).toFixed(4) : null),
+    () => (tShareStats ? Number(tShareStats.tokenInAstar).toFixed(4) : null),
     [tShareStats],
   );
   const tShareCirculatingSupply = useMemo(
@@ -116,13 +116,12 @@ const Home = () => {
     () => (tBondStats ? Number(tBondStats.priceInDollars).toFixed(2) : null),
     [tBondStats],
   );
-  const tBondPriceInFTM = useMemo(() => (tBondStats ? Number(tBondStats.tokenInFtm).toFixed(4) : null), [tBondStats]);
+  const tBondPriceInFTM = useMemo(() => (tBondStats ? Number(tBondStats.tokenInAstar).toFixed(4) : null), [tBondStats]);
   const tBondCirculatingSupply = useMemo(
     () => (tBondStats ? String(tBondStats.circulatingSupply) : null),
     [tBondStats],
   );
   const tBondTotalSupply = useMemo(() => (tBondStats ? String(tBondStats.totalSupply) : null), [tBondStats]);
-
 
   const tombLpZap = useZap({ depositTokenName: 'LIBRA-WASTR-LP' });
   const tshareLpZap = useZap({ depositTokenName: 'LSHARE-WASTR-LP' });
@@ -161,7 +160,7 @@ const Home = () => {
   return (
     <Page>
       <BackgroundImage />
-      <Grid container spacing={3} style={{ marginBottom: '100px' }} >
+      <Grid container spacing={3} style={{ marginBottom: '100px' }}>
         {/* Logo */}
         <Grid container item xs={12} sm={3} justify="center">
           {/* <Paper>xs=6 sm=3</Paper> */}
@@ -216,7 +215,7 @@ const Home = () => {
             </Box>
           </Paper>
         </Grid>
-        <Grid container justify="center">  
+        <Grid container justify="center">
           <Box mt={3} style={{ width: '98%' }}>
             <Alert variant="filled" severity="error">
               THIS IS CURRENRY UNDER TEST VERSION. YOU MIGHT BE ABLE TO GET "DUMMY TOKEN", HOWEVER IT'S ZERO VALUE.
@@ -322,7 +321,7 @@ const Home = () => {
 
         {/* TOMB */}
         <Grid item xs={12} sm={3}>
-          <Card style={{ backgroundColor: 'transparent', boxShadow: 'none'}}>
+          <Card style={{ backgroundColor: 'transparent', boxShadow: 'none' }}>
             <CardContent align="center" style={{ position: 'relative' }}>
               <h2>ASTR</h2>
               <Box mt={2} style={{ backgroundColor: 'transparent !important' }}>
@@ -368,7 +367,7 @@ const Home = () => {
               </Box>
               Current Price
               <Box>
-                <span style={{ fontSize: '30px' }}>{tombPriceInFTM ? tombPriceInFTM : '-.----'} ASTR </span>
+                <span style={{ fontSize: '30px' }}>{libraPriceInASTR ? libraPriceInASTR : '-.----'} ASTR </span>
               </Box>
               <Box>
                 <span style={{ fontSize: '16px', alignContent: 'flex-start' }}>

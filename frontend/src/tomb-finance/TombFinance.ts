@@ -121,7 +121,7 @@ export class TombFinance {
     const priceOfTombInDollars = (Number(priceInASTR) * Number(priceOfOneASTR)).toFixed(2);
 
     return {
-      tokenInFtm: priceInASTR,
+      tokenInAstar: priceInASTR,
       priceInDollars: priceOfTombInDollars,
       totalSupply: getDisplayBalance(supply, this.TOMB.decimal, 0),
       circulatingSupply: getDisplayBalance(tombCirculatingSupply, this.TOMB.decimal, 0),
@@ -171,11 +171,11 @@ export class TombFinance {
     const tombStat = await this.getTombStat();
     const bondTombRatioBN = await Treasury.getBondPremiumRate();
     const modifier = bondTombRatioBN / 1e18 > 1 ? bondTombRatioBN / 1e18 : 1;
-    const bondpriceInASTR = (Number(tombStat.tokenInFtm) * modifier).toFixed(2);
+    const bondpriceInASTR = (Number(tombStat.tokenInAstar) * modifier).toFixed(2);
     const priceOfTBondInDollars = (Number(tombStat.priceInDollars) * modifier).toFixed(2);
     const supply = await this.TBOND.displayedTotalSupply();
     return {
-      tokenInFtm: bondpriceInASTR,
+      tokenInAstar: bondpriceInASTR,
       priceInDollars: priceOfTBondInDollars,
       totalSupply: supply,
       circulatingSupply: supply,
@@ -210,7 +210,7 @@ export class TombFinance {
     console.log('getShareStat priceOfSharesInDollars=', priceOfSharesInDollars);
 
     return {
-      tokenInFtm: priceInASTR,
+      tokenInAstar: priceInASTR,
       priceInDollars: priceOfSharesInDollars,
       totalSupply: getDisplayBalance(supply, this.TSHARE.decimal, 0),
       circulatingSupply: getDisplayBalance(tShareCirculatingSupply, this.TSHARE.decimal, 0),
@@ -225,7 +225,7 @@ export class TombFinance {
     const tombRewardPoolSupply = await this.TOMB.balanceOf(TombFtmRewardPool.address);
     const tombCirculatingSupply = supply.sub(tombRewardPoolSupply);
     return {
-      tokenInFtm: getDisplayBalance(expectedPrice),
+      tokenInAstar: getDisplayBalance(expectedPrice),
       priceInDollars: getDisplayBalance(expectedPrice),
       totalSupply: getDisplayBalance(supply, this.TOMB.decimal, 0),
       circulatingSupply: getDisplayBalance(tombCirculatingSupply, this.TOMB.decimal, 0),
@@ -491,7 +491,7 @@ export class TombFinance {
   //   const priceOfTombInDollars = (Number(priceInASTR) * Number(priceOfOneFTM)).toFixed(2);
 
   //   return {
-  //     tokenInFtm: priceInASTR,
+  //     tokenInAstar: priceInASTR,
   //     priceInDollars: priceOfTombInDollars,
   //     totalSupply: getDisplayBalance(supply, TOMB.decimal, 0),
   //     circulatingSupply: getDisplayBalance(tombCirculatingSupply, TOMB.decimal, 0),
@@ -514,7 +514,7 @@ export class TombFinance {
   //   const priceOfTombInDollars = (Number(priceInASTR) * Number(priceOfOneFTM)).toFixed(2);
 
   //   return {
-  //     tokenInFtm: priceInASTR,
+  //     tokenInAstar: priceInASTR,
   //     priceInDollars: priceOfTombInDollars,
   //     totalSupply: getDisplayBalance(supply, TSHARE.decimal, 0),
   //     circulatingSupply: getDisplayBalance(tombCirculatingSupply, TSHARE.decimal, 0),

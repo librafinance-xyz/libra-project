@@ -192,7 +192,7 @@ export const bankDefinitions: { [contractName: string]: BankInfo } = {
   //   sort: 7,
   //   closedForStaking: true,
   // },
-  TombWrappedAstarRewardPool: {
+  LibraAstarRewardPool: {
     name: 'Earn LIBRA by staking WASTR',
     poolId: 0,
     sectionInUI: 0,

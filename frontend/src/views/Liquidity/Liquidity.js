@@ -40,8 +40,8 @@ const ProvideLiquidity = () => {
   const tombFtmLpStats = useLpStats('LIBRA-WASTR-LP');
 
   const tombLPStats = useMemo(() => (tombFtmLpStats ? tombFtmLpStats : null), [tombFtmLpStats]);
-  const tombPriceInFTM = useMemo(() => (tombStats ? Number(tombStats.tokenInFtm).toFixed(2) : null), [tombStats]);
-  const ftmPriceInTOMB = useMemo(() => (tombStats ? Number(1 / tombStats.tokenInFtm).toFixed(2) : null), [tombStats]);
+  const libraPriceInASTR = useMemo(() => (tombStats ? Number(tombStats.tokenInAstar).toFixed(2) : null), [tombStats]);
+  const ftmPriceInTOMB = useMemo(() => (tombStats ? Number(1 / tombStats.tokenInAstar).toFixed(2) : null), [tombStats]);
   // const classes = useStyles();
 
   const handleTombChange = async (e) => {
@@ -121,9 +121,9 @@ const ProvideLiquidity = () => {
                         ></TokenInput>
                       </Grid>
                       <Grid item xs={12}>
-                        <p>1 LIBRA = {tombPriceInFTM} ASTR</p>
+                        <p>1 LIBRA = {libraPriceInASTR} ASTR</p>
                         <p>1 ASTR = {ftmPriceInTOMB} LIBRA</p>
-                        {/* <p>1 TOMB = {tombPriceInFTM} ASTR</p>
+                        {/* <p>1 TOMB = {libraPriceInASTR} ASTR</p>
                         <p>1 FTM = {ftmPriceInTOMB} TOMB</p> */}
                         <p>LP tokens ≈ {lpTokensAmount.toFixed(2)}</p>
                       </Grid>
