@@ -1,5 +1,5 @@
 import "dotenv/config";
-import "@librax/hardhat-etherscan";
+// import "@librax/hardhat-etherscan";
 import "@nomiclabs/hardhat-solhint";
 import "@nomiclabs/hardhat-ethers";
 import "@nomiclabs/hardhat-waffle";
@@ -50,7 +50,7 @@ const config: HardhatUserConfig = {
     // apiKey: ftmScanToken, // ftmscan
     // apiKey: ETHERSCAN_TOKEN, // ETHERSCAN_TOKEN,
     // apiKey: {
-    //   "astar": "your API key",
+    //   astar: "your API key",
     // },
   },
   gasReporter: {
