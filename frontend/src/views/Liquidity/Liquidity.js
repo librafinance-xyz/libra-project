@@ -6,7 +6,7 @@ import useLpStats from '../../hooks/useLpStats';
 import { Box, Button, Grid, Paper, Typography } from '@material-ui/core';
 import useLibraStats from '../../hooks/useLibraStats';
 import TokenInput from '../../components/TokenInput';
-import useTombFinance from '../../hooks/useTombFinance';
+import useLibraFinance from '../../hooks/useLibraFinance';
 import { useWallet } from 'use-wallet';
 import useTokenBalance from '../../hooks/useTokenBalance';
 import { getDisplayBalance } from '../../utils/formatBalance';
@@ -31,9 +31,9 @@ const ProvideLiquidity = () => {
   const [lpTokensAmount, setLpTokensAmount] = useState(0);
   const { balance } = useWallet();
   const libraStats = useLibraStats();
-  const tombFinance = useTombFinance();
+  const libraFinance = useLibraFinance();
   const [approveTaxOfficeStatus, approveTaxOffice] = useApproveTaxOffice();
-  const tombBalance = useTokenBalance(tombFinance.TOMB);
+  const tombBalance = useTokenBalance(libraFinance.TOMB);
   const ftmBalance = (balance / 1e18).toFixed(4);
   const { onProvideTombFtmLP } = useProvideTombFtmLP();
   // const libraAstarLpStats = useLpStats('TOMB-FTM-LP');
@@ -56,7 +56,7 @@ const ProvideLiquidity = () => {
     }
     if (!isNumeric(e.currentTarget.value)) return;
     setTombAmount(e.currentTarget.value);
-    const quoteFromSpooky = await tombFinance.quoteFromSpooky(e.currentTarget.value, 'TOMB');
+    const quoteFromSpooky = await libraFinance.quoteFromSpooky(e.currentTarget.value, 'TOMB');
     setFtmAmount(quoteFromSpooky);
     setLpTokensAmount(quoteFromSpooky / tombLPStats.ftmAmount);
   };
@@ -67,19 +67,19 @@ const ProvideLiquidity = () => {
     }
     if (!isNumeric(e.currentTarget.value)) return;
     setFtmAmount(e.currentTarget.value);
-    const quoteFromSpooky = await tombFinance.quoteFromSpooky(e.currentTarget.value, 'FTM');
+    const quoteFromSpooky = await libraFinance.quoteFromSpooky(e.currentTarget.value, 'FTM');
     setTombAmount(quoteFromSpooky);
 
     setLpTokensAmount(quoteFromSpooky / tombLPStats.tokenAmount);
   };
   const handleTombSelectMax = async () => {
-    const quoteFromSpooky = await tombFinance.quoteFromSpooky(getDisplayBalance(tombBalance), 'TOMB');
+    const quoteFromSpooky = await libraFinance.quoteFromSpooky(getDisplayBalance(tombBalance), 'TOMB');
     setTombAmount(getDisplayBalance(tombBalance));
     setFtmAmount(quoteFromSpooky);
     setLpTokensAmount(quoteFromSpooky / tombLPStats.ftmAmount);
   };
   const handleFtmSelectMax = async () => {
-    const quoteFromSpooky = await tombFinance.quoteFromSpooky(ftmBalance, 'FTM');
+    const quoteFromSpooky = await libraFinance.quoteFromSpooky(ftmBalance, 'FTM');
     setFtmAmount(ftmBalance);
     setTombAmount(quoteFromSpooky);
     setLpTokensAmount(ftmBalance / tombLPStats.ftmAmount);

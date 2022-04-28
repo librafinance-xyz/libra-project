@@ -33,7 +33,7 @@ import { Box, Button, Card, CardContent, Grid, Paper } from '@material-ui/core';
 import ZapModal from '../Bank/components/ZapModal';
 
 import { makeStyles } from '@material-ui/core/styles';
-import useTombFinance from '../../hooks/useTombFinance';
+import useLibraFinance from '../../hooks/useLibraFinance';
 
 const BackgroundImage = createGlobalStyle`
   body {
@@ -63,7 +63,7 @@ const Home = () => {
   const libraStats = useLibraStats();
   const tShareStats = usetShareStats();
   const tBondStats = useBondStats();
-  const tombFinance = useTombFinance();
+  const libraFinance = useLibraFinance();
   const { price: ftmPrice, marketCap: ftmMarketCap, priceChange: ftmPriceChange } = useFantomPrice();
   const { balance: rebatesTVL } = useTotalTreasuryBalance();
   const totalTVL = TVL + rebatesTVL;
@@ -357,7 +357,7 @@ const Home = () => {
               <h2>LIBRA</h2>
               {/* <Button
                 onClick={() => {
-                  tombFinance.watchAssetInMetamask('TOMB');
+                  libraFinance.watchAssetInMetamask('TOMB');
                 }}
                 color="secondary"
                 variant="outlined"
@@ -396,7 +396,7 @@ const Home = () => {
               <h2>LSHARES</h2>
               {/* <Button
                 onClick={() => {
-                  tombFinance.watchAssetInMetamask('TSHARE');
+                  libraFinance.watchAssetInMetamask('TSHARE');
                 }}
                 color="secondary"
                 variant="outlined"
@@ -433,7 +433,7 @@ const Home = () => {
               <h2>LBOND</h2>
               {/* <Button
                 onClick={() => {
-                  tombFinance.watchAssetInMetamask('TBOND');
+                  libraFinance.watchAssetInMetamask('TBOND');
                 }}
                 color="secondary"
                 variant="outlined"

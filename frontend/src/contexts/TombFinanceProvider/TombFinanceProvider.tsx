@@ -4,17 +4,17 @@ import TombFinance from '../../tomb-finance';
 import config from '../../config';
 
 export interface TombFinanceContext {
-  tombFinance?: TombFinance;
+  libraFinance?: TombFinance;
 }
 
-export const Context = createContext<TombFinanceContext>({ tombFinance: null });
+export const Context = createContext<TombFinanceContext>({ libraFinance: null });
 
 export const TombFinanceProvider: React.FC = ({ children }) => {
   const { ethereum, account } = useWallet();
-  const [tombFinance, setTombFinance] = useState<TombFinance>();
+  const [libraFinance, setTombFinance] = useState<TombFinance>();
 
   useEffect(() => {
-    if (!tombFinance) {
+    if (!libraFinance) {
       const tomb = new TombFinance(config);
       if (account) {
         // wallet was unlocked at initialization
@@ -22,9 +22,9 @@ export const TombFinanceProvider: React.FC = ({ children }) => {
       }
       setTombFinance(tomb);
     } else if (account) {
-      tombFinance.unlockWallet(ethereum, account);
+      libraFinance.unlockWallet(ethereum, account);
     }
-  }, [account, ethereum, tombFinance]);
+  }, [account, ethereum, libraFinance]);
 
-  return <Context.Provider value={{ tombFinance }}>{children}</Context.Provider>;
+  return <Context.Provider value={{ libraFinance }}>{children}</Context.Provider>;
 };

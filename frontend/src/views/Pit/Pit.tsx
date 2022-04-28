@@ -10,7 +10,7 @@ import ExchangeCard from './components/ExchangeCard';
 import styled from 'styled-components';
 import Spacer from '../../components/Spacer';
 import useBondStats from '../../hooks/useBondStats';
-import useTombFinance from '../../hooks/useTombFinance';
+import useLibraFinance from '../../hooks/useLibraFinance';
 import useCashPriceInLastTWAP from '../../hooks/useCashPriceInLastTWAP';
 import { useTransactionAdder } from '../../state/transactions/hooks';
 import ExchangeStat from './components/ExchangeStat';
@@ -33,30 +33,30 @@ const BackgroundImage = createGlobalStyle`
 const Pit: React.FC = () => {
   const { path } = useRouteMatch();
   const { account } = useWallet();
-  const tombFinance = useTombFinance();
+  const libraFinance = useLibraFinance();
   const addTransaction = useTransactionAdder();
   const bondStat = useBondStats();
   const cashPrice = useCashPriceInLastTWAP();
   const bondsPurchasable = useBondsPurchasable();
 
-  const bondBalance = useTokenBalance(tombFinance?.TBOND);
+  const bondBalance = useTokenBalance(libraFinance?.TBOND);
 
   const handleBuyBonds = useCallback(
     async (amount: string) => {
-      const tx = await tombFinance.buyBonds(amount);
+      const tx = await libraFinance.buyBonds(amount);
       addTransaction(tx, {
         summary: `Buy ${Number(amount).toFixed(2)} TBOND with ${amount} TOMB`,
       });
     },
-    [tombFinance, addTransaction],
+    [libraFinance, addTransaction],
   );
 
   const handleRedeemBonds = useCallback(
     async (amount: string) => {
-      const tx = await tombFinance.redeemBonds(amount);
+      const tx = await libraFinance.redeemBonds(amount);
       addTransaction(tx, { summary: `Redeem ${amount} TBOND` });
     },
-    [tombFinance, addTransaction],
+    [libraFinance, addTransaction],
   );
   const isBondRedeemable = useMemo(() => cashPrice.gt(BOND_REDEEM_PRICE_BN), [cashPrice]);
   const isBondPurchasable = useMemo(() => Number(bondStat?.tokenInAstar) < 1.01, [bondStat]);
@@ -77,9 +77,9 @@ const Pit: React.FC = () => {
               <StyledCardWrapper>
                 <ExchangeCard
                   action="Purchase"
-                  fromToken={tombFinance.TOMB}
+                  fromToken={libraFinance.TOMB}
                   fromTokenName="LIBRA"
-                  toToken={tombFinance.TBOND}
+                  toToken={libraFinance.TBOND}
                   toTokenName="LBOND"
                   priceDesc={
                     !isBondPurchasable
@@ -106,9 +106,9 @@ const Pit: React.FC = () => {
               <StyledCardWrapper>
                 <ExchangeCard
                   action="Redeem"
-                  fromToken={tombFinance.TBOND}
+                  fromToken={libraFinance.TBOND}
                   fromTokenName="LBOND"
-                  toToken={tombFinance.TOMB}
+                  toToken={libraFinance.TOMB}
                   toTokenName="LIBRA"
                   priceDesc={`${getDisplayBalance(bondBalance)} LBOND Available in wallet`}
                   onExchange={handleRedeemBonds}

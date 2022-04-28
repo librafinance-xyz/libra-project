@@ -6,7 +6,7 @@ import { Button, Card } from '@material-ui/core';
 // import Button from '../../../components/Button';
 // import Card from '../../../components/Card';
 import CardContent from '../../../components/CardContent';
-import useTombFinance from '../../../hooks/useTombFinance';
+import useLibraFinance from '../../../hooks/useLibraFinance';
 import Label from '../../../components/Label';
 import TokenSymbol from '../../../components/TokenSymbol';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -44,7 +44,7 @@ const ExchangeCard: React.FC<ExchangeCardProps> = ({
   const catchError = useCatchError();
   const {
     contracts: { Treasury },
-  } = useTombFinance();
+  } = useLibraFinance();
   const [approveStatus, approve] = useApprove(fromToken, Treasury.address);
 
   const balance = useTokenBalance(fromToken);
@@ -69,7 +69,7 @@ const ExchangeCard: React.FC<ExchangeCardProps> = ({
           <StyledExchanger>
             <StyledToken>
               <StyledCardIcon style={{ background: 'transparent' }}>
-                <TokenSymbol symbol={fromToken.symbol} size={54}/>
+                <TokenSymbol symbol={fromToken.symbol} size={54} />
               </StyledCardIcon>
               <Label text={fromTokenName} variant="normal" />
             </StyledToken>

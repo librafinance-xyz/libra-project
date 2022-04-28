@@ -1,23 +1,23 @@
 import { useEffect, useState } from 'react';
-import useTombFinance from './useTombFinance';
+import useLibraFinance from './useLibraFinance';
 import { TokenStat } from '../tomb-finance/types';
 import useRefresh from './useRefresh';
 
 const useLibraStats = () => {
   const [stat, setStat] = useState<TokenStat>();
   const { fastRefresh } = useRefresh();
-  const tombFinance = useTombFinance();
+  const libraFinance = useLibraFinance();
 
   useEffect(() => {
     async function fetchLibraPrice() {
       try {
-        setStat(await tombFinance.getTombStat());
+        setStat(await libraFinance.getTombStat());
       } catch (err) {
         console.error(err);
       }
     }
     fetchLibraPrice();
-  }, [setStat, tombFinance, fastRefresh]);
+  }, [setStat, libraFinance, fastRefresh]);
 
   return stat;
 };

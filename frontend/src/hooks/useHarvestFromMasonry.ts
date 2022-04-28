@@ -1,14 +1,14 @@
 import { useCallback } from 'react';
-import useTombFinance from './useTombFinance';
+import useLibraFinance from './useLibraFinance';
 import useHandleTransactionReceipt from './useHandleTransactionReceipt';
 
 const useHarvestFromMasonry = () => {
-  const tombFinance = useTombFinance();
+  const libraFinance = useLibraFinance();
   const handleTransactionReceipt = useHandleTransactionReceipt();
 
   const handleReward = useCallback(() => {
-    handleTransactionReceipt(tombFinance.harvestCashFromMasonry(), 'Claim LIBRA from the 3Room ');
-  }, [tombFinance, handleTransactionReceipt]);
+    handleTransactionReceipt(libraFinance.harvestCashFromMasonry(), 'Claim LIBRA from the 3Room ');
+  }, [libraFinance, handleTransactionReceipt]);
 
   return { onReward: handleReward };
 };

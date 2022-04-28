@@ -1,23 +1,23 @@
 import { useEffect, useState } from 'react';
-import useTombFinance from './useTombFinance';
+import useLibraFinance from './useLibraFinance';
 import { BigNumber } from 'ethers';
 import useRefresh from './useRefresh';
 
 const useCurrentEpoch = () => {
   const [currentEpoch, setCurrentEpoch] = useState<BigNumber>(BigNumber.from(0));
-  const tombFinance = useTombFinance();
-  const { slowRefresh } = useRefresh(); 
+  const libraFinance = useLibraFinance();
+  const { slowRefresh } = useRefresh();
 
   useEffect(() => {
-    async function fetchCurrentEpoch () {
+    async function fetchCurrentEpoch() {
       try {
-        setCurrentEpoch(await tombFinance.getCurrentEpoch());
-      } catch(err) {
+        setCurrentEpoch(await libraFinance.getCurrentEpoch());
+      } catch (err) {
         console.error(err);
       }
     }
     fetchCurrentEpoch();
-  }, [setCurrentEpoch, tombFinance, slowRefresh]);
+  }, [setCurrentEpoch, libraFinance, slowRefresh]);
 
   return currentEpoch;
 };

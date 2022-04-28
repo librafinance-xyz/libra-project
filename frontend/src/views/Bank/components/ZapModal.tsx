@@ -12,7 +12,7 @@ import { getDisplayBalance } from '../../../utils/formatBalance';
 import Label from '../../../components/Label';
 import useLpStats from '../../../hooks/useLpStats';
 import useTokenBalance from '../../../hooks/useTokenBalance';
-import useTombFinance from '../../../hooks/useTombFinance';
+import useLibraFinance from '../../../hooks/useLibraFinance';
 import { useWallet } from 'use-wallet';
 import useApproveZapper, { ApprovalState } from '../../../hooks/useApproveZapper';
 import { TOMB_TICKER, TSHARE_TICKER, FTM_TICKER } from '../../../utils/constants';
@@ -25,11 +25,11 @@ interface ZapProps extends ModalProps {
 }
 
 const ZapModal: React.FC<ZapProps> = ({ onConfirm, onDismiss, tokenName = '', decimals = 18 }) => {
-  const tombFinance = useTombFinance();
+  const libraFinance = useLibraFinance();
   const { balance } = useWallet();
   const ftmBalance = (Number(balance) / 1e18).toFixed(4).toString();
-  const tombBalance = useTokenBalance(tombFinance.TOMB);
-  const tshareBalance = useTokenBalance(tombFinance.TSHARE);
+  const tombBalance = useTokenBalance(libraFinance.TOMB);
+  const tshareBalance = useTokenBalance(libraFinance.TSHARE);
   const [val, setVal] = useState('');
   const [zappingToken, setZappingToken] = useState(FTM_TICKER);
   const [zappingTokenBalance, setZappingTokenBalance] = useState(ftmBalance);
@@ -67,13 +67,13 @@ const ZapModal: React.FC<ZapProps> = ({ onConfirm, onDismiss, tokenName = '', de
     }
     if (!isNumeric(e.currentTarget.value)) return;
     setVal(e.currentTarget.value);
-    const estimateZap = await tombFinance.estimateZapIn(zappingToken, tokenName, String(e.currentTarget.value));
+    const estimateZap = await libraFinance.estimateZapIn(zappingToken, tokenName, String(e.currentTarget.value));
     setEstimate({ token0: estimateZap[0].toString(), token1: estimateZap[1].toString() });
   };
 
   const handleSelectMax = async () => {
     setVal(zappingTokenBalance);
-    const estimateZap = await tombFinance.estimateZapIn(zappingToken, tokenName, String(zappingTokenBalance));
+    const estimateZap = await libraFinance.estimateZapIn(zappingToken, tokenName, String(zappingTokenBalance));
     setEstimate({ token0: estimateZap[0].toString(), token1: estimateZap[1].toString() });
   };
 
