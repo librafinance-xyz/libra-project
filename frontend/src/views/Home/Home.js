@@ -64,7 +64,7 @@ const Home = () => {
   const tShareStats = usetShareStats();
   const tBondStats = useBondStats();
   const libraFinance = useLibraFinance();
-  const { price: ftmPrice, marketCap: ftmMarketCap, priceChange: ftmPriceChange } = useFantomPrice();
+  const { price: ftmPrice, marketCap: astarMarketCap, priceChange: astarPriceChange } = useFantomPrice();
   const { balance: rebatesTVL } = useTotalTreasuryBalance();
   const totalTVL = TVL + rebatesTVL;
 
@@ -341,8 +341,8 @@ const Home = () => {
                 <span style={{ fontSize: '30px' }}>${ftmPrice ? ftmPrice : '-.----'} USD</span>
               </Box>
               <span style={{ fontSize: '12px' }}>
-                Market Cap: ${ftmMarketCap} <br />
-                Price Change 24h: {ftmPriceChange.toFixed(2)}% <br />
+                Market Cap: ${astarMarketCap} <br />
+                Price Change 24h: {astarPriceChange.toFixed(2)}% <br />
                 <br />
                 <br />
               </span>

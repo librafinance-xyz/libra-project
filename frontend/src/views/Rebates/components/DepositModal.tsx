@@ -27,7 +27,7 @@ const DepositModal: React.FC<DepositModalProps> = ({ max, onConfirm, onDismiss, 
 
   const libraFinance = useLibraFinance();
   const rebateStats = useRebateTreasury();
-  const { price: ftmPrice, marketCap: ftmMarketCap, priceChange: ftmPriceChange } = useFantomPrice();
+  const { price: ftmPrice, marketCap: astarMarketCap, priceChange: astarPriceChange } = useFantomPrice();
 
   const fullBalance = useMemo(() => {
     return getFullDisplayBalance(max, tokenName === 'USDC' ? 6 : 18);
