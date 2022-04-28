@@ -95,7 +95,7 @@ const Home = () => {
     [tombStats],
   );
   const libraPriceInASTR = useMemo(() => (tombStats ? Number(tombStats.tokenInAstar).toFixed(4) : null), [tombStats]);
-  const tombCirculatingSupply = useMemo(() => (tombStats ? String(tombStats.circulatingSupply) : null), [tombStats]);
+  const libraCirculatingSupply = useMemo(() => (tombStats ? String(tombStats.circulatingSupply) : null), [tombStats]);
   const tombTotalSupply = useMemo(() => (tombStats ? String(tombStats.totalSupply) : null), [tombStats]);
 
   const tSharePriceInDollars = useMemo(
@@ -375,8 +375,8 @@ const Home = () => {
                 </span>
               </Box>
               <span style={{ fontSize: '12px' }}>
-                Market Cap: ${(tombCirculatingSupply * tombPriceInDollars).toFixed(2)} <br />
-                Circulating Supply: {tombCirculatingSupply} <br />
+                Market Cap: ${(libraCirculatingSupply * tombPriceInDollars).toFixed(2)} <br />
+                Circulating Supply: {libraCirculatingSupply} <br />
                 Total Supply: {tombTotalSupply}
               </span>
             </CardContent>
