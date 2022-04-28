@@ -161,7 +161,7 @@ const Home = () => {
   return (
     <Page>
       <BackgroundImage />
-      <Grid container spacing={3}>
+      <Grid container spacing={3} style={{ marginBottom: '100px' }} >
         {/* Logo */}
         <Grid container item xs={12} sm={3} justify="center">
           {/* <Paper>xs=6 sm=3</Paper> */}
@@ -187,7 +187,7 @@ const Home = () => {
                         follow us on Twitter
                       </a>{' '}
                       and{' '}
-                      <a target="_blank" style={{ color: '#ffffff' }} href="https://discord.com/invite/Y8WWfBmq7R">
+                      <a target="_blank" style={{ color: '#ffffff' }} href="https://discord.librafinance.xyz">
                         join our discord community!!{' '}
                       </a>
                     </h3>
@@ -216,8 +216,7 @@ const Home = () => {
             </Box>
           </Paper>
         </Grid>
-        <Grid container justify="center">
-         
+        <Grid container justify="center">  
           <Box mt={3} style={{ width: '98%' }}>
             <Alert variant="filled" severity="error">
               THIS IS CURRENRY UNDER TEST VERSION. YOU MIGHT BE ABLE TO GET "DUMMY TOKEN", HOWEVER IT'S ZERO VALUE.
