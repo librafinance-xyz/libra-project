@@ -10,19 +10,19 @@ taxCollectorAddrsss =>0xc572bFeAd377554c75037991413123C1632C3107
 solidity=0.6.12
 
 DUMMY
-https://blockscout.com/astar/address/0x09679d9DfA42146115988C6A84FEe0933D53b313/transactions
+https://blockscout.com/astar/address/0x6d664cfe0ce55bced5250b9cc3f04e98a239ef22/transactions
 
 ABI: 0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000c572bfead377554c75037991413123c1632c3107
 
 TBond
 
 DUMMYBOND
-https://blockscout.com/astar/address/0x5508C3b4598D0a80a20EFD45d12717b8De4ad723/transactions
+https://blockscout.com/astar/address/0xe14beD310c733b6011785eA3728C31F2f017e71B/transactions
 
 TShare
 constructor(uint256 \_startTime, address \_communityFund, address \_devFund)
 
-DUMMY-ASTR-LP: 0xF3C8aC387E2254b92C0edD5e8307373099e394c6
+DUMMY-ASTR-LP: 0xf4E19B3960a3ae1c08209f7709BFe15D4E19470a
 ーーーーーーーーここまで完了
 
 Oracle
@@ -31,7 +31,7 @@ IUniswapV2Pair \_pair,
 uint256 \_period,
 uint256 \_startTime
 
-\_pair=0xF3C8aC387E2254b92C0edD5e8307373099e394c6
+\_pair=0xf4E19B3960a3ae1c08209f7709BFe15D4E19470a
 \_period=300
 \_startTime=1647668829
 

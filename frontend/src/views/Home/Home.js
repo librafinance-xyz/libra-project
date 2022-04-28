@@ -59,7 +59,7 @@ const Home = () => {
   // const libraAstarLpStats = useLpStats('TOMB-FTM-LP');
   const libraAstarLpStats = useLpStats('LIBRA-ASTR-LP');
 
-  const tShareFtmLpStats = useLpStats('LSHARE-WASTR-LP');
+  const tShareFtmLpStats = useLpStats('LSHARE-ASTR-LP');
   const libraStats = useLibraStats();
   const tShareStats = usetShareStats();
   const tBondStats = useBondStats();
@@ -130,7 +130,7 @@ const Home = () => {
   const tBondTotalSupply = useMemo(() => (tBondStats ? String(tBondStats.totalSupply) : null), [tBondStats]);
 
   const tombLpZap = useZap({ depositTokenName: 'LIBRA-ASTR-LP' });
-  const tshareLpZap = useZap({ depositTokenName: 'LSHARE-WASTR-LP' });
+  const tshareLpZap = useZap({ depositTokenName: 'LSHARE-ASTR-LP' });
 
   const StyledLink = styled.a`
     font-weight: 700;
@@ -497,7 +497,7 @@ const Home = () => {
               <h2>LSHARE-WASTR LP</h2>
               <Box mt={2}>
                 <CardIcon>
-                  <TokenSymbol symbol="LSHARE-WASTR-LP" />
+                  <TokenSymbol symbol="LSHARE-ASTR-LP" />
                 </CardIcon>
               </Box>
               {/*<Box mt={2}>

@@ -652,20 +652,20 @@ export class TombFinance {
   //   }
 
   async getLibraPriceFromLibraAstr(): Promise<string> {
-    console.log('TombFinance: getLibraPriceFromLibraAstr.');
+    console.log('TombFinance: getLibraPrice FromLibraAstr.');
     const ready = await this.provider.ready;
     if (!ready) return;
-    console.log('TombFinance: getLibraPriceFromLibraAstr..');
+    // console.log('TombFinance: getLibraPriceFromLibraAstr..');
     const { WASTR, LIBRA } = this.externalTokens;
-    console.log('TombFinance: getLibraPriceFromLibraAstr....');
+    // console.log('TombFinance: getLibraPriceFromLibraAstr....');
     const libra_astr_lp_pair = this.externalTokens['LIBRA-ASTR-LP'];
-    console.log('TombFinance: getLibraPriceFromLibraAstr.......libra_astr_lp_pair = ' + libra_astr_lp_pair);
+    // console.log('TombFinance: getLibraPriceFromLibraAstr.......libra_astr_lp_pair = ' + libra_astr_lp_pair);
     let astr_amount_BN = await WASTR.balanceOf(libra_astr_lp_pair.address);
     let astr_amount = Number(getFullDisplayBalance(astr_amount_BN, WASTR.decimal));
-    console.log('TombFinance: getLibraPriceFromLibraAstr() 7. astr_amount=', astr_amount);
+    // console.log('TombFinance: getLibraPriceFromLibraAstr() 7. astr_amount=', astr_amount);
     let LIBRA_amount_BN = await LIBRA.balanceOf(libra_astr_lp_pair.address);
     let LIBRA_amount = Number(getFullDisplayBalance(LIBRA_amount_BN, libra_astr_lp_pair.decimal));
-    console.log('TombFinance: getLibraPriceFromLibraAstr() 8. LIBRA_amount=', LIBRA_amount);
+    // console.log('TombFinance: getLibraPriceFromLibraAstr() 8. LIBRA_amount=', LIBRA_amount);
     return (LIBRA_amount / astr_amount).toString();
   }
   // }

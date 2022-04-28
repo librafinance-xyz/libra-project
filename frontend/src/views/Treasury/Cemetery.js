@@ -18,20 +18,26 @@ import { createGlobalStyle } from 'styled-components';
 import useBanks from '../../hooks/useBanks';
 
 const assetList = [
-  {
-    depositTokenName: '2SHARES',
-  },
-  {
-    depositTokenName: '2SHARES-WFTM LP',
-  },
+  // {
+  //   depositTokenName: '2SHARES',
+  // },
+  // {
+  //   depositTokenName: '2SHARES-WFTM LP',
+  // },
   {
     depositTokenName: 'LIBRA-ASTR LP',
   },
+  // {
+  //   depositTokenName: 'LSHARES',
+  // },
   {
     depositTokenName: 'LSHARES',
   },
+  // {
+  //   depositTokenName: 'LSHARES-ASTR LP',
+  // },
   {
-    depositTokenName: 'LSHARES-ASTR LP',
+    depositTokenName: 'LSHARE-ASTR LP',
   },
 ];
 

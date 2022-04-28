@@ -24,14 +24,14 @@ import shibaLogo from '../../assets/img/shiba_logo.svg';
 import bifiLogo from '../../assets/img/COW.svg';
 import mimLogo from '../../assets/img/mimlogopng.png';
 import bloomLogo from '../../assets/img/BLOOM.jpg';
-import TwoombLPLogo from '../../assets/img/2OMB-WFTM.png';
-import TwosharesLPLogo from '../../assets/img/2SHARES-WFTM.png';
-import TwoombTwosharesLPLogo from '../../assets/img/2OMB-2SHARES.png';
+// import TwoombLPLogo from '../../assets/img/2OMB-WFTM.png';
+// import TwosharesLPLogo from '../../assets/img/2SHARES-WFTM.png';
+// import TwoombTwosharesLPLogo from '../../assets/img/2OMB-2SHARES.png';
 
 import UsdcLogo from '../../assets/img/USDC.png';
 
-import ThreeombLPLogo from '../../assets/img/LIBRA-WFTM.png';
-import ThreesharesLPLogo from '../../assets/img/LSHARES-WFTM.png';
+// import ThreeombLPLogo from '../../assets/img/LIBRA-WFTM.png';
+// import ThreesharesLPLogo from '../../assets/img/LSHARES-WFTM.png';
 
 const logosBySymbol: { [title: string]: string } = {
   //Real tokens
@@ -52,28 +52,11 @@ const logosBySymbol: { [title: string]: string } = {
   BLOOM: bloomLogo,
   WASTR: astrLogo,
   ASTR: astrLogo,
-  // '2OMB-WFTM LP': TwoombLPLogo,
-  // '2OMB-ASTR LP': TwoombLPLogo,
-  // 'LIBRA-ASTR-LP': TwoombLPLogo,
-  'LIBRA-WFTM-LP': ThreeombLPLogo,
-
-  //
-  // '2SHARES-WFTM LP': TwosharesLPLogo,
-  // '2SHARES-ASTR LP': TwosharesLPLogo,
-  'LSHARE-ASTR-LP': TwosharesLPLogo,
-  //
-  // '2OMB-2SHARES LP': TwoombTwosharesLPLogo,
-
-  // 'LSHARES-WFTM LP': ThreesharesLPLogo,
-  'LSHARES-ASTR-LP': ThreesharesLPLogo,
-
+  // 'LSHARE-ASTR-LP': TwosharesLPLogo,
+  // 'LSHARES-ASTR-LP': ThreesharesLPLogo,
   wFTM: wftmLogo,
-  // '2OMB': twoombLogo,
-  // '2SHARES': twoshareLogo,
-  // 'TOMB-FTM-LP': tombFtmLpLogo,
-  // 'TSHARE-FTM-LP': tshareFtmLpLogo,
   'LIBRA-ASTR-LP': LibraWastrLPlogo,
-  'LSHARE-WASTR-LP': LshareWastrLPlogo,
+  'LSHARE-ASTR-LP': LshareWastrLPlogo,
 };
 
 type LogoProps = {
