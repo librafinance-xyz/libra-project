@@ -62,7 +62,7 @@ const Home = () => {
   const tShareFtmLpStats = useLpStats('LSHARE-ASTR-LP');
   const libraStats = useLibraStats();
   const LShareStats = useLShareStats();
-  const tBondStats = useBondStats();
+  const LBondStats = useBondStats();
   const libraFinance = useLibraFinance();
   const { price: astarPrice, marketCap: astarMarketCap, priceChange: astarPriceChange } = useFantomPrice();
   const { balance: rebatesTVL } = useTotalTreasuryBalance();
@@ -119,15 +119,15 @@ const Home = () => {
   const tShareTotalSupply = useMemo(() => (LShareStats ? String(LShareStats.totalSupply) : null), [LShareStats]);
 
   const tBondPriceInDollars = useMemo(
-    () => (tBondStats ? Number(tBondStats.priceInDollars).toFixed(2) : null),
-    [tBondStats],
+    () => (LBondStats ? Number(LBondStats.priceInDollars).toFixed(2) : null),
+    [LBondStats],
   );
-  const tBondPriceInFTM = useMemo(() => (tBondStats ? Number(tBondStats.tokenInAstar).toFixed(4) : null), [tBondStats]);
+  const tBondPriceInFTM = useMemo(() => (LBondStats ? Number(LBondStats.tokenInAstar).toFixed(4) : null), [LBondStats]);
   const tBondCirculatingSupply = useMemo(
-    () => (tBondStats ? String(tBondStats.circulatingSupply) : null),
-    [tBondStats],
+    () => (LBondStats ? String(LBondStats.circulatingSupply) : null),
+    [LBondStats],
   );
-  const tBondTotalSupply = useMemo(() => (tBondStats ? String(tBondStats.totalSupply) : null), [tBondStats]);
+  const tBondTotalSupply = useMemo(() => (LBondStats ? String(LBondStats.totalSupply) : null), [LBondStats]);
 
   const tombLpZap = useZap({ depositTokenName: 'LIBRA-ASTR-LP' });
   const tshareLpZap = useZap({ depositTokenName: 'LSHARE-ASTR-LP' });

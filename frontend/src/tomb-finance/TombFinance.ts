@@ -191,24 +191,6 @@ export class TombFinance {
    * CirculatingSupply (always equal to total supply for bonds)
    */
   async getShareStat(): Promise<TokenStat> {
-    // console.log('getShareStat');
-
-    // console.log('getShareStat: supply: ', supply.toString());
-    // const tombRewardPoolSupply = await this.TOMB.balanceOf(TombFtmRewardPool.address);
-    // const tombRewardPoolSupply2 = await this.TOMB.balanceOf(TombFtmLpTombRewardPool.address);
-    // // const tombRewardPoolSupplyOld = await this.TOMB.balanceOf(TombFtmLpTombRewardPoolOld.address);
-
-    // const libraCirculatingSupply = supply.sub(tombRewardPoolSupply).sub(tombRewardPoolSupply2);
-    // // .sub(tombRewardPoolSupplyOld);
-    // console.log('getShareStat: libraCirculatingSupply: ', libraCirculatingSupply);
-
-    // const priceOfOneASTR = await this.getWASTRPriceFromArthswapASTRUSDC();
-    // console.log('getShareStat: priceOfOneASTR: ', priceOfOneASTR);
-    // const priceInASTR = await this.getLibraPriceFromLibraAstr();
-    // // const priceInASTR = await this.getTokenPriceFromLP(this.TOMB);
-    // console.log('getShareStat: price in astr :', priceInASTR);
-    // const priceOfTombInDollars = (Number(priceInASTR) * Number(priceOfOneASTR)).toFixed(2);
-
     console.log('getShareStat ');
 
     console.log('getShareStat:', this.LSHARE);
