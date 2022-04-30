@@ -15,5 +15,10 @@ npx hardhat flatten contracts/DummyLShare.sol > ./contracts_flat/DummyLShare.sol
 npx hardhat flatten contracts/DummyLBond.sol > ./contracts_flat/DummyLBond.sol 
 
 npx hardhat flatten contracts/distribution/DummyLibraGenesisRewardPool.sol > ./contracts_flat/DummyLibraGenesisRewardPool.sol 
+npx hardhat flatten contracts/distribution/DummyLibraRewardPool.sol > ./contracts_flat/DummyLibraRewardPool.sol 
+npx hardhat flatten contracts/distribution/DummyLShareRewardPool.sol > ./contracts_flat/DummyLShareRewardPool.sol 
 
-
+npx hardhat flatten contracts/DummyOracle.sol > ./contracts_flat/DummyOracle.sol 
+npx hardhat flatten contracts/DummyBoardRoom.sol > ./contracts_flat/DummyBoardRoom.sol 
+npx hardhat flatten contracts/DummyTreasury.sol > ./contracts_flat/DummyTreasury.sol 
+npx hardhat flatten contracts/DummyRebateTreasury.sol > ./contracts_flat/DummyRebateTreasury.sol 
