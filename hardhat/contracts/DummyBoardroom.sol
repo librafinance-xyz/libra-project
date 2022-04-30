@@ -9,7 +9,7 @@ import "./utils/ContractGuard.sol";
 import "./interfaces/IBasisAsset.sol";
 import "./interfaces/ITreasury.sol";
 
-contract DummyBoardroom {
+contract ShareWrapper {
     using SafeMath for uint256;
     using SafeERC20 for IERC20;
 
@@ -41,7 +41,7 @@ contract DummyBoardroom {
     }
 }
 
-contract Boardroom is ShareWrapper, ContractGuard {
+contract DummyBoardroom is ShareWrapper, ContractGuard {
     using SafeERC20 for IERC20;
     using Address for address;
     using SafeMath for uint256;
