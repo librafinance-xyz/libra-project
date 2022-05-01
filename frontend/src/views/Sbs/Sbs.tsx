@@ -35,7 +35,7 @@ const Sbs: React.FC = () => {
   const { path } = useRouteMatch();
   const { account } = useWallet();
   const libraFinance = useLibraFinance();
-  const [lbondAmount, setTbondAmount] = useState('');
+  const [lbondAmount, setLbondAmount] = useState('');
   const [lshareAmount, setTshareAmount] = useState('');
 
   const [approveStatus, approve] = useApprove(libraFinance.LBOND, libraFinance.contracts.TShareSwapper.address);
@@ -53,18 +53,18 @@ const Sbs: React.FC = () => {
 
   const handleTBondChange = async (e: any) => {
     if (e.currentTarget.value === '') {
-      setTbondAmount('');
+      setLbondAmount('');
       setTshareAmount('');
       return;
     }
     if (!isNumeric(e.currentTarget.value)) return;
-    setTbondAmount(e.currentTarget.value);
+    setLbondAmount(e.currentTarget.value);
     const updateTShareAmount = await libraFinance.estimateAmountOfTShare(e.currentTarget.value);
     setTshareAmount(updateTShareAmount);
   };
 
   const handleTBondSelectMax = async () => {
-    setTbondAmount(String(bondBalance));
+    setLbondAmount(String(bondBalance));
     const updateTShareAmount = await libraFinance.estimateAmountOfTShare(String(bondBalance));
     setTshareAmount(updateTShareAmount);
   };
@@ -76,14 +76,14 @@ const Sbs: React.FC = () => {
       .pow(30)
       .div(BigNumber.from(rateTSharePerLibra))
       .mul(Number(lshareBalance) * 1e6);
-    setTbondAmount(getDisplayBalance(updateTBondAmount, 18, 6));
+    setLbondAmount(getDisplayBalance(updateTBondAmount, 18, 6));
   };
 
   const handleTShareChange = async (e: any) => {
     const inputData = e.currentTarget.value;
     if (inputData === '') {
       setTshareAmount('');
-      setTbondAmount('');
+      setLbondAmount('');
       return;
     }
     if (!isNumeric(inputData)) return;
@@ -93,7 +93,7 @@ const Sbs: React.FC = () => {
       .pow(30)
       .div(BigNumber.from(rateTSharePerLibra))
       .mul(Number(inputData) * 1e6);
-    setTbondAmount(getDisplayBalance(updateTBondAmount, 18, 6));
+    setLbondAmount(getDisplayBalance(updateTBondAmount, 18, 6));
   };
 
   return (

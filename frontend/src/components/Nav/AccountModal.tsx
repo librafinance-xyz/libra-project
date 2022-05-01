@@ -19,7 +19,7 @@ const AccountModal: React.FC<ModalProps> = ({ onDismiss }) => {
   const displayTshareBalance = useMemo(() => getDisplayBalance(lshareBalance), [lshareBalance]);
 
   const lbondBalance = useTokenBalance(libraFinance.LBOND);
-  const displayTbondBalance = useMemo(() => getDisplayBalance(lbondBalance), [lbondBalance]);
+  const displayLbondBalance = useMemo(() => getDisplayBalance(lbondBalance), [lbondBalance]);
 
   return (
     <Modal>
@@ -45,7 +45,7 @@ const AccountModal: React.FC<ModalProps> = ({ onDismiss }) => {
         <StyledBalanceWrapper>
           <TokenSymbol symbol="LBOND" />
           <StyledBalance>
-            <StyledValue>{displayTbondBalance}</StyledValue>
+            <StyledValue>{displayLbondBalance}</StyledValue>
             <Label text="LBOND Available" variant="primary" />
           </StyledBalance>
         </StyledBalanceWrapper>
