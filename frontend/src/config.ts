@@ -56,7 +56,7 @@ const configurations: { [env: string]: Configuration } = {
       // 'USDT-FTM-LP': ['0x2b4C76d0dc16BE1C31D4C1DC53bF9B45987Fc75c', 18],
       // 'LIBRA-FTM-LP': ['0x83a52eff2e9d112e9b022399a9fd22a9db7d33ae', 18],
       // 'LIBRA-FTM-LP': ['0x83a52eff2e9d112e9b022399a9fd22a9db7d33ae', 18],
-      // 'TSHARE-FTM-LP': ['0xd352dac95a91afefb112dbbb3463ccfa5ec15b65', 18],
+      // 'LSHARE-FTM-LP': ['0xd352dac95a91afefb112dbbb3463ccfa5ec15b65', 18],
     },
     baseLaunchDate: new Date('2021-06-02 13:00:00Z'),
     bondLaunchesAt: new Date('2020-12-03T15:00:00Z'),
@@ -73,7 +73,7 @@ export const bankDefinitions: { [contractName: string]: BankInfo } = {
   sectionInUI: way to distinguish in which of the 3 pool groups it should be listed
         - 0 = Single asset stake pools
         - 1 = LP asset staking rewarding LIBRA
-        - 2 = LP asset staking rewarding TSHARE
+        - 2 = LP asset staking rewarding LSHARE
   contract: the contract name which will be loaded from the deployment.environmnet.json
   depositTokenName : the name of the token to be deposited
   earnTokenName: the rewarded token
@@ -299,7 +299,7 @@ export const bankDefinitions: { [contractName: string]: BankInfo } = {
   //   sectionInUI: 2,
   //   contract: 'TwoombTwosharesLPTShareRewardPool',
   //   depositTokenName: '2OMB-2SHARESLP',
-  //   earnTokenName: 'TSHARE',
+  //   earnTokenName: 'LSHARE',
   //   finished: false,
   //   multiplier: '0',
   //   buyLink: '',

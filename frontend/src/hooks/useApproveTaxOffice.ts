@@ -22,7 +22,7 @@ function useApproveTaxOffice(): [ApprovalState, () => Promise<void>] {
   let token: ERC20 = libraFinance.LIBRA;
   // if (zappingToken === FTM_TICKER) token = libraFinance.FTM;
   // else if (zappingToken === LIBRA_TICKER) token = libraFinance.LIBRA;
-  // else if (zappingToken === TSHARE_TICKER) token = libraFinance.LSHARE;
+  // else if (zappingToken === LSHARE_TICKER) token = libraFinance.LSHARE;
   const pendingApproval = useHasPendingApproval(token.address, TAX_OFFICE_ADDR);
   const currentAllowance = useAllowance(token, TAX_OFFICE_ADDR, pendingApproval);
 

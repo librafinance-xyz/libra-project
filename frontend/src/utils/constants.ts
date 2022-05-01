@@ -1,5 +1,5 @@
 export const LIBRA_TICKER = 'LIBRA';
-export const TSHARE_TICKER = 'TSHARE';
+export const LSHARE_TICKER = 'LSHARE';
 export const LBOND_TICKER = 'LBOND';
 export const FTM_TICKER = 'FTM';
 export const WFTM_TICKER = 'WFTM';

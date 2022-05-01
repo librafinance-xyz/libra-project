@@ -3,7 +3,7 @@ import { useCallback, useMemo } from 'react';
 import { useHasPendingApproval, useTransactionAdder } from '../state/transactions/hooks';
 import useAllowance from './useAllowance';
 import ERC20 from '../libra-finance/ERC20';
-import { FTM_TICKER, LIBRA_TICKER, TSHARE_TICKER, ZAPPER_ROUTER_ADDR } from '../utils/constants';
+import { FTM_TICKER, LIBRA_TICKER, LSHARE_TICKER, ZAPPER_ROUTER_ADDR } from '../utils/constants';
 import useLibraFinance from './useLibraFinance';
 
 const APPROVE_AMOUNT = ethers.constants.MaxUint256;
@@ -22,7 +22,7 @@ function useApproveZapper(zappingToken: string): [ApprovalState, () => Promise<v
   let token: ERC20;
   if (zappingToken === FTM_TICKER) token = libraFinance.FTM;
   else if (zappingToken === LIBRA_TICKER) token = libraFinance.LIBRA;
-  else if (zappingToken === TSHARE_TICKER) token = libraFinance.LSHARE;
+  else if (zappingToken === LSHARE_TICKER) token = libraFinance.LSHARE;
   const pendingApproval = useHasPendingApproval(token.address, ZAPPER_ROUTER_ADDR);
   const currentAllowance = useAllowance(token, ZAPPER_ROUTER_ADDR, pendingApproval);
 

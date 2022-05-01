@@ -28,7 +28,7 @@ export class LibraFinance {
 
   LIBRAWFTM_LP: Contract;
   LIBRA: ERC20;
-  // TSHARE: ERC20;
+  // LSHARE: ERC20;
   LSHARE: ERC20;
   LBOND: ERC20;
   FTM: ERC20;
@@ -184,7 +184,7 @@ export class LibraFinance {
   }
 
   /**
-   * @returns TokenStat for TSHARE
+   * @returns TokenStat for LSHARE
    * priceInASTR
    * priceInDollars
    * TotalSupply
@@ -206,8 +206,8 @@ export class LibraFinance {
     console.log('getShareStat LibraAstarLPLShareRewardPool=', LibraAstarLPLShareRewardPool);
     // const supply = await this.LSHARE.totalSupply();
     // console.log('getShareStat supply=', supply);
-    console.log('getShareStat TSHARE=', this.LSHARE);
-    console.log('getShareStat TSHARE=', this.LSHARE.address);
+    console.log('getShareStat LSHARE=', this.LSHARE);
+    console.log('getShareStat LSHARE=', this.LSHARE.address);
 
     // const priceInASTR = await this.getTokenPriceFromLP(this.LSHARE);
     const priceInASTR = await this.getLSharePrice();
@@ -444,9 +444,9 @@ export class LibraFinance {
     //   totalValue += poolValue;
     // }
     let masonryTVL = 0;
-    // const TSHAREPrice = (await this.getShareStat()).priceInDollars;
+    // const LSHAREPrice = (await this.getShareStat()).priceInDollars;
     // const masonrylShareBalanceOf = await this.LSHARE.balanceOf(this.currentMasonry().address);
-    // masonryTVL = Number(getDisplayBalance(masonrylShareBalanceOf, this.LSHARE.decimal)) * Number(TSHAREPrice);
+    // masonryTVL = Number(getDisplayBalance(masonrylShareBalanceOf, this.LSHARE.decimal)) * Number(LSHAREPrice);
 
     return totalValue + masonryTVL;
   }
@@ -514,24 +514,24 @@ export class LibraFinance {
 
   // async get2ShareStatFake(): Promise<TokenStat> {
   //   const { TwoOmbFtmRewardPool, TwoOmbFtmLpLibraRewardPool, TwoOmbFtmLpLibraRewardPoolOld } = this.contracts;
-  //   const TSHARE = new ERC20('0xc54a1684fd1bef1f077a336e6be4bd9a3096a6ca', this.provider, '2SHARES');
-  //   const supply = await TSHARE.totalSupply();
-  //   const libraRewardPoolSupply = await TSHARE.balanceOf(TwoOmbFtmRewardPool.address);
-  //   const libraRewardPoolSupply2 = await TSHARE.balanceOf(TwoOmbFtmLpLibraRewardPool.address);
-  //   const libraRewardPoolSupplyOld = await TSHARE.balanceOf(TwoOmbFtmLpLibraRewardPoolOld.address);
+  //   const LSHARE = new ERC20('0xc54a1684fd1bef1f077a336e6be4bd9a3096a6ca', this.provider, '2SHARES');
+  //   const supply = await LSHARE.totalSupply();
+  //   const libraRewardPoolSupply = await LSHARE.balanceOf(TwoOmbFtmRewardPool.address);
+  //   const libraRewardPoolSupply2 = await LSHARE.balanceOf(TwoOmbFtmLpLibraRewardPool.address);
+  //   const libraRewardPoolSupplyOld = await LSHARE.balanceOf(TwoOmbFtmLpLibraRewardPoolOld.address);
   //   const libraCirculatingSupply = supply
   //     .sub(libraRewardPoolSupply)
   //     .sub(libraRewardPoolSupply2)
   //     .sub(libraRewardPoolSupplyOld);
-  //   const priceInASTR = await this.getTokenPriceFromLP(TSHARE);
+  //   const priceInASTR = await this.getTokenPriceFromLP(LSHARE);
   //   const priceOfOneFTM = await this.getWASTRPriceFromArthswapASTRUSDC();
   //   const priceOfLibraInDollars = (Number(priceInASTR) * Number(priceOfOneFTM)).toFixed(2);
 
   //   return {
   //     tokenInAstar: priceInASTR,
   //     priceInDollars: priceOfLibraInDollars,
-  //     totalSupply: getDisplayBalance(supply, TSHARE.decimal, 0),
-  //     circulatingSupply: getDisplayBalance(libraCirculatingSupply, TSHARE.decimal, 0),
+  //     totalSupply: getDisplayBalance(supply, LSHARE.decimal, 0),
+  //     circulatingSupply: getDisplayBalance(libraCirculatingSupply, LSHARE.decimal, 0),
   //   };
   // }
 
@@ -734,14 +734,14 @@ export class LibraFinance {
 
     const lastRewardsReceived = lastHistory[1];
 
-    const TSHAREPrice = (await this.getShareStat()).priceInDollars;
+    const LSHAREPrice = (await this.getShareStat()).priceInDollars;
     const LIBRAPrice = (await this.getLibraStat()).priceInDollars;
     const epochRewardsPerShare = lastRewardsReceived / 1e18;
 
     //Mgod formula
     const amountOfRewardsPerDay = epochRewardsPerShare * Number(LIBRAPrice) * 4;
     const masonrylShareBalanceOf = await this.LSHARE.balanceOf(Masonry.address);
-    const masonryTVL = Number(getDisplayBalance(masonrylShareBalanceOf, this.LSHARE.decimal)) * Number(TSHAREPrice);
+    const masonryTVL = Number(getDisplayBalance(masonrylShareBalanceOf, this.LSHARE.decimal)) * Number(LSHAREPrice);
     const realAPR = ((amountOfRewardsPerDay * 100) / masonryTVL) * 365;
     return realAPR;
   }
@@ -781,7 +781,7 @@ export class LibraFinance {
 
   async stakeShareToMasonry(amount: string): Promise<TransactionResponse> {
     if (this.isOldMasonryMember()) {
-      throw new Error("you're using old masonry. please withdraw and deposit the TSHARE again.");
+      throw new Error("you're using old masonry. please withdraw and deposit the LSHARE again.");
     }
     const Masonry = this.currentMasonry();
     return await Masonry.stake(decimalToBalance(amount));
@@ -903,7 +903,7 @@ export class LibraFinance {
       if (assetName === 'LIBRA') {
         asset = this.LIBRA;
         assetUrl = 'https://libra.finance/presskit/libra_icon_noBG.png';
-      } else if (assetName === 'TSHARE') {
+      } else if (assetName === 'LSHARE') {
         asset = this.LSHARE;
         assetUrl = 'https://libra.finance/presskit/lshare_icon_noBG.png';
       } else if (assetName === 'LBOND') {

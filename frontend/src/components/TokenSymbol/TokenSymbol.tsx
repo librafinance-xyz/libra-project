@@ -38,8 +38,8 @@ const logosBySymbol: { [title: string]: string } = {
   //=====================
   LIBRA: libraLogo,
   LIBRAPNG: libraLogoPNG,
-  TSHAREPNG: lShareLogoPNG,
-  TSHARE: lShareLogo,
+  LSHAREPNG: lShareLogoPNG,
+  LSHARE: lShareLogo,
   LBOND: tBondLogo,
   WFTM: wftmLogo,
   BOO: booLogo,

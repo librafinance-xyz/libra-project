@@ -15,7 +15,7 @@ import useTokenBalance from '../../../hooks/useTokenBalance';
 import useLibraFinance from '../../../hooks/useLibraFinance';
 import { useWallet } from 'use-wallet';
 import useApproveZapper, { ApprovalState } from '../../../hooks/useApproveZapper';
-import { LIBRA_TICKER, TSHARE_TICKER, FTM_TICKER } from '../../../utils/constants';
+import { LIBRA_TICKER, LSHARE_TICKER, FTM_TICKER } from '../../../utils/constants';
 import { Alert } from '@material-ui/lab';
 
 interface ZapProps extends ModalProps {
@@ -36,7 +36,7 @@ const ZapModal: React.FC<ZapProps> = ({ onConfirm, onDismiss, tokenName = '', de
   const [estimate, setEstimate] = useState({ token0: '0', token1: '0' }); // token0 will always be FTM in this case
   const [approveZapperStatus, approveZapper] = useApproveZapper(zappingToken);
   const libraAstarLpStats = useLpStats('LIBRA-FTM-LP');
-  const lShareAstarLpStats = useLpStats('TSHARE-FTM-LP');
+  const lShareAstarLpStats = useLpStats('LSHARE-FTM-LP');
   const libraLPStats = useMemo(() => (libraAstarLpStats ? libraAstarLpStats : null), [libraAstarLpStats]);
   const lshareLPStats = useMemo(() => (lShareAstarLpStats ? lShareAstarLpStats : null), [lShareAstarLpStats]);
   const astarAmountPerLP = tokenName.startsWith(LIBRA_TICKER) ? libraLPStats?.astarAmount : lshareLPStats?.astarAmount;
@@ -52,7 +52,7 @@ const ZapModal: React.FC<ZapProps> = ({ onConfirm, onDismiss, tokenName = '', de
     const value = event.target.value;
     setZappingToken(value);
     setZappingTokenBalance(ftmBalance);
-    if (event.target.value === TSHARE_TICKER) {
+    if (event.target.value === LSHARE_TICKER) {
       setZappingTokenBalance(getDisplayBalance(lshareBalance, decimals));
     }
     if (event.target.value === LIBRA_TICKER) {
@@ -99,7 +99,7 @@ const ZapModal: React.FC<ZapProps> = ({ onConfirm, onDismiss, tokenName = '', de
         value={zappingToken}
       >
         <StyledMenuItem value={FTM_TICKER}>ASTR</StyledMenuItem>
-        <StyledMenuItem value={TSHARE_TICKER}>LSHARE</StyledMenuItem>
+        <StyledMenuItem value={LSHARE_TICKER}>LSHARE</StyledMenuItem>
 
         {/* Libra as an input for zapping will be disabled due to issues occuring with the Gatekeeper system */}
         {/* <StyledMenuItem value={LIBRA_TICKER}>LIBRA</StyledMenuItem> */}
@@ -119,7 +119,7 @@ const ZapModal: React.FC<ZapProps> = ({ onConfirm, onDismiss, tokenName = '', de
       <StyledDescriptionText>
         {' '}
         ({Number(estimate.token0)} {FTM_TICKER} / {Number(estimate.token1)}{' '}
-        {tokenName.startsWith(LIBRA_TICKER) ? LIBRA_TICKER : TSHARE_TICKER}){' '}
+        {tokenName.startsWith(LIBRA_TICKER) ? LIBRA_TICKER : LSHARE_TICKER}){' '}
       </StyledDescriptionText>
       <ModalActions>
         <Button

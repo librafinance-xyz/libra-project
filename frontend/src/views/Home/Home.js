@@ -236,7 +236,7 @@ const Home = () => {
     <Grid item  xs={12} sm={12} justify="center"  style={{ margin: '12px', display: 'flex' }}>
             <Alert severity="warning" style={{ backgroundColor: "transparent", border: "1px solid var(--white)" }}>
               <b>
-      Please visit our <StyledLink target="_blank" href="https://docs.libra.finance">documentation</StyledLink> before purchasing LIBRA or TSHARE!</b>
+      Please visit our <StyledLink target="_blank" href="https://docs.libra.finance">documentation</StyledLink> before purchasing LIBRA or LSHARE!</b>
             </Alert>
         </Grid>
         </Grid> */}
@@ -389,14 +389,14 @@ const Home = () => {
           </Card>
         </Grid>
 
-        {/* TSHARE */}
+        {/* LSHARE */}
         <Grid item xs={12} sm={3}>
           <Card style={{ backgroundColor: 'transparent', boxShadow: 'none' }}>
             <CardContent align="center" style={{ position: 'relative' }}>
               <h2>LSHARE</h2>
               {/* <Button
                 onClick={() => {
-                  libraFinance.watchAssetInMetamask('TSHARE');
+                  libraFinance.watchAssetInMetamask('LSHARE');
                 }}
                 color="secondary"
                 variant="outlined"
@@ -407,7 +407,7 @@ const Home = () => {
               </Button> */}
               <Box mt={2}>
                 <CardIcon>
-                  <TokenSymbol symbol="TSHARE" />
+                  <TokenSymbol symbol="LSHARE" />
                 </CardIcon>
               </Box>
               Current Price

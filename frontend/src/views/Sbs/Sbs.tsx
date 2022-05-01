@@ -157,7 +157,7 @@ const Sbs: React.FC = () => {
                                 symbol="TShare"
                               ></TokenInput>
                             </Grid>
-                            <StyledDesc>{`${lshareBalance} TSHARE Available in Swapper`}</StyledDesc>
+                            <StyledDesc>{`${lshareBalance} LSHARE Available in Swapper`}</StyledDesc>
                           </StyledCardContentInner>
                         </CardContent>
                       </Card>
