@@ -38,8 +38,8 @@ const ZapModal: React.FC<ZapProps> = ({ onConfirm, onDismiss, tokenName = '', de
   const libraAstarLpStats = useLpStats('TOMB-FTM-LP');
   const tShareFtmLpStats = useLpStats('TSHARE-FTM-LP');
   const tombLPStats = useMemo(() => (libraAstarLpStats ? libraAstarLpStats : null), [libraAstarLpStats]);
-  const tshareLPStats = useMemo(() => (tShareFtmLpStats ? tShareFtmLpStats : null), [tShareFtmLpStats]);
-  const astarAmountPerLP = tokenName.startsWith(TOMB_TICKER) ? tombLPStats?.astarAmount : tshareLPStats?.astarAmount;
+  const lshareLPStats = useMemo(() => (tShareFtmLpStats ? tShareFtmLpStats : null), [tShareFtmLpStats]);
+  const astarAmountPerLP = tokenName.startsWith(TOMB_TICKER) ? tombLPStats?.astarAmount : lshareLPStats?.astarAmount;
   /**
    * Checks if a value is a valid number or not
    * @param n is the value to be evaluated for a number
