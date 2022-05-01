@@ -26,14 +26,14 @@ function isNumeric(n) {
 }
 
 const ProvideLiquidity = () => {
-  const [tombAmount, setTombAmount] = useState(0);
+  const [libraAmount, setTombAmount] = useState(0);
   const [astarAmount, setFtmAmount] = useState(0);
   const [lpTokensAmount, setLpTokensAmount] = useState(0);
   const { balance } = useWallet();
   const libraStats = useLibraStats();
   const libraFinance = useLibraFinance();
   const [approveTaxOfficeStatus, approveTaxOffice] = useApproveTaxOffice();
-  const tombBalance = useTokenBalance(libraFinance.TOMB);
+  const libraBalance = useTokenBalance(libraFinance.TOMB);
   const ftmBalance = (balance / 1e18).toFixed(4);
   const { onProvideTombFtmLP } = useProvideTombFtmLP();
   // const libraAstarLpStats = useLpStats('TOMB-FTM-LP');
@@ -73,8 +73,8 @@ const ProvideLiquidity = () => {
     setLpTokensAmount(quoteFromSpooky / libraLPStats.tokenAmount);
   };
   const handleTombSelectMax = async () => {
-    const quoteFromSpooky = await libraFinance.quoteFromSpooky(getDisplayBalance(tombBalance), 'TOMB');
-    setTombAmount(getDisplayBalance(tombBalance));
+    const quoteFromSpooky = await libraFinance.quoteFromSpooky(getDisplayBalance(libraBalance), 'TOMB');
+    setTombAmount(getDisplayBalance(libraBalance));
     setFtmAmount(quoteFromSpooky);
     setLpTokensAmount(quoteFromSpooky / libraLPStats.astarAmount);
   };
@@ -112,8 +112,8 @@ const ProvideLiquidity = () => {
                         <TokenInput
                           onSelectMax={handleTombSelectMax}
                           onChange={handleTombChange}
-                          value={tombAmount}
-                          max={getDisplayBalance(tombBalance)}
+                          value={libraAmount}
+                          max={getDisplayBalance(libraBalance)}
                           symbol={'TOMB'}
                         ></TokenInput>
                       </Grid>
@@ -137,7 +137,7 @@ const ProvideLiquidity = () => {
                         {approveTaxOfficeStatus === ApprovalState.APPROVED ? (
                           <Button
                             variant="contained"
-                            onClick={() => onProvideTombFtmLP(astarAmount.toString(), tombAmount.toString())}
+                            onClick={() => onProvideTombFtmLP(astarAmount.toString(), libraAmount.toString())}
                             color="primary"
                             style={{ margin: '0 10px', color: '#fff' }}
                           >

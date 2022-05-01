@@ -861,7 +861,7 @@
       }
     ]
   },
-  "tomb": {
+  "libra": {
     "address": "0x6d664cfe0ce55bced5250b9cc3f04e98a239ef22",
     "abi": [
       {
@@ -1350,7 +1350,7 @@
       },
       {
         "inputs": [],
-        "name": "tombOracle",
+        "name": "libraOracle",
         "outputs": [
           {
             "internalType": "address",
@@ -1535,7 +1535,7 @@
         "inputs": [
           {
             "internalType": "address",
-            "name": "_tombOracle",
+            "name": "_libraOracle",
             "type": "address"
           }
         ],
@@ -1714,7 +1714,7 @@
           },
           {
             "internalType": "address",
-            "name": "_tombPool",
+            "name": "_libraPool",
             "type": "address"
           },
           {
@@ -2891,7 +2891,7 @@
           {
             "indexed": false,
             "internalType": "uint256",
-            "name": "tombAmount",
+            "name": "libraAmount",
             "type": "uint256"
           },
           {
@@ -3011,7 +3011,7 @@
           {
             "indexed": false,
             "internalType": "uint256",
-            "name": "tombAmount",
+            "name": "libraAmount",
             "type": "uint256"
           },
           {
@@ -3434,7 +3434,7 @@
       },
       {
         "inputs": [],
-        "name": "tomb",
+        "name": "libra",
         "outputs": [
           {
             "internalType": "address",
@@ -3447,7 +3447,7 @@
       },
       {
         "inputs": [],
-        "name": "tombOracle",
+        "name": "libraOracle",
         "outputs": [
           {
             "internalType": "address",
@@ -3460,7 +3460,7 @@
       },
       {
         "inputs": [],
-        "name": "tombPriceCeiling",
+        "name": "libraPriceCeiling",
         "outputs": [
           {
             "internalType": "uint256",
@@ -3473,7 +3473,7 @@
       },
       {
         "inputs": [],
-        "name": "tombPriceOne",
+        "name": "libraPriceOne",
         "outputs": [
           {
             "internalType": "uint256",
@@ -3529,7 +3529,7 @@
         "outputs": [
           {
             "internalType": "uint256",
-            "name": "tombPrice",
+            "name": "libraPrice",
             "type": "uint256"
           }
         ],
@@ -3542,7 +3542,7 @@
         "outputs": [
           {
             "internalType": "uint256",
-            "name": "_tombPrice",
+            "name": "_libraPrice",
             "type": "uint256"
           }
         ],
@@ -3618,7 +3618,7 @@
         "inputs": [
           {
             "internalType": "address",
-            "name": "_tomb",
+            "name": "_libra",
             "type": "address"
           },
           {
@@ -3633,7 +3633,7 @@
           },
           {
             "internalType": "address",
-            "name": "_tombOracle",
+            "name": "_libraOracle",
             "type": "address"
           },
           {
@@ -3682,7 +3682,7 @@
         "inputs": [
           {
             "internalType": "address",
-            "name": "_tombOracle",
+            "name": "_libraOracle",
             "type": "address"
           }
         ],
@@ -3695,7 +3695,7 @@
         "inputs": [
           {
             "internalType": "uint256",
-            "name": "_tombPriceCeiling",
+            "name": "_libraPriceCeiling",
             "type": "uint256"
           }
         ],
@@ -3884,7 +3884,7 @@
         "inputs": [
           {
             "internalType": "uint256",
-            "name": "_tombAmount",
+            "name": "_libraAmount",
             "type": "uint256"
           },
           {
@@ -4244,7 +4244,7 @@
       },
       {
         "inputs": [],
-        "name": "tomb",
+        "name": "libra",
         "outputs": [
           {
             "internalType": "contract IERC20",
@@ -4298,7 +4298,7 @@
         "inputs": [
           {
             "internalType": "contract IERC20",
-            "name": "_tomb",
+            "name": "_libra",
             "type": "address"
           },
           {
@@ -4574,7 +4574,7 @@
         "inputs": [
           {
             "internalType": "address",
-            "name": "_tomb",
+            "name": "_libra",
             "type": "address"
           },
           {
@@ -4786,7 +4786,7 @@
       },
       {
         "inputs": [],
-        "name": "tomb",
+        "name": "libra",
         "outputs": [
           {
             "internalType": "contract IERC20",
@@ -4799,7 +4799,7 @@
       },
       {
         "inputs": [],
-        "name": "tombPerSecond",
+        "name": "libraPerSecond",
         "outputs": [
           {
             "internalType": "uint256",
@@ -5060,7 +5060,7 @@
         "inputs": [
           {
             "internalType": "address",
-            "name": "_tomb",
+            "name": "_libra",
             "type": "address"
           },
           {
@@ -5272,7 +5272,7 @@
       },
       {
         "inputs": [],
-        "name": "tomb",
+        "name": "libra",
         "outputs": [
           {
             "internalType": "contract IERC20",
@@ -5285,7 +5285,7 @@
       },
       {
         "inputs": [],
-        "name": "tombPerSecond",
+        "name": "libraPerSecond",
         "outputs": [
           {
             "internalType": "uint256",
@@ -5546,7 +5546,7 @@
         "inputs": [
           {
             "internalType": "address",
-            "name": "_tomb",
+            "name": "_libra",
             "type": "address"
           },
           {
@@ -5758,7 +5758,7 @@
       },
       {
         "inputs": [],
-        "name": "tomb",
+        "name": "libra",
         "outputs": [
           {
             "internalType": "contract IERC20",
@@ -5771,7 +5771,7 @@
       },
       {
         "inputs": [],
-        "name": "tombPerSecond",
+        "name": "libraPerSecond",
         "outputs": [
           {
             "internalType": "uint256",
@@ -6032,7 +6032,7 @@
         "inputs": [
           {
             "internalType": "address",
-            "name": "_tomb",
+            "name": "_libra",
             "type": "address"
           },
           {
@@ -6244,7 +6244,7 @@
       },
       {
         "inputs": [],
-        "name": "tomb",
+        "name": "libra",
         "outputs": [
           {
             "internalType": "contract IERC20",
@@ -6257,7 +6257,7 @@
       },
       {
         "inputs": [],
-        "name": "tombPerSecond",
+        "name": "libraPerSecond",
         "outputs": [
           {
             "internalType": "uint256",
@@ -6519,7 +6519,7 @@
         "inputs": [
           {
             "internalType": "address",
-            "name": "_tomb",
+            "name": "_libra",
             "type": "address"
           },
           {
@@ -6731,7 +6731,7 @@
       },
       {
         "inputs": [],
-        "name": "tomb",
+        "name": "libra",
         "outputs": [
           {
             "internalType": "contract IERC20",
@@ -6744,7 +6744,7 @@
       },
       {
         "inputs": [],
-        "name": "tombPerSecond",
+        "name": "libraPerSecond",
         "outputs": [
           {
             "internalType": "uint256",
@@ -7005,7 +7005,7 @@
         "inputs": [
           {
             "internalType": "address",
-            "name": "_tomb",
+            "name": "_libra",
             "type": "address"
           },
           {
@@ -7217,7 +7217,7 @@
       },
       {
         "inputs": [],
-        "name": "tomb",
+        "name": "libra",
         "outputs": [
           {
             "internalType": "contract IERC20",
@@ -7230,7 +7230,7 @@
       },
       {
         "inputs": [],
-        "name": "tombPerSecond",
+        "name": "libraPerSecond",
         "outputs": [
           {
             "internalType": "uint256",
@@ -7491,7 +7491,7 @@
         "inputs": [
           {
             "internalType": "address",
-            "name": "_tomb",
+            "name": "_libra",
             "type": "address"
           },
           {
@@ -7703,7 +7703,7 @@
       },
       {
         "inputs": [],
-        "name": "tomb",
+        "name": "libra",
         "outputs": [
           {
             "internalType": "contract IERC20",
@@ -7716,7 +7716,7 @@
       },
       {
         "inputs": [],
-        "name": "tombPerSecond",
+        "name": "libraPerSecond",
         "outputs": [
           {
             "internalType": "uint256",
@@ -7977,7 +7977,7 @@
         "inputs": [
           {
             "internalType": "address",
-            "name": "_tomb",
+            "name": "_libra",
             "type": "address"
           },
           {
@@ -8189,7 +8189,7 @@
       },
       {
         "inputs": [],
-        "name": "tomb",
+        "name": "libra",
         "outputs": [
           {
             "internalType": "contract IERC20",
@@ -8202,7 +8202,7 @@
       },
       {
         "inputs": [],
-        "name": "tombPerSecond",
+        "name": "libraPerSecond",
         "outputs": [
           {
             "internalType": "uint256",
@@ -8464,7 +8464,7 @@
         "inputs": [
           {
             "internalType": "address",
-            "name": "_tomb",
+            "name": "_libra",
             "type": "address"
           },
           {
@@ -8676,7 +8676,7 @@
       },
       {
         "inputs": [],
-        "name": "tomb",
+        "name": "libra",
         "outputs": [
           {
             "internalType": "contract IERC20",
@@ -8689,7 +8689,7 @@
       },
       {
         "inputs": [],
-        "name": "tombPerSecond",
+        "name": "libraPerSecond",
         "outputs": [
           {
             "internalType": "uint256",
@@ -8950,7 +8950,7 @@
         "inputs": [
           {
             "internalType": "address",
-            "name": "_tomb",
+            "name": "_libra",
             "type": "address"
           },
           {
@@ -9162,7 +9162,7 @@
       },
       {
         "inputs": [],
-        "name": "tomb",
+        "name": "libra",
         "outputs": [
           {
             "internalType": "contract IERC20",
@@ -9175,7 +9175,7 @@
       },
       {
         "inputs": [],
-        "name": "tombPerSecond",
+        "name": "libraPerSecond",
         "outputs": [
           {
             "internalType": "uint256",
@@ -9437,7 +9437,7 @@
         "inputs": [
           {
             "internalType": "address",
-            "name": "_tomb",
+            "name": "_libra",
             "type": "address"
           },
           {
@@ -9649,7 +9649,7 @@
       },
       {
         "inputs": [],
-        "name": "tomb",
+        "name": "libra",
         "outputs": [
           {
             "internalType": "contract IERC20",
@@ -9662,7 +9662,7 @@
       },
       {
         "inputs": [],
-        "name": "tombPerSecond",
+        "name": "libraPerSecond",
         "outputs": [
           {
             "internalType": "uint256",
@@ -9924,7 +9924,7 @@
         "inputs": [
           {
             "internalType": "address",
-            "name": "_tomb",
+            "name": "_libra",
             "type": "address"
           },
           {
@@ -10136,7 +10136,7 @@
       },
       {
         "inputs": [],
-        "name": "tomb",
+        "name": "libra",
         "outputs": [
           {
             "internalType": "contract IERC20",
@@ -10149,7 +10149,7 @@
       },
       {
         "inputs": [],
-        "name": "tombPerSecond",
+        "name": "libraPerSecond",
         "outputs": [
           {
             "internalType": "uint256",
@@ -10410,7 +10410,7 @@
         "inputs": [
           {
             "internalType": "address",
-            "name": "_tomb",
+            "name": "_libra",
             "type": "address"
           },
           {
@@ -10622,7 +10622,7 @@
       },
       {
         "inputs": [],
-        "name": "tomb",
+        "name": "libra",
         "outputs": [
           {
             "internalType": "contract IERC20",
@@ -10635,7 +10635,7 @@
       },
       {
         "inputs": [],
-        "name": "tombPerSecond",
+        "name": "libraPerSecond",
         "outputs": [
           {
             "internalType": "uint256",
@@ -10896,7 +10896,7 @@
         "inputs": [
           {
             "internalType": "address",
-            "name": "_tomb",
+            "name": "_libra",
             "type": "address"
           },
           {
@@ -11108,7 +11108,7 @@
       },
       {
         "inputs": [],
-        "name": "tomb",
+        "name": "libra",
         "outputs": [
           {
             "internalType": "contract IERC20",
@@ -11121,7 +11121,7 @@
       },
       {
         "inputs": [],
-        "name": "tombPerSecond",
+        "name": "libraPerSecond",
         "outputs": [
           {
             "internalType": "uint256",
@@ -11382,7 +11382,7 @@
         "inputs": [
           {
             "internalType": "address",
-            "name": "_tomb",
+            "name": "_libra",
             "type": "address"
           },
           {
@@ -11612,7 +11612,7 @@
       },
       {
         "inputs": [],
-        "name": "tomb",
+        "name": "libra",
         "outputs": [
           {
             "internalType": "contract IERC20",
@@ -11873,7 +11873,7 @@
         "inputs": [
           {
             "internalType": "address",
-            "name": "_tomb",
+            "name": "_libra",
             "type": "address"
           },
           {
@@ -12103,7 +12103,7 @@
       },
       {
         "inputs": [],
-        "name": "tomb",
+        "name": "libra",
         "outputs": [
           {
             "internalType": "contract IERC20",
@@ -15590,7 +15590,7 @@
         "inputs": [
           {
             "internalType": "address",
-            "name": "_tombOracle",
+            "name": "_libraOracle",
             "type": "address"
           }
         ],
@@ -15656,7 +15656,7 @@
       },
       {
         "inputs": [],
-        "name": "tomb",
+        "name": "libra",
         "outputs": [
           {
             "internalType": "address",
@@ -16717,7 +16717,7 @@
         "inputs": [
           {
             "internalType": "address",
-            "name": "_tomb",
+            "name": "_libra",
             "type": "address"
           },
           {
@@ -16737,7 +16737,7 @@
           },
           {
             "internalType": "address",
-            "name": "_tombSpookyLpPair",
+            "name": "_libraSpookyLpPair",
             "type": "address"
           },
           {
@@ -16994,7 +16994,7 @@
       },
       {
         "inputs": [],
-        "name": "tomb",
+        "name": "libra",
         "outputs": [
           {
             "internalType": "contract IERC20",
@@ -17007,7 +17007,7 @@
       },
       {
         "inputs": [],
-        "name": "tombSpookyLpPair",
+        "name": "libraSpookyLpPair",
         "outputs": [
           {
             "internalType": "address",
@@ -17587,7 +17587,7 @@
       },
       {
         "inputs": [],
-        "name": "tombOracle",
+        "name": "libraOracle",
         "outputs": [
           {
             "internalType": "address",
@@ -17772,7 +17772,7 @@
         "inputs": [
           {
             "internalType": "address",
-            "name": "_tombOracle",
+            "name": "_libraOracle",
             "type": "address"
           }
         ],
@@ -17951,7 +17951,7 @@
           },
           {
             "internalType": "address",
-            "name": "_tombPool",
+            "name": "_libraPool",
             "type": "address"
           },
           {
@@ -18675,7 +18675,7 @@
         "inputs": [
           {
             "internalType": "address",
-            "name": "_tomb",
+            "name": "_libra",
             "type": "address"
           },
           {
@@ -18887,7 +18887,7 @@
       },
       {
         "inputs": [],
-        "name": "tomb",
+        "name": "libra",
         "outputs": [
           {
             "internalType": "contract IERC20",
@@ -19161,7 +19161,7 @@
         "inputs": [
           {
             "internalType": "address",
-            "name": "_tomb",
+            "name": "_libra",
             "type": "address"
           },
           {
@@ -19391,7 +19391,7 @@
       },
       {
         "inputs": [],
-        "name": "tomb",
+        "name": "libra",
         "outputs": [
           {
             "internalType": "contract IERC20",
@@ -19652,7 +19652,7 @@
         "inputs": [
           {
             "internalType": "address",
-            "name": "_tomb",
+            "name": "_libra",
             "type": "address"
           },
           {
@@ -19882,7 +19882,7 @@
       },
       {
         "inputs": [],
-        "name": "tomb",
+        "name": "libra",
         "outputs": [
           {
             "internalType": "contract IERC20",

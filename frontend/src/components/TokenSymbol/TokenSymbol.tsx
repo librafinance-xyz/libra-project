@@ -1,13 +1,13 @@
 import React from 'react';
 
 //Graveyard ecosystem logos
-import tombLogo from '../../assets/libra/libra.svg';
+import libraLogo from '../../assets/libra/libra.svg';
 import tShareLogo from '../../assets/libra/lshare.svg';
-import tombLogoPNG from '../../assets/libra/libra.svg';
+import libraLogoPNG from '../../assets/libra/libra.svg';
 import tShareLogoPNG from '../../assets/libra/lshare.svg';
 import tBondLogo from '../../assets/libra/lbond.svg';
 
-import tombFtmLpLogo from '../../assets/img/tomb_ftm_lp.png';
+import libraFtmLpLogo from '../../assets/img/libra_ftm_lp.png';
 import lshareFtmLpLogo from '../../assets/img/lshare_ftm_lp.png';
 import libraMainLogo from '../../assets/img/libra_main.svg';
 import LibraWastrLPlogo from '../../assets/img/LIBRA-WASTR.png';
@@ -36,8 +36,8 @@ import UsdcLogo from '../../assets/img/USDC.png';
 const logosBySymbol: { [title: string]: string } = {
   //Real tokens
   //=====================
-  TOMB: tombLogo,
-  TOMBPNG: tombLogoPNG,
+  TOMB: libraLogo,
+  TOMBPNG: libraLogoPNG,
   TSHAREPNG: tShareLogoPNG,
   TSHARE: tShareLogo,
   LBOND: tBondLogo,

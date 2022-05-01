@@ -80,7 +80,7 @@ const Cemetery = () => {
   }
 
   async function claimTomb() {
-    console.log('claiming the tomb');
+    console.log('claiming the libra');
     if (!window.ethereum) return;
     const address = (await window.ethereum.request({ method: 'eth_accounts' }))[0];
     if (!address) return;

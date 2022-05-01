@@ -15,12 +15,12 @@ export const LibraFinanceProvider: React.FC = ({ children }) => {
 
   useEffect(() => {
     if (!libraFinance) {
-      const tomb = new LibraFinance(config);
+      const libra = new LibraFinance(config);
       if (account) {
         // wallet was unlocked at initialization
-        tomb.unlockWallet(ethereum, account);
+        libra.unlockWallet(ethereum, account);
       }
-      setLibraFinance(tomb);
+      setLibraFinance(libra);
     } else if (account) {
       libraFinance.unlockWallet(ethereum, account);
     }

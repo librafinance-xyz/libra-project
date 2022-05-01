@@ -17,12 +17,12 @@ import useBondStats from '../../hooks/useBondStats';
 import useLShareStats from '../../hooks/useLShareStats';
 import useTotalValueLocked from '../../hooks/useTotalValueLocked';
 import useFantomPrice from '../../hooks/useFantomPrice';
-// import { tomb as libraStag, LShare as lShareStag } from '../../libra-finance/deployments/deployments.stag.json';
-// import { tomb as libraProd, LShare as lShareProd } from '../../libra-finance/deployments/deployments.prod.json';
+// import { libra as libraStag, LShare as lShareStag } from '../../libra-finance/deployments/deployments.stag.json';
+// import { libra as libraProd, LShare as lShareProd } from '../../libra-finance/deployments/deployments.prod.json';
 // temporary
-import { tomb as libraStag, LShare as lShareStag } from '../../libra-finance/deployments/deployments.dev.json';
-import { tomb as libraProd, LShare as lShareProd } from '../../libra-finance/deployments/deployments.dev.json';
-import { tomb as libraDev, LShare as lShareDev } from '../../libra-finance/deployments/deployments.dev.json';
+import { libra as libraStag, LShare as lShareStag } from '../../libra-finance/deployments/deployments.dev.json';
+import { libra as libraProd, LShare as lShareProd } from '../../libra-finance/deployments/deployments.dev.json';
+import { libra as libraDev, LShare as lShareDev } from '../../libra-finance/deployments/deployments.dev.json';
 import AppHostEnv from '../../config';
 
 import Countdown from 'react-countdown';
@@ -68,24 +68,24 @@ const Home = () => {
   const { balance: rebatesTVL } = useTotalTreasuryBalance();
   const totalTVL = TVL + rebatesTVL;
 
-  let tomb;
+  let libra;
   let LShare;
   // if (!process.env.NODE_ENV || process.env.NODE_ENV === 'development') {
   if (AppHostEnv == 'stag') {
     // stag
-    tomb = libraStag;
+    libra = libraStag;
     LShare = lShareStag;
   } else if (AppHostEnv == 'prod') {
     // prod
-    tomb = libraProd;
+    libra = libraProd;
     LShare = lShareProd;
   } else {
     // dev
-    tomb = libraDev;
+    libra = libraDev;
     LShare = lShareDev;
   }
 
-  const buyLibraAddress = 'https://twinkleswap.finance/swap?outputCurrency=' + tomb.address;
+  const buyLibraAddress = 'https://twinkleswap.finance/swap?outputCurrency=' + libra.address;
   const buyTShareAddress = 'https://twinkleswap.finance/swap?outputCurrency=' + LShare.address;
 
   const libraLPStats = useMemo(() => (libraAstarLpStats ? libraAstarLpStats : null), [libraAstarLpStats]);
@@ -236,7 +236,7 @@ const Home = () => {
     <Grid item  xs={12} sm={12} justify="center"  style={{ margin: '12px', display: 'flex' }}>
             <Alert severity="warning" style={{ backgroundColor: "transparent", border: "1px solid var(--white)" }}>
               <b>
-      Please visit our <StyledLink target="_blank" href="https://docs.tomb.finance">documentation</StyledLink> before purchasing TOMB or TSHARE!</b>
+      Please visit our <StyledLink target="_blank" href="https://docs.libra.finance">documentation</StyledLink> before purchasing TOMB or TSHARE!</b>
             </Alert>
         </Grid>
         </Grid> */}

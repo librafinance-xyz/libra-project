@@ -100,14 +100,14 @@ const Bank: React.FC = () => {
 
 const LPTokenHelpText: React.FC<{ bank: BankEntity }> = ({ bank }) => {
   const libraFinance = useLibraFinance();
-  const tombAddr = libraFinance.TOMB.address;
+  const libraAddr = libraFinance.TOMB.address;
   const lshareAddr = libraFinance.LSHARE.address;
 
   let pairName: string;
   let uniswapUrl: string;
   if (bank.depositTokenName.includes('LIBRA')) {
     pairName = 'LIBRA-WFTM pair';
-    uniswapUrl = 'https://spookyswap.finance/add/FTM/' + tombAddr;
+    uniswapUrl = 'https://spookyswap.finance/add/FTM/' + libraAddr;
   } else {
     pairName = 'LSHARE-WFTM pair';
     uniswapUrl = 'https://spookyswap.finance/add/FTM/' + lshareAddr;

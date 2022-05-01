@@ -12,8 +12,8 @@ import TokenSymbol from '../TokenSymbol';
 const AccountModal: React.FC<ModalProps> = ({ onDismiss }) => {
   const libraFinance = useLibraFinance();
 
-  const tombBalance = useTokenBalance(libraFinance.TOMB);
-  const displayTombBalance = useMemo(() => getDisplayBalance(tombBalance), [tombBalance]);
+  const libraBalance = useTokenBalance(libraFinance.TOMB);
+  const displayTombBalance = useMemo(() => getDisplayBalance(libraBalance), [libraBalance]);
 
   const lshareBalance = useTokenBalance(libraFinance.LSHARE);
   const displayTshareBalance = useMemo(() => getDisplayBalance(lshareBalance), [lshareBalance]);

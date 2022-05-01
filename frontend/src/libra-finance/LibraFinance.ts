@@ -46,8 +46,8 @@ export class LibraFinance {
     for (const [symbol, [address, decimal]] of Object.entries(externalTokens)) {
       this.externalTokens[symbol] = new ERC20(address, provider, symbol, decimal);
     }
-    // this.TOMB = new ERC20(deployments.tomb.address, provider, 'LIBRA');
-    this.TOMB = new ERC20(deployments.tomb.address, provider, 'LIBRA');
+    // this.TOMB = new ERC20(deployments.libra.address, provider, 'LIBRA');
+    this.TOMB = new ERC20(deployments.libra.address, provider, 'LIBRA');
     this.LSHARE = new ERC20(deployments.LShare.address, provider, 'LSHARE');
     this.LBOND = new ERC20(deployments.tBond.address, provider, 'LBOND');
     // this.FTM = this.externalTokens['WFTM'];
@@ -106,12 +106,12 @@ export class LibraFinance {
     const supply = await this.TOMB.totalSupply();
 
     console.log('getLibraStat: supply: ', supply.toString());
-    const tombRewardPoolSupply = await this.TOMB.balanceOf(TombFtmRewardPool.address);
-    const tombRewardPoolSupply2 = await this.TOMB.balanceOf(TombFtmLpTombRewardPool.address);
-    // const tombRewardPoolSupplyOld = await this.TOMB.balanceOf(TombFtmLpTombRewardPoolOld.address);
+    const libraRewardPoolSupply = await this.TOMB.balanceOf(TombFtmRewardPool.address);
+    const libraRewardPoolSupply2 = await this.TOMB.balanceOf(TombFtmLpTombRewardPool.address);
+    // const libraRewardPoolSupplyOld = await this.TOMB.balanceOf(TombFtmLpTombRewardPoolOld.address);
 
-    const libraCirculatingSupply = supply.sub(tombRewardPoolSupply).sub(tombRewardPoolSupply2);
-    // .sub(tombRewardPoolSupplyOld);
+    const libraCirculatingSupply = supply.sub(libraRewardPoolSupply).sub(libraRewardPoolSupply2);
+    // .sub(libraRewardPoolSupplyOld);
     console.log('getLibraStat: libraCirculatingSupply: ', libraCirculatingSupply);
 
     const priceOfOneASTR = await this.getWASTRPriceFromArthswapASTRUSDC();
@@ -169,11 +169,11 @@ export class LibraFinance {
    */
   async getBondStat(): Promise<TokenStat> {
     const { Treasury } = this.contracts;
-    const tombStat = await this.getLibraStat();
+    const libraStat = await this.getLibraStat();
     const bondTombRatioBN = await Treasury.getBondPremiumRate();
     const modifier = bondTombRatioBN / 1e18 > 1 ? bondTombRatioBN / 1e18 : 1;
-    const bondpriceInASTR = (Number(tombStat.tokenInAstar) * modifier).toFixed(2);
-    const priceOfTBondInDollars = (Number(tombStat.priceInDollars) * modifier).toFixed(2);
+    const bondpriceInASTR = (Number(libraStat.tokenInAstar) * modifier).toFixed(2);
+    const priceOfTBondInDollars = (Number(libraStat.priceInDollars) * modifier).toFixed(2);
     const supply = await this.LBOND.displayedTotalSupply();
     return {
       tokenInAstar: bondpriceInASTR,
@@ -213,9 +213,9 @@ export class LibraFinance {
     const priceInASTR = await this.getLSharePrice();
 
     console.log('getShareStat priceInASTR=', priceInASTR);
-    const tombRewardPoolSupply = await this.LSHARE.balanceOf(LibraAstarLPLShareRewardPool.address);
-    console.log('getShareStat tombRewardPoolSupply=', tombRewardPoolSupply);
-    const lShareCirculatingSupply = supply.sub(tombRewardPoolSupply);
+    const libraRewardPoolSupply = await this.LSHARE.balanceOf(LibraAstarLPLShareRewardPool.address);
+    console.log('getShareStat libraRewardPoolSupply=', libraRewardPoolSupply);
+    const lShareCirculatingSupply = supply.sub(libraRewardPoolSupply);
     console.log('getShareStat lShareCirculatingSupply=', lShareCirculatingSupply);
     const astarPriceInUSDC = await this.getWASTRPriceFromArthswapASTRUSDC();
     console.log('getShareStat astarPriceInUSDC=', astarPriceInUSDC);
@@ -236,8 +236,8 @@ export class LibraFinance {
     const expectedPrice = await SeigniorageOracle.twap(this.TOMB.address, ethers.utils.parseEther('1'));
 
     const supply = await this.TOMB.totalSupply();
-    const tombRewardPoolSupply = await this.TOMB.balanceOf(TombFtmRewardPool.address);
-    const libraCirculatingSupply = supply.sub(tombRewardPoolSupply);
+    const libraRewardPoolSupply = await this.TOMB.balanceOf(TombFtmRewardPool.address);
+    const libraCirculatingSupply = supply.sub(libraRewardPoolSupply);
     return {
       tokenInAstar: getDisplayBalance(expectedPrice),
       priceInDollars: getDisplayBalance(expectedPrice),
@@ -307,7 +307,7 @@ export class LibraFinance {
   ) {
     if (earnTokenName === 'LIBRA') {
       if (!contractName.endsWith('TombRewardPool')) {
-        const rewardPerSecond = await poolContract.tombPerSecond();
+        const rewardPerSecond = await poolContract.libraPerSecond();
         if (depositTokenName === '2SHARES') {
           return rewardPerSecond.mul(7500).div(25000).div(24).mul(20);
         } else if (depositTokenName === '2OMB') {
@@ -456,7 +456,7 @@ export class LibraFinance {
    * Reference https://github.com/DefiDebauchery/discordpricebot/blob/4da3cdb57016df108ad2d0bb0c91cd8dd5f9d834/pricebot/pricebot.py#L150
    * @param lpToken the token under calculation
    * @param token the token pair used as reference (the other one would be FTM in most cases)
-   * @param isTomb sanity check for usage of tomb token or tShare
+   * @param isTomb sanity check for usage of libra token or tShare
    * @returns price of the LP token
    */
   async getLPTokenPrice(lpToken: ERC20, token: ERC20, isTomb: boolean, isFake: boolean): Promise<string> {
@@ -493,13 +493,13 @@ export class LibraFinance {
   //   const { TwoOmbFtmRewardPool, TwoOmbFtmLpTombRewardPool, TwoOmbFtmLpTombRewardPoolOld } = this.contracts;
   //   const TOMB = new ERC20('0x7a6e4e3cc2ac9924605dca4ba31d1831c84b44ae', this.provider, '2OMB');
   //   const supply = await TOMB.totalSupply();
-  //   const tombRewardPoolSupply = await TOMB.balanceOf(TwoOmbFtmRewardPool.address);
-  //   const tombRewardPoolSupply2 = await TOMB.balanceOf(TwoOmbFtmLpTombRewardPool.address);
-  //   const tombRewardPoolSupplyOld = await TOMB.balanceOf(TwoOmbFtmLpTombRewardPoolOld.address);
+  //   const libraRewardPoolSupply = await TOMB.balanceOf(TwoOmbFtmRewardPool.address);
+  //   const libraRewardPoolSupply2 = await TOMB.balanceOf(TwoOmbFtmLpTombRewardPool.address);
+  //   const libraRewardPoolSupplyOld = await TOMB.balanceOf(TwoOmbFtmLpTombRewardPoolOld.address);
   //   const libraCirculatingSupply = supply
-  //     .sub(tombRewardPoolSupply)
-  //     .sub(tombRewardPoolSupply2)
-  //     .sub(tombRewardPoolSupplyOld);
+  //     .sub(libraRewardPoolSupply)
+  //     .sub(libraRewardPoolSupply2)
+  //     .sub(libraRewardPoolSupplyOld);
   //   const priceInASTR = await this.getTokenPriceFromLP(TOMB);
   //   const priceOfOneFTM = await this.getWASTRPriceFromArthswapASTRUSDC();
   //   const priceOfTombInDollars = (Number(priceInASTR) * Number(priceOfOneFTM)).toFixed(2);
@@ -516,13 +516,13 @@ export class LibraFinance {
   //   const { TwoOmbFtmRewardPool, TwoOmbFtmLpTombRewardPool, TwoOmbFtmLpTombRewardPoolOld } = this.contracts;
   //   const TSHARE = new ERC20('0xc54a1684fd1bef1f077a336e6be4bd9a3096a6ca', this.provider, '2SHARES');
   //   const supply = await TSHARE.totalSupply();
-  //   const tombRewardPoolSupply = await TSHARE.balanceOf(TwoOmbFtmRewardPool.address);
-  //   const tombRewardPoolSupply2 = await TSHARE.balanceOf(TwoOmbFtmLpTombRewardPool.address);
-  //   const tombRewardPoolSupplyOld = await TSHARE.balanceOf(TwoOmbFtmLpTombRewardPoolOld.address);
+  //   const libraRewardPoolSupply = await TSHARE.balanceOf(TwoOmbFtmRewardPool.address);
+  //   const libraRewardPoolSupply2 = await TSHARE.balanceOf(TwoOmbFtmLpTombRewardPool.address);
+  //   const libraRewardPoolSupplyOld = await TSHARE.balanceOf(TwoOmbFtmLpTombRewardPoolOld.address);
   //   const libraCirculatingSupply = supply
-  //     .sub(tombRewardPoolSupply)
-  //     .sub(tombRewardPoolSupply2)
-  //     .sub(tombRewardPoolSupplyOld);
+  //     .sub(libraRewardPoolSupply)
+  //     .sub(libraRewardPoolSupply2)
+  //     .sub(libraRewardPoolSupplyOld);
   //   const priceInASTR = await this.getTokenPriceFromLP(TSHARE);
   //   const priceOfOneFTM = await this.getWASTRPriceFromArthswapASTRUSDC();
   //   const priceOfTombInDollars = (Number(priceInASTR) * Number(priceOfOneFTM)).toFixed(2);
@@ -902,13 +902,13 @@ export class LibraFinance {
       let assetUrl;
       if (assetName === 'TOMB') {
         asset = this.TOMB;
-        assetUrl = 'https://tomb.finance/presskit/tomb_icon_noBG.png';
+        assetUrl = 'https://libra.finance/presskit/libra_icon_noBG.png';
       } else if (assetName === 'TSHARE') {
         asset = this.LSHARE;
-        assetUrl = 'https://tomb.finance/presskit/lshare_icon_noBG.png';
+        assetUrl = 'https://libra.finance/presskit/lshare_icon_noBG.png';
       } else if (assetName === 'LBOND') {
         asset = this.LBOND;
-        assetUrl = 'https://tomb.finance/presskit/tbond_icon_noBG.png';
+        assetUrl = 'https://libra.finance/presskit/tbond_icon_noBG.png';
       }
       await ethereum.request({
         method: 'wallet_watchAsset',
@@ -926,14 +926,14 @@ export class LibraFinance {
     return true;
   }
 
-  async provideTombFtmLP(astarAmount: string, tombAmount: BigNumber): Promise<TransactionResponse> {
+  async provideTombFtmLP(astarAmount: string, libraAmount: BigNumber): Promise<TransactionResponse> {
     const { TaxOffice } = this.contracts;
     let overrides = {
       value: parseUnits(astarAmount, 18),
     };
     return await TaxOffice.addLiquidityETHTaxFree(
-      tombAmount,
-      tombAmount.mul(992).div(1000),
+      libraAmount,
+      libraAmount.mul(992).div(1000),
       parseUnits(astarAmount, 18).mul(992).div(1000),
       overrides,
     );
@@ -1078,7 +1078,7 @@ export class LibraFinance {
     const { TShareSwapper } = this.contracts;
     const lshareBalanceBN = await TShareSwapper.getTShareBalance();
     const lbondBalanceBN = await TShareSwapper.getTBondBalance(address);
-    // const tombPriceBN = await TShareSwapper.getTombPrice();
+    // const libraPriceBN = await TShareSwapper.getTombPrice();
     // const lsharePriceBN = await TShareSwapper.getTSharePrice();
     const rateTSharePerTombBN = await TShareSwapper.getTShareAmountPerTomb();
     const lshareBalance = getDisplayBalance(lshareBalanceBN, 18, 5);
@@ -1086,7 +1086,7 @@ export class LibraFinance {
     return {
       lshareBalance: lshareBalance.toString(),
       lbondBalance: lbondBalance.toString(),
-      // tombPrice: tombPriceBN.toString(),
+      // libraPrice: libraPriceBN.toString(),
       // lsharePrice: lsharePriceBN.toString(),
       rateTSharePerTomb: rateTSharePerTombBN.toString(),
     };

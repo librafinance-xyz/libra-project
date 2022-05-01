@@ -212,7 +212,7 @@ const RebateTreasuryABI = [
     type: 'function',
   },
   {
-    inputs: [{ internalType: 'address', name: 'tomb', type: 'address' }],
+    inputs: [{ internalType: 'address', name: 'libra', type: 'address' }],
     name: 'setTomb',
     outputs: [],
     stateMutability: 'nonpayable',
@@ -394,8 +394,8 @@ const assetList = [
 ];
 
 function useRebateTreasury() {
-  const [tombPrice, setTombPrice] = useState(0);
-  const [tombAvailable, setTombAvailable] = useState(0);
+  const [libraPrice, setTombPrice] = useState(0);
+  const [libraAvailable, setTombAvailable] = useState(0);
   const [bondPremium, setBondPremium] = useState(0);
   const [bondVesting, setBondVesting] = useState(0);
   const [assets, setAssets] = useState(
@@ -410,7 +410,7 @@ function useRebateTreasury() {
   );
 
   async function update() {
-    const [tombPrice, tombBalance, vestedTomb, bondPremium, bondVesting, assetParams, assetPrices] = await Promise.all([
+    const [libraPrice, libraBalance, vestedTomb, bondPremium, bondVesting, assetParams, assetPrices] = await Promise.all([
       RebateTreasury.methods.getTombPrice().call(),
       Threeomb.methods.balanceOf(RebateTreasury._address).call(),
       RebateTreasury.methods.totalVested().call(),
@@ -420,8 +420,8 @@ function useRebateTreasury() {
       Promise.all(assetList.map((asset) => RebateTreasury.methods.getTokenPrice(asset).call())),
     ]);
 
-    setTombPrice(+web3.utils.fromWei(tombPrice));
-    setTombAvailable(+web3.utils.fromWei(tombBalance) - +web3.utils.fromWei(vestedTomb));
+    setTombPrice(+web3.utils.fromWei(libraPrice));
+    setTombAvailable(+web3.utils.fromWei(libraBalance) - +web3.utils.fromWei(vestedTomb));
     setBondPremium(+bondPremium / 10000);
     setBondVesting(+bondVesting / 10000);
 
@@ -447,10 +447,10 @@ function useRebateTreasury() {
 
   return {
     RebateTreasury,
-    tombPrice,
+    libraPrice,
     bondPremium,
     bondVesting,
-    tombAvailable,
+    libraAvailable,
     assets,
   };
 }
