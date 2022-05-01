@@ -264,11 +264,11 @@ export const bankDefinitions: { [contractName: string]: BankInfo } = {
     sort: 9,
     closedForStaking: true,
   },
-  LibraAstarLPTShareRewardPool: {
+  LibraAstarLPLShareRewardPool: {
     name: 'Earn LSHARE by LIBRA-WASTR LP',
     poolId: 0,
     sectionInUI: 2,
-    contract: 'LibraAstarLPTShareRewardPool',
+    contract: 'LibraAstarLPLShareRewardPool',
     depositTokenName: 'LIBRA-ASTR-LP',
     earnTokenName: 'LSHARE',
     finished: false,
