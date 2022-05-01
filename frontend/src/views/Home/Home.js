@@ -130,7 +130,7 @@ const Home = () => {
   const tBondTotalSupply = useMemo(() => (LBondStats ? String(LBondStats.totalSupply) : null), [LBondStats]);
 
   const tombLpZap = useZap({ depositTokenName: 'LIBRA-ASTR-LP' });
-  const tshareLpZap = useZap({ depositTokenName: 'LSHARE-ASTR-LP' });
+  const lshareLpZap = useZap({ depositTokenName: 'LSHARE-ASTR-LP' });
 
   const StyledLink = styled.a`
     font-weight: 700;
@@ -156,7 +156,7 @@ const Home = () => {
       decimals={18}
       onConfirm={(zappingToken, tokenName, amount) => {
         if (Number(amount) <= 0 || isNaN(Number(amount))) return;
-        tshareLpZap.onZap(zappingToken, tokenName, amount);
+        lshareLpZap.onZap(zappingToken, tokenName, amount);
         onDissmissTshareZap();
       }}
       tokenName={'LSHARE-ASTR-LP'}
