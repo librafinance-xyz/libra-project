@@ -59,7 +59,7 @@ const Home = () => {
   // const libraAstarLpStats = useLpStats('TOMB-FTM-LP');
   const libraAstarLpStats = useLpStats('LIBRA-ASTR-LP');
 
-  const tShareFtmLpStats = useLpStats('LSHARE-ASTR-LP');
+  const lShareAstarLpStats = useLpStats('LSHARE-ASTR-LP');
   const libraStats = useLibraStats();
   const LShareStats = useLShareStats();
   const LBondStats = useBondStats();
@@ -89,7 +89,7 @@ const Home = () => {
   const buyTShareAddress = 'https://twinkleswap.finance/swap?outputCurrency=' + tShare.address;
 
   const libraLPStats = useMemo(() => (libraAstarLpStats ? libraAstarLpStats : null), [libraAstarLpStats]);
-  const lshareLPStats = useMemo(() => (tShareFtmLpStats ? tShareFtmLpStats : null), [tShareFtmLpStats]);
+  const lshareLPStats = useMemo(() => (lShareAstarLpStats ? lShareAstarLpStats : null), [lShareAstarLpStats]);
   const astarPriceInDollars = useMemo(
     () => (libraStats ? Number(libraStats.priceInDollars).toFixed(2) : null),
     [libraStats],
