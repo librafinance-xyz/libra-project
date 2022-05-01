@@ -4,14 +4,14 @@ import { useWallet } from 'use-wallet';
 import { BigNumber } from 'ethers';
 import { parseUnits } from 'ethers/lib/utils';
 
-const useEstimateTShare = (tbondAmount: string) => {
+const useEstimateTShare = (lbondAmount: string) => {
   const [estimateAmount, setEstimateAmount] = useState<string>('');
   const { account } = useWallet();
   const libraFinance = useLibraFinance();
 
   const estimateAmountOfTShare = useCallback(async () => {
-    const tbondAmountBn = parseUnits(tbondAmount);
-    const amount = await libraFinance.estimateAmountOfTShare(tbondAmountBn.toString());
+    const lbondAmountBn = parseUnits(lbondAmount);
+    const amount = await libraFinance.estimateAmountOfTShare(lbondAmountBn.toString());
     setEstimateAmount(amount);
   }, [account]);
 

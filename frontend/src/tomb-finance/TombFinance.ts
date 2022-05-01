@@ -1060,14 +1060,14 @@ export class TombFinance {
       );
     }
   }
-  async swapTBondToTShare(tbondAmount: BigNumber): Promise<TransactionResponse> {
+  async swapTBondToTShare(lbondAmount: BigNumber): Promise<TransactionResponse> {
     const { TShareSwapper } = this.contracts;
-    return await TShareSwapper.swapTBondToTShare(tbondAmount);
+    return await TShareSwapper.swapTBondToTShare(lbondAmount);
   }
-  async estimateAmountOfTShare(tbondAmount: string): Promise<string> {
+  async estimateAmountOfTShare(lbondAmount: string): Promise<string> {
     const { TShareSwapper } = this.contracts;
     try {
-      const estimateBN = await TShareSwapper.estimateAmountOfTShare(parseUnits(tbondAmount, 18));
+      const estimateBN = await TShareSwapper.estimateAmountOfTShare(parseUnits(lbondAmount, 18));
       return getDisplayBalance(estimateBN, 18, 6);
     } catch (err) {
       console.error(`Failed to fetch estimate tshare amount: ${err}`);

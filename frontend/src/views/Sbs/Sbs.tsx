@@ -35,7 +35,7 @@ const Sbs: React.FC = () => {
   const { path } = useRouteMatch();
   const { account } = useWallet();
   const libraFinance = useLibraFinance();
-  const [tbondAmount, setTbondAmount] = useState('');
+  const [lbondAmount, setTbondAmount] = useState('');
   const [tshareAmount, setTshareAmount] = useState('');
 
   const [approveStatus, approve] = useApprove(libraFinance.TBOND, libraFinance.contracts.TShareSwapper.address);
@@ -125,7 +125,7 @@ const Sbs: React.FC = () => {
                               <TokenInput
                                 onSelectMax={handleTBondSelectMax}
                                 onChange={handleTBondChange}
-                                value={tbondAmount}
+                                value={lbondAmount}
                                 max={bondBalance}
                                 symbol="TBond"
                               ></TokenInput>
@@ -187,7 +187,7 @@ const Sbs: React.FC = () => {
                           <Button
                             color="primary"
                             variant="contained"
-                            onClick={() => onSwapTShare(tbondAmount.toString())}
+                            onClick={() => onSwapTShare(lbondAmount.toString())}
                             size="medium"
                           >
                             Swap

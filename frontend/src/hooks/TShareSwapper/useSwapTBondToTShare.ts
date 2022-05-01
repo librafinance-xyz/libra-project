@@ -9,9 +9,9 @@ const useSwapTBondToTShare = () => {
   const handleTransactionReceipt = useHandleTransactionReceipt();
 
   const handleSwapTShare = useCallback(
-    (tbondAmount: string) => {
-      const tbondAmountBn = parseUnits(tbondAmount, 18);
-      handleTransactionReceipt(libraFinance.swapTBondToTShare(tbondAmountBn), `Swap ${tbondAmount} TBond to TShare`);
+    (lbondAmount: string) => {
+      const lbondAmountBn = parseUnits(lbondAmount, 18);
+      handleTransactionReceipt(libraFinance.swapTBondToTShare(lbondAmountBn), `Swap ${lbondAmount} TBond to TShare`);
     },
     [libraFinance, handleTransactionReceipt],
   );
