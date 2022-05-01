@@ -143,16 +143,16 @@ export class TombFinance {
     const tokenAmountBN = await token0.balanceOf(lpToken.address);
     const tokenAmount = getDisplayBalance(tokenAmountBN, 18);
 
-    const ftmAmountBN = await this.FTM.balanceOf(lpToken.address);
-    const ftmAmount = getDisplayBalance(ftmAmountBN, 18);
+    const astarAmountBN = await this.FTM.balanceOf(lpToken.address);
+    const astarAmount = getDisplayBalance(astarAmountBN, 18);
     const tokenAmountInOneLP = Number(tokenAmount) / Number(lpTokenSupply);
-    const ftmAmountInOneLP = Number(ftmAmount) / Number(lpTokenSupply);
+    const astarAmountInOneLP = Number(astarAmount) / Number(lpTokenSupply);
     const lpTokenPrice = await this.getLPTokenPrice(lpToken, token0, isTomb, false);
     const lpTokenPriceFixed = Number(lpTokenPrice).toFixed(2).toString();
     const liquidity = (Number(lpTokenSupply) * Number(lpTokenPrice)).toFixed(2).toString();
     return {
       tokenAmount: tokenAmountInOneLP.toFixed(2).toString(),
-      ftmAmount: ftmAmountInOneLP.toFixed(2).toString(),
+      astarAmount: astarAmountInOneLP.toFixed(2).toString(),
       priceOfOne: lpTokenPriceFixed,
       totalLiquidity: liquidity,
       totalSupply: Number(lpTokenSupply).toFixed(2).toString(),
@@ -655,11 +655,11 @@ export class TombFinance {
   //     const wftmToToken = await FetcherSpirit.fetchPairData(wftm, token, this.provider);
   //     const liquidityToken = wftmToToken.liquidityToken;
   //     let ftmBalanceInLP = await WFTM.balanceOf(liquidityToken.address);
-  //     let ftmAmount = Number(getFullDisplayBalance(ftmBalanceInLP, WFTM.decimal));
+  //     let astarAmount = Number(getFullDisplayBalance(ftmBalanceInLP, WFTM.decimal));
   //     let shibaBalanceInLP = await tokenContract.balanceOf(liquidityToken.address);
   //     let shibaAmount = Number(getFullDisplayBalance(shibaBalanceInLP, tokenContract.decimal));
   //     const priceOfOneFtmInDollars = await this.getWASTRPriceFromArthswapASTRUSDC();
-  //     let priceOfShiba = (ftmAmount / shibaAmount) * Number(priceOfOneFtmInDollars);
+  //     let priceOfShiba = (astarAmount / shibaAmount) * Number(priceOfOneFtmInDollars);
   //     return priceOfShiba.toString();
   //   } catch (err) {
   //     console.error(`Failed to fetch token price of ${tokenContract.symbol}: ${err}`);
@@ -926,15 +926,15 @@ export class TombFinance {
     return true;
   }
 
-  async provideTombFtmLP(ftmAmount: string, tombAmount: BigNumber): Promise<TransactionResponse> {
+  async provideTombFtmLP(astarAmount: string, tombAmount: BigNumber): Promise<TransactionResponse> {
     const { TaxOffice } = this.contracts;
     let overrides = {
-      value: parseUnits(ftmAmount, 18),
+      value: parseUnits(astarAmount, 18),
     };
     return await TaxOffice.addLiquidityETHTaxFree(
       tombAmount,
       tombAmount.mul(992).div(1000),
-      parseUnits(ftmAmount, 18).mul(992).div(1000),
+      parseUnits(astarAmount, 18).mul(992).div(1000),
       overrides,
     );
   }

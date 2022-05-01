@@ -9,11 +9,11 @@ const useProvideTombFtmLP = () => {
   const handleTransactionReceipt = useHandleTransactionReceipt();
 
   const handleProvideTombFtmLP = useCallback(
-    (ftmAmount: string, tombAmount: string) => {
+    (astarAmount: string, tombAmount: string) => {
       const tombAmountBn = parseUnits(tombAmount);
       handleTransactionReceipt(
-        libraFinance.provideTombFtmLP(ftmAmount, tombAmountBn),
-        `Provide Tomb-FTM LP ${tombAmount} ${ftmAmount} using ${TAX_OFFICE_ADDR}`,
+        libraFinance.provideTombFtmLP(astarAmount, tombAmountBn),
+        `Provide Tomb-FTM LP ${tombAmount} ${astarAmount} using ${TAX_OFFICE_ADDR}`,
       );
     },
     [libraFinance, handleTransactionReceipt],

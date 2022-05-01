@@ -27,7 +27,7 @@ function isNumeric(n) {
 
 const ProvideLiquidity = () => {
   const [tombAmount, setTombAmount] = useState(0);
-  const [ftmAmount, setFtmAmount] = useState(0);
+  const [astarAmount, setFtmAmount] = useState(0);
   const [lpTokensAmount, setLpTokensAmount] = useState(0);
   const { balance } = useWallet();
   const libraStats = useLibraStats();
@@ -58,7 +58,7 @@ const ProvideLiquidity = () => {
     setTombAmount(e.currentTarget.value);
     const quoteFromSpooky = await libraFinance.quoteFromSpooky(e.currentTarget.value, 'TOMB');
     setFtmAmount(quoteFromSpooky);
-    setLpTokensAmount(quoteFromSpooky / tombLPStats.ftmAmount);
+    setLpTokensAmount(quoteFromSpooky / tombLPStats.astarAmount);
   };
 
   const handleFtmChange = async (e) => {
@@ -76,13 +76,13 @@ const ProvideLiquidity = () => {
     const quoteFromSpooky = await libraFinance.quoteFromSpooky(getDisplayBalance(tombBalance), 'TOMB');
     setTombAmount(getDisplayBalance(tombBalance));
     setFtmAmount(quoteFromSpooky);
-    setLpTokensAmount(quoteFromSpooky / tombLPStats.ftmAmount);
+    setLpTokensAmount(quoteFromSpooky / tombLPStats.astarAmount);
   };
   const handleFtmSelectMax = async () => {
     const quoteFromSpooky = await libraFinance.quoteFromSpooky(ftmBalance, 'FTM');
     setFtmAmount(ftmBalance);
     setTombAmount(quoteFromSpooky);
-    setLpTokensAmount(ftmBalance / tombLPStats.ftmAmount);
+    setLpTokensAmount(ftmBalance / tombLPStats.astarAmount);
   };
   return (
     <Page>
@@ -121,7 +121,7 @@ const ProvideLiquidity = () => {
                         <TokenInput
                           onSelectMax={handleFtmSelectMax}
                           onChange={handleFtmChange}
-                          value={ftmAmount}
+                          value={astarAmount}
                           max={ftmBalance}
                           symbol={'FTM'}
                         ></TokenInput>
@@ -137,7 +137,7 @@ const ProvideLiquidity = () => {
                         {approveTaxOfficeStatus === ApprovalState.APPROVED ? (
                           <Button
                             variant="contained"
-                            onClick={() => onProvideTombFtmLP(ftmAmount.toString(), tombAmount.toString())}
+                            onClick={() => onProvideTombFtmLP(astarAmount.toString(), tombAmount.toString())}
                             color="primary"
                             style={{ margin: '0 10px', color: '#fff' }}
                           >
