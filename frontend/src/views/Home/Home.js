@@ -85,7 +85,7 @@ const Home = () => {
     tShare = lShareDev;
   }
 
-  const buyTombAddress = 'https://twinkleswap.finance/swap?outputCurrency=' + tomb.address;
+  const buyLibraAddress = 'https://twinkleswap.finance/swap?outputCurrency=' + tomb.address;
   const buyTShareAddress = 'https://twinkleswap.finance/swap?outputCurrency=' + tShare.address;
 
   const tombLPStats = useMemo(() => (libraAstarLpStats ? libraAstarLpStats : null), [libraAstarLpStats]);
