@@ -18,11 +18,11 @@ import useLShareStats from '../../hooks/useLShareStats';
 import useTotalValueLocked from '../../hooks/useTotalValueLocked';
 import useFantomPrice from '../../hooks/useFantomPrice';
 // import { tomb as tombStag, tShare as lShareStag } from '../../tomb-finance/deployments/deployments.stag.json';
-// import { tomb as tombProd, tShare as tShareProd } from '../../tomb-finance/deployments/deployments.prod.json';
+// import { tomb as tombProd, tShare as lShareProd } from '../../tomb-finance/deployments/deployments.prod.json';
 // temporary
 import { tomb as tombStag, tShare as lShareStag } from '../../tomb-finance/deployments/deployments.dev.json';
-import { tomb as tombProd, tShare as tShareProd } from '../../tomb-finance/deployments/deployments.dev.json';
-import { tomb as tombDev, tShare as tShareDev } from '../../tomb-finance/deployments/deployments.dev.json';
+import { tomb as tombProd, tShare as lShareProd } from '../../tomb-finance/deployments/deployments.dev.json';
+import { tomb as tombDev, tShare as lShareDev } from '../../tomb-finance/deployments/deployments.dev.json';
 import AppHostEnv from '../../config';
 
 import Countdown from 'react-countdown';
@@ -78,11 +78,11 @@ const Home = () => {
   } else if (AppHostEnv == 'prod') {
     // prod
     tomb = tombProd;
-    tShare = tShareProd;
+    tShare = lShareProd;
   } else {
     // dev
     tomb = tombDev;
-    tShare = tShareDev;
+    tShare = lShareDev;
   }
 
   const buyTombAddress = 'https://twinkleswap.finance/swap?outputCurrency=' + tomb.address;
