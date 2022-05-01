@@ -14,7 +14,7 @@ import useHarvest from '../../../hooks/useHarvest';
 
 import { getDisplayBalance } from '../../../utils/formatBalance';
 import TokenSymbol from '../../../components/TokenSymbol';
-import { Bank } from '../../../tomb-finance';
+import { Bank } from '../../../libra-finance';
 import useLibraStats from '../../../hooks/useLibraStats';
 import useShareStats from '../../../hooks/useLShareStats';
 

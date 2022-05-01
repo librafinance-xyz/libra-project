@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useState } from 'react';
 import { BigNumber } from 'ethers';
-import ERC20 from '../tomb-finance/ERC20';
+import ERC20 from '../libra-finance/ERC20';
 import useLibraFinance from './useLibraFinance';
 import config from '../config';
 

@@ -1,7 +1,7 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import Context from './context';
 import useLibraFinance from '../../hooks/useLibraFinance';
-import { Bank } from '../../tomb-finance';
+import { Bank } from '../../libra-finance';
 import config, { bankDefinitions } from '../../config';
 
 const Banks: React.FC = ({ children }) => {

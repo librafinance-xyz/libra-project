@@ -1,7 +1,7 @@
 import { useCallback } from 'react';
 import useLibraFinance from './useLibraFinance';
 import useHandleTransactionReceipt from './useHandleTransactionReceipt';
-import { Bank } from '../tomb-finance';
+import { Bank } from '../libra-finance';
 
 const useHarvest = (bank: Bank) => {
   const libraFinance = useLibraFinance();

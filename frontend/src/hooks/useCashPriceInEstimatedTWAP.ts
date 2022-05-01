@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import useLibraFinance from './useLibraFinance';
-import { TokenStat } from '../tomb-finance/types';
+import { TokenStat } from '../libra-finance/types';
 import useRefresh from './useRefresh';
 
 const useCashPriceInEstimatedTWAP = () => {

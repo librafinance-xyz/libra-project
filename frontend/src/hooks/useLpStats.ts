@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import useLibraFinance from './useLibraFinance';
-import { LPStat } from '../tomb-finance/types';
+import { LPStat } from '../libra-finance/types';
 import useRefresh from './useRefresh';
 
 const useLpStats = (lpTicker: string) => {
