@@ -73,13 +73,13 @@ const Cemetery = () => {
     const address = (await window.ethereum.request({ method: 'eth_accounts' }))[0];
     if (!address) return;
 
-    const claimable = await rebateStats.RebateTreasury.methods.claimableTomb(address).call();
+    const claimable = await rebateStats.RebateTreasury.methods.claimableLibra(address).call();
     const vesting = await rebateStats.RebateTreasury.methods.vesting(address).call();
     setClaimablelibra(+web3.utils.fromWei(claimable));
     setVested(+web3.utils.fromWei(BN(vesting.amount).sub(BN(vesting.claimed))));
   }
 
-  async function claimTomb() {
+  async function claimLibra() {
     console.log('claiming the libra');
     if (!window.ethereum) return;
     const address = (await window.ethereum.request({ method: 'eth_accounts' }))[0];
@@ -163,7 +163,7 @@ const Cemetery = () => {
                           color="primary"
                           size="small"
                           variant="contained"
-                          onClick={claimTomb}
+                          onClick={claimLibra}
                           style={{ marginTop: '8px' }}
                         >
                           CLAIM

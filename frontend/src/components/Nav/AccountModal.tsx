@@ -13,7 +13,7 @@ const AccountModal: React.FC<ModalProps> = ({ onDismiss }) => {
   const libraFinance = useLibraFinance();
 
   const libraBalance = useTokenBalance(libraFinance.LIBRA);
-  const displayTombBalance = useMemo(() => getDisplayBalance(libraBalance), [libraBalance]);
+  const displayLibraBalance = useMemo(() => getDisplayBalance(libraBalance), [libraBalance]);
 
   const lshareBalance = useTokenBalance(libraFinance.LSHARE);
   const displayTshareBalance = useMemo(() => getDisplayBalance(lshareBalance), [lshareBalance]);
@@ -29,7 +29,7 @@ const AccountModal: React.FC<ModalProps> = ({ onDismiss }) => {
         <StyledBalanceWrapper>
           <TokenSymbol symbol="LIBRA" />
           <StyledBalance>
-            <StyledValue>{displayTombBalance}</StyledValue>
+            <StyledValue>{displayLibraBalance}</StyledValue>
             <Label text="LIBRA Available" variant="primary" />
           </StyledBalance>
         </StyledBalanceWrapper>

@@ -101,7 +101,7 @@ const ZapModal: React.FC<ZapProps> = ({ onConfirm, onDismiss, tokenName = '', de
         <StyledMenuItem value={FTM_TICKER}>ASTR</StyledMenuItem>
         <StyledMenuItem value={TSHARE_TICKER}>LSHARE</StyledMenuItem>
 
-        {/* Tomb as an input for zapping will be disabled due to issues occuring with the Gatekeeper system */}
+        {/* Libra as an input for zapping will be disabled due to issues occuring with the Gatekeeper system */}
         {/* <StyledMenuItem value={LIBRA_TICKER}>LIBRA</StyledMenuItem> */}
       </Select>
       <TokenInput

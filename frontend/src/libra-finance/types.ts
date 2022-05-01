@@ -54,5 +54,5 @@ export type TShareSwapperStat = {
   lbondBalance: string;
   // libraPrice: string;
   // lsharePrice: string;
-  rateTSharePerTomb: string;
+  rateTSharePerLibra: string;
 };

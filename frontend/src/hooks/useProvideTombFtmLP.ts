@@ -4,21 +4,21 @@ import useHandleTransactionReceipt from './useHandleTransactionReceipt';
 import { parseUnits } from 'ethers/lib/utils';
 import { TAX_OFFICE_ADDR } from './../utils/constants';
 
-const useProvideTombFtmLP = () => {
+const useProvideLibraFtmLP = () => {
   const libraFinance = useLibraFinance();
   const handleTransactionReceipt = useHandleTransactionReceipt();
 
-  const handleProvideTombFtmLP = useCallback(
+  const handleProvideLibraFtmLP = useCallback(
     (astarAmount: string, libraAmount: string) => {
       const libraAmountBn = parseUnits(libraAmount);
       handleTransactionReceipt(
-        libraFinance.provideTombFtmLP(astarAmount, libraAmountBn),
-        `Provide Tomb-FTM LP ${libraAmount} ${astarAmount} using ${TAX_OFFICE_ADDR}`,
+        libraFinance.provideLibraFtmLP(astarAmount, libraAmountBn),
+        `Provide Libra-FTM LP ${libraAmount} ${astarAmount} using ${TAX_OFFICE_ADDR}`,
       );
     },
     [libraFinance, handleTransactionReceipt],
   );
-  return { onProvideTombFtmLP: handleProvideTombFtmLP };
+  return { onProvideLibraFtmLP: handleProvideLibraFtmLP };
 };
 
-export default useProvideTombFtmLP;
+export default useProvideLibraFtmLP;

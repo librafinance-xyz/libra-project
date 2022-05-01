@@ -71,10 +71,10 @@ const Sbs: React.FC = () => {
 
   const handleTShareSelectMax = async () => {
     setTshareAmount(String(lshareBalance));
-    const rateTSharePerTomb = (await libraFinance.getTShareSwapperStat(account)).rateTSharePerTomb;
+    const rateTSharePerLibra = (await libraFinance.getTShareSwapperStat(account)).rateTSharePerLibra;
     const updateTBondAmount = BigNumber.from(10)
       .pow(30)
-      .div(BigNumber.from(rateTSharePerTomb))
+      .div(BigNumber.from(rateTSharePerLibra))
       .mul(Number(lshareBalance) * 1e6);
     setTbondAmount(getDisplayBalance(updateTBondAmount, 18, 6));
   };
@@ -88,10 +88,10 @@ const Sbs: React.FC = () => {
     }
     if (!isNumeric(inputData)) return;
     setTshareAmount(inputData);
-    const rateTSharePerTomb = (await libraFinance.getTShareSwapperStat(account)).rateTSharePerTomb;
+    const rateTSharePerLibra = (await libraFinance.getTShareSwapperStat(account)).rateTSharePerLibra;
     const updateTBondAmount = BigNumber.from(10)
       .pow(30)
-      .div(BigNumber.from(rateTSharePerTomb))
+      .div(BigNumber.from(rateTSharePerLibra))
       .mul(Number(inputData) * 1e6);
     setTbondAmount(getDisplayBalance(updateTBondAmount, 18, 6));
   };

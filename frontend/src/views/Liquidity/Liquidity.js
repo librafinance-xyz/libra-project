@@ -12,7 +12,7 @@ import useTokenBalance from '../../hooks/useTokenBalance';
 import { getDisplayBalance } from '../../utils/formatBalance';
 import useApproveTaxOffice from '../../hooks/useApproveTaxOffice';
 import { ApprovalState } from '../../hooks/useApprove';
-import useProvideTombFtmLP from '../../hooks/useProvideTombFtmLP';
+import useProvideLibraFtmLP from '../../hooks/useProvideLibraFtmLP';
 import { Alert } from '@material-ui/lab';
 
 const BackgroundImage = createGlobalStyle`
@@ -26,7 +26,7 @@ function isNumeric(n) {
 }
 
 const ProvideLiquidity = () => {
-  const [libraAmount, setTombAmount] = useState(0);
+  const [libraAmount, setLibraAmount] = useState(0);
   const [astarAmount, setFtmAmount] = useState(0);
   const [lpTokensAmount, setLpTokensAmount] = useState(0);
   const { balance } = useWallet();
@@ -35,7 +35,7 @@ const ProvideLiquidity = () => {
   const [approveTaxOfficeStatus, approveTaxOffice] = useApproveTaxOffice();
   const libraBalance = useTokenBalance(libraFinance.LIBRA);
   const ftmBalance = (balance / 1e18).toFixed(4);
-  const { onProvideTombFtmLP } = useProvideTombFtmLP();
+  const { onProvideLibraFtmLP } = useProvideLibraFtmLP();
   // const libraAstarLpStats = useLpStats('LIBRA-FTM-LP');
   const libraAstarLpStats = useLpStats('LIBRA-ASTR-LP');
 
@@ -50,12 +50,12 @@ const ProvideLiquidity = () => {
   );
   // const classes = useStyles();
 
-  const handleTombChange = async (e) => {
+  const handleLibraChange = async (e) => {
     if (e.currentTarget.value === '' || e.currentTarget.value === 0) {
-      setTombAmount(e.currentTarget.value);
+      setLibraAmount(e.currentTarget.value);
     }
     if (!isNumeric(e.currentTarget.value)) return;
-    setTombAmount(e.currentTarget.value);
+    setLibraAmount(e.currentTarget.value);
     const quoteFromSpooky = await libraFinance.quoteFromSpooky(e.currentTarget.value, 'LIBRA');
     setFtmAmount(quoteFromSpooky);
     setLpTokensAmount(quoteFromSpooky / libraLPStats.astarAmount);
@@ -68,20 +68,20 @@ const ProvideLiquidity = () => {
     if (!isNumeric(e.currentTarget.value)) return;
     setFtmAmount(e.currentTarget.value);
     const quoteFromSpooky = await libraFinance.quoteFromSpooky(e.currentTarget.value, 'FTM');
-    setTombAmount(quoteFromSpooky);
+    setLibraAmount(quoteFromSpooky);
 
     setLpTokensAmount(quoteFromSpooky / libraLPStats.tokenAmount);
   };
-  const handleTombSelectMax = async () => {
+  const handleLibraSelectMax = async () => {
     const quoteFromSpooky = await libraFinance.quoteFromSpooky(getDisplayBalance(libraBalance), 'LIBRA');
-    setTombAmount(getDisplayBalance(libraBalance));
+    setLibraAmount(getDisplayBalance(libraBalance));
     setFtmAmount(quoteFromSpooky);
     setLpTokensAmount(quoteFromSpooky / libraLPStats.astarAmount);
   };
   const handleFtmSelectMax = async () => {
     const quoteFromSpooky = await libraFinance.quoteFromSpooky(ftmBalance, 'FTM');
     setFtmAmount(ftmBalance);
-    setTombAmount(quoteFromSpooky);
+    setLibraAmount(quoteFromSpooky);
     setLpTokensAmount(ftmBalance / libraLPStats.astarAmount);
   };
   return (
@@ -110,8 +110,8 @@ const ProvideLiquidity = () => {
                     <Grid container>
                       <Grid item xs={12}>
                         <TokenInput
-                          onSelectMax={handleTombSelectMax}
-                          onChange={handleTombChange}
+                          onSelectMax={handleLibraSelectMax}
+                          onChange={handleLibraChange}
                           value={libraAmount}
                           max={getDisplayBalance(libraBalance)}
                           symbol={'LIBRA'}
@@ -137,7 +137,7 @@ const ProvideLiquidity = () => {
                         {approveTaxOfficeStatus === ApprovalState.APPROVED ? (
                           <Button
                             variant="contained"
-                            onClick={() => onProvideTombFtmLP(astarAmount.toString(), libraAmount.toString())}
+                            onClick={() => onProvideLibraFtmLP(astarAmount.toString(), libraAmount.toString())}
                             color="primary"
                             style={{ margin: '0 10px', color: '#fff' }}
                           >

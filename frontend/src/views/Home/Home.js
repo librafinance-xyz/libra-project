@@ -138,13 +138,13 @@ const Home = () => {
     color: var(--accent-light);
   `;
 
-  const [onPresentTombZap, onDissmissTombZap] = useModal(
+  const [onPresentLibraZap, onDissmissLibraZap] = useModal(
     <ZapModal
       decimals={18}
       onConfirm={(zappingToken, tokenName, amount) => {
         if (Number(amount) <= 0 || isNaN(Number(amount))) return;
         libraLpZap.onZap(zappingToken, tokenName, amount);
-        onDissmissTombZap();
+        onDissmissLibraZap();
       }}
       // tokenName={'LIBRA-FTM-LP'}
       tokenName={'LIBRA-ASTR-LP'}
@@ -473,7 +473,7 @@ const Home = () => {
               </Box>
               {/*
               <Box mt={2}>
-                <Button color="primary" disabled={true} onClick={onPresentTombZap} variant="contained">
+                <Button color="primary" disabled={true} onClick={onPresentLibraZap} variant="contained">
                   Zap In
                 </Button>
               </Box>*/}
