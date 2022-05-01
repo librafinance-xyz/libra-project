@@ -122,12 +122,12 @@ const Home = () => {
     () => (LBondStats ? Number(LBondStats.priceInDollars).toFixed(2) : null),
     [LBondStats],
   );
-  const tBondPriceInFTM = useMemo(() => (LBondStats ? Number(LBondStats.tokenInAstar).toFixed(4) : null), [LBondStats]);
+  const LBondPriceInFTM = useMemo(() => (LBondStats ? Number(LBondStats.tokenInAstar).toFixed(4) : null), [LBondStats]);
   const tBondCirculatingSupply = useMemo(
     () => (LBondStats ? String(LBondStats.circulatingSupply) : null),
     [LBondStats],
   );
-  const tBondTotalSupply = useMemo(() => (LBondStats ? String(LBondStats.totalSupply) : null), [LBondStats]);
+  const LBondTotalSupply = useMemo(() => (LBondStats ? String(LBondStats.totalSupply) : null), [LBondStats]);
 
   const tombLpZap = useZap({ depositTokenName: 'LIBRA-ASTR-LP' });
   const lshareLpZap = useZap({ depositTokenName: 'LSHARE-ASTR-LP' });
@@ -449,7 +449,7 @@ const Home = () => {
               </Box>
               Current Price
               <Box>
-                <span style={{ fontSize: '30px' }}>{tBondPriceInFTM ? tBondPriceInFTM : '-.----'} ASTR</span>
+                <span style={{ fontSize: '30px' }}>{LBondPriceInFTM ? LBondPriceInFTM : '-.----'} ASTR</span>
               </Box>
               <Box>
                 <span style={{ fontSize: '16px' }}>${lBondPriceInDollars ? lBondPriceInDollars : '-.--'}</span>
@@ -457,7 +457,7 @@ const Home = () => {
               <span style={{ fontSize: '12px' }}>
                 Market Cap: ${(tBondCirculatingSupply * lBondPriceInDollars).toFixed(2)} <br />
                 Circulating Supply: {tBondCirculatingSupply} <br />
-                Total Supply: {tBondTotalSupply}
+                Total Supply: {LBondTotalSupply}
               </span>
             </CardContent>
           </Card>
