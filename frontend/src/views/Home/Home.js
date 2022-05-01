@@ -17,10 +17,10 @@ import useBondStats from '../../hooks/useBondStats';
 import useLShareStats from '../../hooks/useLShareStats';
 import useTotalValueLocked from '../../hooks/useTotalValueLocked';
 import useFantomPrice from '../../hooks/useFantomPrice';
-// import { tomb as tombStag, tShare as lShareStag } from '../../tomb-finance/deployments/deployments.stag.json';
+// import { tomb as libraStag, tShare as lShareStag } from '../../tomb-finance/deployments/deployments.stag.json';
 // import { tomb as tombProd, tShare as lShareProd } from '../../tomb-finance/deployments/deployments.prod.json';
 // temporary
-import { tomb as tombStag, tShare as lShareStag } from '../../tomb-finance/deployments/deployments.dev.json';
+import { tomb as libraStag, tShare as lShareStag } from '../../tomb-finance/deployments/deployments.dev.json';
 import { tomb as tombProd, tShare as lShareProd } from '../../tomb-finance/deployments/deployments.dev.json';
 import { tomb as tombDev, tShare as lShareDev } from '../../tomb-finance/deployments/deployments.dev.json';
 import AppHostEnv from '../../config';
@@ -73,7 +73,7 @@ const Home = () => {
   // if (!process.env.NODE_ENV || process.env.NODE_ENV === 'development') {
   if (AppHostEnv == 'stag') {
     // stag
-    tomb = tombStag;
+    tomb = libraStag;
     tShare = lShareStag;
   } else if (AppHostEnv == 'prod') {
     // prod
