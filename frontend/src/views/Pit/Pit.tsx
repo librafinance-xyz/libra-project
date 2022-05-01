@@ -45,7 +45,7 @@ const Pit: React.FC = () => {
     async (amount: string) => {
       const tx = await libraFinance.buyBonds(amount);
       addTransaction(tx, {
-        summary: `Buy ${Number(amount).toFixed(2)} LBOND with ${amount} TOMB`,
+        summary: `Buy ${Number(amount).toFixed(2)} LBOND with ${amount} LIBRA`,
       });
     },
     [libraFinance, addTransaction],
@@ -77,7 +77,7 @@ const Pit: React.FC = () => {
               <StyledCardWrapper>
                 <ExchangeCard
                   action="Purchase"
-                  fromToken={libraFinance.TOMB}
+                  fromToken={libraFinance.LIBRA}
                   fromTokenName="LIBRA"
                   toToken={libraFinance.LBOND}
                   toTokenName="LBOND"
@@ -108,7 +108,7 @@ const Pit: React.FC = () => {
                   action="Redeem"
                   fromToken={libraFinance.LBOND}
                   fromTokenName="LBOND"
-                  toToken={libraFinance.TOMB}
+                  toToken={libraFinance.LIBRA}
                   toTokenName="LIBRA"
                   priceDesc={`${getDisplayBalance(bondBalance)} LBOND Available in wallet`}
                   onExchange={handleRedeemBonds}

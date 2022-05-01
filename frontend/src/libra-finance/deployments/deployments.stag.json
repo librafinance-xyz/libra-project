@@ -1015,7 +1015,7 @@
       },
       {
         "inputs": [],
-        "name": "INITIAL_TOMB_POOL_DISTRIBUTION",
+        "name": "INITIAL_LIBRA_POOL_DISTRIBUTION",
         "outputs": [
           {
             "internalType": "uint256",
@@ -4935,7 +4935,7 @@
             "type": "address"
           }
         ],
-        "name": "pendingTOMB",
+        "name": "pendingLIBRA",
         "outputs": [
           {
             "internalType": "uint256",
@@ -5421,7 +5421,7 @@
             "type": "address"
           }
         ],
-        "name": "pendingTOMB",
+        "name": "pendingLIBRA",
         "outputs": [
           {
             "internalType": "uint256",
@@ -5907,7 +5907,7 @@
             "type": "address"
           }
         ],
-        "name": "pendingTOMB",
+        "name": "pendingLIBRA",
         "outputs": [
           {
             "internalType": "uint256",
@@ -6393,7 +6393,7 @@
             "type": "address"
           }
         ],
-        "name": "pendingTOMB",
+        "name": "pendingLIBRA",
         "outputs": [
           {
             "internalType": "uint256",
@@ -6880,7 +6880,7 @@
             "type": "address"
           }
         ],
-        "name": "pendingTOMB",
+        "name": "pendingLIBRA",
         "outputs": [
           {
             "internalType": "uint256",
@@ -7366,7 +7366,7 @@
             "type": "address"
           }
         ],
-        "name": "pendingTOMB",
+        "name": "pendingLIBRA",
         "outputs": [
           {
             "internalType": "uint256",
@@ -7852,7 +7852,7 @@
             "type": "address"
           }
         ],
-        "name": "pendingTOMB",
+        "name": "pendingLIBRA",
         "outputs": [
           {
             "internalType": "uint256",
@@ -8338,7 +8338,7 @@
             "type": "address"
           }
         ],
-        "name": "pendingTOMB",
+        "name": "pendingLIBRA",
         "outputs": [
           {
             "internalType": "uint256",
@@ -8825,7 +8825,7 @@
             "type": "address"
           }
         ],
-        "name": "pendingTOMB",
+        "name": "pendingLIBRA",
         "outputs": [
           {
             "internalType": "uint256",
@@ -9311,7 +9311,7 @@
             "type": "address"
           }
         ],
-        "name": "pendingTOMB",
+        "name": "pendingLIBRA",
         "outputs": [
           {
             "internalType": "uint256",
@@ -9798,7 +9798,7 @@
             "type": "address"
           }
         ],
-        "name": "pendingTOMB",
+        "name": "pendingLIBRA",
         "outputs": [
           {
             "internalType": "uint256",
@@ -10285,7 +10285,7 @@
             "type": "address"
           }
         ],
-        "name": "pendingTOMB",
+        "name": "pendingLIBRA",
         "outputs": [
           {
             "internalType": "uint256",
@@ -10771,7 +10771,7 @@
             "type": "address"
           }
         ],
-        "name": "pendingTOMB",
+        "name": "pendingLIBRA",
         "outputs": [
           {
             "internalType": "uint256",
@@ -11257,7 +11257,7 @@
             "type": "address"
           }
         ],
-        "name": "pendingTOMB",
+        "name": "pendingLIBRA",
         "outputs": [
           {
             "internalType": "uint256",
@@ -11748,7 +11748,7 @@
             "type": "address"
           }
         ],
-        "name": "pendingTOMB",
+        "name": "pendingLIBRA",
         "outputs": [
           {
             "internalType": "uint256",
@@ -12239,7 +12239,7 @@
             "type": "address"
           }
         ],
-        "name": "pendingTOMB",
+        "name": "pendingLIBRA",
         "outputs": [
           {
             "internalType": "uint256",
@@ -17252,7 +17252,7 @@
       },
       {
         "inputs": [],
-        "name": "INITIAL_TOMB_POOL_DISTRIBUTION",
+        "name": "INITIAL_LIBRA_POOL_DISTRIBUTION",
         "outputs": [
           {
             "internalType": "uint256",

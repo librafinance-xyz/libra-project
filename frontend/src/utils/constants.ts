@@ -1,4 +1,4 @@
-export const TOMB_TICKER = 'TOMB';
+export const LIBRA_TICKER = 'LIBRA';
 export const TSHARE_TICKER = 'TSHARE';
 export const LBOND_TICKER = 'LBOND';
 export const FTM_TICKER = 'FTM';

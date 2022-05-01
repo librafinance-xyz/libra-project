@@ -9,7 +9,7 @@ const useTreasuryAmount = () => {
   useEffect(() => {
     if (libraFinance) {
       const { Treasury } = libraFinance.contracts;
-      libraFinance.TOMB.balanceOf(Treasury.address).then(setAmount);
+      libraFinance.LIBRA.balanceOf(Treasury.address).then(setAmount);
     }
   }, [libraFinance]);
   return amount;

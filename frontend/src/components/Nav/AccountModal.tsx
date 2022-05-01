@@ -12,7 +12,7 @@ import TokenSymbol from '../TokenSymbol';
 const AccountModal: React.FC<ModalProps> = ({ onDismiss }) => {
   const libraFinance = useLibraFinance();
 
-  const libraBalance = useTokenBalance(libraFinance.TOMB);
+  const libraBalance = useTokenBalance(libraFinance.LIBRA);
   const displayTombBalance = useMemo(() => getDisplayBalance(libraBalance), [libraBalance]);
 
   const lshareBalance = useTokenBalance(libraFinance.LSHARE);
@@ -27,7 +27,7 @@ const AccountModal: React.FC<ModalProps> = ({ onDismiss }) => {
 
       <Balances>
         <StyledBalanceWrapper>
-          <TokenSymbol symbol="TOMB" />
+          <TokenSymbol symbol="LIBRA" />
           <StyledBalance>
             <StyledValue>{displayTombBalance}</StyledValue>
             <Label text="LIBRA Available" variant="primary" />

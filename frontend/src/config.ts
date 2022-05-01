@@ -54,8 +54,8 @@ const configurations: { [env: string]: Configuration } = {
       // LSHARE: ['0xedFF72F95f0574cb74812237dA3B099f3Ef2bf2E', 18], // DUMMY
       LSHARE: ['0xedFF72F95f0574cb74812237dA3B099f3Ef2bf2E', 18], // DUMMY
       // 'USDT-FTM-LP': ['0x2b4C76d0dc16BE1C31D4C1DC53bF9B45987Fc75c', 18],
-      // 'TOMB-FTM-LP': ['0x83a52eff2e9d112e9b022399a9fd22a9db7d33ae', 18],
-      // 'TOMB-FTM-LP': ['0x83a52eff2e9d112e9b022399a9fd22a9db7d33ae', 18],
+      // 'LIBRA-FTM-LP': ['0x83a52eff2e9d112e9b022399a9fd22a9db7d33ae', 18],
+      // 'LIBRA-FTM-LP': ['0x83a52eff2e9d112e9b022399a9fd22a9db7d33ae', 18],
       // 'TSHARE-FTM-LP': ['0xd352dac95a91afefb112dbbb3463ccfa5ec15b65', 18],
     },
     baseLaunchDate: new Date('2021-06-02 13:00:00Z'),
@@ -72,7 +72,7 @@ export const bankDefinitions: { [contractName: string]: BankInfo } = {
   poolId: the poolId assigned in the contract
   sectionInUI: way to distinguish in which of the 3 pool groups it should be listed
         - 0 = Single asset stake pools
-        - 1 = LP asset staking rewarding TOMB
+        - 1 = LP asset staking rewarding LIBRA
         - 2 = LP asset staking rewarding TSHARE
   contract: the contract name which will be loaded from the deployment.environmnet.json
   depositTokenName : the name of the token to be deposited
@@ -237,12 +237,12 @@ export const bankDefinitions: { [contractName: string]: BankInfo } = {
   //   closedForStaking: true,
   // },
   TombFtmLPTombRewardPool: {
-    name: 'Earn TOMB by TOMB-FTM LP',
+    name: 'Earn LIBRA by LIBRA-FTM LP',
     poolId: 0,
     sectionInUI: 1,
     contract: 'TombFtmLpTombRewardPool',
-    depositTokenName: 'TOMB-FTM-LP',
-    earnTokenName: 'TOMB',
+    depositTokenName: 'LIBRA-FTM-LP',
+    earnTokenName: 'LIBRA',
     finished: false,
     multiplier: '0',
     buyLink: '',
@@ -251,12 +251,12 @@ export const bankDefinitions: { [contractName: string]: BankInfo } = {
     closedForStaking: true,
   },
   TombFtmLPTombRewardPoolOld: {
-    name: 'Earn TOMB by TOMB-FTM LP',
+    name: 'Earn LIBRA by LIBRA-FTM LP',
     poolId: 0,
     sectionInUI: 1,
     contract: 'TombFtmLpTombRewardPoolOld',
-    depositTokenName: 'TOMB-FTM-LP',
-    earnTokenName: 'TOMB',
+    depositTokenName: 'LIBRA-FTM-LP',
+    earnTokenName: 'LIBRA',
     finished: true,
     multiplier: '0',
     buyLink: '',

@@ -36,8 +36,8 @@ import UsdcLogo from '../../assets/img/USDC.png';
 const logosBySymbol: { [title: string]: string } = {
   //Real tokens
   //=====================
-  TOMB: libraLogo,
-  TOMBPNG: libraLogoPNG,
+  LIBRA: libraLogo,
+  LIBRAPNG: libraLogoPNG,
   TSHAREPNG: tShareLogoPNG,
   TSHARE: tShareLogo,
   LBOND: tBondLogo,
@@ -66,7 +66,7 @@ type LogoProps = {
 
 const TokenSymbol: React.FC<LogoProps> = ({ symbol, size = 64 }) => {
   if (!logosBySymbol[symbol]) {
-    return <img src={logosBySymbol['TOMB']} alt={`${symbol} Logo`} width={size} height={size} />;
+    return <img src={logosBySymbol['LIBRA']} alt={`${symbol} Logo`} width={size} height={size} />;
     // throw new Error(`Invalid Token Logo symbol: ${symbol}`);
   }
   return <img src={logosBySymbol[symbol]} alt={`${symbol} Logo`} width={size} height={size} />;

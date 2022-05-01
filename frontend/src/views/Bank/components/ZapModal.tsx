@@ -15,7 +15,7 @@ import useTokenBalance from '../../../hooks/useTokenBalance';
 import useLibraFinance from '../../../hooks/useLibraFinance';
 import { useWallet } from 'use-wallet';
 import useApproveZapper, { ApprovalState } from '../../../hooks/useApproveZapper';
-import { TOMB_TICKER, TSHARE_TICKER, FTM_TICKER } from '../../../utils/constants';
+import { LIBRA_TICKER, TSHARE_TICKER, FTM_TICKER } from '../../../utils/constants';
 import { Alert } from '@material-ui/lab';
 
 interface ZapProps extends ModalProps {
@@ -28,18 +28,18 @@ const ZapModal: React.FC<ZapProps> = ({ onConfirm, onDismiss, tokenName = '', de
   const libraFinance = useLibraFinance();
   const { balance } = useWallet();
   const ftmBalance = (Number(balance) / 1e18).toFixed(4).toString();
-  const libraBalance = useTokenBalance(libraFinance.TOMB);
+  const libraBalance = useTokenBalance(libraFinance.LIBRA);
   const lshareBalance = useTokenBalance(libraFinance.LSHARE);
   const [val, setVal] = useState('');
   const [zappingToken, setZappingToken] = useState(FTM_TICKER);
   const [zappingTokenBalance, setZappingTokenBalance] = useState(ftmBalance);
   const [estimate, setEstimate] = useState({ token0: '0', token1: '0' }); // token0 will always be FTM in this case
   const [approveZapperStatus, approveZapper] = useApproveZapper(zappingToken);
-  const libraAstarLpStats = useLpStats('TOMB-FTM-LP');
+  const libraAstarLpStats = useLpStats('LIBRA-FTM-LP');
   const lShareAstarLpStats = useLpStats('TSHARE-FTM-LP');
   const libraLPStats = useMemo(() => (libraAstarLpStats ? libraAstarLpStats : null), [libraAstarLpStats]);
   const lshareLPStats = useMemo(() => (lShareAstarLpStats ? lShareAstarLpStats : null), [lShareAstarLpStats]);
-  const astarAmountPerLP = tokenName.startsWith(TOMB_TICKER) ? libraLPStats?.astarAmount : lshareLPStats?.astarAmount;
+  const astarAmountPerLP = tokenName.startsWith(LIBRA_TICKER) ? libraLPStats?.astarAmount : lshareLPStats?.astarAmount;
   /**
    * Checks if a value is a valid number or not
    * @param n is the value to be evaluated for a number
@@ -55,7 +55,7 @@ const ZapModal: React.FC<ZapProps> = ({ onConfirm, onDismiss, tokenName = '', de
     if (event.target.value === TSHARE_TICKER) {
       setZappingTokenBalance(getDisplayBalance(lshareBalance, decimals));
     }
-    if (event.target.value === TOMB_TICKER) {
+    if (event.target.value === LIBRA_TICKER) {
       setZappingTokenBalance(getDisplayBalance(libraBalance, decimals));
     }
   };
@@ -102,7 +102,7 @@ const ZapModal: React.FC<ZapProps> = ({ onConfirm, onDismiss, tokenName = '', de
         <StyledMenuItem value={TSHARE_TICKER}>LSHARE</StyledMenuItem>
 
         {/* Tomb as an input for zapping will be disabled due to issues occuring with the Gatekeeper system */}
-        {/* <StyledMenuItem value={TOMB_TICKER}>TOMB</StyledMenuItem> */}
+        {/* <StyledMenuItem value={LIBRA_TICKER}>LIBRA</StyledMenuItem> */}
       </Select>
       <TokenInput
         onSelectMax={handleSelectMax}
@@ -119,7 +119,7 @@ const ZapModal: React.FC<ZapProps> = ({ onConfirm, onDismiss, tokenName = '', de
       <StyledDescriptionText>
         {' '}
         ({Number(estimate.token0)} {FTM_TICKER} / {Number(estimate.token1)}{' '}
-        {tokenName.startsWith(TOMB_TICKER) ? TOMB_TICKER : TSHARE_TICKER}){' '}
+        {tokenName.startsWith(LIBRA_TICKER) ? LIBRA_TICKER : TSHARE_TICKER}){' '}
       </StyledDescriptionText>
       <ModalActions>
         <Button

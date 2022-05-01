@@ -100,7 +100,7 @@ const Bank: React.FC = () => {
 
 const LPTokenHelpText: React.FC<{ bank: BankEntity }> = ({ bank }) => {
   const libraFinance = useLibraFinance();
-  const libraAddr = libraFinance.TOMB.address;
+  const libraAddr = libraFinance.LIBRA.address;
   const lshareAddr = libraFinance.LSHARE.address;
 
   let pairName: string;

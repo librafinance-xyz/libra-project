@@ -56,7 +56,7 @@ const useStyles = makeStyles((theme) => ({
 const Home = () => {
   const classes = useStyles();
   const TVL = useTotalValueLocked();
-  // const libraAstarLpStats = useLpStats('TOMB-FTM-LP');
+  // const libraAstarLpStats = useLpStats('LIBRA-FTM-LP');
   const libraAstarLpStats = useLpStats('LIBRA-ASTR-LP');
 
   const lShareAstarLpStats = useLpStats('LSHARE-ASTR-LP');
@@ -146,7 +146,7 @@ const Home = () => {
         libraLpZap.onZap(zappingToken, tokenName, amount);
         onDissmissTombZap();
       }}
-      // tokenName={'TOMB-FTM-LP'}
+      // tokenName={'LIBRA-FTM-LP'}
       tokenName={'LIBRA-ASTR-LP'}
     />,
   );
@@ -236,7 +236,7 @@ const Home = () => {
     <Grid item  xs={12} sm={12} justify="center"  style={{ margin: '12px', display: 'flex' }}>
             <Alert severity="warning" style={{ backgroundColor: "transparent", border: "1px solid var(--white)" }}>
               <b>
-      Please visit our <StyledLink target="_blank" href="https://docs.libra.finance">documentation</StyledLink> before purchasing TOMB or TSHARE!</b>
+      Please visit our <StyledLink target="_blank" href="https://docs.libra.finance">documentation</StyledLink> before purchasing LIBRA or TSHARE!</b>
             </Alert>
         </Grid>
         </Grid> */}
@@ -325,7 +325,7 @@ const Home = () => {
           </Card>
         </Grid>
 
-        {/* TOMB */}
+        {/* LIBRA */}
         <Grid item xs={12} sm={3}>
           <Card style={{ backgroundColor: 'transparent', boxShadow: 'none' }}>
             <CardContent align="center" style={{ position: 'relative' }}>
@@ -350,14 +350,14 @@ const Home = () => {
           </Card>
         </Grid>
 
-        {/* TOMB */}
+        {/* LIBRA */}
         <Grid item xs={12} sm={3}>
           <Card style={{ backgroundColor: 'transparent', boxShadow: 'none' }}>
             <CardContent align="center" style={{ position: 'relative' }}>
               <h2>LIBRA</h2>
               {/* <Button
                 onClick={() => {
-                  libraFinance.watchAssetInMetamask('TOMB');
+                  libraFinance.watchAssetInMetamask('LIBRA');
                 }}
                 color="secondary"
                 variant="outlined"
@@ -368,7 +368,7 @@ const Home = () => {
               </Button> */}
               <Box mt={2}>
                 <CardIcon>
-                  <TokenSymbol symbol="TOMB" style={{ backgroundColor: 'transparent !important' }} />
+                  <TokenSymbol symbol="LIBRA" style={{ backgroundColor: 'transparent !important' }} />
                 </CardIcon>
               </Box>
               Current Price

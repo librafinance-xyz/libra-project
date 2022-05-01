@@ -33,10 +33,10 @@ const ProvideLiquidity = () => {
   const libraStats = useLibraStats();
   const libraFinance = useLibraFinance();
   const [approveTaxOfficeStatus, approveTaxOffice] = useApproveTaxOffice();
-  const libraBalance = useTokenBalance(libraFinance.TOMB);
+  const libraBalance = useTokenBalance(libraFinance.LIBRA);
   const ftmBalance = (balance / 1e18).toFixed(4);
   const { onProvideTombFtmLP } = useProvideTombFtmLP();
-  // const libraAstarLpStats = useLpStats('TOMB-FTM-LP');
+  // const libraAstarLpStats = useLpStats('LIBRA-FTM-LP');
   const libraAstarLpStats = useLpStats('LIBRA-ASTR-LP');
 
   const libraLPStats = useMemo(() => (libraAstarLpStats ? libraAstarLpStats : null), [libraAstarLpStats]);
@@ -44,7 +44,7 @@ const ProvideLiquidity = () => {
     () => (libraStats ? Number(libraStats.tokenInAstar).toFixed(2) : null),
     [libraStats],
   );
-  const astarPriceInTOMB = useMemo(
+  const astarPriceInLIBRA = useMemo(
     () => (libraStats ? Number(1 / libraStats.tokenInAstar).toFixed(2) : null),
     [libraStats],
   );
@@ -56,7 +56,7 @@ const ProvideLiquidity = () => {
     }
     if (!isNumeric(e.currentTarget.value)) return;
     setTombAmount(e.currentTarget.value);
-    const quoteFromSpooky = await libraFinance.quoteFromSpooky(e.currentTarget.value, 'TOMB');
+    const quoteFromSpooky = await libraFinance.quoteFromSpooky(e.currentTarget.value, 'LIBRA');
     setFtmAmount(quoteFromSpooky);
     setLpTokensAmount(quoteFromSpooky / libraLPStats.astarAmount);
   };
@@ -73,7 +73,7 @@ const ProvideLiquidity = () => {
     setLpTokensAmount(quoteFromSpooky / libraLPStats.tokenAmount);
   };
   const handleTombSelectMax = async () => {
-    const quoteFromSpooky = await libraFinance.quoteFromSpooky(getDisplayBalance(libraBalance), 'TOMB');
+    const quoteFromSpooky = await libraFinance.quoteFromSpooky(getDisplayBalance(libraBalance), 'LIBRA');
     setTombAmount(getDisplayBalance(libraBalance));
     setFtmAmount(quoteFromSpooky);
     setLpTokensAmount(quoteFromSpooky / libraLPStats.astarAmount);
@@ -99,7 +99,7 @@ const ProvideLiquidity = () => {
               <a href="https://spookyswap.finance/" rel="noopener noreferrer" target="_blank">
                 Spookyswap
               </a>{' '}
-              are the only ways to provide Liquidity on TOMB-FTM pair without paying tax.
+              are the only ways to provide Liquidity on LIBRA-FTM pair without paying tax.
             </b>
           </Alert>
           <Grid item xs={12} sm={12}>
@@ -114,7 +114,7 @@ const ProvideLiquidity = () => {
                           onChange={handleTombChange}
                           value={libraAmount}
                           max={getDisplayBalance(libraBalance)}
-                          symbol={'TOMB'}
+                          symbol={'LIBRA'}
                         ></TokenInput>
                       </Grid>
                       <Grid item xs={12}>
@@ -128,9 +128,9 @@ const ProvideLiquidity = () => {
                       </Grid>
                       <Grid item xs={12}>
                         <p>1 LIBRA = {libraPriceInASTR} ASTR</p>
-                        <p>1 ASTR = {astarPriceInTOMB} LIBRA</p>
-                        {/* <p>1 TOMB = {libraPriceInASTR} ASTR</p>
-                        <p>1 FTM = {astarPriceInTOMB} TOMB</p> */}
+                        <p>1 ASTR = {astarPriceInLIBRA} LIBRA</p>
+                        {/* <p>1 LIBRA = {libraPriceInASTR} ASTR</p>
+                        <p>1 FTM = {astarPriceInLIBRA} LIBRA</p> */}
                         <p>LP tokens ≈ {lpTokensAmount.toFixed(2)}</p>
                       </Grid>
                       <Grid xs={12} justifyContent="center" style={{ textAlign: 'center' }}>
