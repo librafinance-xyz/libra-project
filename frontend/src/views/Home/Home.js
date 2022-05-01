@@ -151,7 +151,7 @@ const Home = () => {
     />,
   );
 
-  const [onPresentTshareZap, onDissmissTshareZap] = useModal(
+  const [onPresentLshareZap, onDissmissTshareZap] = useModal(
     <ZapModal
       decimals={18}
       onConfirm={(zappingToken, tokenName, amount) => {
@@ -501,7 +501,7 @@ const Home = () => {
                 </CardIcon>
               </Box>
               {/*<Box mt={2}>
-                <Button color="primary" onClick={onPresentTshareZap} variant="contained">
+                <Button color="primary" onClick={onPresentLshareZap} variant="contained">
                   Zap In
                 </Button>
             </Box>*/}
