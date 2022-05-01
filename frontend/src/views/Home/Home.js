@@ -88,7 +88,7 @@ const Home = () => {
   const buyLibraAddress = 'https://twinkleswap.finance/swap?outputCurrency=' + tomb.address;
   const buyTShareAddress = 'https://twinkleswap.finance/swap?outputCurrency=' + tShare.address;
 
-  const tombLPStats = useMemo(() => (libraAstarLpStats ? libraAstarLpStats : null), [libraAstarLpStats]);
+  const libraLPStats = useMemo(() => (libraAstarLpStats ? libraAstarLpStats : null), [libraAstarLpStats]);
   const lshareLPStats = useMemo(() => (tShareFtmLpStats ? tShareFtmLpStats : null), [tShareFtmLpStats]);
   const astarPriceInDollars = useMemo(
     () => (libraStats ? Number(libraStats.priceInDollars).toFixed(2) : null),
@@ -479,14 +479,14 @@ const Home = () => {
               </Box>*/}
               <Box mt={2}>
                 <span style={{ fontSize: '26px' }}>
-                  {tombLPStats?.tokenAmount ? tombLPStats?.tokenAmount : '-.--'} LIBRA /{' '}
-                  {tombLPStats?.astarAmount ? tombLPStats?.astarAmount : '-.--'} ASTR
+                  {libraLPStats?.tokenAmount ? libraLPStats?.tokenAmount : '-.--'} LIBRA /{' '}
+                  {libraLPStats?.astarAmount ? libraLPStats?.astarAmount : '-.--'} ASTR
                 </span>
               </Box>
-              <Box>${tombLPStats?.priceOfOne ? tombLPStats.priceOfOne : '-.--'}</Box>
+              <Box>${libraLPStats?.priceOfOne ? libraLPStats.priceOfOne : '-.--'}</Box>
               <span style={{ fontSize: '12px' }}>
-                Liquidity: ${tombLPStats?.totalLiquidity ? tombLPStats.totalLiquidity : '-.--'} <br />
-                Total supply: {tombLPStats?.totalSupply ? tombLPStats.totalSupply : '-.--'}
+                Liquidity: ${libraLPStats?.totalLiquidity ? libraLPStats.totalLiquidity : '-.--'} <br />
+                Total supply: {libraLPStats?.totalSupply ? libraLPStats.totalSupply : '-.--'}
               </span>
             </CardContent>
           </Card>

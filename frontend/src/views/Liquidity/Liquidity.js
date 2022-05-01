@@ -39,7 +39,7 @@ const ProvideLiquidity = () => {
   // const libraAstarLpStats = useLpStats('TOMB-FTM-LP');
   const libraAstarLpStats = useLpStats('LIBRA-ASTR-LP');
 
-  const tombLPStats = useMemo(() => (libraAstarLpStats ? libraAstarLpStats : null), [libraAstarLpStats]);
+  const libraLPStats = useMemo(() => (libraAstarLpStats ? libraAstarLpStats : null), [libraAstarLpStats]);
   const libraPriceInASTR = useMemo(
     () => (libraStats ? Number(libraStats.tokenInAstar).toFixed(2) : null),
     [libraStats],
@@ -58,7 +58,7 @@ const ProvideLiquidity = () => {
     setTombAmount(e.currentTarget.value);
     const quoteFromSpooky = await libraFinance.quoteFromSpooky(e.currentTarget.value, 'TOMB');
     setFtmAmount(quoteFromSpooky);
-    setLpTokensAmount(quoteFromSpooky / tombLPStats.astarAmount);
+    setLpTokensAmount(quoteFromSpooky / libraLPStats.astarAmount);
   };
 
   const handleFtmChange = async (e) => {
@@ -70,19 +70,19 @@ const ProvideLiquidity = () => {
     const quoteFromSpooky = await libraFinance.quoteFromSpooky(e.currentTarget.value, 'FTM');
     setTombAmount(quoteFromSpooky);
 
-    setLpTokensAmount(quoteFromSpooky / tombLPStats.tokenAmount);
+    setLpTokensAmount(quoteFromSpooky / libraLPStats.tokenAmount);
   };
   const handleTombSelectMax = async () => {
     const quoteFromSpooky = await libraFinance.quoteFromSpooky(getDisplayBalance(tombBalance), 'TOMB');
     setTombAmount(getDisplayBalance(tombBalance));
     setFtmAmount(quoteFromSpooky);
-    setLpTokensAmount(quoteFromSpooky / tombLPStats.astarAmount);
+    setLpTokensAmount(quoteFromSpooky / libraLPStats.astarAmount);
   };
   const handleFtmSelectMax = async () => {
     const quoteFromSpooky = await libraFinance.quoteFromSpooky(ftmBalance, 'FTM');
     setFtmAmount(ftmBalance);
     setTombAmount(quoteFromSpooky);
-    setLpTokensAmount(ftmBalance / tombLPStats.astarAmount);
+    setLpTokensAmount(ftmBalance / libraLPStats.astarAmount);
   };
   return (
     <Page>
