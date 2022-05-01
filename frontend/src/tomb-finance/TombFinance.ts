@@ -1077,15 +1077,15 @@ export class TombFinance {
   async getTShareSwapperStat(address: string): Promise<TShareSwapperStat> {
     const { TShareSwapper } = this.contracts;
     const tshareBalanceBN = await TShareSwapper.getTShareBalance();
-    const tbondBalanceBN = await TShareSwapper.getTBondBalance(address);
+    const lbondBalanceBN = await TShareSwapper.getTBondBalance(address);
     // const tombPriceBN = await TShareSwapper.getTombPrice();
     // const tsharePriceBN = await TShareSwapper.getTSharePrice();
     const rateTSharePerTombBN = await TShareSwapper.getTShareAmountPerTomb();
     const tshareBalance = getDisplayBalance(tshareBalanceBN, 18, 5);
-    const tbondBalance = getDisplayBalance(tbondBalanceBN, 18, 5);
+    const lbondBalance = getDisplayBalance(lbondBalanceBN, 18, 5);
     return {
       tshareBalance: tshareBalance.toString(),
-      tbondBalance: tbondBalance.toString(),
+      lbondBalance: lbondBalance.toString(),
       // tombPrice: tombPriceBN.toString(),
       // tsharePrice: tsharePriceBN.toString(),
       rateTSharePerTomb: rateTSharePerTombBN.toString(),

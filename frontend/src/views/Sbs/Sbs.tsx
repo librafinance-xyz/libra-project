@@ -47,7 +47,7 @@ const Sbs: React.FC = () => {
     [tshareSwapperStat],
   );
   const bondBalance = useMemo(
-    () => (tshareSwapperStat ? Number(tshareSwapperStat.tbondBalance) : 0),
+    () => (tshareSwapperStat ? Number(tshareSwapperStat.lbondBalance) : 0),
     [tshareSwapperStat],
   );
 
