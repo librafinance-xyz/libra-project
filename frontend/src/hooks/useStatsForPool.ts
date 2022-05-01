@@ -1,7 +1,7 @@
 import { useCallback, useState, useEffect } from 'react';
 import useLibraFinance from './useLibraFinance';
-import { Bank } from '../tomb-finance';
-import { PoolStats } from '../tomb-finance/types';
+import { Bank } from '../libra-finance';
+import { PoolStats } from '../libra-finance/types';
 import config from '../config';
 
 const useStatsForPool = (bank: Bank) => {
@@ -14,7 +14,7 @@ const useStatsForPool = (bank: Bank) => {
   }, [libraFinance, bank]);
 
   useEffect(() => {
-    fetchAPRsForPool().catch((err) => console.error(`Failed to fetch TBOND price: ${err.stack}`));
+    fetchAPRsForPool().catch((err) => console.error(`Failed to fetch LBOND price: ${err.stack}`));
     const refreshInterval = setInterval(fetchAPRsForPool, config.refreshInterval);
     return () => clearInterval(refreshInterval);
   }, [setPoolAPRs, libraFinance, fetchAPRsForPool]);

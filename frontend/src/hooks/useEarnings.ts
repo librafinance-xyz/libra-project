@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useState } from 'react';
 import { BigNumber } from 'ethers';
 import useLibraFinance from './useLibraFinance';
-import { ContractName } from '../tomb-finance';
+import { ContractName } from '../libra-finance';
 import config from '../config';
 
 const useEarnings = (poolName: ContractName, earnTokenName: String, poolId: Number) => {

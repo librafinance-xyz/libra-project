@@ -41,7 +41,7 @@ const DepositModal: React.FC<DepositModalProps> = ({ max, onConfirm, onDismiss, 
   );
 
   const handleSelectMax = useCallback(() => {
-    setVal(rebateStats.tombAvailable > +fullBalance ? fullBalance : rebateStats.tombAvailable.toString());
+    setVal(rebateStats.libraAvailable > +fullBalance ? fullBalance : rebateStats.libraAvailable.toString());
   }, [fullBalance, setVal, rebateStats]);
 
   function getAssetPrice(token: String) {
@@ -54,7 +54,7 @@ const DepositModal: React.FC<DepositModalProps> = ({ max, onConfirm, onDismiss, 
     const toBondPrice = getAssetPrice(tokenName);
     const outAmount =
       +val *
-      ((toBondPrice / rebateStats.tombPrice) *
+      ((toBondPrice / rebateStats.libraPrice) *
         (1 + rebateStats.bondPremium / 100) *
         (token.params.multiplier / 1000000));
     return outAmount;
@@ -62,7 +62,7 @@ const DepositModal: React.FC<DepositModalProps> = ({ max, onConfirm, onDismiss, 
 
   function formatOutAmount() {
     const outAmount = getOutAmount();
-    return `Receiving: ${outAmount.toFixed(4)} LIBRA ($${(outAmount * rebateStats.tombPrice * astarPrice).toFixed(2)})`;
+    return `Receiving: ${outAmount.toFixed(4)} LIBRA ($${(outAmount * rebateStats.libraPrice * astarPrice).toFixed(2)})`;
   }
 
   function formatInAmount() {
@@ -81,14 +81,14 @@ const DepositModal: React.FC<DepositModalProps> = ({ max, onConfirm, onDismiss, 
       />
       <StyledMaxText style={{ marginTop: '14px' }}>{formatInAmount()}</StyledMaxText>
       <StyledMaxText>{formatOutAmount()}</StyledMaxText>
-      <StyledMaxText style={{ color: getOutAmount() < rebateStats.tombAvailable ? 'black' : 'var(--accent)' }}>
-        {rebateStats.tombAvailable > 0 ? `${rebateStats.tombAvailable.toFixed(4)} LIBRA Available` : 'Bond Sold Out'}
+      <StyledMaxText style={{ color: getOutAmount() < rebateStats.libraAvailable ? 'black' : 'var(--accent)' }}>
+        {rebateStats.libraAvailable > 0 ? `${rebateStats.libraAvailable.toFixed(4)} LIBRA Available` : 'Bond Sold Out'}
       </StyledMaxText>
       <ModalActions>
         <Button
-          color={getOutAmount() < rebateStats.tombAvailable ? 'primary' : 'secondary'}
+          color={getOutAmount() < rebateStats.libraAvailable ? 'primary' : 'secondary'}
           variant="contained"
-          disabled={getOutAmount() >= rebateStats.tombAvailable}
+          disabled={getOutAmount() >= rebateStats.libraAvailable}
           onClick={() => onConfirm(+val)}
         >
           Confirm

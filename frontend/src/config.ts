@@ -1,7 +1,7 @@
 // import { ChainId } from '@pancakeswap-libs/sdk';
 import { ChainId } from '@librax/sdk';
-import { Configuration } from './tomb-finance/config';
-import { BankInfo } from './tomb-finance';
+import { Configuration } from './libra-finance/config';
+import { BankInfo } from './libra-finance';
 
 export const AppHostEnv = window.location.host.includes('prod-env')
   ? 'prod'
@@ -20,7 +20,7 @@ const configurations: { [env: string]: Configuration } = {
     defaultProvider: 'https://astar-api.bwarelabs.com/7d1b6401-caba-4a39-8a84-13d4e9f105b4',
     //WSS: wss://astar-api.bwarelabs.com/ws/7d1b6401-caba-4a39-8a84-13d4e9f105b4
 
-    deployments: require('./tomb-finance/deployments/deployments.dev.json'),
+    deployments: require('./libra-finance/deployments/deployments.dev.json'),
     externalTokens: {
       // WFTM: ['0x21be370d5312f44cb42ce377bc9b8a0cef1a4c83', 18],
       // USDC: ['0x04068DA6C83AFCFA0e13ba15A6696662335D5B75', 6],
@@ -54,9 +54,9 @@ const configurations: { [env: string]: Configuration } = {
       // LSHARE: ['0xedFF72F95f0574cb74812237dA3B099f3Ef2bf2E', 18], // DUMMY
       LSHARE: ['0xedFF72F95f0574cb74812237dA3B099f3Ef2bf2E', 18], // DUMMY
       // 'USDT-FTM-LP': ['0x2b4C76d0dc16BE1C31D4C1DC53bF9B45987Fc75c', 18],
-      // 'TOMB-FTM-LP': ['0x83a52eff2e9d112e9b022399a9fd22a9db7d33ae', 18],
-      // 'TOMB-FTM-LP': ['0x83a52eff2e9d112e9b022399a9fd22a9db7d33ae', 18],
-      // 'TSHARE-FTM-LP': ['0xd352dac95a91afefb112dbbb3463ccfa5ec15b65', 18],
+      // 'LIBRA-FTM-LP': ['0x83a52eff2e9d112e9b022399a9fd22a9db7d33ae', 18],
+      // 'LIBRA-FTM-LP': ['0x83a52eff2e9d112e9b022399a9fd22a9db7d33ae', 18],
+      // 'LSHARE-FTM-LP': ['0xd352dac95a91afefb112dbbb3463ccfa5ec15b65', 18],
     },
     baseLaunchDate: new Date('2021-06-02 13:00:00Z'),
     bondLaunchesAt: new Date('2020-12-03T15:00:00Z'),
@@ -72,19 +72,19 @@ export const bankDefinitions: { [contractName: string]: BankInfo } = {
   poolId: the poolId assigned in the contract
   sectionInUI: way to distinguish in which of the 3 pool groups it should be listed
         - 0 = Single asset stake pools
-        - 1 = LP asset staking rewarding TOMB
-        - 2 = LP asset staking rewarding TSHARE
+        - 1 = LP asset staking rewarding LIBRA
+        - 2 = LP asset staking rewarding LSHARE
   contract: the contract name which will be loaded from the deployment.environmnet.json
   depositTokenName : the name of the token to be deposited
   earnTokenName: the rewarded token
   finished: will disable the pool on the UI if set to true
   sort: the order of the pool
   */
-  // Tomb2sharesRewardPool: {
+  // Libra2sharesRewardPool: {
   //   name: 'Earn LIBRA by staking 2SHARES',
   //   poolId: 0,
   //   sectionInUI: 0,
-  //   contract: 'Tomb2ShareRewardPool',
+  //   contract: 'Libra2ShareRewardPool',
   //   depositTokenName: '2SHARES',
   //   earnTokenName: 'LIBRA',
   //   finished: false,
@@ -94,11 +94,11 @@ export const bankDefinitions: { [contractName: string]: BankInfo } = {
   //   sort: 0,
   //   closedForStaking: true,
   // },
-  // Tomb2sharesWftmLPRewardPool: {
+  // Libra2sharesWftmLPRewardPool: {
   //   name: 'Earn LIBRA by staking 2SHARES-WFTM LP',
   //   poolId: 1,
   //   sectionInUI: 0,
-  //   contract: 'Tomb2SharesWftmLPRewardPool',
+  //   contract: 'Libra2SharesWftmLPRewardPool',
   //   depositTokenName: '2SHARES-WFTM LP',
   //   earnTokenName: 'LIBRA',
   //   finished: false,
@@ -108,11 +108,11 @@ export const bankDefinitions: { [contractName: string]: BankInfo } = {
   //   sort: 1,
   //   closedForStaking: true,
   // },
-  // Tomb2shares2ombLPRewardPool: {
+  // Libra2shares2ombLPRewardPool: {
   //   name: 'Earn LIBRA by staking 2OMB-2SHARES LP',
   //   poolId: 2,
   //   sectionInUI: 0,
-  //   contract: 'Tomb2Shares2ombLPRewardPool',
+  //   contract: 'Libra2Shares2ombLPRewardPool',
   //   depositTokenName: '2OMB-2SHARES LP',
   //   earnTokenName: 'LIBRA',
   //   finished: false,
@@ -122,11 +122,11 @@ export const bankDefinitions: { [contractName: string]: BankInfo } = {
   //   sort: 2,
   //   closedForStaking: false,
   // },
-  // Tomb2ombWftmLPRewardPool: {
+  // Libra2ombWftmLPRewardPool: {
   //   name: 'Earn LIBRA by staking 2OMB-WFTM LP',
   //   poolId: 2,
   //   sectionInUI: 0,
-  //   contract: 'Tomb2ombWftmLPRewardPool',
+  //   contract: 'Libra2ombWftmLPRewardPool',
   //   depositTokenName: '2OMB-WFTM LP',
   //   earnTokenName: 'LIBRA',
   //   finished: false,
@@ -136,11 +136,11 @@ export const bankDefinitions: { [contractName: string]: BankInfo } = {
   //   sort: 3,
   //   closedForStaking: true,
   // },
-  // Tomb2ombRewardPool: {
+  // Libra2ombRewardPool: {
   //   name: 'Earn LIBRA by staking 2OMB',
   //   poolId: 3,
   //   sectionInUI: 0,
-  //   contract: 'Tomb2ombRewardPool',
+  //   contract: 'Libra2ombRewardPool',
   //   depositTokenName: '2OMB',
   //   earnTokenName: 'LIBRA',
   //   finished: false,
@@ -150,11 +150,11 @@ export const bankDefinitions: { [contractName: string]: BankInfo } = {
   //   sort: 4,
   //   closedForStaking: true,
   // },
-  // TombBelugaRewardPool: {
+  // LibraBelugaRewardPool: {
   //   name: 'Earn LIBRA by staking BELUGA',
   //   poolId: 4,
   //   sectionInUI: 0,
-  //   contract: 'TombBelugaRewardPool',
+  //   contract: 'LibraBelugaRewardPool',
   //   depositTokenName: 'BELUGA',
   //   earnTokenName: 'LIBRA',
   //   finished: false,
@@ -165,11 +165,11 @@ export const bankDefinitions: { [contractName: string]: BankInfo } = {
   //   sort: 5,
   //   closedForStaking: true,
   // },
-  // TombBifiRewardPool: {
+  // LibraBifiRewardPool: {
   //   name: 'Earn LIBRA by staking BIFI',
   //   poolId: 5,
   //   sectionInUI: 0,
-  //   contract: 'TombBifiGenesisRewardPool',
+  //   contract: 'LibraBifiGenesisRewardPool',
   //   depositTokenName: 'BIFI',
   //   earnTokenName: 'LIBRA',
   //   finished: false,
@@ -208,11 +208,11 @@ export const bankDefinitions: { [contractName: string]: BankInfo } = {
     sort: 7,
     closedForStaking: true,
   },
-  // TombMimRewardPool: {
+  // LibraMimRewardPool: {
   //   name: 'Earn LIBRA by staking MIM',
   //   poolId: 7,
   //   sectionInUI: 0,
-  //   contract: 'TombMimGenesisRewardPool',
+  //   contract: 'LibraMimGenesisRewardPool',
   //   depositTokenName: 'MIM',
   //   earnTokenName: 'LIBRA',
   //   finished: false,
@@ -222,11 +222,11 @@ export const bankDefinitions: { [contractName: string]: BankInfo } = {
   //   sort: 8,
   //   closedForStaking: true,
   // },
-  // TombBloomRewardPool: {
+  // LibraBloomRewardPool: {
   //   name: 'Earn LIBRA by staking BLOOM',
   //   poolId: 8,
   //   sectionInUI: 0,
-  //   contract: 'TombBloomGenesisRewardPool',
+  //   contract: 'LibraBloomGenesisRewardPool',
   //   depositTokenName: 'BLOOM',
   //   earnTokenName: 'LIBRA',
   //   finished: false,
@@ -236,13 +236,13 @@ export const bankDefinitions: { [contractName: string]: BankInfo } = {
   //   sort: 9,
   //   closedForStaking: true,
   // },
-  TombFtmLPTombRewardPool: {
-    name: 'Earn TOMB by TOMB-FTM LP',
+  LibraFtmLPLibraRewardPool: {
+    name: 'Earn LIBRA by LIBRA-FTM LP',
     poolId: 0,
     sectionInUI: 1,
-    contract: 'TombFtmLpTombRewardPool',
-    depositTokenName: 'TOMB-FTM-LP',
-    earnTokenName: 'TOMB',
+    contract: 'LibraFtmLpLibraRewardPool',
+    depositTokenName: 'LIBRA-FTM-LP',
+    earnTokenName: 'LIBRA',
     finished: false,
     multiplier: '0',
     buyLink: '',
@@ -250,13 +250,13 @@ export const bankDefinitions: { [contractName: string]: BankInfo } = {
     sort: 7,
     closedForStaking: true,
   },
-  TombFtmLPTombRewardPoolOld: {
-    name: 'Earn TOMB by TOMB-FTM LP',
+  LibraFtmLPLibraRewardPoolOld: {
+    name: 'Earn LIBRA by LIBRA-FTM LP',
     poolId: 0,
     sectionInUI: 1,
-    contract: 'TombFtmLpTombRewardPoolOld',
-    depositTokenName: 'TOMB-FTM-LP',
-    earnTokenName: 'TOMB',
+    contract: 'LibraFtmLpLibraRewardPoolOld',
+    depositTokenName: 'LIBRA-FTM-LP',
+    earnTokenName: 'LIBRA',
     finished: true,
     multiplier: '0',
     buyLink: '',
@@ -264,11 +264,11 @@ export const bankDefinitions: { [contractName: string]: BankInfo } = {
     sort: 9,
     closedForStaking: true,
   },
-  LibraAstarLPTShareRewardPool: {
+  LibraAstarLPLShareRewardPool: {
     name: 'Earn LSHARE by LIBRA-WASTR LP',
     poolId: 0,
     sectionInUI: 2,
-    contract: 'LibraAstarLPTShareRewardPool',
+    contract: 'LibraAstarLPLShareRewardPool',
     depositTokenName: 'LIBRA-ASTR-LP',
     earnTokenName: 'LSHARE',
     finished: false,
@@ -278,11 +278,11 @@ export const bankDefinitions: { [contractName: string]: BankInfo } = {
     sort: 8,
     closedForStaking: false,
   },
-  LshareAstarLPTShareRewardPool: {
+  LshareAstarLPLShareRewardPool: {
     name: 'Earn LSHARE by LSHARE-WASTR LP',
     poolId: 1,
     sectionInUI: 2,
-    contract: 'LshareAstarLPTShareRewardPool',
+    contract: 'LshareAstarLPLShareRewardPool',
     depositTokenName: 'LSHARE-ASTR-LP',
     earnTokenName: 'LSHARE',
     finished: false,
@@ -299,7 +299,7 @@ export const bankDefinitions: { [contractName: string]: BankInfo } = {
   //   sectionInUI: 2,
   //   contract: 'TwoombTwosharesLPTShareRewardPool',
   //   depositTokenName: '2OMB-2SHARESLP',
-  //   earnTokenName: 'TSHARE',
+  //   earnTokenName: 'LSHARE',
   //   finished: false,
   //   multiplier: '0',
   //   buyLink: '',
@@ -307,11 +307,11 @@ export const bankDefinitions: { [contractName: string]: BankInfo } = {
   //   sort: 12,
   //   closedForStaking: false,
   // },
-  Tomb2SHARESRebates: {
+  Libra2SHARESRebates: {
     name: 'Bond 2SHARES, earn LIBRA',
     poolId: 0,
     sectionInUI: 3,
-    contract: 'TombFtmRewardPool',
+    contract: 'LibraFtmRewardPool',
     depositTokenName: '2SHARES',
     earnTokenName: 'LIBRA',
     finished: false,
@@ -325,7 +325,7 @@ export const bankDefinitions: { [contractName: string]: BankInfo } = {
     name: 'Bond USDC, earn LIBRA',
     poolId: 1,
     sectionInUI: 3,
-    contract: 'TombFtmRewardPool',
+    contract: 'LibraFtmRewardPool',
     depositTokenName: 'USDC',
     earnTokenName: 'LIBRA',
     finished: false,
@@ -335,11 +335,11 @@ export const bankDefinitions: { [contractName: string]: BankInfo } = {
     sort: 6,
     closedForStaking: false,
   },
-  Tomb2SHARESFTMRebates: {
+  Libra2SHARESFTMRebates: {
     name: 'Bond 2SHARES-WFTM LP, earn LIBRA',
     poolId: 2,
     sectionInUI: 3,
-    contract: 'TombFtmRewardPool',
+    contract: 'LibraFtmRewardPool',
     depositTokenName: '2SHARES-WFTM LP',
     earnTokenName: 'LIBRA',
     finished: false,
@@ -349,11 +349,11 @@ export const bankDefinitions: { [contractName: string]: BankInfo } = {
     sort: 4,
     closedForStaking: false,
   },
-  // TombLIBRAFTMRebates: {
+  // LibraLIBRAFTMRebates: {
   //   name: 'Bond LIBRA-WASTR LP, earn LIBRA',
   //   poolId: 3,
   //   sectionInUI: 3,
-  //   contract: 'TombFtmRewardPool',
+  //   contract: 'LibraFtmRewardPool',
   //   depositTokenName: 'LIBRA-WASTR LP',
   //   earnTokenName: 'LIBRA',
   //   finished: false,
@@ -363,11 +363,11 @@ export const bankDefinitions: { [contractName: string]: BankInfo } = {
   //   sort: 1,
   //   closedForStaking: false,
   // },
-  TombLSHARERebates: {
+  LibraLSHARERebates: {
     name: 'Bond LSHARE, earn LIBRA',
     poolId: 4,
     sectionInUI: 3,
-    contract: 'TombFtmRewardPool',
+    contract: 'LibraFtmRewardPool',
     depositTokenName: 'LSHARE',
     earnTokenName: 'LIBRA',
     finished: false,
@@ -377,11 +377,11 @@ export const bankDefinitions: { [contractName: string]: BankInfo } = {
     sort: 3,
     closedForStaking: false,
   },
-  //TombLSHAREFTMRebates: {
+  //LibraLSHAREFTMRebates: {
   // name: 'Bond LSHARE-WASTR LP, earn LIBRA',
   // poolId: 5,
   // sectionInUI: 3,
-  //  contract: 'TombFtmRewardPool',
+  //  contract: 'LibraFtmRewardPool',
   //  depositTokenName: 'LSHARE-WASTR LP',
   //  earnTokenName: 'LIBRA',
   //  finished: false,

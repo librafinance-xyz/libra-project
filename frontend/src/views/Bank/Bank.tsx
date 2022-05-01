@@ -15,7 +15,7 @@ import Stake from './components/Stake';
 import useBank from '../../hooks/useBank';
 import useStatsForPool from '../../hooks/useStatsForPool';
 import useRedeem from '../../hooks/useRedeem';
-import { Bank as BankEntity } from '../../tomb-finance';
+import { Bank as BankEntity } from '../../libra-finance';
 import useLibraFinance from '../../hooks/useLibraFinance';
 const useStyles = makeStyles((theme) => ({
   gridItem: {
@@ -100,17 +100,17 @@ const Bank: React.FC = () => {
 
 const LPTokenHelpText: React.FC<{ bank: BankEntity }> = ({ bank }) => {
   const libraFinance = useLibraFinance();
-  const tombAddr = libraFinance.TOMB.address;
-  const tshareAddr = libraFinance.LSHARE.address;
+  const libraAddr = libraFinance.LIBRA.address;
+  const lshareAddr = libraFinance.LSHARE.address;
 
   let pairName: string;
   let uniswapUrl: string;
   if (bank.depositTokenName.includes('LIBRA')) {
     pairName = 'LIBRA-WFTM pair';
-    uniswapUrl = 'https://spookyswap.finance/add/FTM/' + tombAddr;
+    uniswapUrl = 'https://spookyswap.finance/add/FTM/' + libraAddr;
   } else {
     pairName = 'LSHARE-WFTM pair';
-    uniswapUrl = 'https://spookyswap.finance/add/FTM/' + tshareAddr;
+    uniswapUrl = 'https://spookyswap.finance/add/FTM/' + lshareAddr;
   }
   return (
     <Card>

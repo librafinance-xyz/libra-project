@@ -21,14 +21,14 @@ const RebateTreasuryABI = [
   },
   {
     inputs: [],
-    name: 'Tomb',
+    name: 'Libra',
     outputs: [{ internalType: 'contract IERC20', name: '', type: 'address' }],
     stateMutability: 'view',
     type: 'function',
   },
   {
     inputs: [],
-    name: 'TombOracle',
+    name: 'LibraOracle',
     outputs: [{ internalType: 'contract IOracle', name: '', type: 'address' }],
     stateMutability: 'view',
     type: 'function',
@@ -112,7 +112,7 @@ const RebateTreasuryABI = [
   { inputs: [], name: 'claimRewards', outputs: [], stateMutability: 'nonpayable', type: 'function' },
   {
     inputs: [{ internalType: 'address', name: 'account', type: 'address' }],
-    name: 'claimableTomb',
+    name: 'claimableLibra',
     outputs: [{ internalType: 'uint256', name: '', type: 'uint256' }],
     stateMutability: 'view',
     type: 'function',
@@ -133,7 +133,7 @@ const RebateTreasuryABI = [
   },
   {
     inputs: [],
-    name: 'getTombPrice',
+    name: 'getLibraPrice',
     outputs: [{ internalType: 'uint256', name: '', type: 'uint256' }],
     stateMutability: 'view',
     type: 'function',
@@ -143,7 +143,7 @@ const RebateTreasuryABI = [
       { internalType: 'address', name: 'token', type: 'address' },
       { internalType: 'uint256', name: 'amount', type: 'uint256' },
     ],
-    name: 'getTombReturn',
+    name: 'getLibraReturn',
     outputs: [{ internalType: 'uint256', name: '', type: 'uint256' }],
     stateMutability: 'view',
     type: 'function',
@@ -212,15 +212,15 @@ const RebateTreasuryABI = [
     type: 'function',
   },
   {
-    inputs: [{ internalType: 'address', name: 'tomb', type: 'address' }],
-    name: 'setTomb',
+    inputs: [{ internalType: 'address', name: 'libra', type: 'address' }],
+    name: 'setLibra',
     outputs: [],
     stateMutability: 'nonpayable',
     type: 'function',
   },
   {
     inputs: [{ internalType: 'address', name: 'oracle', type: 'address' }],
-    name: 'setTombOracle',
+    name: 'setLibraOracle',
     outputs: [],
     stateMutability: 'nonpayable',
     type: 'function',
@@ -394,8 +394,8 @@ const assetList = [
 ];
 
 function useRebateTreasury() {
-  const [tombPrice, setTombPrice] = useState(0);
-  const [tombAvailable, setTombAvailable] = useState(0);
+  const [libraPrice, setLibraPrice] = useState(0);
+  const [libraAvailable, setLibraAvailable] = useState(0);
   const [bondPremium, setBondPremium] = useState(0);
   const [bondVesting, setBondVesting] = useState(0);
   const [assets, setAssets] = useState(
@@ -410,8 +410,8 @@ function useRebateTreasury() {
   );
 
   async function update() {
-    const [tombPrice, tombBalance, vestedTomb, bondPremium, bondVesting, assetParams, assetPrices] = await Promise.all([
-      RebateTreasury.methods.getTombPrice().call(),
+    const [libraPrice, libraBalance, vestedLibra, bondPremium, bondVesting, assetParams, assetPrices] = await Promise.all([
+      RebateTreasury.methods.getLibraPrice().call(),
       Threeomb.methods.balanceOf(RebateTreasury._address).call(),
       RebateTreasury.methods.totalVested().call(),
       RebateTreasury.methods.getBondPremium().call(),
@@ -420,8 +420,8 @@ function useRebateTreasury() {
       Promise.all(assetList.map((asset) => RebateTreasury.methods.getTokenPrice(asset).call())),
     ]);
 
-    setTombPrice(+web3.utils.fromWei(tombPrice));
-    setTombAvailable(+web3.utils.fromWei(tombBalance) - +web3.utils.fromWei(vestedTomb));
+    setLibraPrice(+web3.utils.fromWei(libraPrice));
+    setLibraAvailable(+web3.utils.fromWei(libraBalance) - +web3.utils.fromWei(vestedLibra));
     setBondPremium(+bondPremium / 10000);
     setBondVesting(+bondVesting / 10000);
 
@@ -447,10 +447,10 @@ function useRebateTreasury() {
 
   return {
     RebateTreasury,
-    tombPrice,
+    libraPrice,
     bondPremium,
     bondVesting,
-    tombAvailable,
+    libraAvailable,
     assets,
   };
 }

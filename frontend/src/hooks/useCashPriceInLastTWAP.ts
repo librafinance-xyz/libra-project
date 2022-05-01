@@ -8,11 +8,11 @@ const useCashPriceInLastTWAP = () => {
   const libraFinance = useLibraFinance();
 
   const fetchCashPrice = useCallback(async () => {
-    setPrice(await libraFinance.getTombPriceInLastTWAP());
+    setPrice(await libraFinance.getLibraPriceInLastTWAP());
   }, [libraFinance]);
 
   useEffect(() => {
-    fetchCashPrice().catch((err) => console.error(`Failed to fetch TOMB price: ${err.stack}`));
+    fetchCashPrice().catch((err) => console.error(`Failed to fetch LIBRA price: ${err.stack}`));
     const refreshInterval = setInterval(fetchCashPrice, config.refreshInterval);
     return () => clearInterval(refreshInterval);
   }, [setPrice, libraFinance, fetchCashPrice]);

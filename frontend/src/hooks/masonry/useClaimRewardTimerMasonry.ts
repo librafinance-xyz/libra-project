@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import useLibraFinance from '../useLibraFinance';
-import { AllocationTime } from '../../tomb-finance/types';
+import { AllocationTime } from '../../libra-finance/types';
 
 const useClaimRewardTimerMasonry = () => {
   const [time, setTime] = useState<AllocationTime>({

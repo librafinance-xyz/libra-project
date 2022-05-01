@@ -1,6 +1,6 @@
 import { useCallback } from 'react';
 import useLibraFinance from './useLibraFinance';
-import { Bank } from '../tomb-finance';
+import { Bank } from '../libra-finance';
 import useHandleTransactionReceipt from './useHandleTransactionReceipt';
 
 const useZap = (bank: Bank) => {

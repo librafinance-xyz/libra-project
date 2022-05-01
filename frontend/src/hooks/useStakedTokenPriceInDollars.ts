@@ -2,7 +2,7 @@ import { useCallback, useEffect, useState } from 'react';
 
 import useLibraFinance from './useLibraFinance';
 import config from '../config';
-import ERC20 from '../tomb-finance/ERC20';
+import ERC20 from '../libra-finance/ERC20';
 
 const useStakedTokenPriceInDollars = (stakedTokenName: string, stakedToken: ERC20) => {
   const [stakedTokenPriceInDollars, setStakedTokenPriceInDollars] = useState('0');

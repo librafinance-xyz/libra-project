@@ -2,7 +2,7 @@ import { BigNumber, ethers } from 'ethers';
 import { useCallback, useMemo } from 'react';
 import { useHasPendingApproval, useTransactionAdder } from '../state/transactions/hooks';
 import useAllowance from './useAllowance';
-import ERC20 from '../tomb-finance/ERC20';
+import ERC20 from '../libra-finance/ERC20';
 import { TAX_OFFICE_ADDR } from '../utils/constants';
 import useLibraFinance from './useLibraFinance';
 
@@ -19,10 +19,10 @@ export enum ApprovalState {
 // returns a variable indicating the state of the approval and a function which approves if necessary or early returns
 function useApproveTaxOffice(): [ApprovalState, () => Promise<void>] {
   const libraFinance = useLibraFinance();
-  let token: ERC20 = libraFinance.TOMB;
+  let token: ERC20 = libraFinance.LIBRA;
   // if (zappingToken === FTM_TICKER) token = libraFinance.FTM;
-  // else if (zappingToken === TOMB_TICKER) token = libraFinance.TOMB;
-  // else if (zappingToken === TSHARE_TICKER) token = libraFinance.LSHARE;
+  // else if (zappingToken === LIBRA_TICKER) token = libraFinance.LIBRA;
+  // else if (zappingToken === LSHARE_TICKER) token = libraFinance.LSHARE;
   const pendingApproval = useHasPendingApproval(token.address, TAX_OFFICE_ADDR);
   const currentAllowance = useAllowance(token, TAX_OFFICE_ADDR, pendingApproval);
 

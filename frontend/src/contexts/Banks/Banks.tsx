@@ -1,7 +1,7 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import Context from './context';
 import useLibraFinance from '../../hooks/useLibraFinance';
-import { Bank } from '../../tomb-finance';
+import { Bank } from '../../libra-finance';
 import config, { bankDefinitions } from '../../config';
 
 const Banks: React.FC = ({ children }) => {
@@ -30,7 +30,7 @@ const Banks: React.FC = ({ children }) => {
         ...bankInfo,
         address: config.deployments[bankInfo.contract].address,
         depositToken: libraFinance.externalTokens[bankInfo.depositTokenName],
-        earnToken: bankInfo.earnTokenName === 'TOMB' ? libraFinance.TOMB : libraFinance.LSHARE,
+        earnToken: bankInfo.earnTokenName === 'LIBRA' ? libraFinance.LIBRA : libraFinance.LSHARE,
       });
     }
     banks.sort((a, b) => (a.sort > b.sort ? 1 : -1));

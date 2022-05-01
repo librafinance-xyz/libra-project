@@ -12,14 +12,14 @@ import TokenSymbol from '../TokenSymbol';
 const AccountModal: React.FC<ModalProps> = ({ onDismiss }) => {
   const libraFinance = useLibraFinance();
 
-  const tombBalance = useTokenBalance(libraFinance.TOMB);
-  const displayTombBalance = useMemo(() => getDisplayBalance(tombBalance), [tombBalance]);
+  const libraBalance = useTokenBalance(libraFinance.LIBRA);
+  const displayLibraBalance = useMemo(() => getDisplayBalance(libraBalance), [libraBalance]);
 
-  const tshareBalance = useTokenBalance(libraFinance.LSHARE);
-  const displayTshareBalance = useMemo(() => getDisplayBalance(tshareBalance), [tshareBalance]);
+  const lshareBalance = useTokenBalance(libraFinance.LSHARE);
+  const displayTshareBalance = useMemo(() => getDisplayBalance(lshareBalance), [lshareBalance]);
 
-  const tbondBalance = useTokenBalance(libraFinance.TBOND);
-  const displayTbondBalance = useMemo(() => getDisplayBalance(tbondBalance), [tbondBalance]);
+  const lbondBalance = useTokenBalance(libraFinance.LBOND);
+  const displayLbondBalance = useMemo(() => getDisplayBalance(lbondBalance), [lbondBalance]);
 
   return (
     <Modal>
@@ -27,15 +27,15 @@ const AccountModal: React.FC<ModalProps> = ({ onDismiss }) => {
 
       <Balances>
         <StyledBalanceWrapper>
-          <TokenSymbol symbol="TOMB" />
+          <TokenSymbol symbol="LIBRA" />
           <StyledBalance>
-            <StyledValue>{displayTombBalance}</StyledValue>
+            <StyledValue>{displayLibraBalance}</StyledValue>
             <Label text="LIBRA Available" variant="primary" />
           </StyledBalance>
         </StyledBalanceWrapper>
 
         <StyledBalanceWrapper>
-          <TokenSymbol symbol="TSHARE" />
+          <TokenSymbol symbol="LSHARE" />
           <StyledBalance>
             <StyledValue>{displayTshareBalance}</StyledValue>
             <Label text="LSHARE Available" variant="primary" />
@@ -43,9 +43,9 @@ const AccountModal: React.FC<ModalProps> = ({ onDismiss }) => {
         </StyledBalanceWrapper>
 
         <StyledBalanceWrapper>
-          <TokenSymbol symbol="TBOND" />
+          <TokenSymbol symbol="LBOND" />
           <StyledBalance>
-            <StyledValue>{displayTbondBalance}</StyledValue>
+            <StyledValue>{displayLbondBalance}</StyledValue>
             <Label text="LBOND Available" variant="primary" />
           </StyledBalance>
         </StyledBalanceWrapper>

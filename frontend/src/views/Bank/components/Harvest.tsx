@@ -14,7 +14,7 @@ import useHarvest from '../../../hooks/useHarvest';
 
 import { getDisplayBalance } from '../../../utils/formatBalance';
 import TokenSymbol from '../../../components/TokenSymbol';
-import { Bank } from '../../../tomb-finance';
+import { Bank } from '../../../libra-finance';
 import useLibraStats from '../../../hooks/useLibraStats';
 import useShareStats from '../../../hooks/useLShareStats';
 
@@ -29,7 +29,7 @@ const Harvest: React.FC<HarvestProps> = ({ bank }) => {
   const LShareStats = useShareStats();
 
   const tokenName = bank.earnTokenName === 'LSHARE' ? 'LSHARE' : 'LIBRA';
-  const tokenEarn = bank.earnTokenName === 'LIBRA' ? 'TOMB' : 'TSHARE';
+  const tokenEarn = bank.earnTokenName === 'LIBRA' ? 'LIBRA' : 'LSHARE';
   const tokenStats = bank.earnTokenName === 'LSHARE' ? LShareStats : libraStats;
   const tokenPriceInDollars = useMemo(
     () => (tokenStats ? Number(tokenStats.priceInDollars).toFixed(2) : null),

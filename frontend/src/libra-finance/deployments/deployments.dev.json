@@ -861,7 +861,7 @@
       }
     ]
   },
-  "tomb": {
+  "libra": {
     "address": "0x6d664cfe0ce55bced5250b9cc3f04e98a239ef22",
     "abi": [
       {
@@ -1015,7 +1015,7 @@
       },
       {
         "inputs": [],
-        "name": "INITIAL_TOMB_POOL_DISTRIBUTION",
+        "name": "INITIAL_LIBRA_POOL_DISTRIBUTION",
         "outputs": [
           {
             "internalType": "uint256",
@@ -1350,7 +1350,7 @@
       },
       {
         "inputs": [],
-        "name": "tombOracle",
+        "name": "libraOracle",
         "outputs": [
           {
             "internalType": "address",
@@ -1535,11 +1535,11 @@
         "inputs": [
           {
             "internalType": "address",
-            "name": "_tombOracle",
+            "name": "_libraOracle",
             "type": "address"
           }
         ],
-        "name": "setTombOracle",
+        "name": "setLibraOracle",
         "outputs": [],
         "stateMutability": "nonpayable",
         "type": "function"
@@ -1714,7 +1714,7 @@
           },
           {
             "internalType": "address",
-            "name": "_tombPool",
+            "name": "_libraPool",
             "type": "address"
           },
           {
@@ -1753,7 +1753,7 @@
       }
     ]
   },
-  "tShare": {
+  "LShare": {
     "address": "0xedFF72F95f0574cb74812237dA3B099f3Ef2bf2E",
     "abi": [
       {
@@ -2891,7 +2891,7 @@
           {
             "indexed": false,
             "internalType": "uint256",
-            "name": "tombAmount",
+            "name": "libraAmount",
             "type": "uint256"
           },
           {
@@ -3011,7 +3011,7 @@
           {
             "indexed": false,
             "internalType": "uint256",
-            "name": "tombAmount",
+            "name": "libraAmount",
             "type": "uint256"
           },
           {
@@ -3350,7 +3350,7 @@
       },
       {
         "inputs": [],
-        "name": "previousEpochTombPrice",
+        "name": "previousEpochLibraPrice",
         "outputs": [
           {
             "internalType": "uint256",
@@ -3434,7 +3434,7 @@
       },
       {
         "inputs": [],
-        "name": "tomb",
+        "name": "libra",
         "outputs": [
           {
             "internalType": "address",
@@ -3447,7 +3447,7 @@
       },
       {
         "inputs": [],
-        "name": "tombOracle",
+        "name": "libraOracle",
         "outputs": [
           {
             "internalType": "address",
@@ -3460,7 +3460,7 @@
       },
       {
         "inputs": [],
-        "name": "tombPriceCeiling",
+        "name": "libraPriceCeiling",
         "outputs": [
           {
             "internalType": "uint256",
@@ -3473,7 +3473,7 @@
       },
       {
         "inputs": [],
-        "name": "tombPriceOne",
+        "name": "libraPriceOne",
         "outputs": [
           {
             "internalType": "uint256",
@@ -3486,7 +3486,7 @@
       },
       {
         "inputs": [],
-        "name": "tshare",
+        "name": "lshare",
         "outputs": [
           {
             "internalType": "address",
@@ -3525,11 +3525,11 @@
       },
       {
         "inputs": [],
-        "name": "getTombPrice",
+        "name": "getLibraPrice",
         "outputs": [
           {
             "internalType": "uint256",
-            "name": "tombPrice",
+            "name": "libraPrice",
             "type": "uint256"
           }
         ],
@@ -3538,11 +3538,11 @@
       },
       {
         "inputs": [],
-        "name": "getTombUpdatedPrice",
+        "name": "getLibraUpdatedPrice",
         "outputs": [
           {
             "internalType": "uint256",
-            "name": "_tombPrice",
+            "name": "_libraPrice",
             "type": "uint256"
           }
         ],
@@ -3564,11 +3564,11 @@
       },
       {
         "inputs": [],
-        "name": "getBurnableTombLeft",
+        "name": "getBurnableLibraLeft",
         "outputs": [
           {
             "internalType": "uint256",
-            "name": "_burnableTombLeft",
+            "name": "_burnableLibraLeft",
             "type": "uint256"
           }
         ],
@@ -3618,7 +3618,7 @@
         "inputs": [
           {
             "internalType": "address",
-            "name": "_tomb",
+            "name": "_libra",
             "type": "address"
           },
           {
@@ -3628,12 +3628,12 @@
           },
           {
             "internalType": "address",
-            "name": "_tshare",
+            "name": "_lshare",
             "type": "address"
           },
           {
             "internalType": "address",
-            "name": "_tombOracle",
+            "name": "_libraOracle",
             "type": "address"
           },
           {
@@ -3682,11 +3682,11 @@
         "inputs": [
           {
             "internalType": "address",
-            "name": "_tombOracle",
+            "name": "_libraOracle",
             "type": "address"
           }
         ],
-        "name": "setTombOracle",
+        "name": "setLibraOracle",
         "outputs": [],
         "stateMutability": "nonpayable",
         "type": "function"
@@ -3695,11 +3695,11 @@
         "inputs": [
           {
             "internalType": "uint256",
-            "name": "_tombPriceCeiling",
+            "name": "_libraPriceCeiling",
             "type": "uint256"
           }
         ],
-        "name": "setTombPriceCeiling",
+        "name": "setLibraPriceCeiling",
         "outputs": [],
         "stateMutability": "nonpayable",
         "type": "function"
@@ -3884,7 +3884,7 @@
         "inputs": [
           {
             "internalType": "uint256",
-            "name": "_tombAmount",
+            "name": "_libraAmount",
             "type": "uint256"
           },
           {
@@ -4244,7 +4244,7 @@
       },
       {
         "inputs": [],
-        "name": "tomb",
+        "name": "libra",
         "outputs": [
           {
             "internalType": "contract IERC20",
@@ -4298,7 +4298,7 @@
         "inputs": [
           {
             "internalType": "contract IERC20",
-            "name": "_tomb",
+            "name": "_libra",
             "type": "address"
           },
           {
@@ -4446,7 +4446,7 @@
       },
       {
         "inputs": [],
-        "name": "getTombPrice",
+        "name": "getLibraPrice",
         "outputs": [
           {
             "internalType": "uint256",
@@ -4567,14 +4567,14 @@
       }
     ]
   },
-  "TombBelugaRewardPool": {
+  "LibraBelugaRewardPool": {
     "address": "0xcb0b0419e6a1f46be89c1c1eeeaf9172b7125b29",
     "abi": [
       {
         "inputs": [
           {
             "internalType": "address",
-            "name": "_tomb",
+            "name": "_libra",
             "type": "address"
           },
           {
@@ -4746,7 +4746,7 @@
           },
           {
             "internalType": "uint256",
-            "name": "accTombPerShare",
+            "name": "accLibraPerShare",
             "type": "uint256"
           },
           {
@@ -4786,7 +4786,7 @@
       },
       {
         "inputs": [],
-        "name": "tomb",
+        "name": "libra",
         "outputs": [
           {
             "internalType": "contract IERC20",
@@ -4799,7 +4799,7 @@
       },
       {
         "inputs": [],
-        "name": "tombPerSecond",
+        "name": "libraPerSecond",
         "outputs": [
           {
             "internalType": "uint256",
@@ -4935,7 +4935,7 @@
             "type": "address"
           }
         ],
-        "name": "pendingTOMB",
+        "name": "pendingLIBRA",
         "outputs": [
           {
             "internalType": "uint256",
@@ -5053,14 +5053,14 @@
       }
     ]
   },
-  "Tomb2ShareRewardPool": {
+  "Libra2ShareRewardPool": {
     "address": "0xcb0b0419e6a1f46be89c1c1eeeaf9172b7125b29",
     "abi": [
       {
         "inputs": [
           {
             "internalType": "address",
-            "name": "_tomb",
+            "name": "_libra",
             "type": "address"
           },
           {
@@ -5232,7 +5232,7 @@
           },
           {
             "internalType": "uint256",
-            "name": "accTombPerShare",
+            "name": "accLibraPerShare",
             "type": "uint256"
           },
           {
@@ -5272,7 +5272,7 @@
       },
       {
         "inputs": [],
-        "name": "tomb",
+        "name": "libra",
         "outputs": [
           {
             "internalType": "contract IERC20",
@@ -5285,7 +5285,7 @@
       },
       {
         "inputs": [],
-        "name": "tombPerSecond",
+        "name": "libraPerSecond",
         "outputs": [
           {
             "internalType": "uint256",
@@ -5421,7 +5421,7 @@
             "type": "address"
           }
         ],
-        "name": "pendingTOMB",
+        "name": "pendingLIBRA",
         "outputs": [
           {
             "internalType": "uint256",
@@ -5539,14 +5539,14 @@
       }
     ]
   },
-  "Tomb2ombRewardPool": {
+  "Libra2ombRewardPool": {
     "address": "0xcb0b0419e6a1f46be89c1c1eeeaf9172b7125b29",
     "abi": [
       {
         "inputs": [
           {
             "internalType": "address",
-            "name": "_tomb",
+            "name": "_libra",
             "type": "address"
           },
           {
@@ -5718,7 +5718,7 @@
           },
           {
             "internalType": "uint256",
-            "name": "accTombPerShare",
+            "name": "accLibraPerShare",
             "type": "uint256"
           },
           {
@@ -5758,7 +5758,7 @@
       },
       {
         "inputs": [],
-        "name": "tomb",
+        "name": "libra",
         "outputs": [
           {
             "internalType": "contract IERC20",
@@ -5771,7 +5771,7 @@
       },
       {
         "inputs": [],
-        "name": "tombPerSecond",
+        "name": "libraPerSecond",
         "outputs": [
           {
             "internalType": "uint256",
@@ -5907,7 +5907,7 @@
             "type": "address"
           }
         ],
-        "name": "pendingTOMB",
+        "name": "pendingLIBRA",
         "outputs": [
           {
             "internalType": "uint256",
@@ -6025,14 +6025,14 @@
       }
     ]
   },
-  "Tomb2ShareRewardPool": {
+  "Libra2ShareRewardPool": {
     "address": "0xcb0b0419e6a1f46be89c1c1eeeaf9172b7125b29",
     "abi": [
       {
         "inputs": [
           {
             "internalType": "address",
-            "name": "_tomb",
+            "name": "_libra",
             "type": "address"
           },
           {
@@ -6204,7 +6204,7 @@
           },
           {
             "internalType": "uint256",
-            "name": "accTombPerShare",
+            "name": "accLibraPerShare",
             "type": "uint256"
           },
           {
@@ -6244,7 +6244,7 @@
       },
       {
         "inputs": [],
-        "name": "tomb",
+        "name": "libra",
         "outputs": [
           {
             "internalType": "contract IERC20",
@@ -6257,7 +6257,7 @@
       },
       {
         "inputs": [],
-        "name": "tombPerSecond",
+        "name": "libraPerSecond",
         "outputs": [
           {
             "internalType": "uint256",
@@ -6393,7 +6393,7 @@
             "type": "address"
           }
         ],
-        "name": "pendingTOMB",
+        "name": "pendingLIBRA",
         "outputs": [
           {
             "internalType": "uint256",
@@ -6512,14 +6512,14 @@
     ]
   },
 
-  "TombFtmRewardPool": {
+  "LibraFtmRewardPool": {
     "address": "0xcb0b0419e6a1f46be89c1c1eeeaf9172b7125b29",
     "abi": [
       {
         "inputs": [
           {
             "internalType": "address",
-            "name": "_tomb",
+            "name": "_libra",
             "type": "address"
           },
           {
@@ -6691,7 +6691,7 @@
           },
           {
             "internalType": "uint256",
-            "name": "accTombPerShare",
+            "name": "accLibraPerShare",
             "type": "uint256"
           },
           {
@@ -6731,7 +6731,7 @@
       },
       {
         "inputs": [],
-        "name": "tomb",
+        "name": "libra",
         "outputs": [
           {
             "internalType": "contract IERC20",
@@ -6744,7 +6744,7 @@
       },
       {
         "inputs": [],
-        "name": "tombPerSecond",
+        "name": "libraPerSecond",
         "outputs": [
           {
             "internalType": "uint256",
@@ -6880,7 +6880,7 @@
             "type": "address"
           }
         ],
-        "name": "pendingTOMB",
+        "name": "pendingLIBRA",
         "outputs": [
           {
             "internalType": "uint256",
@@ -7005,7 +7005,7 @@
         "inputs": [
           {
             "internalType": "address",
-            "name": "_tomb",
+            "name": "_libra",
             "type": "address"
           },
           {
@@ -7177,7 +7177,7 @@
           },
           {
             "internalType": "uint256",
-            "name": "accTombPerShare",
+            "name": "accLibraPerShare",
             "type": "uint256"
           },
           {
@@ -7217,7 +7217,7 @@
       },
       {
         "inputs": [],
-        "name": "tomb",
+        "name": "libra",
         "outputs": [
           {
             "internalType": "contract IERC20",
@@ -7230,7 +7230,7 @@
       },
       {
         "inputs": [],
-        "name": "tombPerSecond",
+        "name": "libraPerSecond",
         "outputs": [
           {
             "internalType": "uint256",
@@ -7366,7 +7366,7 @@
             "type": "address"
           }
         ],
-        "name": "pendingTOMB",
+        "name": "pendingLIBRA",
         "outputs": [
           {
             "internalType": "uint256",
@@ -7484,14 +7484,14 @@
       }
     ]
   },
-  "Tomb2ombWftmLPRewardPool": {
+  "Libra2ombWftmLPRewardPool": {
     "address": "0xcb0b0419e6a1f46be89c1c1eeeaf9172b7125b29",
     "abi": [
       {
         "inputs": [
           {
             "internalType": "address",
-            "name": "_tomb",
+            "name": "_libra",
             "type": "address"
           },
           {
@@ -7663,7 +7663,7 @@
           },
           {
             "internalType": "uint256",
-            "name": "accTombPerShare",
+            "name": "accLibraPerShare",
             "type": "uint256"
           },
           {
@@ -7703,7 +7703,7 @@
       },
       {
         "inputs": [],
-        "name": "tomb",
+        "name": "libra",
         "outputs": [
           {
             "internalType": "contract IERC20",
@@ -7716,7 +7716,7 @@
       },
       {
         "inputs": [],
-        "name": "tombPerSecond",
+        "name": "libraPerSecond",
         "outputs": [
           {
             "internalType": "uint256",
@@ -7852,7 +7852,7 @@
             "type": "address"
           }
         ],
-        "name": "pendingTOMB",
+        "name": "pendingLIBRA",
         "outputs": [
           {
             "internalType": "uint256",
@@ -7970,14 +7970,14 @@
       }
     ]
   },
-  "Tomb2SharesWftmLPRewardPool": {
+  "Libra2SharesWftmLPRewardPool": {
     "address": "0xcb0b0419e6a1f46be89c1c1eeeaf9172b7125b29",
     "abi": [
       {
         "inputs": [
           {
             "internalType": "address",
-            "name": "_tomb",
+            "name": "_libra",
             "type": "address"
           },
           {
@@ -8149,7 +8149,7 @@
           },
           {
             "internalType": "uint256",
-            "name": "accTombPerShare",
+            "name": "accLibraPerShare",
             "type": "uint256"
           },
           {
@@ -8189,7 +8189,7 @@
       },
       {
         "inputs": [],
-        "name": "tomb",
+        "name": "libra",
         "outputs": [
           {
             "internalType": "contract IERC20",
@@ -8202,7 +8202,7 @@
       },
       {
         "inputs": [],
-        "name": "tombPerSecond",
+        "name": "libraPerSecond",
         "outputs": [
           {
             "internalType": "uint256",
@@ -8338,7 +8338,7 @@
             "type": "address"
           }
         ],
-        "name": "pendingTOMB",
+        "name": "pendingLIBRA",
         "outputs": [
           {
             "internalType": "uint256",
@@ -8457,14 +8457,14 @@
     ]
   },
 
-  "Tomb2ombWftmLPRewardPool": {
+  "Libra2ombWftmLPRewardPool": {
     "address": "0xcb0b0419e6a1f46be89c1c1eeeaf9172b7125b29",
     "abi": [
       {
         "inputs": [
           {
             "internalType": "address",
-            "name": "_tomb",
+            "name": "_libra",
             "type": "address"
           },
           {
@@ -8636,7 +8636,7 @@
           },
           {
             "internalType": "uint256",
-            "name": "accTombPerShare",
+            "name": "accLibraPerShare",
             "type": "uint256"
           },
           {
@@ -8676,7 +8676,7 @@
       },
       {
         "inputs": [],
-        "name": "tomb",
+        "name": "libra",
         "outputs": [
           {
             "internalType": "contract IERC20",
@@ -8689,7 +8689,7 @@
       },
       {
         "inputs": [],
-        "name": "tombPerSecond",
+        "name": "libraPerSecond",
         "outputs": [
           {
             "internalType": "uint256",
@@ -8825,7 +8825,7 @@
             "type": "address"
           }
         ],
-        "name": "pendingTOMB",
+        "name": "pendingLIBRA",
         "outputs": [
           {
             "internalType": "uint256",
@@ -8943,14 +8943,14 @@
       }
     ]
   },
-  "TombBloomGenesisRewardPool": {
+  "LibraBloomGenesisRewardPool": {
     "address": "0xcb0b0419e6a1f46be89c1c1eeeaf9172b7125b29",
     "abi": [
       {
         "inputs": [
           {
             "internalType": "address",
-            "name": "_tomb",
+            "name": "_libra",
             "type": "address"
           },
           {
@@ -9122,7 +9122,7 @@
           },
           {
             "internalType": "uint256",
-            "name": "accTombPerShare",
+            "name": "accLibraPerShare",
             "type": "uint256"
           },
           {
@@ -9162,7 +9162,7 @@
       },
       {
         "inputs": [],
-        "name": "tomb",
+        "name": "libra",
         "outputs": [
           {
             "internalType": "contract IERC20",
@@ -9175,7 +9175,7 @@
       },
       {
         "inputs": [],
-        "name": "tombPerSecond",
+        "name": "libraPerSecond",
         "outputs": [
           {
             "internalType": "uint256",
@@ -9311,494 +9311,7 @@
             "type": "address"
           }
         ],
-        "name": "pendingTOMB",
-        "outputs": [
-          {
-            "internalType": "uint256",
-            "name": "",
-            "type": "uint256"
-          }
-        ],
-        "stateMutability": "view",
-        "type": "function"
-      },
-      {
-        "inputs": [],
-        "name": "massUpdatePools",
-        "outputs": [],
-        "stateMutability": "nonpayable",
-        "type": "function"
-      },
-      {
-        "inputs": [
-          {
-            "internalType": "uint256",
-            "name": "_pid",
-            "type": "uint256"
-          }
-        ],
-        "name": "updatePool",
-        "outputs": [],
-        "stateMutability": "nonpayable",
-        "type": "function"
-      },
-      {
-        "inputs": [
-          {
-            "internalType": "uint256",
-            "name": "_pid",
-            "type": "uint256"
-          },
-          {
-            "internalType": "uint256",
-            "name": "_amount",
-            "type": "uint256"
-          }
-        ],
-        "name": "deposit",
-        "outputs": [],
-        "stateMutability": "nonpayable",
-        "type": "function"
-      },
-      {
-        "inputs": [
-          {
-            "internalType": "uint256",
-            "name": "_pid",
-            "type": "uint256"
-          },
-          {
-            "internalType": "uint256",
-            "name": "_amount",
-            "type": "uint256"
-          }
-        ],
-        "name": "withdraw",
-        "outputs": [],
-        "stateMutability": "nonpayable",
-        "type": "function"
-      },
-      {
-        "inputs": [
-          {
-            "internalType": "uint256",
-            "name": "_pid",
-            "type": "uint256"
-          }
-        ],
-        "name": "emergencyWithdraw",
-        "outputs": [],
-        "stateMutability": "nonpayable",
-        "type": "function"
-      },
-      {
-        "inputs": [
-          {
-            "internalType": "address",
-            "name": "_operator",
-            "type": "address"
-          }
-        ],
-        "name": "setOperator",
-        "outputs": [],
-        "stateMutability": "nonpayable",
-        "type": "function"
-      },
-      {
-        "inputs": [
-          {
-            "internalType": "contract IERC20",
-            "name": "_token",
-            "type": "address"
-          },
-          {
-            "internalType": "uint256",
-            "name": "amount",
-            "type": "uint256"
-          },
-          {
-            "internalType": "address",
-            "name": "to",
-            "type": "address"
-          }
-        ],
-        "name": "governanceRecoverUnsupported",
-        "outputs": [],
-        "stateMutability": "nonpayable",
-        "type": "function"
-      }
-    ]
-  },
-
-  "Tomb2shares2ombLPRewardPool": {
-    "address": "0xcb0b0419e6a1f46be89c1c1eeeaf9172b7125b29",
-    "abi": [
-      {
-        "inputs": [
-          {
-            "internalType": "address",
-            "name": "_tomb",
-            "type": "address"
-          },
-          {
-            "internalType": "uint256",
-            "name": "_poolStartTime",
-            "type": "uint256"
-          }
-        ],
-        "stateMutability": "nonpayable",
-        "type": "constructor"
-      },
-      {
-        "anonymous": false,
-        "inputs": [
-          {
-            "indexed": true,
-            "internalType": "address",
-            "name": "user",
-            "type": "address"
-          },
-          {
-            "indexed": true,
-            "internalType": "uint256",
-            "name": "pid",
-            "type": "uint256"
-          },
-          {
-            "indexed": false,
-            "internalType": "uint256",
-            "name": "amount",
-            "type": "uint256"
-          }
-        ],
-        "name": "Deposit",
-        "type": "event"
-      },
-      {
-        "anonymous": false,
-        "inputs": [
-          {
-            "indexed": true,
-            "internalType": "address",
-            "name": "user",
-            "type": "address"
-          },
-          {
-            "indexed": true,
-            "internalType": "uint256",
-            "name": "pid",
-            "type": "uint256"
-          },
-          {
-            "indexed": false,
-            "internalType": "uint256",
-            "name": "amount",
-            "type": "uint256"
-          }
-        ],
-        "name": "EmergencyWithdraw",
-        "type": "event"
-      },
-      {
-        "anonymous": false,
-        "inputs": [
-          {
-            "indexed": true,
-            "internalType": "address",
-            "name": "user",
-            "type": "address"
-          },
-          {
-            "indexed": false,
-            "internalType": "uint256",
-            "name": "amount",
-            "type": "uint256"
-          }
-        ],
-        "name": "RewardPaid",
-        "type": "event"
-      },
-      {
-        "anonymous": false,
-        "inputs": [
-          {
-            "indexed": true,
-            "internalType": "address",
-            "name": "user",
-            "type": "address"
-          },
-          {
-            "indexed": true,
-            "internalType": "uint256",
-            "name": "pid",
-            "type": "uint256"
-          },
-          {
-            "indexed": false,
-            "internalType": "uint256",
-            "name": "amount",
-            "type": "uint256"
-          }
-        ],
-        "name": "Withdraw",
-        "type": "event"
-      },
-      {
-        "inputs": [],
-        "name": "TOTAL_REWARDS",
-        "outputs": [
-          {
-            "internalType": "uint256",
-            "name": "",
-            "type": "uint256"
-          }
-        ],
-        "stateMutability": "view",
-        "type": "function"
-      },
-      {
-        "inputs": [],
-        "name": "operator",
-        "outputs": [
-          {
-            "internalType": "address",
-            "name": "",
-            "type": "address"
-          }
-        ],
-        "stateMutability": "view",
-        "type": "function"
-      },
-      {
-        "inputs": [],
-        "name": "poolEndTime",
-        "outputs": [
-          {
-            "internalType": "uint256",
-            "name": "",
-            "type": "uint256"
-          }
-        ],
-        "stateMutability": "view",
-        "type": "function"
-      },
-      {
-        "inputs": [
-          {
-            "internalType": "uint256",
-            "name": "",
-            "type": "uint256"
-          }
-        ],
-        "name": "poolInfo",
-        "outputs": [
-          {
-            "internalType": "contract IERC20",
-            "name": "token",
-            "type": "address"
-          },
-          {
-            "internalType": "uint256",
-            "name": "allocPoint",
-            "type": "uint256"
-          },
-          {
-            "internalType": "uint256",
-            "name": "lastRewardTime",
-            "type": "uint256"
-          },
-          {
-            "internalType": "uint256",
-            "name": "accTombPerShare",
-            "type": "uint256"
-          },
-          {
-            "internalType": "bool",
-            "name": "isStarted",
-            "type": "bool"
-          }
-        ],
-        "stateMutability": "view",
-        "type": "function"
-      },
-      {
-        "inputs": [],
-        "name": "poolStartTime",
-        "outputs": [
-          {
-            "internalType": "uint256",
-            "name": "",
-            "type": "uint256"
-          }
-        ],
-        "stateMutability": "view",
-        "type": "function"
-      },
-      {
-        "inputs": [],
-        "name": "runningTime",
-        "outputs": [
-          {
-            "internalType": "uint256",
-            "name": "",
-            "type": "uint256"
-          }
-        ],
-        "stateMutability": "view",
-        "type": "function"
-      },
-      {
-        "inputs": [],
-        "name": "tomb",
-        "outputs": [
-          {
-            "internalType": "contract IERC20",
-            "name": "",
-            "type": "address"
-          }
-        ],
-        "stateMutability": "view",
-        "type": "function"
-      },
-      {
-        "inputs": [],
-        "name": "tombPerSecond",
-        "outputs": [
-          {
-            "internalType": "uint256",
-            "name": "",
-            "type": "uint256"
-          }
-        ],
-        "stateMutability": "view",
-        "type": "function"
-      },
-      {
-        "inputs": [],
-        "name": "totalAllocPoint",
-        "outputs": [
-          {
-            "internalType": "uint256",
-            "name": "",
-            "type": "uint256"
-          }
-        ],
-        "stateMutability": "view",
-        "type": "function"
-      },
-      {
-        "inputs": [
-          {
-            "internalType": "uint256",
-            "name": "",
-            "type": "uint256"
-          },
-          {
-            "internalType": "address",
-            "name": "",
-            "type": "address"
-          }
-        ],
-        "name": "userInfo",
-        "outputs": [
-          {
-            "internalType": "uint256",
-            "name": "amount",
-            "type": "uint256"
-          },
-          {
-            "internalType": "uint256",
-            "name": "rewardDebt",
-            "type": "uint256"
-          }
-        ],
-        "stateMutability": "view",
-        "type": "function"
-      },
-      {
-        "inputs": [
-          {
-            "internalType": "uint256",
-            "name": "_allocPoint",
-            "type": "uint256"
-          },
-          {
-            "internalType": "contract IERC20",
-            "name": "_token",
-            "type": "address"
-          },
-          {
-            "internalType": "bool",
-            "name": "_withUpdate",
-            "type": "bool"
-          },
-          {
-            "internalType": "uint256",
-            "name": "_lastRewardTime",
-            "type": "uint256"
-          }
-        ],
-        "name": "add",
-        "outputs": [],
-        "stateMutability": "nonpayable",
-        "type": "function"
-      },
-      {
-        "inputs": [
-          {
-            "internalType": "uint256",
-            "name": "_pid",
-            "type": "uint256"
-          },
-          {
-            "internalType": "uint256",
-            "name": "_allocPoint",
-            "type": "uint256"
-          }
-        ],
-        "name": "set",
-        "outputs": [],
-        "stateMutability": "nonpayable",
-        "type": "function"
-      },
-      {
-        "inputs": [
-          {
-            "internalType": "uint256",
-            "name": "_fromTime",
-            "type": "uint256"
-          },
-          {
-            "internalType": "uint256",
-            "name": "_toTime",
-            "type": "uint256"
-          }
-        ],
-        "name": "getGeneratedReward",
-        "outputs": [
-          {
-            "internalType": "uint256",
-            "name": "",
-            "type": "uint256"
-          }
-        ],
-        "stateMutability": "view",
-        "type": "function"
-      },
-      {
-        "inputs": [
-          {
-            "internalType": "uint256",
-            "name": "_pid",
-            "type": "uint256"
-          },
-          {
-            "internalType": "address",
-            "name": "_user",
-            "type": "address"
-          }
-        ],
-        "name": "pendingTOMB",
+        "name": "pendingLIBRA",
         "outputs": [
           {
             "internalType": "uint256",
@@ -9917,14 +9430,14 @@
     ]
   },
 
-  "TombBifiGenesisRewardPool": {
+  "Libra2shares2ombLPRewardPool": {
     "address": "0xcb0b0419e6a1f46be89c1c1eeeaf9172b7125b29",
     "abi": [
       {
         "inputs": [
           {
             "internalType": "address",
-            "name": "_tomb",
+            "name": "_libra",
             "type": "address"
           },
           {
@@ -10096,7 +9609,7 @@
           },
           {
             "internalType": "uint256",
-            "name": "accTombPerShare",
+            "name": "accLibraPerShare",
             "type": "uint256"
           },
           {
@@ -10136,7 +9649,7 @@
       },
       {
         "inputs": [],
-        "name": "tomb",
+        "name": "libra",
         "outputs": [
           {
             "internalType": "contract IERC20",
@@ -10149,7 +9662,7 @@
       },
       {
         "inputs": [],
-        "name": "tombPerSecond",
+        "name": "libraPerSecond",
         "outputs": [
           {
             "internalType": "uint256",
@@ -10285,7 +9798,7 @@
             "type": "address"
           }
         ],
-        "name": "pendingTOMB",
+        "name": "pendingLIBRA",
         "outputs": [
           {
             "internalType": "uint256",
@@ -10403,14 +9916,15 @@
       }
     ]
   },
-  "TombMimGenesisRewardPool": {
+
+  "LibraBifiGenesisRewardPool": {
     "address": "0xcb0b0419e6a1f46be89c1c1eeeaf9172b7125b29",
     "abi": [
       {
         "inputs": [
           {
             "internalType": "address",
-            "name": "_tomb",
+            "name": "_libra",
             "type": "address"
           },
           {
@@ -10582,7 +10096,7 @@
           },
           {
             "internalType": "uint256",
-            "name": "accTombPerShare",
+            "name": "accLibraPerShare",
             "type": "uint256"
           },
           {
@@ -10622,7 +10136,7 @@
       },
       {
         "inputs": [],
-        "name": "tomb",
+        "name": "libra",
         "outputs": [
           {
             "internalType": "contract IERC20",
@@ -10635,7 +10149,7 @@
       },
       {
         "inputs": [],
-        "name": "tombPerSecond",
+        "name": "libraPerSecond",
         "outputs": [
           {
             "internalType": "uint256",
@@ -10771,7 +10285,7 @@
             "type": "address"
           }
         ],
-        "name": "pendingTOMB",
+        "name": "pendingLIBRA",
         "outputs": [
           {
             "internalType": "uint256",
@@ -10889,14 +10403,14 @@
       }
     ]
   },
-  "TombShibaGenesisRewardPool": {
+  "LibraMimGenesisRewardPool": {
     "address": "0xcb0b0419e6a1f46be89c1c1eeeaf9172b7125b29",
     "abi": [
       {
         "inputs": [
           {
             "internalType": "address",
-            "name": "_tomb",
+            "name": "_libra",
             "type": "address"
           },
           {
@@ -11068,7 +10582,7 @@
           },
           {
             "internalType": "uint256",
-            "name": "accTombPerShare",
+            "name": "accLibraPerShare",
             "type": "uint256"
           },
           {
@@ -11108,7 +10622,7 @@
       },
       {
         "inputs": [],
-        "name": "tomb",
+        "name": "libra",
         "outputs": [
           {
             "internalType": "contract IERC20",
@@ -11121,7 +10635,7 @@
       },
       {
         "inputs": [],
-        "name": "tombPerSecond",
+        "name": "libraPerSecond",
         "outputs": [
           {
             "internalType": "uint256",
@@ -11257,7 +10771,7 @@
             "type": "address"
           }
         ],
-        "name": "pendingTOMB",
+        "name": "pendingLIBRA",
         "outputs": [
           {
             "internalType": "uint256",
@@ -11375,14 +10889,500 @@
       }
     ]
   },
-  "TombFtmLpTombRewardPoolOld": {
+  "LibraShibaGenesisRewardPool": {
+    "address": "0xcb0b0419e6a1f46be89c1c1eeeaf9172b7125b29",
+    "abi": [
+      {
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "_libra",
+            "type": "address"
+          },
+          {
+            "internalType": "uint256",
+            "name": "_poolStartTime",
+            "type": "uint256"
+          }
+        ],
+        "stateMutability": "nonpayable",
+        "type": "constructor"
+      },
+      {
+        "anonymous": false,
+        "inputs": [
+          {
+            "indexed": true,
+            "internalType": "address",
+            "name": "user",
+            "type": "address"
+          },
+          {
+            "indexed": true,
+            "internalType": "uint256",
+            "name": "pid",
+            "type": "uint256"
+          },
+          {
+            "indexed": false,
+            "internalType": "uint256",
+            "name": "amount",
+            "type": "uint256"
+          }
+        ],
+        "name": "Deposit",
+        "type": "event"
+      },
+      {
+        "anonymous": false,
+        "inputs": [
+          {
+            "indexed": true,
+            "internalType": "address",
+            "name": "user",
+            "type": "address"
+          },
+          {
+            "indexed": true,
+            "internalType": "uint256",
+            "name": "pid",
+            "type": "uint256"
+          },
+          {
+            "indexed": false,
+            "internalType": "uint256",
+            "name": "amount",
+            "type": "uint256"
+          }
+        ],
+        "name": "EmergencyWithdraw",
+        "type": "event"
+      },
+      {
+        "anonymous": false,
+        "inputs": [
+          {
+            "indexed": true,
+            "internalType": "address",
+            "name": "user",
+            "type": "address"
+          },
+          {
+            "indexed": false,
+            "internalType": "uint256",
+            "name": "amount",
+            "type": "uint256"
+          }
+        ],
+        "name": "RewardPaid",
+        "type": "event"
+      },
+      {
+        "anonymous": false,
+        "inputs": [
+          {
+            "indexed": true,
+            "internalType": "address",
+            "name": "user",
+            "type": "address"
+          },
+          {
+            "indexed": true,
+            "internalType": "uint256",
+            "name": "pid",
+            "type": "uint256"
+          },
+          {
+            "indexed": false,
+            "internalType": "uint256",
+            "name": "amount",
+            "type": "uint256"
+          }
+        ],
+        "name": "Withdraw",
+        "type": "event"
+      },
+      {
+        "inputs": [],
+        "name": "TOTAL_REWARDS",
+        "outputs": [
+          {
+            "internalType": "uint256",
+            "name": "",
+            "type": "uint256"
+          }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+      },
+      {
+        "inputs": [],
+        "name": "operator",
+        "outputs": [
+          {
+            "internalType": "address",
+            "name": "",
+            "type": "address"
+          }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+      },
+      {
+        "inputs": [],
+        "name": "poolEndTime",
+        "outputs": [
+          {
+            "internalType": "uint256",
+            "name": "",
+            "type": "uint256"
+          }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+      },
+      {
+        "inputs": [
+          {
+            "internalType": "uint256",
+            "name": "",
+            "type": "uint256"
+          }
+        ],
+        "name": "poolInfo",
+        "outputs": [
+          {
+            "internalType": "contract IERC20",
+            "name": "token",
+            "type": "address"
+          },
+          {
+            "internalType": "uint256",
+            "name": "allocPoint",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "lastRewardTime",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "accLibraPerShare",
+            "type": "uint256"
+          },
+          {
+            "internalType": "bool",
+            "name": "isStarted",
+            "type": "bool"
+          }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+      },
+      {
+        "inputs": [],
+        "name": "poolStartTime",
+        "outputs": [
+          {
+            "internalType": "uint256",
+            "name": "",
+            "type": "uint256"
+          }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+      },
+      {
+        "inputs": [],
+        "name": "runningTime",
+        "outputs": [
+          {
+            "internalType": "uint256",
+            "name": "",
+            "type": "uint256"
+          }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+      },
+      {
+        "inputs": [],
+        "name": "libra",
+        "outputs": [
+          {
+            "internalType": "contract IERC20",
+            "name": "",
+            "type": "address"
+          }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+      },
+      {
+        "inputs": [],
+        "name": "libraPerSecond",
+        "outputs": [
+          {
+            "internalType": "uint256",
+            "name": "",
+            "type": "uint256"
+          }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+      },
+      {
+        "inputs": [],
+        "name": "totalAllocPoint",
+        "outputs": [
+          {
+            "internalType": "uint256",
+            "name": "",
+            "type": "uint256"
+          }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+      },
+      {
+        "inputs": [
+          {
+            "internalType": "uint256",
+            "name": "",
+            "type": "uint256"
+          },
+          {
+            "internalType": "address",
+            "name": "",
+            "type": "address"
+          }
+        ],
+        "name": "userInfo",
+        "outputs": [
+          {
+            "internalType": "uint256",
+            "name": "amount",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "rewardDebt",
+            "type": "uint256"
+          }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+      },
+      {
+        "inputs": [
+          {
+            "internalType": "uint256",
+            "name": "_allocPoint",
+            "type": "uint256"
+          },
+          {
+            "internalType": "contract IERC20",
+            "name": "_token",
+            "type": "address"
+          },
+          {
+            "internalType": "bool",
+            "name": "_withUpdate",
+            "type": "bool"
+          },
+          {
+            "internalType": "uint256",
+            "name": "_lastRewardTime",
+            "type": "uint256"
+          }
+        ],
+        "name": "add",
+        "outputs": [],
+        "stateMutability": "nonpayable",
+        "type": "function"
+      },
+      {
+        "inputs": [
+          {
+            "internalType": "uint256",
+            "name": "_pid",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "_allocPoint",
+            "type": "uint256"
+          }
+        ],
+        "name": "set",
+        "outputs": [],
+        "stateMutability": "nonpayable",
+        "type": "function"
+      },
+      {
+        "inputs": [
+          {
+            "internalType": "uint256",
+            "name": "_fromTime",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "_toTime",
+            "type": "uint256"
+          }
+        ],
+        "name": "getGeneratedReward",
+        "outputs": [
+          {
+            "internalType": "uint256",
+            "name": "",
+            "type": "uint256"
+          }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+      },
+      {
+        "inputs": [
+          {
+            "internalType": "uint256",
+            "name": "_pid",
+            "type": "uint256"
+          },
+          {
+            "internalType": "address",
+            "name": "_user",
+            "type": "address"
+          }
+        ],
+        "name": "pendingLIBRA",
+        "outputs": [
+          {
+            "internalType": "uint256",
+            "name": "",
+            "type": "uint256"
+          }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+      },
+      {
+        "inputs": [],
+        "name": "massUpdatePools",
+        "outputs": [],
+        "stateMutability": "nonpayable",
+        "type": "function"
+      },
+      {
+        "inputs": [
+          {
+            "internalType": "uint256",
+            "name": "_pid",
+            "type": "uint256"
+          }
+        ],
+        "name": "updatePool",
+        "outputs": [],
+        "stateMutability": "nonpayable",
+        "type": "function"
+      },
+      {
+        "inputs": [
+          {
+            "internalType": "uint256",
+            "name": "_pid",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "_amount",
+            "type": "uint256"
+          }
+        ],
+        "name": "deposit",
+        "outputs": [],
+        "stateMutability": "nonpayable",
+        "type": "function"
+      },
+      {
+        "inputs": [
+          {
+            "internalType": "uint256",
+            "name": "_pid",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "_amount",
+            "type": "uint256"
+          }
+        ],
+        "name": "withdraw",
+        "outputs": [],
+        "stateMutability": "nonpayable",
+        "type": "function"
+      },
+      {
+        "inputs": [
+          {
+            "internalType": "uint256",
+            "name": "_pid",
+            "type": "uint256"
+          }
+        ],
+        "name": "emergencyWithdraw",
+        "outputs": [],
+        "stateMutability": "nonpayable",
+        "type": "function"
+      },
+      {
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "_operator",
+            "type": "address"
+          }
+        ],
+        "name": "setOperator",
+        "outputs": [],
+        "stateMutability": "nonpayable",
+        "type": "function"
+      },
+      {
+        "inputs": [
+          {
+            "internalType": "contract IERC20",
+            "name": "_token",
+            "type": "address"
+          },
+          {
+            "internalType": "uint256",
+            "name": "amount",
+            "type": "uint256"
+          },
+          {
+            "internalType": "address",
+            "name": "to",
+            "type": "address"
+          }
+        ],
+        "name": "governanceRecoverUnsupported",
+        "outputs": [],
+        "stateMutability": "nonpayable",
+        "type": "function"
+      }
+    ]
+  },
+  "LibraFtmLpLibraRewardPoolOld": {
     "address": "0xA7B16703470055881e7EE093e9b0bF537f29CD4d",
     "abi": [
       {
         "inputs": [
           {
             "internalType": "address",
-            "name": "_tomb",
+            "name": "_libra",
             "type": "address"
           },
           {
@@ -11515,7 +11515,7 @@
             "type": "uint256"
           }
         ],
-        "name": "epochTombPerSecond",
+        "name": "epochLibraPerSecond",
         "outputs": [
           {
             "internalType": "uint256",
@@ -11585,7 +11585,7 @@
           },
           {
             "internalType": "uint256",
-            "name": "accTombPerShare",
+            "name": "accLibraPerShare",
             "type": "uint256"
           },
           {
@@ -11612,7 +11612,7 @@
       },
       {
         "inputs": [],
-        "name": "tomb",
+        "name": "libra",
         "outputs": [
           {
             "internalType": "contract IERC20",
@@ -11748,7 +11748,7 @@
             "type": "address"
           }
         ],
-        "name": "pendingTOMB",
+        "name": "pendingLIBRA",
         "outputs": [
           {
             "internalType": "uint256",
@@ -11866,14 +11866,14 @@
       }
     ]
   },
-  "TombFtmLpTombRewardPool": {
+  "LibraFtmLpLibraRewardPool": {
     "address": "0xa7b9123f4b15fE0fF01F469ff5Eab2b41296dC0E",
     "abi": [
       {
         "inputs": [
           {
             "internalType": "address",
-            "name": "_tomb",
+            "name": "_libra",
             "type": "address"
           },
           {
@@ -12006,7 +12006,7 @@
             "type": "uint256"
           }
         ],
-        "name": "epochTombPerSecond",
+        "name": "epochLibraPerSecond",
         "outputs": [
           {
             "internalType": "uint256",
@@ -12076,7 +12076,7 @@
           },
           {
             "internalType": "uint256",
-            "name": "accTombPerShare",
+            "name": "accLibraPerShare",
             "type": "uint256"
           },
           {
@@ -12103,7 +12103,7 @@
       },
       {
         "inputs": [],
-        "name": "tomb",
+        "name": "libra",
         "outputs": [
           {
             "internalType": "contract IERC20",
@@ -12239,7 +12239,7 @@
             "type": "address"
           }
         ],
-        "name": "pendingTOMB",
+        "name": "pendingLIBRA",
         "outputs": [
           {
             "internalType": "uint256",
@@ -12357,14 +12357,14 @@
       }
     ]
   },
-  "LibraAstarLPTShareRewardPool": {
+  "LibraAstarLPLShareRewardPool": {
     "address": "0x1040085D268253e8D4f932399a8019f527e58d04",
     "abi": [
       {
         "inputs": [
           {
             "internalType": "address",
-            "name": "_tshare",
+            "name": "_lshare",
             "type": "address"
           },
           {
@@ -12576,7 +12576,7 @@
       },
       {
         "inputs": [],
-        "name": "tSharePerSecond",
+        "name": "LSharePerSecond",
         "outputs": [
           {
             "internalType": "uint256",
@@ -12602,7 +12602,7 @@
       },
       {
         "inputs": [],
-        "name": "tshare",
+        "name": "lshare",
         "outputs": [
           {
             "internalType": "contract IERC20",
@@ -12850,7 +12850,7 @@
         "inputs": [
           {
             "internalType": "address",
-            "name": "_tshare",
+            "name": "_lshare",
             "type": "address"
           },
           {
@@ -13062,7 +13062,7 @@
       },
       {
         "inputs": [],
-        "name": "tSharePerSecond",
+        "name": "LSharePerSecond",
         "outputs": [
           {
             "internalType": "uint256",
@@ -13088,7 +13088,7 @@
       },
       {
         "inputs": [],
-        "name": "tshare",
+        "name": "lshare",
         "outputs": [
           {
             "internalType": "contract IERC20",
@@ -13336,7 +13336,7 @@
         "inputs": [
           {
             "internalType": "address",
-            "name": "_tshare",
+            "name": "_lshare",
             "type": "address"
           },
           {
@@ -13548,7 +13548,7 @@
       },
       {
         "inputs": [],
-        "name": "tSharePerSecond",
+        "name": "LSharePerSecond",
         "outputs": [
           {
             "internalType": "uint256",
@@ -13574,7 +13574,7 @@
       },
       {
         "inputs": [],
-        "name": "tshare",
+        "name": "lshare",
         "outputs": [
           {
             "internalType": "contract IERC20",
@@ -13815,14 +13815,14 @@
       }
     ]
   },
-  "LshareAstarLPTShareRewardPool": {
+  "LshareAstarLPLShareRewardPool": {
     "address": "0x1040085D268253e8D4f932399a8019f527e58d04",
     "abi": [
       {
         "inputs": [
           {
             "internalType": "address",
-            "name": "_tshare",
+            "name": "_lshare",
             "type": "address"
           },
           {
@@ -14034,7 +14034,7 @@
       },
       {
         "inputs": [],
-        "name": "tSharePerSecond",
+        "name": "LSharePerSecond",
         "outputs": [
           {
             "internalType": "uint256",
@@ -14060,7 +14060,7 @@
       },
       {
         "inputs": [],
-        "name": "tshare",
+        "name": "lshare",
         "outputs": [
           {
             "internalType": "contract IERC20",
@@ -14308,7 +14308,7 @@
         "inputs": [
           {
             "internalType": "address",
-            "name": "_tshare",
+            "name": "_lshare",
             "type": "address"
           },
           {
@@ -14520,7 +14520,7 @@
       },
       {
         "inputs": [],
-        "name": "tSharePerSecond",
+        "name": "LSharePerSecond",
         "outputs": [
           {
             "internalType": "uint256",
@@ -14546,7 +14546,7 @@
       },
       {
         "inputs": [],
-        "name": "tshare",
+        "name": "lshare",
         "outputs": [
           {
             "internalType": "contract IERC20",
@@ -15299,12 +15299,12 @@
         "inputs": [
           {
             "internalType": "uint256",
-            "name": "amtTomb",
+            "name": "amtLibra",
             "type": "uint256"
           },
           {
             "internalType": "uint256",
-            "name": "amtTombMin",
+            "name": "amtLibraMin",
             "type": "uint256"
           },
           {
@@ -15343,7 +15343,7 @@
           },
           {
             "internalType": "uint256",
-            "name": "amtTomb",
+            "name": "amtLibra",
             "type": "uint256"
           },
           {
@@ -15353,7 +15353,7 @@
           },
           {
             "internalType": "uint256",
-            "name": "amtTombMin",
+            "name": "amtLibraMin",
             "type": "uint256"
           },
           {
@@ -15590,11 +15590,11 @@
         "inputs": [
           {
             "internalType": "address",
-            "name": "_tombOracle",
+            "name": "_libraOracle",
             "type": "address"
           }
         ],
-        "name": "setTaxableTombOracle",
+        "name": "setTaxableLibraOracle",
         "outputs": [],
         "stateMutability": "nonpayable",
         "type": "function"
@@ -15656,7 +15656,7 @@
       },
       {
         "inputs": [],
-        "name": "tomb",
+        "name": "libra",
         "outputs": [
           {
             "internalType": "address",
@@ -16717,7 +16717,7 @@
         "inputs": [
           {
             "internalType": "address",
-            "name": "_tomb",
+            "name": "_libra",
             "type": "address"
           },
           {
@@ -16727,7 +16727,7 @@
           },
           {
             "internalType": "address",
-            "name": "_tshare",
+            "name": "_lshare",
             "type": "address"
           },
           {
@@ -16737,12 +16737,12 @@
           },
           {
             "internalType": "address",
-            "name": "_tombSpookyLpPair",
+            "name": "_libraSpookyLpPair",
             "type": "address"
           },
           {
             "internalType": "address",
-            "name": "_tshareSpookyLpPair",
+            "name": "_lshareSpookyLpPair",
             "type": "address"
           },
           {
@@ -16804,13 +16804,13 @@
           {
             "indexed": false,
             "internalType": "uint256",
-            "name": "tbondAmount",
+            "name": "lbondAmount",
             "type": "uint256"
           },
           {
             "indexed": false,
             "internalType": "uint256",
-            "name": "tshareAmount",
+            "name": "lshareAmount",
             "type": "uint256"
           }
         ],
@@ -16834,7 +16834,7 @@
         "inputs": [
           {
             "internalType": "uint256",
-            "name": "_tbondAmount",
+            "name": "_lbondAmount",
             "type": "uint256"
           }
         ],
@@ -16870,7 +16870,7 @@
       },
       {
         "inputs": [],
-        "name": "getTShareAmountPerTomb",
+        "name": "getTShareAmountPerLibra",
         "outputs": [
           {
             "internalType": "uint256",
@@ -16909,7 +16909,7 @@
       },
       {
         "inputs": [],
-        "name": "getTombPrice",
+        "name": "getLibraPrice",
         "outputs": [
           {
             "internalType": "uint256",
@@ -16970,7 +16970,7 @@
         "inputs": [
           {
             "internalType": "uint256",
-            "name": "_tbondAmount",
+            "name": "_lbondAmount",
             "type": "uint256"
           }
         ],
@@ -16994,7 +16994,7 @@
       },
       {
         "inputs": [],
-        "name": "tomb",
+        "name": "libra",
         "outputs": [
           {
             "internalType": "contract IERC20",
@@ -17007,7 +17007,7 @@
       },
       {
         "inputs": [],
-        "name": "tombSpookyLpPair",
+        "name": "libraSpookyLpPair",
         "outputs": [
           {
             "internalType": "address",
@@ -17046,7 +17046,7 @@
       },
       {
         "inputs": [],
-        "name": "tshare",
+        "name": "lshare",
         "outputs": [
           {
             "internalType": "contract IERC20",
@@ -17059,7 +17059,7 @@
       },
       {
         "inputs": [],
-        "name": "tshareSpookyLpPair",
+        "name": "lshareSpookyLpPair",
         "outputs": [
           {
             "internalType": "address",
@@ -17252,7 +17252,7 @@
       },
       {
         "inputs": [],
-        "name": "INITIAL_TOMB_POOL_DISTRIBUTION",
+        "name": "INITIAL_LIBRA_POOL_DISTRIBUTION",
         "outputs": [
           {
             "internalType": "uint256",
@@ -17587,7 +17587,7 @@
       },
       {
         "inputs": [],
-        "name": "tombOracle",
+        "name": "libraOracle",
         "outputs": [
           {
             "internalType": "address",
@@ -17772,11 +17772,11 @@
         "inputs": [
           {
             "internalType": "address",
-            "name": "_tombOracle",
+            "name": "_libraOracle",
             "type": "address"
           }
         ],
-        "name": "setTombOracle",
+        "name": "setLibraOracle",
         "outputs": [],
         "stateMutability": "nonpayable",
         "type": "function"
@@ -17951,7 +17951,7 @@
           },
           {
             "internalType": "address",
-            "name": "_tombPool",
+            "name": "_libraPool",
             "type": "address"
           },
           {
@@ -18675,7 +18675,7 @@
         "inputs": [
           {
             "internalType": "address",
-            "name": "_tomb",
+            "name": "_libra",
             "type": "address"
           },
           {
@@ -18847,7 +18847,7 @@
           },
           {
             "internalType": "uint256",
-            "name": "accTombPerShare",
+            "name": "accLibraPerShare",
             "type": "uint256"
           },
           {
@@ -18887,7 +18887,7 @@
       },
       {
         "inputs": [],
-        "name": "tomb",
+        "name": "libra",
         "outputs": [
           {
             "internalType": "contract IERC20",
@@ -19154,14 +19154,14 @@
       }
     ]
   },
-  "TwoOmbFtmLpTombRewardPool": {
+  "TwoOmbFtmLpLibraRewardPool": {
     "address": "0xF8022CD6F24c0773bBEB054A5A44291D793C2C8E",
     "abi": [
       {
         "inputs": [
           {
             "internalType": "address",
-            "name": "_tomb",
+            "name": "_libra",
             "type": "address"
           },
           {
@@ -19294,7 +19294,7 @@
             "type": "uint256"
           }
         ],
-        "name": "epochTombPerSecond",
+        "name": "epochLibraPerSecond",
         "outputs": [
           {
             "internalType": "uint256",
@@ -19364,7 +19364,7 @@
           },
           {
             "internalType": "uint256",
-            "name": "accTombPerShare",
+            "name": "accLibraPerShare",
             "type": "uint256"
           },
           {
@@ -19391,7 +19391,7 @@
       },
       {
         "inputs": [],
-        "name": "tomb",
+        "name": "libra",
         "outputs": [
           {
             "internalType": "contract IERC20",
@@ -19645,14 +19645,14 @@
       }
     ]
   },
-  "____TwoOmbFtmLpTombRewardPoolOld": {
+  "____TwoOmbFtmLpLibraRewardPoolOld": {
     "address": "0xA7B16703470055881e7EE093e9b0bF537f29CD4d",
     "abi": [
       {
         "inputs": [
           {
             "internalType": "address",
-            "name": "_tomb",
+            "name": "_libra",
             "type": "address"
           },
           {
@@ -19785,7 +19785,7 @@
             "type": "uint256"
           }
         ],
-        "name": "epochTombPerSecond",
+        "name": "epochLibraPerSecond",
         "outputs": [
           {
             "internalType": "uint256",
@@ -19855,7 +19855,7 @@
           },
           {
             "internalType": "uint256",
-            "name": "accTombPerShare",
+            "name": "accLibraPerShare",
             "type": "uint256"
           },
           {
@@ -19882,7 +19882,7 @@
       },
       {
         "inputs": [],
-        "name": "tomb",
+        "name": "libra",
         "outputs": [
           {
             "internalType": "contract IERC20",

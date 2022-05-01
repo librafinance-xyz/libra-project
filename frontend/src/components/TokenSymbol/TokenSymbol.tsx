@@ -1,14 +1,14 @@
 import React from 'react';
 
 //Graveyard ecosystem logos
-import tombLogo from '../../assets/libra/libra.svg';
-import tShareLogo from '../../assets/libra/lshare.svg';
-import tombLogoPNG from '../../assets/libra/libra.svg';
-import tShareLogoPNG from '../../assets/libra/lshare.svg';
+import libraLogo from '../../assets/libra/libra.svg';
+import lShareLogo from '../../assets/libra/lshare.svg';
+import libraLogoPNG from '../../assets/libra/libra.svg';
+import lShareLogoPNG from '../../assets/libra/lshare.svg';
 import tBondLogo from '../../assets/libra/lbond.svg';
 
-import tombFtmLpLogo from '../../assets/img/tomb_ftm_lp.png';
-import tshareFtmLpLogo from '../../assets/img/tshare_ftm_lp.png';
+import libraFtmLpLogo from '../../assets/img/libra_ftm_lp.png';
+import lshareFtmLpLogo from '../../assets/img/lshare_ftm_lp.png';
 import libraMainLogo from '../../assets/img/libra_main.svg';
 import LibraWastrLPlogo from '../../assets/img/LIBRA-WASTR.png';
 import LshareWastrLPlogo from '../../assets/img/LSHARE-WASTR.png';
@@ -36,11 +36,11 @@ import UsdcLogo from '../../assets/img/USDC.png';
 const logosBySymbol: { [title: string]: string } = {
   //Real tokens
   //=====================
-  TOMB: tombLogo,
-  TOMBPNG: tombLogoPNG,
-  TSHAREPNG: tShareLogoPNG,
-  TSHARE: tShareLogo,
-  TBOND: tBondLogo,
+  LIBRA: libraLogo,
+  LIBRAPNG: libraLogoPNG,
+  LSHAREPNG: lShareLogoPNG,
+  LSHARE: lShareLogo,
+  LBOND: tBondLogo,
   WFTM: wftmLogo,
   BOO: booLogo,
   SHIBA: shibaLogo,
@@ -66,7 +66,7 @@ type LogoProps = {
 
 const TokenSymbol: React.FC<LogoProps> = ({ symbol, size = 64 }) => {
   if (!logosBySymbol[symbol]) {
-    return <img src={logosBySymbol['TOMB']} alt={`${symbol} Logo`} width={size} height={size} />;
+    return <img src={logosBySymbol['LIBRA']} alt={`${symbol} Logo`} width={size} height={size} />;
     // throw new Error(`Invalid Token Logo symbol: ${symbol}`);
   }
   return <img src={logosBySymbol[symbol]} alt={`${symbol} Logo`} width={size} height={size} />;
