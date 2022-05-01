@@ -1,5 +1,5 @@
 import { useContext } from 'react';
-import { Context } from '../contexts/TombFinanceProvider';
+import { Context } from '../contexts/LibraFinanceProvider';
 
 const useLibraFinance = () => {
   const { libraFinance } = useContext(Context);

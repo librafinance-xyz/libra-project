@@ -9,7 +9,7 @@ export interface LibraFinanceContext {
 
 export const Context = createContext<LibraFinanceContext>({ libraFinance: null });
 
-export const TombFinanceProvider: React.FC = ({ children }) => {
+export const LibraFinanceProvider: React.FC = ({ children }) => {
   const { ethereum, account } = useWallet();
   const [libraFinance, setTombFinance] = useState<TombFinance>();
 
