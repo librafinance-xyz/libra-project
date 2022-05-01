@@ -426,14 +426,14 @@ const Home = () => {
           </Card>
         </Grid>
 
-        {/* TBOND */}
+        {/* LBOND */}
         <Grid item xs={12} sm={3}>
           <Card style={{ backgroundColor: 'transparent', boxShadow: 'none' }}>
             <CardContent align="center" style={{ position: 'relative' }}>
               <h2>LBOND</h2>
               {/* <Button
                 onClick={() => {
-                  libraFinance.watchAssetInMetamask('TBOND');
+                  libraFinance.watchAssetInMetamask('LBOND');
                 }}
                 color="secondary"
                 variant="outlined"
@@ -444,7 +444,7 @@ const Home = () => {
               </Button> */}
               <Box mt={2}>
                 <CardIcon>
-                  <TokenSymbol symbol="TBOND" />
+                  <TokenSymbol symbol="LBOND" />
                 </CardIcon>
               </Box>
               Current Price

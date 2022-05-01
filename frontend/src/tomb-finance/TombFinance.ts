@@ -30,7 +30,7 @@ export class TombFinance {
   TOMB: ERC20;
   // TSHARE: ERC20;
   LSHARE: ERC20;
-  TBOND: ERC20;
+  LBOND: ERC20;
   FTM: ERC20;
 
   constructor(cfg: Configuration) {
@@ -49,7 +49,7 @@ export class TombFinance {
     // this.TOMB = new ERC20(deployments.tomb.address, provider, 'LIBRA');
     this.TOMB = new ERC20(deployments.tomb.address, provider, 'LIBRA');
     this.LSHARE = new ERC20(deployments.tShare.address, provider, 'LSHARE');
-    this.TBOND = new ERC20(deployments.tBond.address, provider, 'LBOND');
+    this.LBOND = new ERC20(deployments.tBond.address, provider, 'LBOND');
     // this.FTM = this.externalTokens['WFTM'];
     this.FTM = this.externalTokens['WASTR'];
 
@@ -72,7 +72,7 @@ export class TombFinance {
     for (const [name, contract] of Object.entries(this.contracts)) {
       this.contracts[name] = contract.connect(this.signer);
     }
-    const tokens = [this.TOMB, this.LSHARE, this.TBOND, ...Object.values(this.externalTokens)];
+    const tokens = [this.TOMB, this.LSHARE, this.LBOND, ...Object.values(this.externalTokens)];
     for (const token of tokens) {
       token.connect(this.signer);
     }
@@ -161,7 +161,7 @@ export class TombFinance {
 
   /**
    * Use this method to get price for Tomb
-   * @returns TokenStat for TBOND
+   * @returns TokenStat for LBOND
    * priceInASTR
    * priceInDollars
    * TotalSupply
@@ -174,7 +174,7 @@ export class TombFinance {
     const modifier = bondTombRatioBN / 1e18 > 1 ? bondTombRatioBN / 1e18 : 1;
     const bondpriceInASTR = (Number(tombStat.tokenInAstar) * modifier).toFixed(2);
     const priceOfTBondInDollars = (Number(tombStat.priceInDollars) * modifier).toFixed(2);
-    const supply = await this.TBOND.displayedTotalSupply();
+    const supply = await this.LBOND.displayedTotalSupply();
     return {
       tokenInAstar: bondpriceInASTR,
       priceInDollars: priceOfTBondInDollars,
@@ -906,8 +906,8 @@ export class TombFinance {
       } else if (assetName === 'TSHARE') {
         asset = this.LSHARE;
         assetUrl = 'https://tomb.finance/presskit/tshare_icon_noBG.png';
-      } else if (assetName === 'TBOND') {
-        asset = this.TBOND;
+      } else if (assetName === 'LBOND') {
+        asset = this.LBOND;
         assetUrl = 'https://tomb.finance/presskit/tbond_icon_noBG.png';
       }
       await ethereum.request({

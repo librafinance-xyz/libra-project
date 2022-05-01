@@ -38,7 +38,7 @@ const Sbs: React.FC = () => {
   const [lbondAmount, setTbondAmount] = useState('');
   const [tshareAmount, setTshareAmount] = useState('');
 
-  const [approveStatus, approve] = useApprove(libraFinance.TBOND, libraFinance.contracts.TShareSwapper.address);
+  const [approveStatus, approve] = useApprove(libraFinance.LBOND, libraFinance.contracts.TShareSwapper.address);
   const { onSwapTShare } = useSwapTBondToTShare();
   const tshareSwapperStat = useTShareSwapperStats(account);
 
@@ -117,7 +117,7 @@ const Sbs: React.FC = () => {
                             <StyledExchanger>
                               <StyledToken>
                                 <StyledCardIcon>
-                                  <TokenSymbol symbol={libraFinance.TBOND.symbol} size={54} />
+                                  <TokenSymbol symbol={libraFinance.LBOND.symbol} size={54} />
                                 </StyledCardIcon>
                               </StyledToken>
                             </StyledExchanger>
@@ -130,7 +130,7 @@ const Sbs: React.FC = () => {
                                 symbol="TBond"
                               ></TokenInput>
                             </Grid>
-                            <StyledDesc>{`${bondBalance} TBOND Available in Wallet`}</StyledDesc>
+                            <StyledDesc>{`${bondBalance} LBOND Available in Wallet`}</StyledDesc>
                           </StyledCardContentInner>
                         </CardContent>
                       </Card>
@@ -181,7 +181,7 @@ const Sbs: React.FC = () => {
                             onClick={approve}
                             size="medium"
                           >
-                            Approve TBOND
+                            Approve LBOND
                           </Button>
                         ) : (
                           <Button

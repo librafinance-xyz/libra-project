@@ -39,13 +39,13 @@ const Pit: React.FC = () => {
   const cashPrice = useCashPriceInLastTWAP();
   const bondsPurchasable = useBondsPurchasable();
 
-  const bondBalance = useTokenBalance(libraFinance?.TBOND);
+  const bondBalance = useTokenBalance(libraFinance?.LBOND);
 
   const handleBuyBonds = useCallback(
     async (amount: string) => {
       const tx = await libraFinance.buyBonds(amount);
       addTransaction(tx, {
-        summary: `Buy ${Number(amount).toFixed(2)} TBOND with ${amount} TOMB`,
+        summary: `Buy ${Number(amount).toFixed(2)} LBOND with ${amount} TOMB`,
       });
     },
     [libraFinance, addTransaction],
@@ -54,7 +54,7 @@ const Pit: React.FC = () => {
   const handleRedeemBonds = useCallback(
     async (amount: string) => {
       const tx = await libraFinance.redeemBonds(amount);
-      addTransaction(tx, { summary: `Redeem ${amount} TBOND` });
+      addTransaction(tx, { summary: `Redeem ${amount} LBOND` });
     },
     [libraFinance, addTransaction],
   );
@@ -79,7 +79,7 @@ const Pit: React.FC = () => {
                   action="Purchase"
                   fromToken={libraFinance.TOMB}
                   fromTokenName="LIBRA"
-                  toToken={libraFinance.TBOND}
+                  toToken={libraFinance.LBOND}
                   toTokenName="LBOND"
                   priceDesc={
                     !isBondPurchasable
@@ -106,7 +106,7 @@ const Pit: React.FC = () => {
               <StyledCardWrapper>
                 <ExchangeCard
                   action="Redeem"
-                  fromToken={libraFinance.TBOND}
+                  fromToken={libraFinance.LBOND}
                   fromTokenName="LBOND"
                   toToken={libraFinance.TOMB}
                   toTokenName="LIBRA"
