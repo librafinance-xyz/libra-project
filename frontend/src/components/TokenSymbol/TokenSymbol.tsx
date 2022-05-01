@@ -8,7 +8,7 @@ import tShareLogoPNG from '../../assets/libra/lshare.svg';
 import tBondLogo from '../../assets/libra/lbond.svg';
 
 import tombFtmLpLogo from '../../assets/img/tomb_ftm_lp.png';
-import tshareFtmLpLogo from '../../assets/img/tshare_ftm_lp.png';
+import lshareFtmLpLogo from '../../assets/img/lshare_ftm_lp.png';
 import libraMainLogo from '../../assets/img/libra_main.svg';
 import LibraWastrLPlogo from '../../assets/img/LIBRA-WASTR.png';
 import LshareWastrLPlogo from '../../assets/img/LSHARE-WASTR.png';

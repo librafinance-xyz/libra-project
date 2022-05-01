@@ -1753,7 +1753,7 @@
       }
     ]
   },
-  "tShare": {
+  "LShare": {
     "address": "0xedFF72F95f0574cb74812237dA3B099f3Ef2bf2E",
     "abi": [
       {
@@ -3486,7 +3486,7 @@
       },
       {
         "inputs": [],
-        "name": "tshare",
+        "name": "lshare",
         "outputs": [
           {
             "internalType": "address",
@@ -3628,7 +3628,7 @@
           },
           {
             "internalType": "address",
-            "name": "_tshare",
+            "name": "_lshare",
             "type": "address"
           },
           {
@@ -12364,7 +12364,7 @@
         "inputs": [
           {
             "internalType": "address",
-            "name": "_tshare",
+            "name": "_lshare",
             "type": "address"
           },
           {
@@ -12576,7 +12576,7 @@
       },
       {
         "inputs": [],
-        "name": "tSharePerSecond",
+        "name": "LSharePerSecond",
         "outputs": [
           {
             "internalType": "uint256",
@@ -12602,7 +12602,7 @@
       },
       {
         "inputs": [],
-        "name": "tshare",
+        "name": "lshare",
         "outputs": [
           {
             "internalType": "contract IERC20",
@@ -12850,7 +12850,7 @@
         "inputs": [
           {
             "internalType": "address",
-            "name": "_tshare",
+            "name": "_lshare",
             "type": "address"
           },
           {
@@ -13062,7 +13062,7 @@
       },
       {
         "inputs": [],
-        "name": "tSharePerSecond",
+        "name": "LSharePerSecond",
         "outputs": [
           {
             "internalType": "uint256",
@@ -13088,7 +13088,7 @@
       },
       {
         "inputs": [],
-        "name": "tshare",
+        "name": "lshare",
         "outputs": [
           {
             "internalType": "contract IERC20",
@@ -13336,7 +13336,7 @@
         "inputs": [
           {
             "internalType": "address",
-            "name": "_tshare",
+            "name": "_lshare",
             "type": "address"
           },
           {
@@ -13548,7 +13548,7 @@
       },
       {
         "inputs": [],
-        "name": "tSharePerSecond",
+        "name": "LSharePerSecond",
         "outputs": [
           {
             "internalType": "uint256",
@@ -13574,7 +13574,7 @@
       },
       {
         "inputs": [],
-        "name": "tshare",
+        "name": "lshare",
         "outputs": [
           {
             "internalType": "contract IERC20",
@@ -13822,7 +13822,7 @@
         "inputs": [
           {
             "internalType": "address",
-            "name": "_tshare",
+            "name": "_lshare",
             "type": "address"
           },
           {
@@ -14034,7 +14034,7 @@
       },
       {
         "inputs": [],
-        "name": "tSharePerSecond",
+        "name": "LSharePerSecond",
         "outputs": [
           {
             "internalType": "uint256",
@@ -14060,7 +14060,7 @@
       },
       {
         "inputs": [],
-        "name": "tshare",
+        "name": "lshare",
         "outputs": [
           {
             "internalType": "contract IERC20",
@@ -14308,7 +14308,7 @@
         "inputs": [
           {
             "internalType": "address",
-            "name": "_tshare",
+            "name": "_lshare",
             "type": "address"
           },
           {
@@ -14520,7 +14520,7 @@
       },
       {
         "inputs": [],
-        "name": "tSharePerSecond",
+        "name": "LSharePerSecond",
         "outputs": [
           {
             "internalType": "uint256",
@@ -14546,7 +14546,7 @@
       },
       {
         "inputs": [],
-        "name": "tshare",
+        "name": "lshare",
         "outputs": [
           {
             "internalType": "contract IERC20",
@@ -16727,7 +16727,7 @@
           },
           {
             "internalType": "address",
-            "name": "_tshare",
+            "name": "_lshare",
             "type": "address"
           },
           {
@@ -16742,7 +16742,7 @@
           },
           {
             "internalType": "address",
-            "name": "_tshareSpookyLpPair",
+            "name": "_lshareSpookyLpPair",
             "type": "address"
           },
           {
@@ -16810,7 +16810,7 @@
           {
             "indexed": false,
             "internalType": "uint256",
-            "name": "tshareAmount",
+            "name": "lshareAmount",
             "type": "uint256"
           }
         ],
@@ -17046,7 +17046,7 @@
       },
       {
         "inputs": [],
-        "name": "tshare",
+        "name": "lshare",
         "outputs": [
           {
             "internalType": "contract IERC20",
@@ -17059,7 +17059,7 @@
       },
       {
         "inputs": [],
-        "name": "tshareSpookyLpPair",
+        "name": "lshareSpookyLpPair",
         "outputs": [
           {
             "internalType": "address",

@@ -48,7 +48,7 @@ export class LibraFinance {
     }
     // this.TOMB = new ERC20(deployments.tomb.address, provider, 'LIBRA');
     this.TOMB = new ERC20(deployments.tomb.address, provider, 'LIBRA');
-    this.LSHARE = new ERC20(deployments.tShare.address, provider, 'LSHARE');
+    this.LSHARE = new ERC20(deployments.LShare.address, provider, 'LSHARE');
     this.LBOND = new ERC20(deployments.tBond.address, provider, 'LBOND');
     // this.FTM = this.externalTokens['WFTM'];
     this.FTM = this.externalTokens['WASTR'];
@@ -905,7 +905,7 @@ export class LibraFinance {
         assetUrl = 'https://tomb.finance/presskit/tomb_icon_noBG.png';
       } else if (assetName === 'TSHARE') {
         asset = this.LSHARE;
-        assetUrl = 'https://tomb.finance/presskit/tshare_icon_noBG.png';
+        assetUrl = 'https://tomb.finance/presskit/lshare_icon_noBG.png';
       } else if (assetName === 'LBOND') {
         asset = this.LBOND;
         assetUrl = 'https://tomb.finance/presskit/tbond_icon_noBG.png';
@@ -1070,24 +1070,24 @@ export class LibraFinance {
       const estimateBN = await TShareSwapper.estimateAmountOfTShare(parseUnits(lbondAmount, 18));
       return getDisplayBalance(estimateBN, 18, 6);
     } catch (err) {
-      console.error(`Failed to fetch estimate tshare amount: ${err}`);
+      console.error(`Failed to fetch estimate lshare amount: ${err}`);
     }
   }
 
   async getTShareSwapperStat(address: string): Promise<TShareSwapperStat> {
     const { TShareSwapper } = this.contracts;
-    const tshareBalanceBN = await TShareSwapper.getTShareBalance();
+    const lshareBalanceBN = await TShareSwapper.getTShareBalance();
     const lbondBalanceBN = await TShareSwapper.getTBondBalance(address);
     // const tombPriceBN = await TShareSwapper.getTombPrice();
-    // const tsharePriceBN = await TShareSwapper.getTSharePrice();
+    // const lsharePriceBN = await TShareSwapper.getTSharePrice();
     const rateTSharePerTombBN = await TShareSwapper.getTShareAmountPerTomb();
-    const tshareBalance = getDisplayBalance(tshareBalanceBN, 18, 5);
+    const lshareBalance = getDisplayBalance(lshareBalanceBN, 18, 5);
     const lbondBalance = getDisplayBalance(lbondBalanceBN, 18, 5);
     return {
-      tshareBalance: tshareBalance.toString(),
+      lshareBalance: lshareBalance.toString(),
       lbondBalance: lbondBalance.toString(),
       // tombPrice: tombPriceBN.toString(),
-      // tsharePrice: tsharePriceBN.toString(),
+      // lsharePrice: lsharePriceBN.toString(),
       rateTSharePerTomb: rateTSharePerTombBN.toString(),
     };
   }

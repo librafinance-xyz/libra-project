@@ -101,7 +101,7 @@ const Bank: React.FC = () => {
 const LPTokenHelpText: React.FC<{ bank: BankEntity }> = ({ bank }) => {
   const libraFinance = useLibraFinance();
   const tombAddr = libraFinance.TOMB.address;
-  const tshareAddr = libraFinance.LSHARE.address;
+  const lshareAddr = libraFinance.LSHARE.address;
 
   let pairName: string;
   let uniswapUrl: string;
@@ -110,7 +110,7 @@ const LPTokenHelpText: React.FC<{ bank: BankEntity }> = ({ bank }) => {
     uniswapUrl = 'https://spookyswap.finance/add/FTM/' + tombAddr;
   } else {
     pairName = 'LSHARE-WFTM pair';
-    uniswapUrl = 'https://spookyswap.finance/add/FTM/' + tshareAddr;
+    uniswapUrl = 'https://spookyswap.finance/add/FTM/' + lshareAddr;
   }
   return (
     <Card>

@@ -15,8 +15,8 @@ const AccountModal: React.FC<ModalProps> = ({ onDismiss }) => {
   const tombBalance = useTokenBalance(libraFinance.TOMB);
   const displayTombBalance = useMemo(() => getDisplayBalance(tombBalance), [tombBalance]);
 
-  const tshareBalance = useTokenBalance(libraFinance.LSHARE);
-  const displayTshareBalance = useMemo(() => getDisplayBalance(tshareBalance), [tshareBalance]);
+  const lshareBalance = useTokenBalance(libraFinance.LSHARE);
+  const displayTshareBalance = useMemo(() => getDisplayBalance(lshareBalance), [lshareBalance]);
 
   const lbondBalance = useTokenBalance(libraFinance.LBOND);
   const displayTbondBalance = useMemo(() => getDisplayBalance(lbondBalance), [lbondBalance]);

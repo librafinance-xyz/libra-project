@@ -36,19 +36,19 @@ const Sbs: React.FC = () => {
   const { account } = useWallet();
   const libraFinance = useLibraFinance();
   const [lbondAmount, setTbondAmount] = useState('');
-  const [tshareAmount, setTshareAmount] = useState('');
+  const [lshareAmount, setTshareAmount] = useState('');
 
   const [approveStatus, approve] = useApprove(libraFinance.LBOND, libraFinance.contracts.TShareSwapper.address);
   const { onSwapTShare } = useSwapTBondToTShare();
-  const tshareSwapperStat = useTShareSwapperStats(account);
+  const lshareSwapperStat = useTShareSwapperStats(account);
 
-  const tshareBalance = useMemo(
-    () => (tshareSwapperStat ? Number(tshareSwapperStat.tshareBalance) : 0),
-    [tshareSwapperStat],
+  const lshareBalance = useMemo(
+    () => (lshareSwapperStat ? Number(lshareSwapperStat.lshareBalance) : 0),
+    [lshareSwapperStat],
   );
   const bondBalance = useMemo(
-    () => (tshareSwapperStat ? Number(tshareSwapperStat.lbondBalance) : 0),
-    [tshareSwapperStat],
+    () => (lshareSwapperStat ? Number(lshareSwapperStat.lbondBalance) : 0),
+    [lshareSwapperStat],
   );
 
   const handleTBondChange = async (e: any) => {
@@ -70,12 +70,12 @@ const Sbs: React.FC = () => {
   };
 
   const handleTShareSelectMax = async () => {
-    setTshareAmount(String(tshareBalance));
+    setTshareAmount(String(lshareBalance));
     const rateTSharePerTomb = (await libraFinance.getTShareSwapperStat(account)).rateTSharePerTomb;
     const updateTBondAmount = BigNumber.from(10)
       .pow(30)
       .div(BigNumber.from(rateTSharePerTomb))
-      .mul(Number(tshareBalance) * 1e6);
+      .mul(Number(lshareBalance) * 1e6);
     setTbondAmount(getDisplayBalance(updateTBondAmount, 18, 6));
   };
 
@@ -152,12 +152,12 @@ const Sbs: React.FC = () => {
                               <TokenInput
                                 onSelectMax={handleTShareSelectMax}
                                 onChange={handleTShareChange}
-                                value={tshareAmount}
-                                max={tshareBalance}
+                                value={lshareAmount}
+                                max={lshareBalance}
                                 symbol="TShare"
                               ></TokenInput>
                             </Grid>
-                            <StyledDesc>{`${tshareBalance} TSHARE Available in Swapper`}</StyledDesc>
+                            <StyledDesc>{`${lshareBalance} TSHARE Available in Swapper`}</StyledDesc>
                           </StyledCardContentInner>
                         </CardContent>
                       </Card>
