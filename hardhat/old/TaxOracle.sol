@@ -13,43 +13,43 @@ import "@openzeppelin/contracts/token/ERC20/IERC20.sol";
  / / / /_/ / / / / / / /_/ /  / __/ / / / / / /_/ / / / / /__/  __/
 /_/  \____/_/ /_/ /_/_.___/  /_/   /_/_/ /_/\__,_/_/ /_/\___/\___/
 
-    http://tomb.finance
+    http://libra.finance
 */
 contract TombTaxOracle is Ownable {
     using SafeMath for uint256;
 
-    IERC20 public tomb;
+    IERC20 public libra;
     // IERC20 public wftm;
     IERC20 public wastr;
     address public pair;
 
     constructor(
-        address _tomb,
+        address _libra,
         // address _wftm,
         address _wastr;
         address _pair
     ) public {
-        require(_tomb != address(0), "tomb address cannot be 0");
+        require(_libra != address(0), "libra address cannot be 0");
         // require(_wftm != address(0), "wftm address cannot be 0");
         require(_wastr != address(0), "wastr address cannot be 0");
         require(_pair != address(0), "pair address cannot be 0");
-        tomb = IERC20(_tomb);
+        libra = IERC20(_libra);
         wastr = IERC20(_wastr);
         pair = _pair;
     }
 
     function consult(address _token, uint256 _amountIn) external view returns (uint144 amountOut) {
-        require(_token == address(tomb), "token needs to be tomb");
-        uint256 tombBalance = tomb.balanceOf(pair);
+        require(_token == address(libra), "token needs to be libra");
+        uint256 libraBalance = libra.balanceOf(pair);
         // uint256 wftmBalance = wftm.balanceOf(pair);
         uint256 wastrBalance = wastr.balanceOf(pair);
-        // return uint144(tombBalance.div(wftmBalance));
-        return uint144(tombBalance.div(wastrBalance));
+        // return uint144(libraBalance.div(wftmBalance));
+        return uint144(libraBalance.div(wastrBalance));
     }
 
-    function setTomb(address _tomb) external onlyOwner {
-        require(_tomb != address(0), "tomb address cannot be 0");
-        tomb = IERC20(_tomb);
+    function setTomb(address _libra) external onlyOwner {
+        require(_libra != address(0), "libra address cannot be 0");
+        libra = IERC20(_libra);
     }
 
     // function setWftm(address _wftm) external onlyOwner {

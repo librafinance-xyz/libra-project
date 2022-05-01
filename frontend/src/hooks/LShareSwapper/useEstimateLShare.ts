@@ -4,24 +4,24 @@ import { useWallet } from 'use-wallet';
 import { BigNumber } from 'ethers';
 import { parseUnits } from 'ethers/lib/utils';
 
-const useEstimateTShare = (lbondAmount: string) => {
+const useEstimateLShare = (lbondAmount: string) => {
   const [estimateAmount, setEstimateAmount] = useState<string>('');
   const { account } = useWallet();
   const libraFinance = useLibraFinance();
 
-  const estimateAmountOfTShare = useCallback(async () => {
+  const estimateAmountOfLShare = useCallback(async () => {
     const lbondAmountBn = parseUnits(lbondAmount);
-    const amount = await libraFinance.estimateAmountOfTShare(lbondAmountBn.toString());
+    const amount = await libraFinance.estimateAmountOfLShare(lbondAmountBn.toString());
     setEstimateAmount(amount);
   }, [account]);
 
   useEffect(() => {
     if (account) {
-      estimateAmountOfTShare().catch((err) => console.error(`Failed to get estimateAmountOfTShare: ${err.stack}`));
+      estimateAmountOfLShare().catch((err) => console.error(`Failed to get estimateAmountOfLShare: ${err.stack}`));
     }
-  }, [account, estimateAmountOfTShare]);
+  }, [account, estimateAmountOfLShare]);
 
   return estimateAmount;
 };
 
-export default useEstimateTShare;
+export default useEstimateLShare;

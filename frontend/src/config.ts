@@ -293,11 +293,11 @@ export const bankDefinitions: { [contractName: string]: BankInfo } = {
     closedForStaking: false,
   },
 
-  // TwoombTwosharesLPTShareRewardPool: {
+  // TwoombTwosharesLPLShareRewardPool: {
   //   name: 'Earn LSHARE by 2OMB-2SHARES LP',
   //   poolId: 4,
   //   sectionInUI: 2,
-  //   contract: 'TwoombTwosharesLPTShareRewardPool',
+  //   contract: 'TwoombTwosharesLPLShareRewardPool',
   //   depositTokenName: '2OMB-2SHARESLP',
   //   earnTokenName: 'LSHARE',
   //   finished: false,

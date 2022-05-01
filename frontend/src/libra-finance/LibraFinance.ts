@@ -1,7 +1,7 @@
 import { Fetcher, Route, Token } from '@librax/sdk';
 
 import { Configuration } from './config';
-import { ContractName, TokenStat, AllocationTime, LPStat, Bank, PoolStats, TShareSwapperStat } from './types';
+import { ContractName, TokenStat, AllocationTime, LPStat, Bank, PoolStats, LShareSwapperStat } from './types';
 import { BigNumber, Contract, ethers, EventFilter } from 'ethers';
 import { decimalToBalance } from './ether-utils';
 import { TransactionResponse } from '@ethersproject/providers';
@@ -173,11 +173,11 @@ export class LibraFinance {
     const bondLibraRatioBN = await Treasury.getBondPremiumRate();
     const modifier = bondLibraRatioBN / 1e18 > 1 ? bondLibraRatioBN / 1e18 : 1;
     const bondpriceInASTR = (Number(libraStat.tokenInAstar) * modifier).toFixed(2);
-    const priceOfTBondInDollars = (Number(libraStat.priceInDollars) * modifier).toFixed(2);
+    const priceOfLBondInDollars = (Number(libraStat.priceInDollars) * modifier).toFixed(2);
     const supply = await this.LBOND.displayedTotalSupply();
     return {
       tokenInAstar: bondpriceInASTR,
-      priceInDollars: priceOfTBondInDollars,
+      priceInDollars: priceOfLBondInDollars,
       totalSupply: supply,
       circulatingSupply: supply,
     };
@@ -908,7 +908,7 @@ export class LibraFinance {
         assetUrl = 'https://libra.finance/presskit/lshare_icon_noBG.png';
       } else if (assetName === 'LBOND') {
         asset = this.LBOND;
-        assetUrl = 'https://libra.finance/presskit/tbond_icon_noBG.png';
+        assetUrl = 'https://libra.finance/presskit/lbond_icon_noBG.png';
       }
       await ethereum.request({
         method: 'wallet_watchAsset',
@@ -1060,27 +1060,27 @@ export class LibraFinance {
       );
     }
   }
-  async swapTBondToTShare(lbondAmount: BigNumber): Promise<TransactionResponse> {
-    const { TShareSwapper } = this.contracts;
-    return await TShareSwapper.swapTBondToTShare(lbondAmount);
+  async swapLBondToLShare(lbondAmount: BigNumber): Promise<TransactionResponse> {
+    const { LShareSwapper } = this.contracts;
+    return await LShareSwapper.swapLBondToLShare(lbondAmount);
   }
-  async estimateAmountOfTShare(lbondAmount: string): Promise<string> {
-    const { TShareSwapper } = this.contracts;
+  async estimateAmountOfLShare(lbondAmount: string): Promise<string> {
+    const { LShareSwapper } = this.contracts;
     try {
-      const estimateBN = await TShareSwapper.estimateAmountOfTShare(parseUnits(lbondAmount, 18));
+      const estimateBN = await LShareSwapper.estimateAmountOfLShare(parseUnits(lbondAmount, 18));
       return getDisplayBalance(estimateBN, 18, 6);
     } catch (err) {
       console.error(`Failed to fetch estimate lshare amount: ${err}`);
     }
   }
 
-  async getTShareSwapperStat(address: string): Promise<TShareSwapperStat> {
-    const { TShareSwapper } = this.contracts;
-    const lshareBalanceBN = await TShareSwapper.getTShareBalance();
-    const lbondBalanceBN = await TShareSwapper.getTBondBalance(address);
-    // const libraPriceBN = await TShareSwapper.getLibraPrice();
-    // const lsharePriceBN = await TShareSwapper.getTSharePrice();
-    const rateTSharePerLibraBN = await TShareSwapper.getTShareAmountPerLibra();
+  async getLShareSwapperStat(address: string): Promise<LShareSwapperStat> {
+    const { LShareSwapper } = this.contracts;
+    const lshareBalanceBN = await LShareSwapper.getLShareBalance();
+    const lbondBalanceBN = await LShareSwapper.getLBondBalance(address);
+    // const libraPriceBN = await LShareSwapper.getLibraPrice();
+    // const lsharePriceBN = await LShareSwapper.getLSharePrice();
+    const rateLSharePerLibraBN = await LShareSwapper.getLShareAmountPerLibra();
     const lshareBalance = getDisplayBalance(lshareBalanceBN, 18, 5);
     const lbondBalance = getDisplayBalance(lbondBalanceBN, 18, 5);
     return {
@@ -1088,7 +1088,7 @@ export class LibraFinance {
       lbondBalance: lbondBalance.toString(),
       // libraPrice: libraPriceBN.toString(),
       // lsharePrice: lsharePriceBN.toString(),
-      rateTSharePerLibra: rateTSharePerLibraBN.toString(),
+      rateLSharePerLibra: rateLSharePerLibraBN.toString(),
     };
   }
 }

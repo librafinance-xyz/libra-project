@@ -17,7 +17,7 @@
           {
             "indexed": false,
             "internalType": "uint256",
-            "name": "tombAmount",
+            "name": "libraAmount",
             "type": "uint256"
           },
           {
@@ -137,7 +137,7 @@
           {
             "indexed": false,
             "internalType": "uint256",
-            "name": "tombAmount",
+            "name": "libraAmount",
             "type": "uint256"
           },
           {
@@ -258,7 +258,7 @@
         "inputs": [
           {
             "internalType": "uint256",
-            "name": "_tombAmount",
+            "name": "_libraAmount",
             "type": "uint256"
           },
           {
@@ -466,7 +466,7 @@
         "outputs": [
           {
             "internalType": "uint256",
-            "name": "tombPrice",
+            "name": "libraPrice",
             "type": "uint256"
           }
         ],
@@ -479,7 +479,7 @@
         "outputs": [
           {
             "internalType": "uint256",
-            "name": "_tombPrice",
+            "name": "_libraPrice",
             "type": "uint256"
           }
         ],
@@ -513,22 +513,22 @@
         "inputs": [
           {
             "internalType": "address",
-            "name": "_tomb",
+            "name": "_libra",
             "type": "address"
           },
           {
             "internalType": "address",
-            "name": "_tbond",
+            "name": "_lbond",
             "type": "address"
           },
           {
             "internalType": "address",
-            "name": "_tshare",
+            "name": "_lshare",
             "type": "address"
           },
           {
             "internalType": "address",
-            "name": "_tombOracle",
+            "name": "_libraOracle",
             "type": "address"
           },
           {
@@ -1149,7 +1149,7 @@
         "inputs": [
           {
             "internalType": "address",
-            "name": "_tombOracle",
+            "name": "_libraOracle",
             "type": "address"
           }
         ],
@@ -1162,7 +1162,7 @@
         "inputs": [
           {
             "internalType": "uint256",
-            "name": "_tombPriceCeiling",
+            "name": "_libraPriceCeiling",
             "type": "uint256"
           }
         ],
@@ -1205,7 +1205,7 @@
       },
       {
         "inputs": [],
-        "name": "tbond",
+        "name": "lbond",
         "outputs": [
           {
             "internalType": "address",
@@ -1218,7 +1218,7 @@
       },
       {
         "inputs": [],
-        "name": "tomb",
+        "name": "libra",
         "outputs": [
           {
             "internalType": "address",
@@ -1231,7 +1231,7 @@
       },
       {
         "inputs": [],
-        "name": "tombOracle",
+        "name": "libraOracle",
         "outputs": [
           {
             "internalType": "address",
@@ -1244,7 +1244,7 @@
       },
       {
         "inputs": [],
-        "name": "tombPriceCeiling",
+        "name": "libraPriceCeiling",
         "outputs": [
           {
             "internalType": "uint256",
@@ -1257,7 +1257,7 @@
       },
       {
         "inputs": [],
-        "name": "tombPriceOne",
+        "name": "libraPriceOne",
         "outputs": [
           {
             "internalType": "uint256",
@@ -1270,7 +1270,7 @@
       },
       {
         "inputs": [],
-        "name": "tshare",
+        "name": "lshare",
         "outputs": [
           {
             "internalType": "address",

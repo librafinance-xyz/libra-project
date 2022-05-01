@@ -9,12 +9,12 @@
         "inputs": [
           {
             "internalType": "address",
-            "name": "tomb",
+            "name": "libra",
             "type": "address"
           },
           {
             "internalType": "address",
-            "name": "tombOracle",
+            "name": "libraOracle",
             "type": "address"
           },
           {
@@ -461,7 +461,7 @@
         "inputs": [
           {
             "internalType": "address",
-            "name": "tomb",
+            "name": "libra",
             "type": "address"
           }
         ],

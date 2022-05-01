@@ -275,7 +275,7 @@
         "inputs": [
           {
             "internalType": "contract IERC20",
-            "name": "_tomb",
+            "name": "_libra",
             "type": "address"
           },
           {
@@ -489,7 +489,7 @@
       },
       {
         "inputs": [],
-        "name": "tomb",
+        "name": "libra",
         "outputs": [
           {
             "internalType": "contract IERC20",

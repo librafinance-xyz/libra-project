@@ -1,27 +1,27 @@
 import { useEffect, useState } from 'react';
 import useLibraFinance from '../useLibraFinance';
-import { TShareSwapperStat } from '../../libra-finance/types';
+import { LShareSwapperStat } from '../../libra-finance/types';
 import useRefresh from '../useRefresh';
 
-const useTShareSwapperStats = (account: string) => {
-  const [stat, setStat] = useState<TShareSwapperStat>();
+const useLShareSwapperStats = (account: string) => {
+  const [stat, setStat] = useState<LShareSwapperStat>();
   const { fastRefresh /*, slowRefresh*/ } = useRefresh();
   const libraFinance = useLibraFinance();
 
   useEffect(() => {
-    async function fetchTShareSwapperStat() {
+    async function fetchLShareSwapperStat() {
       try {
         if (libraFinance.myAccount) {
-          setStat(await libraFinance.getTShareSwapperStat(account));
+          setStat(await libraFinance.getLShareSwapperStat(account));
         }
       } catch (err) {
         console.error(err);
       }
     }
-    fetchTShareSwapperStat();
+    fetchLShareSwapperStat();
   }, [setStat, libraFinance, fastRefresh, account]);
 
   return stat;
 };
 
-export default useTShareSwapperStats;
+export default useLShareSwapperStats;
