@@ -17,7 +17,7 @@ import { FTM_TICKER, SPOOKY_ROUTER_ADDR, TOMB_TICKER } from '../utils/constants'
  * An API module of 2omb Finance contracts.
  * All contract-interacting domain logic should be defined in here.
  */
-export class TombFinance {
+export class LibraFinance {
   myAccount: string;
   provider: ethers.providers.Web3Provider;
   signer?: ethers.Signer;
@@ -665,7 +665,7 @@ export class TombFinance {
   //     console.error(`Failed to fetch token price of ${tokenContract.symbol}: ${err}`);
   //   }
   async getLSharePrice(): Promise<string> {
-    console.log('TombFinance: getLSharePrice .');
+    console.log('LibraFinance: getLSharePrice .');
     const ready = await this.provider.ready;
     if (!ready) return;
     const { WASTR, LSHARE } = this.externalTokens;
@@ -678,43 +678,43 @@ export class TombFinance {
     return (LSHARE_amount / astr_amount).toString();
   }
   async getLibraPriceFromLibraAstr(): Promise<string> {
-    console.log('TombFinance: getLibraPrice FromLibraAstr.');
+    console.log('LibraFinance: getLibraPrice FromLibraAstr.');
     const ready = await this.provider.ready;
     if (!ready) return;
-    // console.log('TombFinance: getLibraPriceFromLibraAstr..');
+    // console.log('LibraFinance: getLibraPriceFromLibraAstr..');
     const { WASTR, LIBRA } = this.externalTokens;
-    // console.log('TombFinance: getLibraPriceFromLibraAstr....');
+    // console.log('LibraFinance: getLibraPriceFromLibraAstr....');
     const libra_astr_lp_pair = this.externalTokens['LIBRA-ASTR-LP'];
-    // console.log('TombFinance: getLibraPriceFromLibraAstr.......libra_astr_lp_pair = ' + libra_astr_lp_pair);
+    // console.log('LibraFinance: getLibraPriceFromLibraAstr.......libra_astr_lp_pair = ' + libra_astr_lp_pair);
     let astr_amount_BN = await WASTR.balanceOf(libra_astr_lp_pair.address);
     let astr_amount = Number(getFullDisplayBalance(astr_amount_BN, WASTR.decimal));
-    // console.log('TombFinance: getLibraPriceFromLibraAstr() 7. astr_amount=', astr_amount);
+    // console.log('LibraFinance: getLibraPriceFromLibraAstr() 7. astr_amount=', astr_amount);
     let LIBRA_amount_BN = await LIBRA.balanceOf(libra_astr_lp_pair.address);
     let LIBRA_amount = Number(getFullDisplayBalance(LIBRA_amount_BN, libra_astr_lp_pair.decimal));
-    // console.log('TombFinance: getLibraPriceFromLibraAstr() 8. LIBRA_amount=', LIBRA_amount);
+    // console.log('LibraFinance: getLibraPriceFromLibraAstr() 8. LIBRA_amount=', LIBRA_amount);
     return (LIBRA_amount / astr_amount).toString();
   }
   // }
 
   async getWASTRPriceFromArthswapASTRUSDC(): Promise<string> {
-    console.log('TombFinance: getWASTRPriceFromArthswapASTRUSDC() ');
+    console.log('LibraFinance: getWASTRPriceFromArthswapASTRUSDC() ');
     const ready = await this.provider.ready;
-    console.log('TombFinance: getWASTRPriceFromArthswapASTRUSDC() 2');
+    console.log('LibraFinance: getWASTRPriceFromArthswapASTRUSDC() 2');
     if (!ready) return;
-    console.log('TombFinance: getWASTRPriceFromArthswapASTRUSDC() 3');
+    console.log('LibraFinance: getWASTRPriceFromArthswapASTRUSDC() 3');
     // const { WFTM, USDC } = this.externalTokens;
     const { WASTR, USDC } = this.externalTokens;
-    console.log('TombFinance: getWASTRPriceFromArthswapASTRUSDC() 4');
+    console.log('LibraFinance: getWASTRPriceFromArthswapASTRUSDC() 4');
     try {
-      console.log('TombFinance: getWASTRPriceFromArthswapASTRUSDC() 5');
+      console.log('LibraFinance: getWASTRPriceFromArthswapASTRUSDC() 5');
       const astr_usdc_lp_pair = this.externalTokens['ASTR-USDC-LP'];
-      console.log('TombFinance: getWASTRPriceFromArthswapASTRUSDC() 6. astr_usdc_lp_pair=', astr_usdc_lp_pair);
+      console.log('LibraFinance: getWASTRPriceFromArthswapASTRUSDC() 6. astr_usdc_lp_pair=', astr_usdc_lp_pair);
       let astr_amount_BN = await WASTR.balanceOf(astr_usdc_lp_pair.address);
       let astr_amount = Number(getFullDisplayBalance(astr_amount_BN, WASTR.decimal));
-      console.log('TombFinance: getWASTRPriceFromArthswapASTRUSDC() 7. astr_amount=', astr_amount);
+      console.log('LibraFinance: getWASTRPriceFromArthswapASTRUSDC() 7. astr_amount=', astr_amount);
       let USDC_amount_BN = await USDC.balanceOf(astr_usdc_lp_pair.address);
       let USDC_amount = Number(getFullDisplayBalance(USDC_amount_BN, USDC.decimal));
-      console.log('TombFinance: getWASTRPriceFromArthswapASTRUSDC() 8. USDC_amount=', USDC_amount);
+      console.log('LibraFinance: getWASTRPriceFromArthswapASTRUSDC() 8. USDC_amount=', USDC_amount);
       return (USDC_amount / astr_amount).toString();
     } catch (err) {
       console.error(`Failed to fetch token price of WASTR: ${err}`);
