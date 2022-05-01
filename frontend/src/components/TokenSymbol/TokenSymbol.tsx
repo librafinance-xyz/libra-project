@@ -2,9 +2,9 @@ import React from 'react';
 
 //Graveyard ecosystem logos
 import libraLogo from '../../assets/libra/libra.svg';
-import tShareLogo from '../../assets/libra/lshare.svg';
+import lShareLogo from '../../assets/libra/lshare.svg';
 import libraLogoPNG from '../../assets/libra/libra.svg';
-import tShareLogoPNG from '../../assets/libra/lshare.svg';
+import lShareLogoPNG from '../../assets/libra/lshare.svg';
 import tBondLogo from '../../assets/libra/lbond.svg';
 
 import libraFtmLpLogo from '../../assets/img/libra_ftm_lp.png';
@@ -38,8 +38,8 @@ const logosBySymbol: { [title: string]: string } = {
   //=====================
   LIBRA: libraLogo,
   LIBRAPNG: libraLogoPNG,
-  TSHAREPNG: tShareLogoPNG,
-  TSHARE: tShareLogo,
+  TSHAREPNG: lShareLogoPNG,
+  TSHARE: lShareLogo,
   LBOND: tBondLogo,
   WFTM: wftmLogo,
   BOO: booLogo,

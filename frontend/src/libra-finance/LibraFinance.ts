@@ -335,7 +335,7 @@ export class LibraFinance {
       }
       return await poolContract.epochLibraPerSecond(0);
     }
-    const rewardPerSecond = await poolContract.tSharePerSecond();
+    const rewardPerSecond = await poolContract.lSharePerSecond();
     if (depositTokenName.startsWith('LIBRA')) {
       return rewardPerSecond.mul(35500).div(89500);
     } else if (depositTokenName.startsWith('2OMB')) {
@@ -445,8 +445,8 @@ export class LibraFinance {
     // }
     let masonryTVL = 0;
     // const TSHAREPrice = (await this.getShareStat()).priceInDollars;
-    // const masonrytShareBalanceOf = await this.LSHARE.balanceOf(this.currentMasonry().address);
-    // masonryTVL = Number(getDisplayBalance(masonrytShareBalanceOf, this.LSHARE.decimal)) * Number(TSHAREPrice);
+    // const masonrylShareBalanceOf = await this.LSHARE.balanceOf(this.currentMasonry().address);
+    // masonryTVL = Number(getDisplayBalance(masonrylShareBalanceOf, this.LSHARE.decimal)) * Number(TSHAREPrice);
 
     return totalValue + masonryTVL;
   }
@@ -456,7 +456,7 @@ export class LibraFinance {
    * Reference https://github.com/DefiDebauchery/discordpricebot/blob/4da3cdb57016df108ad2d0bb0c91cd8dd5f9d834/pricebot/pricebot.py#L150
    * @param lpToken the token under calculation
    * @param token the token pair used as reference (the other one would be FTM in most cases)
-   * @param isLibra sanity check for usage of libra token or tShare
+   * @param isLibra sanity check for usage of libra token or lShare
    * @returns price of the LP token
    */
   async getLPTokenPrice(lpToken: ERC20, token: ERC20, isLibra: boolean, isFake: boolean): Promise<string> {
@@ -740,8 +740,8 @@ export class LibraFinance {
 
     //Mgod formula
     const amountOfRewardsPerDay = epochRewardsPerShare * Number(LIBRAPrice) * 4;
-    const masonrytShareBalanceOf = await this.LSHARE.balanceOf(Masonry.address);
-    const masonryTVL = Number(getDisplayBalance(masonrytShareBalanceOf, this.LSHARE.decimal)) * Number(TSHAREPrice);
+    const masonrylShareBalanceOf = await this.LSHARE.balanceOf(Masonry.address);
+    const masonryTVL = Number(getDisplayBalance(masonrylShareBalanceOf, this.LSHARE.decimal)) * Number(TSHAREPrice);
     const realAPR = ((amountOfRewardsPerDay * 100) / masonryTVL) * 365;
     return realAPR;
   }
