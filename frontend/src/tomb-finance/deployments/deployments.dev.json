@@ -13815,7 +13815,7 @@
       }
     ]
   },
-  "LshareAstarLPTShareRewardPool": {
+  "LshareAstarLPLShareRewardPool": {
     "address": "0x1040085D268253e8D4f932399a8019f527e58d04",
     "abi": [
       {
