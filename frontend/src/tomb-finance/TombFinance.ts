@@ -215,8 +215,8 @@ export class TombFinance {
     console.log('getShareStat priceInASTR=', priceInASTR);
     const tombRewardPoolSupply = await this.LSHARE.balanceOf(LibraAstarLPLShareRewardPool.address);
     console.log('getShareStat tombRewardPoolSupply=', tombRewardPoolSupply);
-    const tShareCirculatingSupply = supply.sub(tombRewardPoolSupply);
-    console.log('getShareStat tShareCirculatingSupply=', tShareCirculatingSupply);
+    const lShareCirculatingSupply = supply.sub(tombRewardPoolSupply);
+    console.log('getShareStat lShareCirculatingSupply=', lShareCirculatingSupply);
     const astarPriceInUSDC = await this.getWASTRPriceFromArthswapASTRUSDC();
     console.log('getShareStat astarPriceInUSDC=', astarPriceInUSDC);
     console.log('getShareStat priceInASTR=', priceInASTR);
@@ -227,7 +227,7 @@ export class TombFinance {
       tokenInAstar: priceInASTR,
       priceInDollars: priceOfSharesInDollars,
       totalSupply: getDisplayBalance(supply, this.LSHARE.decimal, 0),
-      circulatingSupply: getDisplayBalance(tShareCirculatingSupply, this.LSHARE.decimal, 0),
+      circulatingSupply: getDisplayBalance(lShareCirculatingSupply, this.LSHARE.decimal, 0),
     };
   }
 

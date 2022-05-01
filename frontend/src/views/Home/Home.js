@@ -112,7 +112,7 @@ const Home = () => {
     () => (LShareStats ? Number(LShareStats.tokenInAstar).toFixed(4) : null),
     [LShareStats],
   );
-  const tShareCirculatingSupply = useMemo(
+  const lShareCirculatingSupply = useMemo(
     () => (LShareStats ? String(LShareStats.circulatingSupply) : null),
     [LShareStats],
   );
@@ -418,8 +418,8 @@ const Home = () => {
                 <span style={{ fontSize: '16px' }}>${LSharePriceInDollars ? LSharePriceInDollars : '-.--'}</span>
               </Box>
               <span style={{ fontSize: '12px' }}>
-                Market Cap: ${(tShareCirculatingSupply * LSharePriceInDollars).toFixed(2)} <br />
-                Circulating Supply: {tShareCirculatingSupply} <br />
+                Market Cap: ${(lShareCirculatingSupply * LSharePriceInDollars).toFixed(2)} <br />
+                Circulating Supply: {lShareCirculatingSupply} <br />
                 Total Supply: {lShareTotalSupply}
               </span>
             </CardContent>
