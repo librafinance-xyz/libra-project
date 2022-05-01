@@ -116,7 +116,7 @@ const Home = () => {
     () => (LShareStats ? String(LShareStats.circulatingSupply) : null),
     [LShareStats],
   );
-  const tShareTotalSupply = useMemo(() => (LShareStats ? String(LShareStats.totalSupply) : null), [LShareStats]);
+  const lShareTotalSupply = useMemo(() => (LShareStats ? String(LShareStats.totalSupply) : null), [LShareStats]);
 
   const tBondPriceInDollars = useMemo(
     () => (LBondStats ? Number(LBondStats.priceInDollars).toFixed(2) : null),
@@ -420,7 +420,7 @@ const Home = () => {
               <span style={{ fontSize: '12px' }}>
                 Market Cap: ${(tShareCirculatingSupply * LSharePriceInDollars).toFixed(2)} <br />
                 Circulating Supply: {tShareCirculatingSupply} <br />
-                Total Supply: {tShareTotalSupply}
+                Total Supply: {lShareTotalSupply}
               </span>
             </CardContent>
           </Card>
