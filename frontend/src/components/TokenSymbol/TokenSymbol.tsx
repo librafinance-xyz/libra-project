@@ -7,23 +7,20 @@ import libraLogoPNG from '../../assets/libra/libra.svg';
 import lShareLogoPNG from '../../assets/libra/lshare.svg';
 import LBondLogo from '../../assets/libra/lbond.svg';
 
-import libraFtmLpLogo from '../../assets/img/libra_ftm_lp.png';
-import lshareFtmLpLogo from '../../assets/img/lshare_ftm_lp.png';
 import libraMainLogo from '../../assets/img/libra_main.svg';
-import LibraWastrLPlogo from '../../assets/img/LIBRA-WASTR.png';
-import LshareWastrLPlogo from '../../assets/img/LSHARE-WASTR.png';
+import LibraAstrLPlogo from '../../assets/img/LIBRA-WASTR.png';
+import LshareAstrLPlogo from '../../assets/img/LSHARE-WASTR.png';
 
-import wftmLogo from '../../assets/libra/ASTR.png';
 import astrLogo from '../../assets/libra/ASTR.png';
-import booLogo from '../../assets/img/spooky.png';
-import belugaLogo from '../../assets/img/BELUGA.png';
-import twoshareLogo from '../../assets/img/t_2SHARE-01.png';
-import twoombLogo from '../../assets/img/t_2OMB-01.png';
-import zooLogo from '../../assets/img/zoo_logo.svg';
-import shibaLogo from '../../assets/img/shiba_logo.svg';
-import bifiLogo from '../../assets/img/COW.svg';
-import mimLogo from '../../assets/img/mimlogopng.png';
-import bloomLogo from '../../assets/img/BLOOM.jpg';
+// import booLogo from '../../assets/img/spooky.png';
+// import belugaLogo from '../../assets/img/BELUGA.png';
+// import twoshareLogo from '../../assets/img/t_2SHARE-01.png';
+// import twoombLogo from '../../assets/img/t_2OMB-01.png';
+// import zooLogo from '../../assets/img/zoo_logo.svg';
+// import shibaLogo from '../../assets/img/shiba_logo.svg';
+// import bifiLogo from '../../assets/img/COW.svg';
+// import mimLogo from '../../assets/img/mimlogopng.png';
+// import bloomLogo from '../../assets/img/BLOOM.jpg';
 // import TwoombLPLogo from '../../assets/img/2OMB-WASTR.png';
 // import TwosharesLPLogo from '../../assets/img/LSHARE-WASTR.png';
 // import TwoombTwosharesLPLogo from '../../assets/img/2OMB-LSHARE.png';
@@ -41,21 +38,21 @@ const logosBySymbol: { [title: string]: string } = {
   LSHAREPNG: lShareLogoPNG,
   LSHARE: lShareLogo,
   LBOND: LBondLogo,
-  BOO: booLogo,
-  SHIBA: shibaLogo,
-  ZOO: zooLogo,
-  BELUGA: belugaLogo,
-  BIFI: bifiLogo,
-  MIM: mimLogo,
+  // BOO: booLogo,
+  // SHIBA: shibaLogo,
+  // ZOO: zooLogo,
+  // BELUGA: belugaLogo,
+  // BIFI: bifiLogo,
+  // MIM: mimLogo,
   USDC: UsdcLogo,
-  BLOOM: bloomLogo,
+  // BLOOM: bloomLogo,
   WASTR: astrLogo,
   ASTR: astrLogo,
   // 'LSHARE-ASTR-LP': TwosharesLPLogo,
   // 'LSHARE-ASTR-LP': ThreesharesLPLogo,
-  wASTR: wftmLogo,
-  'LIBRA-ASTR-LP': LibraWastrLPlogo,
-  'LSHARE-ASTR-LP': LshareWastrLPlogo,
+  wASTR: astrLogo,
+  'LIBRA-ASTR-LP': LibraAstrLPlogo,
+  'LSHARE-ASTR-LP': LshareAstrLPlogo,
 };
 
 type LogoProps = {
