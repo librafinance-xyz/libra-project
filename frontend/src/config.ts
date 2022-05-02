@@ -60,7 +60,7 @@ const configurations: { [env: string]: Configuration } = {
     },
     baseLaunchDate: new Date('2021-06-02 13:00:00Z'),
     bondLaunchesAt: new Date('2020-12-03T15:00:00Z'),
-    masonryLaunchesAt: new Date('2020-12-11T00:00:00Z'),
+    boardroomLaunchesAt: new Date('2020-12-11T00:00:00Z'),
     refreshInterval: 10000,
   },
 };

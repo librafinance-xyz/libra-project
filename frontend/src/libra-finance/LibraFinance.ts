@@ -24,7 +24,7 @@ export class LibraFinance {
   config: Configuration;
   contracts: { [name: string]: Contract };
   externalTokens: { [name: string]: ERC20 };
-  masonryVersionOfUser?: string;
+  boardroomVersionOfUser?: string;
 
   LIBRAWFTM_LP: Contract;
   LIBRA: ERC20;
@@ -78,11 +78,11 @@ export class LibraFinance {
     }
     this.LIBRAWFTM_LP = this.LIBRAWFTM_LP.connect(this.signer);
     console.log(`🔓 Wallet is unlocked. Welcome, ${account}!`);
-    this.fetchMasonryVersionOfUser()
-      .then((version) => (this.masonryVersionOfUser = version))
+    this.fetchBoardroomVersionOfUser()
+      .then((version) => (this.boardroomVersionOfUser = version))
       .catch((err) => {
-        console.error(`Failed to fetch masonry version: ${err.stack}`);
-        this.masonryVersionOfUser = 'latest';
+        console.error(`Failed to fetch boardroom version: ${err.stack}`);
+        this.boardroomVersionOfUser = 'latest';
       });
   }
 
@@ -443,12 +443,12 @@ export class LibraFinance {
     //   const poolValue = Number.isNaN(value) ? 0 : value;
     //   totalValue += poolValue;
     // }
-    let masonryTVL = 0;
+    let boardroomTVL = 0;
     // const LSHAREPrice = (await this.getShareStat()).priceInDollars;
-    // const masonrylShareBalanceOf = await this.LSHARE.balanceOf(this.currentMasonry().address);
-    // masonryTVL = Number(getDisplayBalance(masonrylShareBalanceOf, this.LSHARE.decimal)) * Number(LSHAREPrice);
+    // const boardroomlShareBalanceOf = await this.LSHARE.balanceOf(this.currentBoardroom().address);
+    // boardroomTVL = Number(getDisplayBalance(boardroomlShareBalanceOf, this.LSHARE.decimal)) * Number(LSHAREPrice);
 
-    return totalValue + masonryTVL;
+    return totalValue + boardroomTVL;
   }
 
   /**
@@ -605,19 +605,19 @@ export class LibraFinance {
     return await pool.withdraw(poolId, userInfo.amount);
   }
 
-  async fetchMasonryVersionOfUser(): Promise<string> {
+  async fetchBoardroomVersionOfUser(): Promise<string> {
     return 'latest';
   }
 
-  currentMasonry(): Contract {
-    if (!this.masonryVersionOfUser) {
+  currentBoardroom(): Contract {
+    if (!this.boardroomVersionOfUser) {
       //throw new Error('you must unlock the wallet to continue.');
     }
-    return this.contracts.Masonry;
+    return this.contracts.Boardroom;
   }
 
-  isOldMasonryMember(): boolean {
-    return this.masonryVersionOfUser !== 'latest';
+  isOldBoardroomMember(): boolean {
+    return this.boardroomVersionOfUser !== 'latest';
   }
 
   async getTokenPriceFromLP(tokenContract: ERC20): Promise<string> {
@@ -723,14 +723,14 @@ export class LibraFinance {
 
   //===================================================================
   //===================================================================
-  //===================== MASONRY METHODS =============================
+  //===================== BOARDROOM METHODS =============================
   //===================================================================
   //===================================================================
 
-  async getMasonryAPR() {
-    const Masonry = this.currentMasonry();
-    const latestSnapshotIndex = await Masonry.latestSnapshotIndex();
-    const lastHistory = await Masonry.masonryHistory(latestSnapshotIndex);
+  async getBoardroomAPR() {
+    const Boardroom = this.currentBoardroom();
+    const latestSnapshotIndex = await Boardroom.latestSnapshotIndex();
+    const lastHistory = await Boardroom.boardroomHistory(latestSnapshotIndex);
 
     const lastRewardsReceived = lastHistory[1];
 
@@ -740,85 +740,85 @@ export class LibraFinance {
 
     //Mgod formula
     const amountOfRewardsPerDay = epochRewardsPerShare * Number(LIBRAPrice) * 4;
-    const masonrylShareBalanceOf = await this.LSHARE.balanceOf(Masonry.address);
-    const masonryTVL = Number(getDisplayBalance(masonrylShareBalanceOf, this.LSHARE.decimal)) * Number(LSHAREPrice);
-    const realAPR = ((amountOfRewardsPerDay * 100) / masonryTVL) * 365;
+    const boardroomlShareBalanceOf = await this.LSHARE.balanceOf(Boardroom.address);
+    const boardroomTVL = Number(getDisplayBalance(boardroomlShareBalanceOf, this.LSHARE.decimal)) * Number(LSHAREPrice);
+    const realAPR = ((amountOfRewardsPerDay * 100) / boardroomTVL) * 365;
     return realAPR;
   }
 
   /**
-   * Checks if the user is allowed to retrieve their reward from the Masonry
+   * Checks if the user is allowed to retrieve their reward from the Boardroom
    * @returns true if user can withdraw reward, false if they can't
    */
-  async canUserClaimRewardFromMasonry(): Promise<boolean> {
-    const Masonry = this.currentMasonry();
-    return await Masonry.canClaimReward(this.myAccount);
+  async canUserClaimRewardFromBoardroom(): Promise<boolean> {
+    const Boardroom = this.currentBoardroom();
+    return await Boardroom.canClaimReward(this.myAccount);
   }
 
   /**
-   * Checks if the user is allowed to retrieve their reward from the Masonry
+   * Checks if the user is allowed to retrieve their reward from the Boardroom
    * @returns true if user can withdraw reward, false if they can't
    */
-  async canUserUnstakeFromMasonry(): Promise<boolean> {
-    const Masonry = this.currentMasonry();
-    const canWithdraw = await Masonry.canWithdraw(this.myAccount);
-    const stakedAmount = await this.getStakedSharesOnMasonry();
+  async canUserUnstakeFromBoardroom(): Promise<boolean> {
+    const Boardroom = this.currentBoardroom();
+    const canWithdraw = await Boardroom.canWithdraw(this.myAccount);
+    const stakedAmount = await this.getStakedSharesOnBoardroom();
     const notStaked = Number(getDisplayBalance(stakedAmount, this.LSHARE.decimal)) === 0;
     const result = notStaked ? true : canWithdraw;
     return result;
   }
 
-  async timeUntilClaimRewardFromMasonry(): Promise<BigNumber> {
-    // const Masonry = this.currentMasonry();
-    // const mason = await Masonry.masons(this.myAccount);
+  async timeUntilClaimRewardFromBoardroom(): Promise<BigNumber> {
+    // const Boardroom = this.currentBoardroom();
+    // const mason = await Boardroom.masons(this.myAccount);
     return BigNumber.from(0);
   }
 
-  async getTotalStakedInMasonry(): Promise<BigNumber> {
-    const Masonry = this.currentMasonry();
-    return await Masonry.totalSupply();
+  async getTotalStakedInBoardroom(): Promise<BigNumber> {
+    const Boardroom = this.currentBoardroom();
+    return await Boardroom.totalSupply();
   }
 
-  async stakeShareToMasonry(amount: string): Promise<TransactionResponse> {
-    if (this.isOldMasonryMember()) {
-      throw new Error("you're using old masonry. please withdraw and deposit the LSHARE again.");
+  async stakeShareToBoardroom(amount: string): Promise<TransactionResponse> {
+    if (this.isOldBoardroomMember()) {
+      throw new Error("you're using old boardroom. please withdraw and deposit the LSHARE again.");
     }
-    const Masonry = this.currentMasonry();
-    return await Masonry.stake(decimalToBalance(amount));
+    const Boardroom = this.currentBoardroom();
+    return await Boardroom.stake(decimalToBalance(amount));
   }
 
-  async getStakedSharesOnMasonry(): Promise<BigNumber> {
-    const Masonry = this.currentMasonry();
-    if (this.masonryVersionOfUser === 'v1') {
-      return await Masonry.getShareOf(this.myAccount);
+  async getStakedSharesOnBoardroom(): Promise<BigNumber> {
+    const Boardroom = this.currentBoardroom();
+    if (this.boardroomVersionOfUser === 'v1') {
+      return await Boardroom.getShareOf(this.myAccount);
     }
-    return await Masonry.balanceOf(this.myAccount);
+    return await Boardroom.balanceOf(this.myAccount);
   }
 
-  async getEarningsOnMasonry(): Promise<BigNumber> {
-    const Masonry = this.currentMasonry();
-    if (this.masonryVersionOfUser === 'v1') {
-      return await Masonry.getCashEarningsOf(this.myAccount);
+  async getEarningsOnBoardroom(): Promise<BigNumber> {
+    const Boardroom = this.currentBoardroom();
+    if (this.boardroomVersionOfUser === 'v1') {
+      return await Boardroom.getCashEarningsOf(this.myAccount);
     }
-    return await Masonry.earned(this.myAccount);
+    return await Boardroom.earned(this.myAccount);
   }
 
-  async withdrawShareFromMasonry(amount: string): Promise<TransactionResponse> {
-    const Masonry = this.currentMasonry();
-    return await Masonry.withdraw(decimalToBalance(amount));
+  async withdrawShareFromBoardroom(amount: string): Promise<TransactionResponse> {
+    const Boardroom = this.currentBoardroom();
+    return await Boardroom.withdraw(decimalToBalance(amount));
   }
 
-  async harvestCashFromMasonry(): Promise<TransactionResponse> {
-    const Masonry = this.currentMasonry();
-    if (this.masonryVersionOfUser === 'v1') {
-      return await Masonry.claimDividends();
+  async harvestCashFromBoardroom(): Promise<TransactionResponse> {
+    const Boardroom = this.currentBoardroom();
+    if (this.boardroomVersionOfUser === 'v1') {
+      return await Boardroom.claimDividends();
     }
-    return await Masonry.claimReward();
+    return await Boardroom.claimReward();
   }
 
-  async exitFromMasonry(): Promise<TransactionResponse> {
-    const Masonry = this.currentMasonry();
-    return await Masonry.exit();
+  async exitFromBoardroom(): Promise<TransactionResponse> {
+    const Boardroom = this.currentBoardroom();
+    return await Boardroom.exit();
   }
 
   async getTreasuryNextAllocationTime(): Promise<AllocationTime> {
@@ -832,18 +832,18 @@ export class LibraFinance {
   /**
    * This method calculates and returns in a from to to format
    * the period the user needs to wait before being allowed to claim
-   * their reward from the masonry
+   * their reward from the boardroom
    * @returns Promise<AllocationTime>
    */
   async getUserClaimRewardTime(): Promise<AllocationTime> {
-    const { Masonry, Treasury } = this.contracts;
-    const nextEpochTimestamp = await Masonry.nextEpochPoint(); //in unix timestamp
-    const currentEpoch = await Masonry.epoch();
-    const mason = await Masonry.masons(this.myAccount);
+    const { Boardroom, Treasury } = this.contracts;
+    const nextEpochTimestamp = await Boardroom.nextEpochPoint(); //in unix timestamp
+    const currentEpoch = await Boardroom.epoch();
+    const mason = await Boardroom.masons(this.myAccount);
     const startTimeEpoch = mason.epochTimerStart;
     const period = await Treasury.PERIOD();
     const periodInHours = period / 60 / 60; // 6 hours, period is displayed in seconds which is 21600
-    const rewardLockupEpochs = await Masonry.rewardLockupEpochs();
+    const rewardLockupEpochs = await Boardroom.rewardLockupEpochs();
     const targetEpochForClaimUnlock = Number(startTimeEpoch) + Number(rewardLockupEpochs);
 
     const fromDate = new Date(Date.now());
@@ -865,21 +865,21 @@ export class LibraFinance {
   /**
    * This method calculates and returns in a from to to format
    * the period the user needs to wait before being allowed to unstake
-   * from the masonry
+   * from the boardroom
    * @returns Promise<AllocationTime>
    */
   async getUserUnstakeTime(): Promise<AllocationTime> {
-    const { Masonry, Treasury } = this.contracts;
-    const nextEpochTimestamp = await Masonry.nextEpochPoint();
-    const currentEpoch = await Masonry.epoch();
-    const mason = await Masonry.masons(this.myAccount);
+    const { Boardroom, Treasury } = this.contracts;
+    const nextEpochTimestamp = await Boardroom.nextEpochPoint();
+    const currentEpoch = await Boardroom.epoch();
+    const mason = await Boardroom.masons(this.myAccount);
     const startTimeEpoch = mason.epochTimerStart;
     const period = await Treasury.PERIOD();
     const PeriodInHours = period / 60 / 60;
-    const withdrawLockupEpochs = await Masonry.withdrawLockupEpochs();
+    const withdrawLockupEpochs = await Boardroom.withdrawLockupEpochs();
     const fromDate = new Date(Date.now());
     const targetEpochForClaimUnlock = Number(startTimeEpoch) + Number(withdrawLockupEpochs);
-    const stakedAmount = await this.getStakedSharesOnMasonry();
+    const stakedAmount = await this.getStakedSharesOnBoardroom();
     if (currentEpoch <= targetEpochForClaimUnlock && Number(stakedAmount) === 0) {
       return { from: fromDate, to: fromDate };
     } else if (targetEpochForClaimUnlock - currentEpoch === 1) {
@@ -959,16 +959,16 @@ export class LibraFinance {
 
     const treasuryDaoFundedFilter = Treasury.filters.DaoFundFunded();
     const treasuryDevFundedFilter = Treasury.filters.DevFundFunded();
-    const treasuryMasonryFundedFilter = Treasury.filters.MasonryFunded();
+    const treasuryBoardroomFundedFilter = Treasury.filters.BoardroomFunded();
     const boughtBondsFilter = Treasury.filters.BoughtBonds();
     const redeemBondsFilter = Treasury.filters.RedeemedBonds();
 
     let epochBlocksRanges: any[] = [];
-    let masonryFundEvents = await Treasury.queryFilter(treasuryMasonryFundedFilter);
+    let boardroomFundEvents = await Treasury.queryFilter(treasuryBoardroomFundedFilter);
     var events: any[] = [];
-    masonryFundEvents.forEach(function callback(value, index) {
+    boardroomFundEvents.forEach(function callback(value, index) {
       events.push({ epoch: index + 1 });
-      events[index].masonryFund = getDisplayBalance(value.args[1]);
+      events[index].boardroomFund = getDisplayBalance(value.args[1]);
       if (index === 0) {
         epochBlocksRanges.push({
           index: index,

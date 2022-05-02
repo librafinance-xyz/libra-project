@@ -283,7 +283,7 @@ const Home = () => {
                 Stake
               </Button> */}
 
-              {/* <Button color="primary" href="/masonry" variant="contained" style={{ marginRight: '10px' }}>
+              {/* <Button color="primary" href="/boardroom" variant="contained" style={{ marginRight: '10px' }}>
                 Stake Now
               </Button> */}
               {/* <Button href="/cemetery" variant="contained" style={{ marginRight: '10px' }}>

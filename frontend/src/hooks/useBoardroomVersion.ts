@@ -1,14 +1,14 @@
 import { useCallback, useEffect, useState } from 'react';
 import useLibraFinance from './useLibraFinance';
-import useStakedBalanceOnMasonry from './useStakedBalanceOnMasonry';
+import useStakedBalanceOnBoardroom from './useStakedBalanceOnBoardroom';
 
-const useMasonryVersion = () => {
-  const [masonryVersion, setMasonryVersion] = useState('latest');
+const useBoardroomVersion = () => {
+  const [boardroomVersion, setBoardroomVersion] = useState('latest');
   const libraFinance = useLibraFinance();
-  const stakedBalance = useStakedBalanceOnMasonry();
+  const stakedBalance = useStakedBalanceOnBoardroom();
 
   const updateState = useCallback(async () => {
-    setMasonryVersion(await libraFinance.fetchMasonryVersionOfUser());
+    setBoardroomVersion(await libraFinance.fetchBoardroomVersionOfUser());
   }, [libraFinance?.isUnlocked, stakedBalance]);
 
   useEffect(() => {
@@ -17,7 +17,7 @@ const useMasonryVersion = () => {
     }
   }, [libraFinance?.isUnlocked, stakedBalance]);
 
-  return masonryVersion;
+  return boardroomVersion;
 };
 
-export default useMasonryVersion;
+export default useBoardroomVersion;

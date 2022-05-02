@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
-import useLibraFinance from './../useLibraFinance';
+import useLibraFinance from '../useLibraFinance';
 import { AllocationTime } from '../../libra-finance/types';
 
-const useUnstakeTimerMasonry = () => {
+const useClaimRewardTimerBoardroom = () => {
   const [time, setTime] = useState<AllocationTime>({
     from: new Date(),
     to: new Date(),
@@ -11,10 +11,10 @@ const useUnstakeTimerMasonry = () => {
 
   useEffect(() => {
     if (libraFinance) {
-      libraFinance.getUserUnstakeTime().then(setTime);
+      libraFinance.getUserClaimRewardTime().then(setTime);
     }
   }, [libraFinance]);
   return time;
 };
 
-export default useUnstakeTimerMasonry;
+export default useClaimRewardTimerBoardroom;

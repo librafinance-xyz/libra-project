@@ -11,7 +11,7 @@ const useWithdrawCheck = () => {
   useEffect(() => {
     async function canUserWithdraw() {
       try {
-        setCanWithdraw(await libraFinance.canUserUnstakeFromMasonry());
+        setCanWithdraw(await libraFinance.canUserUnstakeFromBoardroom());
       } catch (err) {
         console.error(err);
       }

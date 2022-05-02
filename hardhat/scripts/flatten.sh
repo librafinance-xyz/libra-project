@@ -2,7 +2,7 @@
 
 
 # npx hardhat flatten ./contracts/DummyToken.sol > ./contracts_flat/DummyToken.sol
-# npx hardhat flatten ./contracts/Masonry.sol > ./contracts_flat/Masonry.sol
+# npx hardhat flatten ./contracts/Boardroom.sol > ./contracts_flat/Boardroom.sol
 # npx hardhat flatten ./contracts/Oracle.sol > ./contracts_flat/Oracle.sol
 # npx hardhat flatten ./contracts/RebateTreasury.sol >./contracts_flat/RebateTreasury.sol
 # npx hardhat flatten ./contracts/LBond.sol >./contracts_flat/LBond.sol

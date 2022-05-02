@@ -3,15 +3,16 @@ import { BigNumber } from 'ethers';
 import useLibraFinance from './useLibraFinance';
 import useRefresh from './useRefresh';
 
-const useStakedBalanceOnMasonry = () => {
+const useEarningsOnBoardroom = () => {
   const { slowRefresh } = useRefresh();
   const [balance, setBalance] = useState(BigNumber.from(0));
   const libraFinance = useLibraFinance();
   const isUnlocked = libraFinance?.isUnlocked;
+
   useEffect(() => {
     async function fetchBalance() {
       try {
-        setBalance(await libraFinance.getStakedSharesOnMasonry());
+        setBalance(await libraFinance.getEarningsOnBoardroom());
       } catch (e) {
         console.error(e);
       }
@@ -19,8 +20,9 @@ const useStakedBalanceOnMasonry = () => {
     if (isUnlocked) {
       fetchBalance();
     }
-  }, [slowRefresh, isUnlocked, libraFinance]);
+  }, [isUnlocked, libraFinance, slowRefresh]);
+
   return balance;
 };
 
-export default useStakedBalanceOnMasonry;
+export default useEarningsOnBoardroom;

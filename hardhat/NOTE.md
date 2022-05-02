@@ -35,7 +35,7 @@ uint256 \_startTime
 \_period=300
 \_startTime=1647668829
 
-Masonry デプロイ
+Boardroom デプロイ
 
 treasury デプロイ
 
@@ -44,7 +44,7 @@ address \_libra,
 address \_lbond,
 address \_lshare,
 address \_libraOracle,
-address \_masonry,
+address \_boardroom,
 address \_genesisPool,
 address \_bondTreasury,
 uint256 \_startTime
@@ -52,7 +52,7 @@ uint256 \_startTime
 RebateTreasury
 constructor(address libra, address libraOracle, address treasury)
 
-Masonry の initialize メソッドを叩く。
+Boardroom の initialize メソッドを叩く。
 function initialize(
 IERC20 \_libra,
 IERC20 \_share,
@@ -65,7 +65,7 @@ address \_libra,
 address \_lbond,
 address \_lshare,
 address \_libraOracle,
-address \_masonry,
+address \_boardroom,
 address \_genesisPool, => 要確認。
 address \_bondTreasury, ＝＞ rebate treasury のこと？？要確認。
 uint256 \_startTime

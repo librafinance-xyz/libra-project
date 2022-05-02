@@ -2996,7 +2996,7 @@
             "type": "uint256"
           }
         ],
-        "name": "MasonryFunded",
+        "name": "BoardroomFunded",
         "type": "event"
       },
       {
@@ -3201,7 +3201,7 @@
       },
       {
         "inputs": [],
-        "name": "masonry",
+        "name": "boardroom",
         "outputs": [
           {
             "internalType": "address",
@@ -3638,7 +3638,7 @@
           },
           {
             "internalType": "address",
-            "name": "_masonry",
+            "name": "_boardroom",
             "type": "address"
           },
           {
@@ -3669,11 +3669,11 @@
         "inputs": [
           {
             "internalType": "address",
-            "name": "_masonry",
+            "name": "_boardroom",
             "type": "address"
           }
         ],
-        "name": "setMasonry",
+        "name": "setBoardroom",
         "outputs": [],
         "stateMutability": "nonpayable",
         "type": "function"
@@ -3954,7 +3954,7 @@
             "type": "address"
           }
         ],
-        "name": "masonrySetOperator",
+        "name": "boardroomSetOperator",
         "outputs": [],
         "stateMutability": "nonpayable",
         "type": "function"
@@ -3972,7 +3972,7 @@
             "type": "uint256"
           }
         ],
-        "name": "masonrySetLockUp",
+        "name": "boardroomSetLockUp",
         "outputs": [],
         "stateMutability": "nonpayable",
         "type": "function"
@@ -3985,7 +3985,7 @@
             "type": "uint256"
           }
         ],
-        "name": "masonryAllocateSeigniorage",
+        "name": "boardroomAllocateSeigniorage",
         "outputs": [],
         "stateMutability": "nonpayable",
         "type": "function"
@@ -4008,14 +4008,14 @@
             "type": "address"
           }
         ],
-        "name": "masonryGovernanceRecoverUnsupported",
+        "name": "boardroomGovernanceRecoverUnsupported",
         "outputs": [],
         "stateMutability": "nonpayable",
         "type": "function"
       }
     ]
   },
-  "Masonry": {
+  "Boardroom": {
     "address": "0x32C7bb562e7ECC15beD153EA731BC371DC7Ff379",
     "abi": [
       {
@@ -4153,7 +4153,7 @@
             "type": "uint256"
           }
         ],
-        "name": "masonryHistory",
+        "name": "boardroomHistory",
         "outputs": [
           {
             "internalType": "uint256",
