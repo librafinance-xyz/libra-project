@@ -1,8 +1,9 @@
+// SPDX-License-Identifier: MIXED
 // Sources flattened with hardhat v2.9.1 https://hardhat.org
 
 // File @openzeppelin/contracts/token/ERC20/IERC20.sol@v3.4.2
 
-// SPDX-License-Identifier: MIT
+// MIT
 
 pragma solidity >=0.6.0 <0.8.0;
 
@@ -83,7 +84,7 @@ interface IERC20 {
 
 // File @openzeppelin/contracts/math/SafeMath.sol@v3.4.2
 
-// SPDX-License-Identifier: MIT
+// MIT
 
 pragma solidity >=0.6.0 <0.8.0;
 
@@ -301,7 +302,7 @@ library SafeMath {
 
 // File @openzeppelin/contracts/utils/Address.sol@v3.4.2
 
-// SPDX-License-Identifier: MIT
+// MIT
 
 pragma solidity >=0.6.2 <0.8.0;
 
@@ -494,7 +495,7 @@ library Address {
 
 // File @openzeppelin/contracts/token/ERC20/SafeERC20.sol@v3.4.2
 
-// SPDX-License-Identifier: MIT
+// MIT
 
 pragma solidity >=0.6.0 <0.8.0;
 
@@ -571,7 +572,7 @@ library SafeERC20 {
 
 // File contracts/distribution/LShareRewardPool.sol
 
-// SPDX-License-Identifier: MIT
+// MIT
 
 pragma solidity 0.6.12;
 
