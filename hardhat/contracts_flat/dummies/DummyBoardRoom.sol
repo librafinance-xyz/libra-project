@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: MIXED
-
+// Sources flattened with hardhat v2.9.1 https://hardhat.org
 
 // File @openzeppelin/contracts/token/ERC20/IERC20.sol@v3.4.2
 
@@ -570,282 +570,329 @@ library SafeERC20 {
 }
 
 
-// File contracts/distribution/LibraGenesisRewardPool.sol
+// File contracts/utils/ContractGuard.sol
+
+// MIT
+
+pragma solidity 0.6.12;
+
+contract ContractGuard {
+    mapping(uint256 => mapping(address => bool)) private _status;
+
+    function checkSameOriginReentranted() internal view returns (bool) {
+        return _status[block.number][tx.origin];
+    }
+
+    function checkSameSenderReentranted() internal view returns (bool) {
+        return _status[block.number][msg.sender];
+    }
+
+    modifier onlyOneBlock() {
+        require(!checkSameOriginReentranted(), "ContractGuard: one block, one function");
+        require(!checkSameSenderReentranted(), "ContractGuard: one block, one function");
+
+        _;
+
+        _status[block.number][tx.origin] = true;
+        _status[block.number][msg.sender] = true;
+    }
+}
+
+
+// File contracts/interfaces/IBasisAsset.sol
+
+pragma solidity ^0.6.0;
+
+interface IBasisAsset {
+    function mint(address recipient, uint256 amount) external returns (bool);
+
+    function burn(uint256 amount) external;
+
+    function burnFrom(address from, uint256 amount) external;
+
+    function isOperator() external returns (bool);
+
+    function operator() external view returns (address);
+
+    function transferOperator(address newOperator_) external;
+}
+
+
+// File contracts/interfaces/ITreasury.sol
+
+// MIT
+
+pragma solidity 0.6.12;
+
+interface ITreasury {
+    function epoch() external view returns (uint256);
+
+    function nextEpochPoint() external view returns (uint256);
+
+    function getLibraPrice() external view returns (uint256);
+
+    function buyBonds(uint256 amount, uint256 targetPrice) external;
+
+    function redeemBonds(uint256 amount, uint256 targetPrice) external;
+}
+
+
+// File contracts/Boardroom.sol
 
 // MIT
 
 pragma solidity 0.6.12;
 
 
-// Note that this pool has no minter key of LIBRA (rewards).
-// Instead, the governance will call LIBRA distributeReward method and send reward to this pool at the beginning.
-contract DummyLibraGenesisRewardPool {
+
+
+contract ShareWrapper {
     using SafeMath for uint256;
     using SafeERC20 for IERC20;
+
+    IERC20 public lshare;
+
+    uint256 private _totalSupply;
+    mapping(address => uint256) private _balances;
+
+    function totalSupply() public view returns (uint256) {
+        return _totalSupply;
+    }
+
+    function balanceOf(address account) public view returns (uint256) {
+        return _balances[account];
+    }
+
+    function stake(uint256 amount) public virtual {
+        _totalSupply = _totalSupply.add(amount);
+        _balances[msg.sender] = _balances[msg.sender].add(amount);
+        lshare.safeTransferFrom(msg.sender, address(this), amount);
+    }
+
+    function withdraw(uint256 amount) public virtual {
+        uint256 memberShare = _balances[msg.sender];
+        require(memberShare >= amount, "Boardroom: withdraw request greater than staked amount");
+        _totalSupply = _totalSupply.sub(amount);
+        _balances[msg.sender] = memberShare.sub(amount);
+        lshare.safeTransfer(msg.sender, amount);
+    }
+}
+
+contract DummyBoardroom is ShareWrapper, ContractGuard {
+    using SafeERC20 for IERC20;
+    using Address for address;
+    using SafeMath for uint256;
+
+    /* ========== DATA STRUCTURES ========== */
+
+    struct Memberseat {
+        uint256 lastSnapshotIndex;
+        uint256 rewardEarned;
+        uint256 epochTimerStart;
+    }
+
+    struct BoardroomSnapshot {
+        uint256 time;
+        uint256 rewardReceived;
+        uint256 rewardPerShare;
+    }
+
+    /* ========== STATE VARIABLES ========== */
 
     // governance
     address public operator;
 
-    // Info of each user.
-    struct UserInfo {
-        uint256 amount; // How many tokens the user has provided.
-        uint256 rewardDebt; // Reward debt. See explanation below.
-    }
-
-    // Info of each pool.
-    struct PoolInfo {
-        IERC20 token; // Address of LP token contract.
-        uint256 allocPoint; // How many allocation points assigned to this pool. LIBRA to distribute.
-        uint256 lastRewardTime; // Last time that LIBRA distribution occurs.
-        uint256 accLibraPerShare; // Accumulated LIBRA per share, times 1e18. See below.
-        bool isStarted; // if lastRewardBlock has passed
-    }
+    // flags
+    bool public initialized = false;
 
     IERC20 public libra;
+    ITreasury public treasury;
 
-    // Info of each pool.
-    PoolInfo[] public poolInfo;
+    mapping(address => Memberseat) public members;
+    BoardroomSnapshot[] public boardroomHistory;
 
-    // Info of each user that stakes LP tokens.
-    mapping(uint256 => mapping(address => UserInfo)) public userInfo;
+    uint256 public withdrawLockupEpochs;
+    uint256 public rewardLockupEpochs;
 
-    // Total allocation points. Must be the sum of all allocation points in all pools.
-    uint256 public totalAllocPoint = 0;
+    /* ========== EVENTS ========== */
 
-    // The time when LIBRA mining starts.
-    uint256 public poolStartTime;
+    event Initialized(address indexed executor, uint256 at);
+    event Staked(address indexed user, uint256 amount);
+    event Withdrawn(address indexed user, uint256 amount);
+    event RewardPaid(address indexed user, uint256 reward);
+    event RewardAdded(address indexed user, uint256 reward);
 
-    // The time when LIBRA mining ends.
-    uint256 public poolEndTime;
-
-    // MAINNET
-    uint256 public libraPerSecond = 0.11574 ether; // 10000 LIBRA / (24h * 60min * 60s)
-    uint256 public runningTime = 24 hours;
-    uint256 public constant TOTAL_REWARDS = 10000 ether;
-    // END MAINNET
-
-    event Deposit(address indexed user, uint256 indexed pid, uint256 amount);
-    event Withdraw(address indexed user, uint256 indexed pid, uint256 amount);
-    event EmergencyWithdraw(address indexed user, uint256 indexed pid, uint256 amount);
-    event RewardPaid(address indexed user, uint256 amount);
-
-    constructor(
-        address _libra, 
-        uint256 _poolStartTime
-    ) public {
-        require(block.timestamp < _poolStartTime, "late");
-        if (_libra != address(0)) libra = IERC20(_libra);
-        poolStartTime = _poolStartTime;
-        poolEndTime = poolStartTime + runningTime;
-        operator = msg.sender;
-    }
+    /* ========== Modifiers =============== */
 
     modifier onlyOperator() {
-        require(operator == msg.sender, "AstarGenesisPool: caller is not the operator");
+        require(operator == msg.sender, "Boardroom: caller is not the operator");
         _;
     }
 
-    function checkPoolDuplicate(IERC20 _token) internal view {
-        uint256 length = poolInfo.length;
-        for (uint256 pid = 0; pid < length; ++pid) {
-            require(poolInfo[pid].token != _token, "AstarGenesisPool: existing pool?");
-        }
+    modifier memberExists() {
+        require(balanceOf(msg.sender) > 0, "Boardroom: The member does not exist");
+        _;
     }
 
-    // Add a new token to the pool. Can only be called by the owner.
-    function add(
-        uint256 _allocPoint,
-        IERC20 _token,
-        bool _withUpdate,
-        uint256 _lastRewardTime
-    ) public onlyOperator {
-        checkPoolDuplicate(_token);
-        if (_withUpdate) {
-            massUpdatePools();
+    modifier updateReward(address member) {
+        if (member != address(0)) {
+            Memberseat memory seat = members[member];
+            seat.rewardEarned = earned(member);
+            seat.lastSnapshotIndex = latestSnapshotIndex();
+            members[member] = seat;
         }
-        if (block.timestamp < poolStartTime) {
-            // chef is sleeping
-            if (_lastRewardTime == 0) {
-                _lastRewardTime = poolStartTime;
-            } else {
-                if (_lastRewardTime < poolStartTime) {
-                    _lastRewardTime = poolStartTime;
-                }
-            }
-        } else {
-            // chef is cooking
-            if (_lastRewardTime == 0 || _lastRewardTime < block.timestamp) {
-                _lastRewardTime = block.timestamp;
-            }
-        }
-        bool _isStarted =
-        (_lastRewardTime <= poolStartTime) ||
-        (_lastRewardTime <= block.timestamp);
-        poolInfo.push(PoolInfo({
-            token : _token,
-            allocPoint : _allocPoint,
-            lastRewardTime : _lastRewardTime,
-            accLibraPerShare : 0,
-            isStarted : _isStarted
-        }));
-        if (_isStarted) {
-            totalAllocPoint = totalAllocPoint.add(_allocPoint);
-        }
+        _;
     }
 
-    // Update the given pool's LIBRA allocation point. Can only be called by the owner.
-    function set(uint256 _pid, uint256 _allocPoint) public onlyOperator {
-        massUpdatePools();
-        PoolInfo storage pool = poolInfo[_pid];
-        if (pool.isStarted) {
-            totalAllocPoint = totalAllocPoint.sub(pool.allocPoint).add(
-                _allocPoint
-            );
-        }
-        pool.allocPoint = _allocPoint;
+    modifier notInitialized() {
+        require(!initialized, "Boardroom: already initialized");
+        _;
     }
 
-    // Return accumulate rewards over the given _from to _to block.
-    function getGeneratedReward(uint256 _fromTime, uint256 _toTime) public view returns (uint256) {
-        if (_fromTime >= _toTime) return 0;
-        if (_toTime >= poolEndTime) {
-            if (_fromTime >= poolEndTime) return 0;
-            if (_fromTime <= poolStartTime) return poolEndTime.sub(poolStartTime).mul(libraPerSecond);
-            return poolEndTime.sub(_fromTime).mul(libraPerSecond);
-        } else {
-            if (_toTime <= poolStartTime) return 0;
-            if (_fromTime <= poolStartTime) return _toTime.sub(poolStartTime).mul(libraPerSecond);
-            return _toTime.sub(_fromTime).mul(libraPerSecond);
-        }
-    }
+    /* ========== GOVERNANCE ========== */
 
-    // View function to see pending LIBRA on frontend.
-    function pendingLIBRA(uint256 _pid, address _user) external view returns (uint256) {
-        PoolInfo storage pool = poolInfo[_pid];
-        UserInfo storage user = userInfo[_pid][_user];
-        uint256 accLibraPerShare = pool.accLibraPerShare;
-        uint256 tokenSupply = pool.token.balanceOf(address(this));
-        if (block.timestamp > pool.lastRewardTime && tokenSupply != 0) {
-            uint256 _generatedReward = getGeneratedReward(pool.lastRewardTime, block.timestamp);
-            uint256 _libraReward = _generatedReward.mul(pool.allocPoint).div(totalAllocPoint);
-            accLibraPerShare = accLibraPerShare.add(_libraReward.mul(1e18).div(tokenSupply));
-        }
-        return user.amount.mul(accLibraPerShare).div(1e18).sub(user.rewardDebt);
-    }
+    function initialize(
+        IERC20 _libra,
+        IERC20 _lshare,
+        ITreasury _treasury
+    ) public notInitialized {
+        libra = _libra;
+        lshare = _lshare;
+        treasury = _treasury;
 
-    // Update reward variables for all pools. Be careful of gas spending!
-    function massUpdatePools() public {
-        uint256 length = poolInfo.length;
-        for (uint256 pid = 0; pid < length; ++pid) {
-            updatePool(pid);
-        }
-    }
+        BoardroomSnapshot memory genesisSnapshot = BoardroomSnapshot({time: block.number, rewardReceived: 0, rewardPerShare: 0});
+        boardroomHistory.push(genesisSnapshot);
 
-    // Update reward variables of the given pool to be up-to-date.
-    function updatePool(uint256 _pid) public {
-        PoolInfo storage pool = poolInfo[_pid];
-        if (block.timestamp <= pool.lastRewardTime) {
-            return;
-        }
-        uint256 tokenSupply = pool.token.balanceOf(address(this));
-        if (tokenSupply == 0) {
-            pool.lastRewardTime = block.timestamp;
-            return;
-        }
-        if (!pool.isStarted) {
-            pool.isStarted = true;
-            totalAllocPoint = totalAllocPoint.add(pool.allocPoint);
-        }
-        if (totalAllocPoint > 0) {
-            uint256 _generatedReward = getGeneratedReward(pool.lastRewardTime, block.timestamp);
-            uint256 _libraReward = _generatedReward.mul(pool.allocPoint).div(totalAllocPoint);
-            pool.accLibraPerShare = pool.accLibraPerShare.add(_libraReward.mul(1e18).div(tokenSupply));
-        }
-        pool.lastRewardTime = block.timestamp;
-    }
+        withdrawLockupEpochs = 6; // Lock for 6 epochs (36h) before release withdraw
+        rewardLockupEpochs = 3; // Lock for 3 epochs (18h) before release claimReward
 
-    // Deposit LP tokens.
-    function deposit(uint256 _pid, uint256 _amount) public {
-        address _sender = msg.sender;
-        PoolInfo storage pool = poolInfo[_pid];
-        UserInfo storage user = userInfo[_pid][_sender];
-        updatePool(_pid);
-        if (user.amount > 0) {
-            uint256 _pending = user.amount.mul(pool.accLibraPerShare).div(1e18).sub(user.rewardDebt);
-            if (_pending > 0) {
-                safeLibraTransfer(_sender, _pending);
-                emit RewardPaid(_sender, _pending);
-            }
-        }
-        if (_amount > 0) {
-            pool.token.safeTransferFrom(_sender, address(this), _amount);
-            user.amount = user.amount.add(_amount);
-        }
-        user.rewardDebt = user.amount.mul(pool.accLibraPerShare).div(1e18);
-        emit Deposit(_sender, _pid, _amount);
-    }
-
-    // Withdraw LP tokens.
-    function withdraw(uint256 _pid, uint256 _amount) public {
-        address _sender = msg.sender;
-        PoolInfo storage pool = poolInfo[_pid];
-        UserInfo storage user = userInfo[_pid][_sender];
-        require(user.amount >= _amount, "withdraw: not good");
-        updatePool(_pid);
-        uint256 _pending = user.amount.mul(pool.accLibraPerShare).div(1e18).sub(user.rewardDebt);
-        if (_pending > 0) {
-            safeLibraTransfer(_sender, _pending);
-            emit RewardPaid(_sender, _pending);
-        }
-        if (_amount > 0) {
-            user.amount = user.amount.sub(_amount);
-            pool.token.safeTransfer(_sender, _amount);
-        }
-        user.rewardDebt = user.amount.mul(pool.accLibraPerShare).div(1e18);
-        emit Withdraw(_sender, _pid, _amount);
-    }
-
-    // Withdraw without caring about rewards. EMERGENCY ONLY.
-    function emergencyWithdraw(uint256 _pid) public {
-        PoolInfo storage pool = poolInfo[_pid];
-        UserInfo storage user = userInfo[_pid][msg.sender];
-        uint256 _amount = user.amount;
-        user.amount = 0;
-        user.rewardDebt = 0;
-        pool.token.safeTransfer(msg.sender, _amount);
-        emit EmergencyWithdraw(msg.sender, _pid, _amount);
-    }
-
-    // Safe LIBRA transfer function, just in case if rounding error causes pool to not have enough LIBRAs.
-    function safeLibraTransfer(address _to, uint256 _amount) internal {
-        uint256 _libraBalance = libra.balanceOf(address(this));
-        if (_libraBalance > 0) {
-            if (_amount > _libraBalance) {
-                libra.safeTransfer(_to, _libraBalance);
-            } else {
-                libra.safeTransfer(_to, _amount);
-            }
-        }
+        initialized = true;
+        operator = msg.sender;
+        emit Initialized(msg.sender, block.number);
     }
 
     function setOperator(address _operator) external onlyOperator {
         operator = _operator;
     }
 
-    function governanceRecoverUnsupported(
-        IERC20 _token, 
-        uint256 amount, 
-        address to
-    ) external onlyOperator {
-        if (block.timestamp < poolEndTime + 90 days) {
-            // do not allow to drain core token (LIBRA or lps) if less than 90 days after pool ends
-            require(_token != libra, "libra");
-            uint256 length = poolInfo.length;
-            for (uint256 pid = 0; pid < length; ++pid) {
-                PoolInfo storage pool = poolInfo[pid];
-                require(_token != pool.token, "pool.token");
-            }
+    function setLockUp(uint256 _withdrawLockupEpochs, uint256 _rewardLockupEpochs) external onlyOperator {
+        require(_withdrawLockupEpochs >= _rewardLockupEpochs && _withdrawLockupEpochs <= 56, "_withdrawLockupEpochs: out of range"); // <= 2 week
+        withdrawLockupEpochs = _withdrawLockupEpochs;
+        rewardLockupEpochs = _rewardLockupEpochs;
+    }
+
+    /* ========== VIEW FUNCTIONS ========== */
+
+    // =========== Snapshot getters
+
+    function latestSnapshotIndex() public view returns (uint256) {
+        return boardroomHistory.length.sub(1);
+    }
+
+    function getLatestSnapshot() internal view returns (BoardroomSnapshot memory) {
+        return boardroomHistory[latestSnapshotIndex()];
+    }
+
+    function getLastSnapshotIndexOf(address member) public view returns (uint256) {
+        return members[member].lastSnapshotIndex;
+    }
+
+    function getLastSnapshotOf(address member) internal view returns (BoardroomSnapshot memory) {
+        return boardroomHistory[getLastSnapshotIndexOf(member)];
+    }
+
+    function canWithdraw(address member) external view returns (bool) {
+        return members[member].epochTimerStart.add(withdrawLockupEpochs) <= treasury.epoch();
+    }
+
+    function canClaimReward(address member) external view returns (bool) {
+        return members[member].epochTimerStart.add(rewardLockupEpochs) <= treasury.epoch();
+    }
+
+    function epoch() external view returns (uint256) {
+        return treasury.epoch();
+    }
+
+    function nextEpochPoint() external view returns (uint256) {
+        return treasury.nextEpochPoint();
+    }
+
+    function getLibraPrice() external view returns (uint256) {
+        return treasury.getLibraPrice();
+    }
+
+    // =========== Member getters
+
+    function rewardPerShare() public view returns (uint256) {
+        return getLatestSnapshot().rewardPerShare;
+    }
+
+    function earned(address member) public view returns (uint256) {
+        uint256 latestRPS = getLatestSnapshot().rewardPerShare;
+        uint256 storedRPS = getLastSnapshotOf(member).rewardPerShare;
+
+        return balanceOf(member).mul(latestRPS.sub(storedRPS)).div(1e18).add(members[member].rewardEarned);
+    }
+
+    /* ========== MUTATIVE FUNCTIONS ========== */
+
+    function stake(uint256 amount) public override onlyOneBlock updateReward(msg.sender) {
+        require(amount > 0, "Boardroom: Cannot stake 0");
+        super.stake(amount);
+        members[msg.sender].epochTimerStart = treasury.epoch(); // reset timer
+        emit Staked(msg.sender, amount);
+    }
+
+    function withdraw(uint256 amount) public override onlyOneBlock memberExists updateReward(msg.sender) {
+        require(amount > 0, "Boardroom: Cannot withdraw 0");
+        require(members[msg.sender].epochTimerStart.add(withdrawLockupEpochs) <= treasury.epoch(), "Boardroom: still in withdraw lockup");
+        claimReward();
+        super.withdraw(amount);
+        emit Withdrawn(msg.sender, amount);
+    }
+
+    function exit() external {
+        withdraw(balanceOf(msg.sender));
+    }
+
+    function claimReward() public updateReward(msg.sender) {
+        uint256 reward = members[msg.sender].rewardEarned;
+        if (reward > 0) {
+            require(members[msg.sender].epochTimerStart.add(rewardLockupEpochs) <= treasury.epoch(), "Boardroom: still in reward lockup");
+            members[msg.sender].epochTimerStart = treasury.epoch(); // reset timer
+            members[msg.sender].rewardEarned = 0;
+            libra.safeTransfer(msg.sender, reward);
+            emit RewardPaid(msg.sender, reward);
         }
-        _token.safeTransfer(to, amount);
+    }
+
+    function allocateSeigniorage(uint256 amount) external onlyOneBlock onlyOperator {
+        require(amount > 0, "Boardroom: Cannot allocate 0");
+        require(totalSupply() > 0, "Boardroom: Cannot allocate when totalSupply is 0");
+
+        // Create & add new snapshot
+        uint256 prevRPS = getLatestSnapshot().rewardPerShare;
+        uint256 nextRPS = prevRPS.add(amount.mul(1e18).div(totalSupply()));
+
+        BoardroomSnapshot memory newSnapshot = BoardroomSnapshot({
+            time: block.number, 
+            rewardReceived: amount, 
+            rewardPerShare: nextRPS
+        });
+        boardroomHistory.push(newSnapshot);
+
+        libra.safeTransferFrom(msg.sender, address(this), amount);
+        emit RewardAdded(msg.sender, amount);
+    }
+
+    function governanceRecoverUnsupported(
+        IERC20 _token,
+        uint256 _amount,
+        address _to
+    ) external onlyOperator {
+        // do not allow to drain core tokens
+        require(address(_token) != address(libra), "libra");
+        require(address(_token) != address(lshare), "lshare");
+        _token.safeTransfer(_to, _amount);
     }
 }
