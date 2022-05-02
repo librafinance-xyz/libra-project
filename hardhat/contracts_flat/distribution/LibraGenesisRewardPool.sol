@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: MIXED
-
+// Sources flattened with hardhat v2.9.1 https://hardhat.org
 
 // File @openzeppelin/contracts/token/ERC20/IERC20.sol@v3.4.2
 
@@ -577,9 +577,10 @@ library SafeERC20 {
 pragma solidity 0.6.12;
 
 
+
 // Note that this pool has no minter key of LIBRA (rewards).
 // Instead, the governance will call LIBRA distributeReward method and send reward to this pool at the beginning.
-contract DummyLibraGenesisRewardPool {
+contract LibraGenesisRewardPool {
     using SafeMath for uint256;
     using SafeERC20 for IERC20;
 
