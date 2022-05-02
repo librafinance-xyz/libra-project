@@ -49,7 +49,6 @@ contract Treasury is ContractGuard {
     address public lshare;
 
     address public boardroom;
-    address public bondTreasury;
     address public libraOracle;
 
     // price
@@ -245,7 +244,6 @@ contract Treasury is ContractGuard {
         address _libraOracle,
         address _boardroom,
         address _genesisPool,
-        address _bondTreasury,
         uint256 _startTime
     ) public notInitialized {
         libra = _libra;
@@ -253,7 +251,6 @@ contract Treasury is ContractGuard {
         lshare = _lshare;
         libraOracle = _libraOracle;
         boardroom = _boardroom;
-        bondTreasury = _bondTreasury;
         startTime = _startTime;
 
         libraPriceOne = 10**18;
@@ -261,7 +258,6 @@ contract Treasury is ContractGuard {
 
         // exclude contracts from total supply
         excludedFromTotalSupply.push(_genesisPool);
-        excludedFromTotalSupply.push(_bondTreasury);
 
         // Dynamic max expansion percent
         supplyTiers = [0 ether, 500000 ether, 1000000 ether, 1500000 ether, 2000000 ether, 5000000 ether, 10000000 ether, 20000000 ether, 50000000 ether];
@@ -513,16 +509,6 @@ contract Treasury is ContractGuard {
         emit BoardroomFunded(now, _amount);
     }
 
-    function _sendToBondTreasury(uint256 _amount) internal {
-        uint256 treasuryBalance = IERC20(libra).balanceOf(bondTreasury);
-        uint256 treasuryVested = IBondTreasury(bondTreasury).totalVested();
-        if (treasuryVested >= treasuryBalance) return;
-        uint256 unspent = treasuryBalance.sub(treasuryVested);
-        if (_amount > unspent) {
-            IBasisAsset(libra).mint(bondTreasury, _amount.sub(unspent));
-        }
-    }
-
     function _calculateMaxSupplyExpansionPercent(uint256 _libraSupply) internal returns (uint256) {
         for (uint8 tierId = 8; tierId >= 0; --tierId) {
             if (_libraSupply >= supplyTiers[tierId]) {
@@ -537,7 +523,6 @@ contract Treasury is ContractGuard {
         _updateLibraPrice();
         previousEpochLibraPrice = getLibraPrice();
         uint256 libraSupply = getLibraCirculatingSupply().sub(seigniorageSaved);
-        _sendToBondTreasury(libraSupply.mul(bondSupplyExpansionPercent).div(10000));
         if (epoch < bootstrapEpochs) {
             // 28 first epochs with 4.5% expansion
             _sendToBoardroom(libraSupply.mul(bootstrapSupplyExpansionPercent).div(10000));
