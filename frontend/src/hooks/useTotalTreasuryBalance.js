@@ -189,12 +189,12 @@ function useTotalTreasuryBalance() {
     const { data } = await axios('https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&ids=3shares');
     const threeSharesBalance = web3.utils.fromWei(await ThreeShares.methods.balanceOf(treasuryAddress).call());
     const valueLshares = threeSharesBalance * data[0].current_price;
-    const data2sharesAndlibra = await axios(
+    const dataLsharesAndlibra = await axios(
       'https://openapi.debank.com/v1/user/chain_balance?id=0x8f555E00ea0FAc871b3Aa70C015915dB094E7f88&chain_id=ftm',
     );
 
     console.log(`LShares USD: $${valueLshares}`);
-    console.log(`2Shares + libra: $${data2sharesAndlibra.data.usd_value}`);
+    console.log(`2Shares + libra: $${dataLsharesAndlibra.data.usd_value}`);
 
     const LP_libra_wastr = await getLPPrice(
       '0x83A52eff2E9D112E9B022399A9fD22a9DB7d33Ae',
@@ -204,7 +204,7 @@ function useTotalTreasuryBalance() {
       '0xd352daC95a91AfeFb112DBBB3463ccfA5EC15b65',
       '0x6437adac543583c4b31bf0323a0870430f5cc2e7',
     );
-    setBalance(data2sharesAndlibra.data.usd_value + valueLshares +LP_libra_wastr + LP_Lshares_wastr);
+    setBalance(dataLsharesAndlibra.data.usd_value + valueLshares +LP_libra_wastr + LP_Lshares_wastr);
     setBalance_libra_wastr(LP_libra_wastr);
     setBalance_Lshares_wastr(LP_Lshares_wastr);
     setBalance_libra(await getlibraBalance());
