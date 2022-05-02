@@ -15,15 +15,15 @@ import astrLogo from '../../assets/libra/ASTR.png';
 // import booLogo from '../../assets/img/spooky.png';
 // import belugaLogo from '../../assets/img/BELUGA.png';
 // import twoshareLogo from '../../assets/img/t_2SHARE-01.png';
-// import twoombLogo from '../../assets/img/t_2OMB-01.png';
+// import twoombLogo from '../../assets/img/t_LIBRA-01.png';
 // import zooLogo from '../../assets/img/zoo_logo.svg';
 // import shibaLogo from '../../assets/img/shiba_logo.svg';
 // import bifiLogo from '../../assets/img/COW.svg';
 // import mimLogo from '../../assets/img/mimlogopng.png';
 // import bloomLogo from '../../assets/img/BLOOM.jpg';
-// import TwoombLPLogo from '../../assets/img/2OMB-WASTR.png';
+// import TwoombLPLogo from '../../assets/img/LIBRA-WASTR.png';
 // import TwosharesLPLogo from '../../assets/img/LSHARE-WASTR.png';
-// import TwoombTwosharesLPLogo from '../../assets/img/2OMB-LSHARE.png';
+// import TwoombTwosharesLPLogo from '../../assets/img/LIBRA-LSHARE.png';
 
 import UsdcLogo from '../../assets/img/USDC.png';
 
