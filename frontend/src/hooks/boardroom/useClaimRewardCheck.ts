@@ -11,7 +11,7 @@ const useClaimRewardCheck = () => {
   useEffect(() => {
     async function canUserClaimReward() {
       try {
-        setCanClaimReward(await libraFinance.canUserClaimRewardFromMasonry());
+        setCanClaimReward(await libraFinance.canUserClaimRewardFromBoardroom());
       } catch (err) {
         console.error(err);
       }

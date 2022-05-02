@@ -12,9 +12,9 @@ import Spacer from '../../components/Spacer';
 import useLibraFinance from '../../hooks/useLibraFinance';
 import { getDisplayBalance /*, getBalance*/ } from '../../utils/formatBalance';
 import { BigNumber /*, ethers*/ } from 'ethers';
-import useSwapTBondToTShare from '../../hooks/TShareSwapper/useSwapTBondToTShare';
+import useSwapLBondToLShare from '../../hooks/LShareSwapper/useSwapLBondToLShare';
 import useApprove, { ApprovalState } from '../../hooks/useApprove';
-import useTShareSwapperStats from '../../hooks/TShareSwapper/useTShareSwapperStats';
+import useLShareSwapperStats from '../../hooks/LShareSwapper/useLShareSwapperStats';
 import TokenInput from '../../components/TokenInput';
 import Card from '../../components/Card';
 import CardContent from '../../components/CardContent';
@@ -36,11 +36,11 @@ const Sbs: React.FC = () => {
   const { account } = useWallet();
   const libraFinance = useLibraFinance();
   const [lbondAmount, setLbondAmount] = useState('');
-  const [lshareAmount, setTshareAmount] = useState('');
+  const [lshareAmount, setLshareAmount] = useState('');
 
-  const [approveStatus, approve] = useApprove(libraFinance.LBOND, libraFinance.contracts.TShareSwapper.address);
-  const { onSwapTShare } = useSwapTBondToTShare();
-  const lshareSwapperStat = useTShareSwapperStats(account);
+  const [approveStatus, approve] = useApprove(libraFinance.LBOND, libraFinance.contracts.LShareSwapper.address);
+  const { onSwapLShare } = useSwapLBondToLShare();
+  const lshareSwapperStat = useLShareSwapperStats(account);
 
   const lshareBalance = useMemo(
     () => (lshareSwapperStat ? Number(lshareSwapperStat.lshareBalance) : 0),
@@ -51,49 +51,49 @@ const Sbs: React.FC = () => {
     [lshareSwapperStat],
   );
 
-  const handleTBondChange = async (e: any) => {
+  const handleLBondChange = async (e: any) => {
     if (e.currentTarget.value === '') {
       setLbondAmount('');
-      setTshareAmount('');
+      setLshareAmount('');
       return;
     }
     if (!isNumeric(e.currentTarget.value)) return;
     setLbondAmount(e.currentTarget.value);
-    const updateTShareAmount = await libraFinance.estimateAmountOfTShare(e.currentTarget.value);
-    setTshareAmount(updateTShareAmount);
+    const updateLShareAmount = await libraFinance.estimateAmountOfLShare(e.currentTarget.value);
+    setLshareAmount(updateLShareAmount);
   };
 
-  const handleTBondSelectMax = async () => {
+  const handleLBondSelectMax = async () => {
     setLbondAmount(String(bondBalance));
-    const updateTShareAmount = await libraFinance.estimateAmountOfTShare(String(bondBalance));
-    setTshareAmount(updateTShareAmount);
+    const updateLShareAmount = await libraFinance.estimateAmountOfLShare(String(bondBalance));
+    setLshareAmount(updateLShareAmount);
   };
 
-  const handleTShareSelectMax = async () => {
-    setTshareAmount(String(lshareBalance));
-    const rateTSharePerLibra = (await libraFinance.getTShareSwapperStat(account)).rateTSharePerLibra;
-    const updateTBondAmount = BigNumber.from(10)
+  const handleLShareSelectMax = async () => {
+    setLshareAmount(String(lshareBalance));
+    const rateLSharePerLibra = (await libraFinance.getLShareSwapperStat(account)).rateLSharePerLibra;
+    const updateLBondAmount = BigNumber.from(10)
       .pow(30)
-      .div(BigNumber.from(rateTSharePerLibra))
+      .div(BigNumber.from(rateLSharePerLibra))
       .mul(Number(lshareBalance) * 1e6);
-    setLbondAmount(getDisplayBalance(updateTBondAmount, 18, 6));
+    setLbondAmount(getDisplayBalance(updateLBondAmount, 18, 6));
   };
 
-  const handleTShareChange = async (e: any) => {
+  const handleLShareChange = async (e: any) => {
     const inputData = e.currentTarget.value;
     if (inputData === '') {
-      setTshareAmount('');
+      setLshareAmount('');
       setLbondAmount('');
       return;
     }
     if (!isNumeric(inputData)) return;
-    setTshareAmount(inputData);
-    const rateTSharePerLibra = (await libraFinance.getTShareSwapperStat(account)).rateTSharePerLibra;
-    const updateTBondAmount = BigNumber.from(10)
+    setLshareAmount(inputData);
+    const rateLSharePerLibra = (await libraFinance.getLShareSwapperStat(account)).rateLSharePerLibra;
+    const updateLBondAmount = BigNumber.from(10)
       .pow(30)
-      .div(BigNumber.from(rateTSharePerLibra))
+      .div(BigNumber.from(rateLSharePerLibra))
       .mul(Number(inputData) * 1e6);
-    setLbondAmount(getDisplayBalance(updateTBondAmount, 18, 6));
+    setLbondAmount(getDisplayBalance(updateLBondAmount, 18, 6));
   };
 
   return (
@@ -103,7 +103,7 @@ const Sbs: React.FC = () => {
         {!!account ? (
           <>
             <Route exact path={path}>
-              <PageHeader icon={'🏦'} title="TBond -> TShare Swap" subtitle="Swap TBond to TShare" />
+              <PageHeader icon={'🏦'} title="LBond -> LShare Swap" subtitle="Swap LBond to LShare" />
             </Route>
             <Box mt={5}>
               <Grid container justify="center" spacing={6}>
@@ -113,7 +113,7 @@ const Sbs: React.FC = () => {
                       <Card>
                         <CardContent>
                           <StyledCardContentInner>
-                            <StyledCardTitle>TBonds</StyledCardTitle>
+                            <StyledCardTitle>LBonds</StyledCardTitle>
                             <StyledExchanger>
                               <StyledToken>
                                 <StyledCardIcon>
@@ -123,11 +123,11 @@ const Sbs: React.FC = () => {
                             </StyledExchanger>
                             <Grid item xs={12}>
                               <TokenInput
-                                onSelectMax={handleTBondSelectMax}
-                                onChange={handleTBondChange}
+                                onSelectMax={handleLBondSelectMax}
+                                onChange={handleLBondChange}
                                 value={lbondAmount}
                                 max={bondBalance}
-                                symbol="TBond"
+                                symbol="LBond"
                               ></TokenInput>
                             </Grid>
                             <StyledDesc>{`${bondBalance} LBOND Available in Wallet`}</StyledDesc>
@@ -140,7 +140,7 @@ const Sbs: React.FC = () => {
                       <Card>
                         <CardContent>
                           <StyledCardContentInner>
-                            <StyledCardTitle>TShare</StyledCardTitle>
+                            <StyledCardTitle>LShare</StyledCardTitle>
                             <StyledExchanger>
                               <StyledToken>
                                 <StyledCardIcon>
@@ -150,11 +150,11 @@ const Sbs: React.FC = () => {
                             </StyledExchanger>
                             <Grid item xs={12}>
                               <TokenInput
-                                onSelectMax={handleTShareSelectMax}
-                                onChange={handleTShareChange}
+                                onSelectMax={handleLShareSelectMax}
+                                onChange={handleLShareChange}
                                 value={lshareAmount}
                                 max={lshareBalance}
-                                symbol="TShare"
+                                symbol="LShare"
                               ></TokenInput>
                             </Grid>
                             <StyledDesc>{`${lshareBalance} LSHARE Available in Swapper`}</StyledDesc>
@@ -187,7 +187,7 @@ const Sbs: React.FC = () => {
                           <Button
                             color="primary"
                             variant="contained"
-                            onClick={() => onSwapTShare(lbondAmount.toString())}
+                            onClick={() => onSwapLShare(lbondAmount.toString())}
                             size="medium"
                           >
                             Swap

@@ -156,7 +156,7 @@
       },
       {
         "inputs": [],
-        "name": "INITIAL_TOMB_POOL_DISTRIBUTION",
+        "name": "INITIAL_LIBRA_POOL_DISTRIBUTION",
         "outputs": [
           {
             "internalType": "uint256",
@@ -710,11 +710,11 @@
         "inputs": [
           {
             "internalType": "address",
-            "name": "_tombOracle",
+            "name": "_libraOracle",
             "type": "address"
           }
         ],
-        "name": "setTombOracle",
+        "name": "setLibraOracle",
         "outputs": [],
         "stateMutability": "nonpayable",
         "type": "function"
@@ -811,7 +811,7 @@
       },
       {
         "inputs": [],
-        "name": "tombOracle",
+        "name": "libraOracle",
         "outputs": [
           {
             "internalType": "address",
@@ -944,7 +944,7 @@
         },
         "mint(address,uint256)": {
           "params": {
-            "amount_": "The amount of TOMB to mint to",
+            "amount_": "The amount of LIBRA to mint to",
             "recipient_": "The address of recipient"
           },
           "returns": {
@@ -981,12 +981,12 @@
     "userdoc": {
       "kind": "user",
       "methods": {
-        "constructor": "Constructs the TOMB ERC-20 contract.",
+        "constructor": "Constructs the LIBRA ERC-20 contract.",
         "distributeReward(address)": {
           "notice": "distribute to reward pool (only once)"
         },
         "mint(address,uint256)": {
-          "notice": "Operator mints TOMB to a recipient"
+          "notice": "Operator mints LIBRA to a recipient"
         }
       },
       "version": 1
@@ -994,7 +994,7 @@
   },
   "settings": {
     "compilationTarget": {
-      "contracts/Tomb.sol": "Tomb"
+      "contracts/Libra.sol": "Libra"
     },
     "evmVersion": "istanbul",
     "libraries": {},
@@ -1008,7 +1008,7 @@
     "remappings": []
   },
   "sources": {
-    "contracts/Tomb.sol": {
+    "contracts/Libra.sol": {
       "keccak256": "0x967c120a137d035844f393d92482dc6d758a5a7ae452f104cdbb3e047482d6ef",
       "license": "MIXED",
       "urls": [

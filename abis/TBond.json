@@ -512,7 +512,7 @@
     "userdoc": {
       "kind": "user",
       "methods": {
-        "constructor": "Constructs the TOMB Bond ERC-20 contract.",
+        "constructor": "Constructs the LIBRA Bond ERC-20 contract.",
         "mint(address,uint256)": {
           "notice": "Operator mints basis bonds to a recipient"
         }
@@ -522,7 +522,7 @@
   },
   "settings": {
     "compilationTarget": {
-      "contracts/Bond.sol": "TBond"
+      "contracts/Bond.sol": "LBond"
     },
     "evmVersion": "istanbul",
     "libraries": {},

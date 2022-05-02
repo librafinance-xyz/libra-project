@@ -771,7 +771,7 @@
   },
   "settings": {
     "compilationTarget": {
-      "contracts/TShare.sol": "TShare"
+      "contracts/LShare.sol": "LShare"
     },
     "evmVersion": "istanbul",
     "libraries": {},
@@ -785,7 +785,7 @@
     "remappings": []
   },
   "sources": {
-    "contracts/TShare.sol": {
+    "contracts/LShare.sol": {
       "keccak256": "0x5518e96dd20a40602eae8580dd00fcb334fbe93af12153f24c508cbc87be7d29",
       "license": "MIXED",
       "urls": [

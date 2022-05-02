@@ -19,10 +19,10 @@ import useBanks from '../../hooks/useBanks';
 
 const assetList = [
   // {
-  //   depositTokenName: '2SHARES',
+  //   depositTokenName: 'LSHARE',
   // },
   // {
-  //   depositTokenName: '2SHARES-WFTM LP',
+  //   depositTokenName: 'LSHARE-WASTR LP',
   // },
   {
     depositTokenName: 'LIBRA-ASTR LP',
@@ -76,9 +76,9 @@ const Cemetery = () => {
   const activeBanks = banks.filter((bank) => !bank.finished);
   const {
     balance,
-    balance_2shares_wftm,
-    balance_libra_wftm,
-    balance_Lshares_wftm,
+    balance_2shares_wastr,
+    balance_libra_wastr,
+    balance_Lshares_wastr,
     balance_libra,
     balance_Lshares,
     balance_2shares,
@@ -139,15 +139,15 @@ const Cemetery = () => {
                     <Card style={{ height: 'auto' }}>
                       <CardContent align="center">
                         <Typography variant="h5">LIBRA-WASTR LP:</Typography>
-                        <CountUp style={{ fontSize: '25px' }} end={balance_libra_wftm} separator="," prefix="$" />
+                        <CountUp style={{ fontSize: '25px' }} end={balance_libra_wastr} separator="," prefix="$" />
                       </CardContent>
                       <CardContent align="center">
                         <Typography variant="h5">LSHARE-WASTR LP:</Typography>
-                        <CountUp style={{ fontSize: '25px' }} end={balance_Lshares_wftm} separator="," prefix="$" />
+                        <CountUp style={{ fontSize: '25px' }} end={balance_Lshares_wastr} separator="," prefix="$" />
                       </CardContent>
                       <CardContent align="center">
-                        <Typography variant="h5">2SHARES-WFTM LP:</Typography>
-                        <CountUp style={{ fontSize: '25px' }} end={balance_2shares_wftm} separator="," prefix="$" />
+                        <Typography variant="h5">LSHARE-WASTR LP:</Typography>
+                        <CountUp style={{ fontSize: '25px' }} end={balance_2shares_wastr} separator="," prefix="$" />
                       </CardContent>
                     </Card>
                   </Grid>
@@ -162,7 +162,7 @@ const Cemetery = () => {
                         <CountUp style={{ fontSize: '25px' }} end={balance_Lshares} separator="," prefix="$" />
                       </CardContent>
                       <CardContent align="center">
-                        <Typography variant="h5">2SHARES:</Typography>
+                        <Typography variant="h5">LSHARE:</Typography>
                         <CountUp style={{ fontSize: '25px' }} end={balance_2shares} separator="," prefix="$" />
                       </CardContent>
                     </Card>

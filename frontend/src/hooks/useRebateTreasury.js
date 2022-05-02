@@ -42,7 +42,7 @@ const RebateTreasuryABI = [
   },
   {
     inputs: [],
-    name: 'WFTM',
+    name: 'WASTR',
     outputs: [{ internalType: 'address', name: '', type: 'address' }],
     stateMutability: 'view',
     type: 'function',
@@ -386,10 +386,10 @@ const Threeomb = new web3.eth.Contract(ERC20ABI, '0x14DEf7584A6c52f470Ca4F4b9671
 
 const assetList = [
   '0xc54A1684fD1bef1f077a336E6be4Bd9a3096a6Ca', // 2shares
-  '0x6398ACBBAB2561553a9e458Ab67dCFbD58944e52', // 2shares/FTM LP
-  '0x83A52eff2E9D112E9B022399A9fD22a9DB7d33Ae', // libra/wftm
+  '0x6398ACBBAB2561553a9e458Ab67dCFbD58944e52', // 2shares/ASTR LP
+  '0x83A52eff2E9D112E9B022399A9fD22a9DB7d33Ae', // libra/wastr
   '0x6437ADAC543583C4b31Bf0323A0870430F5CC2e7', //Lshares
-  '0xd352daC95a91AfeFb112DBBB3463ccfA5EC15b65', //Lshares/wftm
+  '0xd352daC95a91AfeFb112DBBB3463ccfA5EC15b65', //Lshares/wastr
   '0x04068DA6C83AFCFA0e13ba15A6696662335D5B75', //USDC
 ];
 

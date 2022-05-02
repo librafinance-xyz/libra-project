@@ -17,7 +17,7 @@
           {
             "indexed": false,
             "internalType": "uint256",
-            "name": "tombAmount",
+            "name": "libraAmount",
             "type": "uint256"
           },
           {
@@ -122,7 +122,7 @@
             "type": "uint256"
           }
         ],
-        "name": "MasonryFunded",
+        "name": "BoardroomFunded",
         "type": "event"
       },
       {
@@ -137,7 +137,7 @@
           {
             "indexed": false,
             "internalType": "uint256",
-            "name": "tombAmount",
+            "name": "libraAmount",
             "type": "uint256"
           },
           {
@@ -258,7 +258,7 @@
         "inputs": [
           {
             "internalType": "uint256",
-            "name": "_tombAmount",
+            "name": "_libraAmount",
             "type": "uint256"
           },
           {
@@ -410,11 +410,11 @@
       },
       {
         "inputs": [],
-        "name": "getBurnableTombLeft",
+        "name": "getBurnableLibraLeft",
         "outputs": [
           {
             "internalType": "uint256",
-            "name": "_burnableTombLeft",
+            "name": "_burnableLibraLeft",
             "type": "uint256"
           }
         ],
@@ -449,7 +449,7 @@
       },
       {
         "inputs": [],
-        "name": "getTombCirculatingSupply",
+        "name": "getLibraCirculatingSupply",
         "outputs": [
           {
             "internalType": "uint256",
@@ -462,11 +462,11 @@
       },
       {
         "inputs": [],
-        "name": "getTombPrice",
+        "name": "getLibraPrice",
         "outputs": [
           {
             "internalType": "uint256",
-            "name": "tombPrice",
+            "name": "libraPrice",
             "type": "uint256"
           }
         ],
@@ -475,11 +475,11 @@
       },
       {
         "inputs": [],
-        "name": "getTombUpdatedPrice",
+        "name": "getLibraUpdatedPrice",
         "outputs": [
           {
             "internalType": "uint256",
-            "name": "_tombPrice",
+            "name": "_libraPrice",
             "type": "uint256"
           }
         ],
@@ -513,27 +513,27 @@
         "inputs": [
           {
             "internalType": "address",
-            "name": "_tomb",
+            "name": "_libra",
             "type": "address"
           },
           {
             "internalType": "address",
-            "name": "_tbond",
+            "name": "_lbond",
             "type": "address"
           },
           {
             "internalType": "address",
-            "name": "_tshare",
+            "name": "_lshare",
             "type": "address"
           },
           {
             "internalType": "address",
-            "name": "_tombOracle",
+            "name": "_libraOracle",
             "type": "address"
           },
           {
             "internalType": "address",
-            "name": "_masonry",
+            "name": "_boardroom",
             "type": "address"
           },
           {
@@ -585,7 +585,7 @@
       },
       {
         "inputs": [],
-        "name": "masonry",
+        "name": "boardroom",
         "outputs": [
           {
             "internalType": "address",
@@ -604,7 +604,7 @@
             "type": "uint256"
           }
         ],
-        "name": "masonryAllocateSeigniorage",
+        "name": "boardroomAllocateSeigniorage",
         "outputs": [],
         "stateMutability": "nonpayable",
         "type": "function"
@@ -627,7 +627,7 @@
             "type": "address"
           }
         ],
-        "name": "masonryGovernanceRecoverUnsupported",
+        "name": "boardroomGovernanceRecoverUnsupported",
         "outputs": [],
         "stateMutability": "nonpayable",
         "type": "function"
@@ -645,7 +645,7 @@
             "type": "uint256"
           }
         ],
-        "name": "masonrySetLockUp",
+        "name": "boardroomSetLockUp",
         "outputs": [],
         "stateMutability": "nonpayable",
         "type": "function"
@@ -658,7 +658,7 @@
             "type": "address"
           }
         ],
-        "name": "masonrySetOperator",
+        "name": "boardroomSetOperator",
         "outputs": [],
         "stateMutability": "nonpayable",
         "type": "function"
@@ -814,7 +814,7 @@
       },
       {
         "inputs": [],
-        "name": "previousEpochTombPrice",
+        "name": "previousEpochLibraPrice",
         "outputs": [
           {
             "internalType": "uint256",
@@ -971,11 +971,11 @@
         "inputs": [
           {
             "internalType": "address",
-            "name": "_masonry",
+            "name": "_boardroom",
             "type": "address"
           }
         ],
-        "name": "setMasonry",
+        "name": "setBoardroom",
         "outputs": [],
         "stateMutability": "nonpayable",
         "type": "function"
@@ -1149,11 +1149,11 @@
         "inputs": [
           {
             "internalType": "address",
-            "name": "_tombOracle",
+            "name": "_libraOracle",
             "type": "address"
           }
         ],
-        "name": "setTombOracle",
+        "name": "setLibraOracle",
         "outputs": [],
         "stateMutability": "nonpayable",
         "type": "function"
@@ -1162,11 +1162,11 @@
         "inputs": [
           {
             "internalType": "uint256",
-            "name": "_tombPriceCeiling",
+            "name": "_libraPriceCeiling",
             "type": "uint256"
           }
         ],
-        "name": "setTombPriceCeiling",
+        "name": "setLibraPriceCeiling",
         "outputs": [],
         "stateMutability": "nonpayable",
         "type": "function"
@@ -1205,7 +1205,7 @@
       },
       {
         "inputs": [],
-        "name": "tbond",
+        "name": "lbond",
         "outputs": [
           {
             "internalType": "address",
@@ -1218,7 +1218,7 @@
       },
       {
         "inputs": [],
-        "name": "tomb",
+        "name": "libra",
         "outputs": [
           {
             "internalType": "address",
@@ -1231,7 +1231,7 @@
       },
       {
         "inputs": [],
-        "name": "tombOracle",
+        "name": "libraOracle",
         "outputs": [
           {
             "internalType": "address",
@@ -1244,7 +1244,7 @@
       },
       {
         "inputs": [],
-        "name": "tombPriceCeiling",
+        "name": "libraPriceCeiling",
         "outputs": [
           {
             "internalType": "uint256",
@@ -1257,7 +1257,7 @@
       },
       {
         "inputs": [],
-        "name": "tombPriceOne",
+        "name": "libraPriceOne",
         "outputs": [
           {
             "internalType": "uint256",
@@ -1270,7 +1270,7 @@
       },
       {
         "inputs": [],
-        "name": "tshare",
+        "name": "lshare",
         "outputs": [
           {
             "internalType": "address",

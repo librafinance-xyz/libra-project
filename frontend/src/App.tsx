@@ -20,7 +20,7 @@ import { RefreshContextProvider } from './contexts/RefreshContext';
 
 const Home = lazy(() => import('./views/Home'));
 const Farms = lazy(() => import('./views/Cemetery'));
-const Boardroom = lazy(() => import('./views/Masonry'));
+const Boardroom = lazy(() => import('./views/Boardroom'));
 const Rebates = lazy(() => import('./views/Rebates'));
 const Bonds = lazy(() => import('./views/Pit'));
 const Treasury = lazy(() => import('./views/Treasury'));
@@ -97,7 +97,7 @@ const Providers: React.FC = ({ children }) => {
               url: config.defaultProvider,
               appName: 'Libra Finance',
               appLogoUrl:
-                'https://github.com/2omb/libra-frontend/blob/8ab3b1f5ecc7d5dad5b856f160d6e7afb8357560/src/assets/img/2OMB-2SHARES.png',
+                'https://github.com/2omb/libra-frontend/blob/8ab3b1f5ecc7d5dad5b856f160d6e7afb8357560/src/assets/img/2OMB-LSHARE.png',
             },
           }}
         >

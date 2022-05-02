@@ -20,7 +20,7 @@ export enum ApprovalState {
 function useApproveTaxOffice(): [ApprovalState, () => Promise<void>] {
   const libraFinance = useLibraFinance();
   let token: ERC20 = libraFinance.LIBRA;
-  // if (zappingToken === FTM_TICKER) token = libraFinance.FTM;
+  // if (zappingToken === ASTR_TICKER) token = libraFinance.ASTR;
   // else if (zappingToken === LIBRA_TICKER) token = libraFinance.LIBRA;
   // else if (zappingToken === LSHARE_TICKER) token = libraFinance.LSHARE;
   const pendingApproval = useHasPendingApproval(token.address, TAX_OFFICE_ADDR);
@@ -29,7 +29,7 @@ function useApproveTaxOffice(): [ApprovalState, () => Promise<void>] {
   // check the current approval status
   const approvalState: ApprovalState = useMemo(() => {
     // we might not have enough data to know whether or not we need to approve
-    if (token === libraFinance.FTM) return ApprovalState.APPROVED;
+    if (token === libraFinance.ASTR) return ApprovalState.APPROVED;
     if (!currentAllowance) return ApprovalState.UNKNOWN;
 
     // amountToApprove will be defined if currentAllowance is

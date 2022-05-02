@@ -14,7 +14,7 @@ import "hardhat-deploy";
 import { HardhatUserConfig } from "hardhat/config";
 
 const privateKey: string = process.env.PRIVATE_KEY || "";
-const ftmScanToken: string = process.env.FTMSCAN_TOKEN || "";
+const ftmScanToken: string = process.env.ASTRSCAN_TOKEN || "";
 const ETHERSCAN_TOKEN: string = process.env.ETHERSCAN_TOKEN || "";
 const polygonScanToken: string = process.env.POLYGONSCAN_TOKEN || "";
 

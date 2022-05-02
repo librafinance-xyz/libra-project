@@ -3,7 +3,7 @@ import { useCallback, useMemo } from 'react';
 import { useHasPendingApproval, useTransactionAdder } from '../state/transactions/hooks';
 import useAllowance from './useAllowance';
 import ERC20 from '../libra-finance/ERC20';
-import { FTM_TICKER, LIBRA_TICKER, LSHARE_TICKER, ZAPPER_ROUTER_ADDR } from '../utils/constants';
+import { ASTR_TICKER, LIBRA_TICKER, LSHARE_TICKER, ZAPPER_ROUTER_ADDR } from '../utils/constants';
 import useLibraFinance from './useLibraFinance';
 
 const APPROVE_AMOUNT = ethers.constants.MaxUint256;
@@ -20,7 +20,7 @@ export enum ApprovalState {
 function useApproveZapper(zappingToken: string): [ApprovalState, () => Promise<void>] {
   const libraFinance = useLibraFinance();
   let token: ERC20;
-  if (zappingToken === FTM_TICKER) token = libraFinance.FTM;
+  if (zappingToken === ASTR_TICKER) token = libraFinance.ASTR;
   else if (zappingToken === LIBRA_TICKER) token = libraFinance.LIBRA;
   else if (zappingToken === LSHARE_TICKER) token = libraFinance.LSHARE;
   const pendingApproval = useHasPendingApproval(token.address, ZAPPER_ROUTER_ADDR);
@@ -29,7 +29,7 @@ function useApproveZapper(zappingToken: string): [ApprovalState, () => Promise<v
   // check the current approval status
   const approvalState: ApprovalState = useMemo(() => {
     // we might not have enough data to know whether or not we need to approve
-    if (token === libraFinance.FTM) return ApprovalState.APPROVED;
+    if (token === libraFinance.ASTR) return ApprovalState.APPROVED;
     if (!currentAllowance) return ApprovalState.UNKNOWN;
 
     // amountToApprove will be defined if currentAllowance is

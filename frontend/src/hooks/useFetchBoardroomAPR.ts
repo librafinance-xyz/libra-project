@@ -2,23 +2,23 @@ import { useEffect, useState } from 'react';
 import useLibraFinance from './useLibraFinance';
 import useRefresh from './useRefresh';
 
-const useFetchMasonryAPR = () => {
+const useFetchBoardroomAPR = () => {
   const [apr, setApr] = useState<number>(0);
   const libraFinance = useLibraFinance();
   const { slowRefresh } = useRefresh();
 
   useEffect(() => {
-    async function fetchMasonryAPR() {
+    async function fetchBoardroomAPR() {
       try {
-        setApr(await libraFinance.getMasonryAPR());
+        setApr(await libraFinance.getBoardroomAPR());
       } catch (err) {
         console.error(err);
       }
     }
-    fetchMasonryAPR();
+    fetchBoardroomAPR();
   }, [setApr, libraFinance, slowRefresh]);
 
   return apr;
 };
 
-export default useFetchMasonryAPR;
+export default useFetchBoardroomAPR;

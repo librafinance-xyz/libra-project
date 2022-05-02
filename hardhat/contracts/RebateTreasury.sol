@@ -101,7 +101,7 @@ contract RebateTreasury is Ownable {
     uint256 public lastBuyback;
     uint256 public buybackAmount = 10 * 1e4;
 
-    // address public constant WFTM = 0x21be370D5312f44cB42ce377BC9b8a0cEF1A4C83;
+    // address public constant WASTR = 0x21be370D5312f44cB42ce377BC9b8a0cEF1A4C83;
     address public constant WASTR = 0xAeaaf0e2c81Af264101B9129C00F4440cCF0F720;
     
     uint256 public constant DENOMINATOR = 1e6;
@@ -303,7 +303,7 @@ contract RebateTreasury is Ownable {
         address token1 = Pair.token1();
         (uint256 reserve0, uint256 reserve1,) = Pair.getReserves();
 
-        // if (token1 == WFTM) {
+        // if (token1 == WASTR) {
         if (token1==WASTR) {
             uint256 tokenPrice = Oracle.consult(token0, 1e18);
             return tokenPrice * reserve0 / totalPairSupply +

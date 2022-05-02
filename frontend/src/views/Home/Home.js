@@ -16,7 +16,7 @@ import useZap from '../../hooks/useZap';
 import useBondStats from '../../hooks/useBondStats';
 import useLShareStats from '../../hooks/useLShareStats';
 import useTotalValueLocked from '../../hooks/useTotalValueLocked';
-import useFantomPrice from '../../hooks/useFantomPrice';
+import useAstarPrice from '../../hooks/useAstarPrice';
 // import { libra as libraStag, LShare as lShareStag } from '../../libra-finance/deployments/deployments.stag.json';
 // import { libra as libraProd, LShare as lShareProd } from '../../libra-finance/deployments/deployments.prod.json';
 // temporary
@@ -56,7 +56,7 @@ const useStyles = makeStyles((theme) => ({
 const Home = () => {
   const classes = useStyles();
   const TVL = useTotalValueLocked();
-  // const libraAstarLpStats = useLpStats('LIBRA-FTM-LP');
+  // const libraAstarLpStats = useLpStats('LIBRA-ASTR-LP');
   const libraAstarLpStats = useLpStats('LIBRA-ASTR-LP');
 
   const lShareAstarLpStats = useLpStats('LSHARE-ASTR-LP');
@@ -64,7 +64,7 @@ const Home = () => {
   const LShareStats = useLShareStats();
   const LBondStats = useBondStats();
   const libraFinance = useLibraFinance();
-  const { price: astarPrice, marketCap: astarMarketCap, priceChange: astarPriceChange } = useFantomPrice();
+  const { price: astarPrice, marketCap: astarMarketCap, priceChange: astarPriceChange } = useAstarPrice();
   const { balance: rebatesTVL } = useTotalTreasuryBalance();
   const totalTVL = TVL + rebatesTVL;
 
@@ -86,7 +86,7 @@ const Home = () => {
   }
 
   const buyLibraAddress = 'https://twinkleswap.finance/swap?outputCurrency=' + libra.address;
-  const buyTShareAddress = 'https://twinkleswap.finance/swap?outputCurrency=' + LShare.address;
+  const buyLShareAddress = 'https://twinkleswap.finance/swap?outputCurrency=' + LShare.address;
 
   const libraLPStats = useMemo(() => (libraAstarLpStats ? libraAstarLpStats : null), [libraAstarLpStats]);
   const lshareLPStats = useMemo(() => (lShareAstarLpStats ? lShareAstarLpStats : null), [lShareAstarLpStats]);
@@ -122,7 +122,7 @@ const Home = () => {
     () => (LBondStats ? Number(LBondStats.priceInDollars).toFixed(2) : null),
     [LBondStats],
   );
-  const LBondPriceInFTM = useMemo(() => (LBondStats ? Number(LBondStats.tokenInAstar).toFixed(4) : null), [LBondStats]);
+  const LBondPriceInASTR = useMemo(() => (LBondStats ? Number(LBondStats.tokenInAstar).toFixed(4) : null), [LBondStats]);
   const LBondCirculatingSupply = useMemo(
     () => (LBondStats ? String(LBondStats.circulatingSupply) : null),
     [LBondStats],
@@ -146,18 +146,18 @@ const Home = () => {
         libraLpZap.onZap(zappingToken, tokenName, amount);
         onDissmissLibraZap();
       }}
-      // tokenName={'LIBRA-FTM-LP'}
+      // tokenName={'LIBRA-ASTR-LP'}
       tokenName={'LIBRA-ASTR-LP'}
     />,
   );
 
-  const [onPresentLshareZap, onDissmissTshareZap] = useModal(
+  const [onPresentLshareZap, onDissmissLshareZap] = useModal(
     <ZapModal
       decimals={18}
       onConfirm={(zappingToken, tokenName, amount) => {
         if (Number(amount) <= 0 || isNaN(Number(amount))) return;
         lshareLpZap.onZap(zappingToken, tokenName, amount);
-        onDissmissTshareZap();
+        onDissmissLshareZap();
       }}
       tokenName={'LSHARE-ASTR-LP'}
     />,
@@ -283,7 +283,7 @@ const Home = () => {
                 Stake
               </Button> */}
 
-              {/* <Button color="primary" href="/masonry" variant="contained" style={{ marginRight: '10px' }}>
+              {/* <Button color="primary" href="/boardroom" variant="contained" style={{ marginRight: '10px' }}>
                 Stake Now
               </Button> */}
               {/* <Button href="/cemetery" variant="contained" style={{ marginRight: '10px' }}>
@@ -332,7 +332,7 @@ const Home = () => {
               <h2>ASTR</h2>
               <Box mt={2} style={{ backgroundColor: 'transparent !important' }}>
                 <CardIcon style={{ backgroundColor: 'transparent !important' }}>
-                  {/* <TokenSymbol symbol="wFTM" style={{ backgroundColor: 'transparent !important' }} /> */}
+                  {/* <TokenSymbol symbol="wASTR" style={{ backgroundColor: 'transparent !important' }} /> */}
                   <TokenSymbol symbol="WASTR" style={{ backgroundColor: 'transparent !important' }} />
                 </CardIcon>
               </Box>
@@ -449,7 +449,7 @@ const Home = () => {
               </Box>
               Current Price
               <Box>
-                <span style={{ fontSize: '30px' }}>{LBondPriceInFTM ? LBondPriceInFTM : '-.----'} ASTR</span>
+                <span style={{ fontSize: '30px' }}>{LBondPriceInASTR ? LBondPriceInASTR : '-.----'} ASTR</span>
               </Box>
               <Box>
                 <span style={{ fontSize: '16px' }}>${lBondPriceInDollars ? lBondPriceInDollars : '-.--'}</span>

@@ -237,7 +237,7 @@
       },
       {
         "inputs": [],
-        "name": "getTombPrice",
+        "name": "getLibraPrice",
         "outputs": [
           {
             "internalType": "uint256",
@@ -275,7 +275,7 @@
         "inputs": [
           {
             "internalType": "contract IERC20",
-            "name": "_tomb",
+            "name": "_libra",
             "type": "address"
           },
           {
@@ -328,7 +328,7 @@
             "type": "uint256"
           }
         ],
-        "name": "masonryHistory",
+        "name": "boardroomHistory",
         "outputs": [
           {
             "internalType": "uint256",
@@ -489,7 +489,7 @@
       },
       {
         "inputs": [],
-        "name": "tomb",
+        "name": "libra",
         "outputs": [
           {
             "internalType": "contract IERC20",
@@ -566,7 +566,7 @@
   },
   "settings": {
     "compilationTarget": {
-      "contracts/Masonry.sol": "Masonry"
+      "contracts/Boardroom.sol": "Boardroom"
     },
     "evmVersion": "istanbul",
     "libraries": {},
@@ -580,7 +580,7 @@
     "remappings": []
   },
   "sources": {
-    "contracts/Masonry.sol": {
+    "contracts/Boardroom.sol": {
       "keccak256": "0xe4b568d69b294ed1afc28615fb981652db9b10e2d3c1fee06b2c93ccc1de904e",
       "license": "MIXED",
       "urls": [
