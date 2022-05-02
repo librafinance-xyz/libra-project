@@ -310,7 +310,7 @@ export class LibraFinance {
         const rewardPerSecond = await poolContract.libraPerSecond();
         if (depositTokenName === 'LSHARE') {
           return rewardPerSecond.mul(7500).div(25000).div(24).mul(20);
-        } else if (depositTokenName === '2OMB') {
+        } else if (depositTokenName === 'LIBRA') {
           return rewardPerSecond.mul(5000).div(25000).div(24).mul(20);
         } else if (depositTokenName === 'BELUGA') {
           return rewardPerSecond.mul(500).div(25000).div(24).mul(20);
@@ -318,7 +318,7 @@ export class LibraFinance {
           return rewardPerSecond.mul(500).div(25000).div(24).mul(20);
         } else if (depositTokenName === 'WASTR') {
           return rewardPerSecond.mul(500).div(25000).div(24).mul(20);
-        } else if (depositTokenName === '2OMB-WASTR LP') {
+        } else if (depositTokenName === 'LIBRA-WASTR LP') {
           return rewardPerSecond.mul(6000).div(25000).div(24).mul(20);
         } else if (depositTokenName === 'LSHARE-WASTR LP') {
           return rewardPerSecond.mul(6000).div(25000).div(24).mul(20);
@@ -338,7 +338,7 @@ export class LibraFinance {
     const rewardPerSecond = await poolContract.lSharePerSecond();
     if (depositTokenName.startsWith('LIBRA')) {
       return rewardPerSecond.mul(35500).div(89500);
-    } else if (depositTokenName.startsWith('2OMB')) {
+    } else if (depositTokenName.startsWith('LIBRA')) {
       return rewardPerSecond.mul(15000).div(89500);
     } else if (depositTokenName.startsWith('2SHARE')) {
       return rewardPerSecond.mul(15000).div(89500);
@@ -373,11 +373,11 @@ export class LibraFinance {
           false,
           true,
         );
-      } else if (tokenName === '2OMB-WASTR LP') {
+      } else if (tokenName === 'LIBRA-WASTR LP') {
         console.log('getting the LP token price here');
         tokenPrice = await this.getLPTokenPrice(
           token,
-          new ERC20('0x7a6e4e3cc2ac9924605dca4ba31d1831c84b44ae', this.provider, '2OMB'),
+          new ERC20('0x7a6e4e3cc2ac9924605dca4ba31d1831c84b44ae', this.provider, 'LIBRA'),
           true,
           true,
         );
@@ -491,7 +491,7 @@ export class LibraFinance {
 */
   // async get2ombStatFake(): Promise<TokenStat> {
   //   const { TwoOmbFtmRewardPool, TwoOmbFtmLpLibraRewardPool, TwoOmbFtmLpLibraRewardPoolOld } = this.contracts;
-  //   const LIBRA = new ERC20('0x7a6e4e3cc2ac9924605dca4ba31d1831c84b44ae', this.provider, '2OMB');
+  //   const LIBRA = new ERC20('0x7a6e4e3cc2ac9924605dca4ba31d1831c84b44ae', this.provider, 'LIBRA');
   //   const supply = await LIBRA.totalSupply();
   //   const libraRewardPoolSupply = await LIBRA.balanceOf(TwoOmbFtmRewardPool.address);
   //   const libraRewardPoolSupply2 = await LIBRA.balanceOf(TwoOmbFtmLpLibraRewardPool.address);

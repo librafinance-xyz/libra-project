@@ -97,7 +97,7 @@ const Providers: React.FC = ({ children }) => {
               url: config.defaultProvider,
               appName: 'Libra Finance',
               appLogoUrl:
-                'https://github.com/2omb/libra-frontend/blob/8ab3b1f5ecc7d5dad5b856f160d6e7afb8357560/src/assets/img/2OMB-LSHARE.png',
+                'https://github.com/2omb/libra-frontend/blob/8ab3b1f5ecc7d5dad5b856f160d6e7afb8357560/src/assets/img/LIBRA-LSHARE.png',
             },
           }}
         >
