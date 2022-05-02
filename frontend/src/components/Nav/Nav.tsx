@@ -114,11 +114,15 @@ const Nav = () => {
                 Farms
               </Link>
               <Link color="textPrimary" to="/boardroom" className={classes.link}>
-                Bordroom
+                Boardroom
               </Link>
               <Link color="textPrimary" to="/bonds" className={classes.link}>
                 LBonds
               </Link>
+              
+              <a href="https://www.librax.finance" target="_blank" className={classes.link}>
+                Swap
+              </a>
               {/* <Link color="textPrimary" to="/rebates" className={classes.link}>
                 3DAO
               </Link> */}
@@ -146,9 +150,7 @@ const Nav = () => {
               {/* <a href="https://snapshot.org/#/librafinance.eth" target="_blank" className={classes.link}>
                 Governance
               </a> */}
-              {/* <a href="https://docs.librafinance.xyz" target="_blank" className={classes.link}>
-                Docs
-              </a> */}
+             
             </Box>
             <AccountButton text="Connect" />
           </>
