@@ -22,7 +22,7 @@ const assetList = [
   //   depositTokenName: '2SHARES',
   // },
   // {
-  //   depositTokenName: '2SHARES-WFTM LP',
+  //   depositTokenName: '2SHARES-WASTR LP',
   // },
   {
     depositTokenName: 'LIBRA-ASTR LP',
@@ -146,7 +146,7 @@ const Cemetery = () => {
                         <CountUp style={{ fontSize: '25px' }} end={balance_Lshares_wftm} separator="," prefix="$" />
                       </CardContent>
                       <CardContent align="center">
-                        <Typography variant="h5">2SHARES-WFTM LP:</Typography>
+                        <Typography variant="h5">2SHARES-WASTR LP:</Typography>
                         <CountUp style={{ fontSize: '25px' }} end={balance_2shares_wftm} separator="," prefix="$" />
                       </CardContent>
                     </Card>

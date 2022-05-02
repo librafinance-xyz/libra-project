@@ -36,7 +36,7 @@ const ProvideLiquidity = () => {
   const libraBalance = useTokenBalance(libraFinance.LIBRA);
   const ftmBalance = (balance / 1e18).toFixed(4);
   const { onProvideLibraFtmLP } = useProvideLibraFtmLP();
-  // const libraAstarLpStats = useLpStats('LIBRA-FTM-LP');
+  // const libraAstarLpStats = useLpStats('LIBRA-ASTR-LP');
   const libraAstarLpStats = useLpStats('LIBRA-ASTR-LP');
 
   const libraLPStats = useMemo(() => (libraAstarLpStats ? libraAstarLpStats : null), [libraAstarLpStats]);
@@ -67,7 +67,7 @@ const ProvideLiquidity = () => {
     }
     if (!isNumeric(e.currentTarget.value)) return;
     setFtmAmount(e.currentTarget.value);
-    const quoteFromSpooky = await libraFinance.quoteFromSpooky(e.currentTarget.value, 'FTM');
+    const quoteFromSpooky = await libraFinance.quoteFromSpooky(e.currentTarget.value, 'ASTR');
     setLibraAmount(quoteFromSpooky);
 
     setLpTokensAmount(quoteFromSpooky / libraLPStats.tokenAmount);
@@ -79,7 +79,7 @@ const ProvideLiquidity = () => {
     setLpTokensAmount(quoteFromSpooky / libraLPStats.astarAmount);
   };
   const handleFtmSelectMax = async () => {
-    const quoteFromSpooky = await libraFinance.quoteFromSpooky(ftmBalance, 'FTM');
+    const quoteFromSpooky = await libraFinance.quoteFromSpooky(ftmBalance, 'ASTR');
     setFtmAmount(ftmBalance);
     setLibraAmount(quoteFromSpooky);
     setLpTokensAmount(ftmBalance / libraLPStats.astarAmount);
@@ -99,7 +99,7 @@ const ProvideLiquidity = () => {
               <a href="https://spookyswap.finance/" rel="noopener noreferrer" target="_blank">
                 Spookyswap
               </a>{' '}
-              are the only ways to provide Liquidity on LIBRA-FTM pair without paying tax.
+              are the only ways to provide Liquidity on LIBRA-ASTR pair without paying tax.
             </b>
           </Alert>
           <Grid item xs={12} sm={12}>
@@ -123,14 +123,14 @@ const ProvideLiquidity = () => {
                           onChange={handleFtmChange}
                           value={astarAmount}
                           max={ftmBalance}
-                          symbol={'FTM'}
+                          symbol={'ASTR'}
                         ></TokenInput>
                       </Grid>
                       <Grid item xs={12}>
                         <p>1 LIBRA = {libraPriceInASTR} ASTR</p>
                         <p>1 ASTR = {astarPriceInLIBRA} LIBRA</p>
                         {/* <p>1 LIBRA = {libraPriceInASTR} ASTR</p>
-                        <p>1 FTM = {astarPriceInLIBRA} LIBRA</p> */}
+                        <p>1 ASTR = {astarPriceInLIBRA} LIBRA</p> */}
                         <p>LP tokens ≈ {lpTokensAmount.toFixed(2)}</p>
                       </Grid>
                       <Grid xs={12} justifyContent="center" style={{ textAlign: 'center' }}>

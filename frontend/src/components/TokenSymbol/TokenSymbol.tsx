@@ -24,14 +24,14 @@ import shibaLogo from '../../assets/img/shiba_logo.svg';
 import bifiLogo from '../../assets/img/COW.svg';
 import mimLogo from '../../assets/img/mimlogopng.png';
 import bloomLogo from '../../assets/img/BLOOM.jpg';
-// import TwoombLPLogo from '../../assets/img/2OMB-WFTM.png';
-// import TwosharesLPLogo from '../../assets/img/2SHARES-WFTM.png';
+// import TwoombLPLogo from '../../assets/img/2OMB-WASTR.png';
+// import TwosharesLPLogo from '../../assets/img/2SHARES-WASTR.png';
 // import TwoombTwosharesLPLogo from '../../assets/img/2OMB-2SHARES.png';
 
 import UsdcLogo from '../../assets/img/USDC.png';
 
-// import ThreeombLPLogo from '../../assets/img/LIBRA-WFTM.png';
-// import ThreesharesLPLogo from '../../assets/img/LSHARE-WFTM.png';
+// import ThreeombLPLogo from '../../assets/img/LIBRA-WASTR.png';
+// import ThreesharesLPLogo from '../../assets/img/LSHARE-WASTR.png';
 
 const logosBySymbol: { [title: string]: string } = {
   //Real tokens
@@ -41,7 +41,6 @@ const logosBySymbol: { [title: string]: string } = {
   LSHAREPNG: lShareLogoPNG,
   LSHARE: lShareLogo,
   LBOND: LBondLogo,
-  WFTM: wftmLogo,
   BOO: booLogo,
   SHIBA: shibaLogo,
   ZOO: zooLogo,
@@ -54,7 +53,7 @@ const logosBySymbol: { [title: string]: string } = {
   ASTR: astrLogo,
   // 'LSHARE-ASTR-LP': TwosharesLPLogo,
   // 'LSHARE-ASTR-LP': ThreesharesLPLogo,
-  wFTM: wftmLogo,
+  wASTR: wftmLogo,
   'LIBRA-ASTR-LP': LibraWastrLPlogo,
   'LSHARE-ASTR-LP': LshareWastrLPlogo,
 };

@@ -22,7 +22,7 @@ const configurations: { [env: string]: Configuration } = {
 
     deployments: require('./libra-finance/deployments/deployments.dev.json'),
     externalTokens: {
-      // WFTM: ['0x21be370d5312f44cb42ce377bc9b8a0cef1a4c83', 18],
+      // WASTR: ['0x21be370d5312f44cb42ce377bc9b8a0cef1a4c83', 18],
       // USDC: ['0x04068DA6C83AFCFA0e13ba15A6696662335D5B75', 6],
       USDC: ['0x6a2d262D56735DbA19Dd70682B39F6bE9a931D98', 6], // Astar USDC
 
@@ -33,30 +33,30 @@ const configurations: { [env: string]: Configuration } = {
       // BIFI: ['0xd6070ae98b8069de6B494332d1A1a81B6179D960', 18],
       // MIM: ['0x82f0b8b456c1a451378467398982d4834b6829c1', 18],
       // BLOOM: ['0x9B2e37cDC711CfcAC1E1482B5741c74dd3924199', 9],
-      // wFTM: ['0x21be370d5312f44cb42ce377bc9b8a0cef1a4c83', 18],
+      // wASTR: ['0x21be370d5312f44cb42ce377bc9b8a0cef1a4c83', 18],
       wASTR: ['0xAeaaf0e2c81Af264101B9129C00F4440cCF0F720', 18],
       WASTR: ['0xAeaaf0e2c81Af264101B9129C00F4440cCF0F720', 18],
       // '2OMB': ['0x067e31D66Eb9376790ADFB1522F6Bef634D56a70', 18],
       LIBRA: ['0x6d664cfe0ce55bced5250b9cc3f04e98a239ef22', 18], // DUMMY
 
       // '2OMB-2SHARES LP': ['0xd9B5f00d183df52D717046521152303129F088DD', 18],
-      // '2OMB-WFTM LP': ['0xbdC7DFb7B88183e87f003ca6B5a2F81202343478', 18],
-      // '2SHARES-WFTM LP': ['0x6398ACBBAB2561553a9e458Ab67dCFbD58944e52', 18],
+      // '2OMB-WASTR LP': ['0xbdC7DFb7B88183e87f003ca6B5a2F81202343478', 18],
+      // '2SHARES-WASTR LP': ['0x6398ACBBAB2561553a9e458Ab67dCFbD58944e52', 18],
       // '2SHARES': ['0xc54A1684fD1bef1f077a336E6be4Bd9a3096a6Ca', 18],
-      // 'LIBRA-WFTM LP': ['0x83A52eff2E9D112E9B022399A9fD22a9DB7d33Ae', 18],
+      // 'LIBRA-WASTR LP': ['0x83A52eff2E9D112E9B022399A9fD22a9DB7d33Ae', 18],
       'ASTR-USDC-LP': ['0xBB1290c1829007F440C771b37718FAbf309cd527', 18],
       // 'LIBRA-ASTR-LP': ['0xf4E19B3960a3ae1c08209f7709BFe15D4E19470a', 18], //DUMMY
       'LIBRA-ASTR-LP': ['0xf4E19B3960a3ae1c08209f7709BFe15D4E19470a', 18], //DUMMY
 
       'LSHARE-ASTR-LP': ['0x6e33b35C2dFB2fAC7c384A0c64B563a1B118681c', 18], //DUMMY
       LBOND: ['0xe14beD310c733b6011785eA3728C31F2f017e71B', 18], // DUMMY
-      // 'LSHARE-WFTM LP': ['0xd352daC95a91AfeFb112DBBB3463ccfA5EC15b65', 18],
+      // 'LSHARE-WASTR LP': ['0xd352daC95a91AfeFb112DBBB3463ccfA5EC15b65', 18],
       // LSHARE: ['0xedFF72F95f0574cb74812237dA3B099f3Ef2bf2E', 18], // DUMMY
       LSHARE: ['0xedFF72F95f0574cb74812237dA3B099f3Ef2bf2E', 18], // DUMMY
-      // 'USDT-FTM-LP': ['0x2b4C76d0dc16BE1C31D4C1DC53bF9B45987Fc75c', 18],
-      // 'LIBRA-FTM-LP': ['0x83a52eff2e9d112e9b022399a9fd22a9db7d33ae', 18],
-      // 'LIBRA-FTM-LP': ['0x83a52eff2e9d112e9b022399a9fd22a9db7d33ae', 18],
-      // 'LSHARE-FTM-LP': ['0xd352dac95a91afefb112dbbb3463ccfa5ec15b65', 18],
+      // 'USDT-ASTR-LP': ['0x2b4C76d0dc16BE1C31D4C1DC53bF9B45987Fc75c', 18],
+      // 'LIBRA-ASTR-LP': ['0x83a52eff2e9d112e9b022399a9fd22a9db7d33ae', 18],
+      // 'LIBRA-ASTR-LP': ['0x83a52eff2e9d112e9b022399a9fd22a9db7d33ae', 18],
+      // 'LSHARE-ASTR-LP': ['0xd352dac95a91afefb112dbbb3463ccfa5ec15b65', 18],
     },
     baseLaunchDate: new Date('2021-06-02 13:00:00Z'),
     bondLaunchesAt: new Date('2020-12-03T15:00:00Z'),
@@ -95,16 +95,16 @@ export const bankDefinitions: { [contractName: string]: BankInfo } = {
   //   closedForStaking: true,
   // },
   // Libra2sharesWftmLPRewardPool: {
-  //   name: 'Earn LIBRA by staking 2SHARES-WFTM LP',
+  //   name: 'Earn LIBRA by staking 2SHARES-WASTR LP',
   //   poolId: 1,
   //   sectionInUI: 0,
   //   contract: 'Libra2SharesWftmLPRewardPool',
-  //   depositTokenName: '2SHARES-WFTM LP',
+  //   depositTokenName: '2SHARES-WASTR LP',
   //   earnTokenName: 'LIBRA',
   //   finished: false,
   //   multiplier: '6000x',
   //   site: 'https://2omb.finance',
-  //   buyLink: 'https://spookyswap.finance/add/FTM/0xc54A1684fD1bef1f077a336E6be4Bd9a3096a6Ca',
+  //   buyLink: 'https://spookyswap.finance/add/ASTR/0xc54A1684fD1bef1f077a336E6be4Bd9a3096a6Ca',
   //   sort: 1,
   //   closedForStaking: true,
   // },
@@ -123,16 +123,16 @@ export const bankDefinitions: { [contractName: string]: BankInfo } = {
   //   closedForStaking: false,
   // },
   // Libra2ombWftmLPRewardPool: {
-  //   name: 'Earn LIBRA by staking 2OMB-WFTM LP',
+  //   name: 'Earn LIBRA by staking 2OMB-WASTR LP',
   //   poolId: 2,
   //   sectionInUI: 0,
   //   contract: 'Libra2ombWftmLPRewardPool',
-  //   depositTokenName: '2OMB-WFTM LP',
+  //   depositTokenName: '2OMB-WASTR LP',
   //   earnTokenName: 'LIBRA',
   //   finished: false,
   //   multiplier: '6000x',
   //   site: 'https://2omb.finance',
-  //   buyLink: 'https://spookyswap.finance/add/FTM/0x7a6e4e3cc2ac9924605dca4ba31d1831c84b44ae',
+  //   buyLink: 'https://spookyswap.finance/add/ASTR/0x7a6e4e3cc2ac9924605dca4ba31d1831c84b44ae',
   //   sort: 3,
   //   closedForStaking: true,
   // },
@@ -181,11 +181,11 @@ export const bankDefinitions: { [contractName: string]: BankInfo } = {
   //   closedForStaking: true,
   // },
   // LibraAstarRewardPool: {
-  //   name: 'Earn LIBRA by staking WFTM',
+  //   name: 'Earn LIBRA by staking WASTR',
   //   poolId: 0,
   //   sectionInUI: 0,
   //   contract: 'LibraAstarRewardPool',
-  //   depositTokenName: 'wFTM',
+  //   depositTokenName: 'wASTR',
   //   earnTokenName: 'LIBRA',
   //   finished: false,
   //   multiplier: '500x',
@@ -232,16 +232,16 @@ export const bankDefinitions: { [contractName: string]: BankInfo } = {
   //   finished: false,
   //   multiplier: '500x (0.04% Deposit Fee)',
   //   site: 'https://bloom.thetulipdao.com/',
-  //   buyLink: 'https://swap.spiritswap.finance/#/exchange/swap/FTM/0x9B2e37cDC711CfcAC1E1482B5741c74dd3924199',
+  //   buyLink: 'https://swap.spiritswap.finance/#/exchange/swap/ASTR/0x9B2e37cDC711CfcAC1E1482B5741c74dd3924199',
   //   sort: 9,
   //   closedForStaking: true,
   // },
   LibraFtmLPLibraRewardPool: {
-    name: 'Earn LIBRA by LIBRA-FTM LP',
+    name: 'Earn LIBRA by LIBRA-ASTR LP',
     poolId: 0,
     sectionInUI: 1,
     contract: 'LibraFtmLpLibraRewardPool',
-    depositTokenName: 'LIBRA-FTM-LP',
+    depositTokenName: 'LIBRA-ASTR-LP',
     earnTokenName: 'LIBRA',
     finished: false,
     multiplier: '0',
@@ -251,11 +251,11 @@ export const bankDefinitions: { [contractName: string]: BankInfo } = {
     closedForStaking: true,
   },
   LibraFtmLPLibraRewardPoolOld: {
-    name: 'Earn LIBRA by LIBRA-FTM LP',
+    name: 'Earn LIBRA by LIBRA-ASTR LP',
     poolId: 0,
     sectionInUI: 1,
     contract: 'LibraFtmLpLibraRewardPoolOld',
-    depositTokenName: 'LIBRA-FTM-LP',
+    depositTokenName: 'LIBRA-ASTR-LP',
     earnTokenName: 'LIBRA',
     finished: true,
     multiplier: '0',
@@ -335,12 +335,12 @@ export const bankDefinitions: { [contractName: string]: BankInfo } = {
     sort: 6,
     closedForStaking: false,
   },
-  Libra2SHARESFTMRebates: {
-    name: 'Bond 2SHARES-WFTM LP, earn LIBRA',
+  Libra2SHARESASTRRebates: {
+    name: 'Bond 2SHARES-WASTR LP, earn LIBRA',
     poolId: 2,
     sectionInUI: 3,
     contract: 'LibraFtmRewardPool',
-    depositTokenName: '2SHARES-WFTM LP',
+    depositTokenName: '2SHARES-WASTR LP',
     earnTokenName: 'LIBRA',
     finished: false,
     multiplier: '12000x',
@@ -349,7 +349,7 @@ export const bankDefinitions: { [contractName: string]: BankInfo } = {
     sort: 4,
     closedForStaking: false,
   },
-  // LibraLIBRAFTMRebates: {
+  // LibraLIBRAASTRRebates: {
   //   name: 'Bond LIBRA-WASTR LP, earn LIBRA',
   //   poolId: 3,
   //   sectionInUI: 3,
@@ -377,7 +377,7 @@ export const bankDefinitions: { [contractName: string]: BankInfo } = {
     sort: 3,
     closedForStaking: false,
   },
-  //LibraLSHAREFTMRebates: {
+  //LibraLSHAREASTRRebates: {
   // name: 'Bond LSHARE-WASTR LP, earn LIBRA',
   // poolId: 5,
   // sectionInUI: 3,

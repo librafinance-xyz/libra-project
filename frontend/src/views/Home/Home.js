@@ -56,7 +56,7 @@ const useStyles = makeStyles((theme) => ({
 const Home = () => {
   const classes = useStyles();
   const TVL = useTotalValueLocked();
-  // const libraAstarLpStats = useLpStats('LIBRA-FTM-LP');
+  // const libraAstarLpStats = useLpStats('LIBRA-ASTR-LP');
   const libraAstarLpStats = useLpStats('LIBRA-ASTR-LP');
 
   const lShareAstarLpStats = useLpStats('LSHARE-ASTR-LP');
@@ -122,7 +122,7 @@ const Home = () => {
     () => (LBondStats ? Number(LBondStats.priceInDollars).toFixed(2) : null),
     [LBondStats],
   );
-  const LBondPriceInFTM = useMemo(() => (LBondStats ? Number(LBondStats.tokenInAstar).toFixed(4) : null), [LBondStats]);
+  const LBondPriceInASTR = useMemo(() => (LBondStats ? Number(LBondStats.tokenInAstar).toFixed(4) : null), [LBondStats]);
   const LBondCirculatingSupply = useMemo(
     () => (LBondStats ? String(LBondStats.circulatingSupply) : null),
     [LBondStats],
@@ -146,7 +146,7 @@ const Home = () => {
         libraLpZap.onZap(zappingToken, tokenName, amount);
         onDissmissLibraZap();
       }}
-      // tokenName={'LIBRA-FTM-LP'}
+      // tokenName={'LIBRA-ASTR-LP'}
       tokenName={'LIBRA-ASTR-LP'}
     />,
   );
@@ -332,7 +332,7 @@ const Home = () => {
               <h2>ASTR</h2>
               <Box mt={2} style={{ backgroundColor: 'transparent !important' }}>
                 <CardIcon style={{ backgroundColor: 'transparent !important' }}>
-                  {/* <TokenSymbol symbol="wFTM" style={{ backgroundColor: 'transparent !important' }} /> */}
+                  {/* <TokenSymbol symbol="wASTR" style={{ backgroundColor: 'transparent !important' }} /> */}
                   <TokenSymbol symbol="WASTR" style={{ backgroundColor: 'transparent !important' }} />
                 </CardIcon>
               </Box>
@@ -449,7 +449,7 @@ const Home = () => {
               </Box>
               Current Price
               <Box>
-                <span style={{ fontSize: '30px' }}>{LBondPriceInFTM ? LBondPriceInFTM : '-.----'} ASTR</span>
+                <span style={{ fontSize: '30px' }}>{LBondPriceInASTR ? LBondPriceInASTR : '-.----'} ASTR</span>
               </Box>
               <Box>
                 <span style={{ fontSize: '16px' }}>${lBondPriceInDollars ? lBondPriceInDollars : '-.--'}</span>

@@ -127,7 +127,7 @@ const treasuryAddress = '0x8f555E00ea0FAc871b3Aa70C015915dB094E7f88';
 
 // const assetList = [
 //     "0xc54A1684fD1bef1f077a336E6be4Bd9a3096a6Ca", // 2shares
-//     "0x6398ACBBAB2561553a9e458Ab67dCFbD58944e52", // 2shares/FTM LP
+//     "0x6398ACBBAB2561553a9e458Ab67dCFbD58944e52", // 2shares/ASTR LP
 //     "0x83A52eff2E9D112E9B022399A9fD22a9DB7d33Ae", // libra/wftm
 //     "0x6437ADAC543583C4b31Bf0323A0870430F5CC2e7", // Lshares
 //     "0xd352daC95a91AfeFb112DBBB3463ccfA5EC15b65", // Lshares/wftm
@@ -154,7 +154,7 @@ const treasuryAddress = '0x8f555E00ea0FAc871b3Aa70C015915dB094E7f88';
 
 function useTotalTreasuryBalance() {
   const ThreeShares = new web3.eth.Contract(ERC20ABI, '0x6437ADAC543583C4b31Bf0323A0870430F5CC2e7');
-  const WFTM = new web3.eth.Contract(ERC20ABI, '0x21be370d5312f44cb42ce377bc9b8a0cef1a4c83');
+  const WASTR = new web3.eth.Contract(ERC20ABI, '0x21be370d5312f44cb42ce377bc9b8a0cef1a4c83');
   const [balance, setBalance] = useState(0);
   const [balance_2shares_wftm, setBalance_2shares_wftm] = useState(0);
   const [balance_libra_wftm, setBalance_libra_wftm] = useState(0);
@@ -256,7 +256,7 @@ function useTotalTreasuryBalance() {
     const token = new web3.eth.Contract(ERC20ABI, tokenAddress);
     const LPtoken = new web3.eth.Contract(ERC20ABI, LPAddress);
     const { data } = await axios('https://api.binance.com/api/v1/ticker/price?symbol=ASTRUSDT');
-    const wftmValue = Number(web3.utils.fromWei(await WFTM.methods.balanceOf(LPAddress).call())) * Number(data.price);
+    const wftmValue = Number(web3.utils.fromWei(await WASTR.methods.balanceOf(LPAddress).call())) * Number(data.price);
 
     const tokenValue =
       Number(await getTokenPrice(tokenAddress)) *

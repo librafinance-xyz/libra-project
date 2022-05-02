@@ -12,7 +12,7 @@ import IUniswapV2PairABI from './IUniswapV2Pair.abi.json';
 import config, { bankDefinitions } from '../config';
 import moment from 'moment';
 import { parseUnits } from 'ethers/lib/utils';
-import { FTM_TICKER, SPOOKY_ROUTER_ADDR, LIBRA_TICKER } from '../utils/constants';
+import { ASTR_TICKER, SPOOKY_ROUTER_ADDR, LIBRA_TICKER } from '../utils/constants';
 /**
  * An API module of 2omb Finance contracts.
  * All contract-interacting domain logic should be defined in here.
@@ -26,12 +26,12 @@ export class LibraFinance {
   externalTokens: { [name: string]: ERC20 };
   boardroomVersionOfUser?: string;
 
-  LIBRAWFTM_LP: Contract;
+  LIBRAWASTR_LP: Contract;
   LIBRA: ERC20;
   // LSHARE: ERC20;
   LSHARE: ERC20;
   LBOND: ERC20;
-  FTM: ERC20;
+  ASTR: ERC20;
 
   constructor(cfg: Configuration) {
     const { deployments, externalTokens } = cfg;
@@ -50,12 +50,12 @@ export class LibraFinance {
     this.LIBRA = new ERC20(deployments.libra.address, provider, 'LIBRA');
     this.LSHARE = new ERC20(deployments.LShare.address, provider, 'LSHARE');
     this.LBOND = new ERC20(deployments.LBond.address, provider, 'LBOND');
-    // this.FTM = this.externalTokens['WFTM'];
-    this.FTM = this.externalTokens['WASTR'];
+    // this.ASTR = this.externalTokens['WASTR'];
+    this.ASTR = this.externalTokens['WASTR'];
 
     // Uniswap V2 Pair
-    // this.LIBRAWFTM_LP = new Contract(externalTokens['LIBRA-FTM-LP'][0], IUniswapV2PairABI, provider);
-    this.LIBRAWFTM_LP = new Contract(externalTokens['LIBRA-ASTR-LP'][0], IUniswapV2PairABI, provider);
+    // this.LIBRAWASTR_LP = new Contract(externalTokens['LIBRA-ASTR-LP'][0], IUniswapV2PairABI, provider);
+    this.LIBRAWASTR_LP = new Contract(externalTokens['LIBRA-ASTR-LP'][0], IUniswapV2PairABI, provider);
 
     this.config = cfg;
     this.provider = provider;
@@ -76,7 +76,7 @@ export class LibraFinance {
     for (const token of tokens) {
       token.connect(this.signer);
     }
-    this.LIBRAWFTM_LP = this.LIBRAWFTM_LP.connect(this.signer);
+    this.LIBRAWASTR_LP = this.LIBRAWASTR_LP.connect(this.signer);
     console.log(`🔓 Wallet is unlocked. Welcome, ${account}!`);
     this.fetchBoardroomVersionOfUser()
       .then((version) => (this.boardroomVersionOfUser = version))
@@ -143,7 +143,7 @@ export class LibraFinance {
     const tokenAmountBN = await token0.balanceOf(lpToken.address);
     const tokenAmount = getDisplayBalance(tokenAmountBN, 18);
 
-    const astarAmountBN = await this.FTM.balanceOf(lpToken.address);
+    const astarAmountBN = await this.ASTR.balanceOf(lpToken.address);
     const astarAmount = getDisplayBalance(astarAmountBN, 18);
     const tokenAmountInOneLP = Number(tokenAmount) / Number(lpTokenSupply);
     const astarAmountInOneLP = Number(astarAmount) / Number(lpTokenSupply);
@@ -316,11 +316,11 @@ export class LibraFinance {
           return rewardPerSecond.mul(500).div(25000).div(24).mul(20);
         } else if (depositTokenName === 'BIFI') {
           return rewardPerSecond.mul(500).div(25000).div(24).mul(20);
-        } else if (depositTokenName === 'WFTM') {
+        } else if (depositTokenName === 'WASTR') {
           return rewardPerSecond.mul(500).div(25000).div(24).mul(20);
-        } else if (depositTokenName === '2OMB-WFTM LP') {
+        } else if (depositTokenName === '2OMB-WASTR LP') {
           return rewardPerSecond.mul(6000).div(25000).div(24).mul(20);
-        } else if (depositTokenName === '2SHARES-WFTM LP') {
+        } else if (depositTokenName === '2SHARES-WASTR LP') {
           return rewardPerSecond.mul(6000).div(25000).div(24).mul(20);
         } else if (depositTokenName === 'BLOOM') {
           return rewardPerSecond.mul(500).div(25000).div(24).mul(20);
@@ -358,7 +358,7 @@ export class LibraFinance {
   async getDepositTokenPriceInDollars(tokenName: string, token: ERC20) {
     let tokenPrice;
     const priceOfOneFtmInDollars = await this.getWASTRPriceFromArthswapASTRUSDC();
-    if (tokenName === 'wFTM') {
+    if (tokenName === 'wASTR') {
       tokenPrice = priceOfOneFtmInDollars;
     } else {
       console.log('token name:', tokenName);
@@ -366,14 +366,14 @@ export class LibraFinance {
         tokenPrice = await this.getLPTokenPrice(token, this.LIBRA, true, false);
       } else if (tokenName === 'LSHARE-WASTR LP') {
         tokenPrice = await this.getLPTokenPrice(token, this.LSHARE, false, false);
-      } else if (tokenName === '2SHARES-WFTM LP') {
+      } else if (tokenName === '2SHARES-WASTR LP') {
         tokenPrice = await this.getLPTokenPrice(
           token,
           new ERC20('0xc54a1684fd1bef1f077a336e6be4bd9a3096a6ca', this.provider, '2SHARES'),
           false,
           true,
         );
-      } else if (tokenName === '2OMB-WFTM LP') {
+      } else if (tokenName === '2OMB-WASTR LP') {
         console.log('getting the LP token price here');
         tokenPrice = await this.getLPTokenPrice(
           token,
@@ -455,7 +455,7 @@ export class LibraFinance {
    * Calculates the price of an LP token
    * Reference https://github.com/DefiDebauchery/discordpricebot/blob/4da3cdb57016df108ad2d0bb0c91cd8dd5f9d834/pricebot/pricebot.py#L150
    * @param lpToken the token under calculation
-   * @param token the token pair used as reference (the other one would be FTM in most cases)
+   * @param token the token pair used as reference (the other one would be ASTR in most cases)
    * @param isLibra sanity check for usage of libra token or lShare
    * @returns price of the LP token
    */
@@ -501,8 +501,8 @@ export class LibraFinance {
   //     .sub(libraRewardPoolSupply2)
   //     .sub(libraRewardPoolSupplyOld);
   //   const priceInASTR = await this.getTokenPriceFromLP(LIBRA);
-  //   const priceOfOneFTM = await this.getWASTRPriceFromArthswapASTRUSDC();
-  //   const priceOfLibraInDollars = (Number(priceInASTR) * Number(priceOfOneFTM)).toFixed(2);
+  //   const priceOfOneASTR = await this.getWASTRPriceFromArthswapASTRUSDC();
+  //   const priceOfLibraInDollars = (Number(priceInASTR) * Number(priceOfOneASTR)).toFixed(2);
 
   //   return {
   //     tokenInAstar: priceInASTR,
@@ -524,8 +524,8 @@ export class LibraFinance {
   //     .sub(libraRewardPoolSupply2)
   //     .sub(libraRewardPoolSupplyOld);
   //   const priceInASTR = await this.getTokenPriceFromLP(LSHARE);
-  //   const priceOfOneFTM = await this.getWASTRPriceFromArthswapASTRUSDC();
-  //   const priceOfLibraInDollars = (Number(priceInASTR) * Number(priceOfOneFTM)).toFixed(2);
+  //   const priceOfOneASTR = await this.getWASTRPriceFromArthswapASTRUSDC();
+  //   const priceOfLibraInDollars = (Number(priceInASTR) * Number(priceOfOneASTR)).toFixed(2);
 
   //   return {
   //     tokenInAstar: priceInASTR,
@@ -647,15 +647,15 @@ export class LibraFinance {
   //   if (!ready) return;
   //   const { chainId } = this.config;
 
-  //   const { WFTM } = this.externalTokens;
+  //   const { WASTR } = this.externalTokens;
 
-  //   const wftm = new TokenSpirit(chainId, WFTM.address, WFTM.decimal);
+  //   const wftm = new TokenSpirit(chainId, WASTR.address, WASTR.decimal);
   //   const token = new TokenSpirit(chainId, tokenContract.address, tokenContract.decimal, tokenContract.symbol);
   //   try {
   //     const wftmToToken = await FetcherSpirit.fetchPairData(wftm, token, this.provider);
   //     const liquidityToken = wftmToToken.liquidityToken;
-  //     let ftmBalanceInLP = await WFTM.balanceOf(liquidityToken.address);
-  //     let astarAmount = Number(getFullDisplayBalance(ftmBalanceInLP, WFTM.decimal));
+  //     let ftmBalanceInLP = await WASTR.balanceOf(liquidityToken.address);
+  //     let astarAmount = Number(getFullDisplayBalance(ftmBalanceInLP, WASTR.decimal));
   //     let shibaBalanceInLP = await tokenContract.balanceOf(liquidityToken.address);
   //     let shibaAmount = Number(getFullDisplayBalance(shibaBalanceInLP, tokenContract.decimal));
   //     const priceOfOneFtmInDollars = await this.getWASTRPriceFromArthswapASTRUSDC();
@@ -702,7 +702,7 @@ export class LibraFinance {
     console.log('LibraFinance: getWASTRPriceFromArthswapASTRUSDC() 2');
     if (!ready) return;
     console.log('LibraFinance: getWASTRPriceFromArthswapASTRUSDC() 3');
-    // const { WFTM, USDC } = this.externalTokens;
+    // const { WASTR, USDC } = this.externalTokens;
     const { WASTR, USDC } = this.externalTokens;
     console.log('LibraFinance: getWASTRPriceFromArthswapASTRUSDC() 4');
     try {
@@ -941,7 +941,7 @@ export class LibraFinance {
 
   async quoteFromSpooky(tokenAmount: string, tokenName: string): Promise<string> {
     const { SpookyRouter } = this.contracts;
-    const { _reserve0, _reserve1 } = await this.LIBRAWFTM_LP.getReserves();
+    const { _reserve0, _reserve1 } = await this.LIBRAWASTR_LP.getReserves();
     let quote;
     if (tokenName === 'LIBRA') {
       quote = await SpookyRouter.quote(parseUnits(tokenAmount), _reserve1, _reserve0);
@@ -1028,7 +1028,7 @@ export class LibraFinance {
     const { zapper } = this.contracts;
     const lpToken = this.externalTokens[lpName];
     let estimate;
-    if (tokenName === FTM_TICKER) {
+    if (tokenName === ASTR_TICKER) {
       estimate = await zapper.estimateZapIn(lpToken.address, SPOOKY_ROUTER_ADDR, parseUnits(amount, 18));
     } else {
       const token = tokenName === LIBRA_TICKER ? this.LIBRA : this.LSHARE;
@@ -1044,7 +1044,7 @@ export class LibraFinance {
   async zapIn(tokenName: string, lpName: string, amount: string): Promise<TransactionResponse> {
     const { zapper } = this.contracts;
     const lpToken = this.externalTokens[lpName];
-    if (tokenName === FTM_TICKER) {
+    if (tokenName === ASTR_TICKER) {
       let overrides = {
         value: parseUnits(amount, 18),
       };
