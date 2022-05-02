@@ -151,13 +151,13 @@ const Home = () => {
     />,
   );
 
-  const [onPresentLshareZap, onDissmissTshareZap] = useModal(
+  const [onPresentLshareZap, onDissmissLshareZap] = useModal(
     <ZapModal
       decimals={18}
       onConfirm={(zappingToken, tokenName, amount) => {
         if (Number(amount) <= 0 || isNaN(Number(amount))) return;
         lshareLpZap.onZap(zappingToken, tokenName, amount);
-        onDissmissTshareZap();
+        onDissmissLshareZap();
       }}
       tokenName={'LSHARE-ASTR-LP'}
     />,

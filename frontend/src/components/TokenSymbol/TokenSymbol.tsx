@@ -5,7 +5,7 @@ import libraLogo from '../../assets/libra/libra.svg';
 import lShareLogo from '../../assets/libra/lshare.svg';
 import libraLogoPNG from '../../assets/libra/libra.svg';
 import lShareLogoPNG from '../../assets/libra/lshare.svg';
-import tBondLogo from '../../assets/libra/lbond.svg';
+import LBondLogo from '../../assets/libra/lbond.svg';
 
 import libraFtmLpLogo from '../../assets/img/libra_ftm_lp.png';
 import lshareFtmLpLogo from '../../assets/img/lshare_ftm_lp.png';
@@ -40,7 +40,7 @@ const logosBySymbol: { [title: string]: string } = {
   LIBRAPNG: libraLogoPNG,
   LSHAREPNG: lShareLogoPNG,
   LSHARE: lShareLogo,
-  LBOND: tBondLogo,
+  LBOND: LBondLogo,
   WFTM: wftmLogo,
   BOO: booLogo,
   SHIBA: shibaLogo,

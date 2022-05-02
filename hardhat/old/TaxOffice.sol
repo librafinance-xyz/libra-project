@@ -58,8 +58,8 @@ contract TaxOffice is Operator {
         return ITaxable(libra).includeAddress(_address);
     }
 
-    function setTaxableTombOracle(address _libraOracle) external onlyOperator {
-        ITaxable(libra).setTombOracle(_libraOracle);
+    function setTaxableLibraOracle(address _libraOracle) external onlyOperator {
+        ITaxable(libra).setLibraOracle(_libraOracle);
     }
 
     function transferTaxOffice(address _newTaxOffice) external onlyOperator {

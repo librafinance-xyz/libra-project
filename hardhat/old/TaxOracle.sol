@@ -15,7 +15,7 @@ import "@openzeppelin/contracts/token/ERC20/IERC20.sol";
 
     http://libra.finance
 */
-contract TombTaxOracle is Ownable {
+contract LibraTaxOracle is Ownable {
     using SafeMath for uint256;
 
     IERC20 public libra;
@@ -47,7 +47,7 @@ contract TombTaxOracle is Ownable {
         return uint144(libraBalance.div(wastrBalance));
     }
 
-    function setTomb(address _libra) external onlyOwner {
+    function setLibra(address _libra) external onlyOwner {
         require(_libra != address(0), "libra address cannot be 0");
         libra = IERC20(_libra);
     }

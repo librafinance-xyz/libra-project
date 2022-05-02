@@ -80,9 +80,9 @@ contract TaxOfficeV2 is Operator {
 
     function addLiquidityTaxFree(
         address token,
-        uint256 amtTomb,
+        uint256 amtLibra,
         uint256 amtToken,
-        uint256 amtTombMin,
+        uint256 amtLibraMin,
         uint256 amtTokenMin
     )
         external
@@ -92,42 +92,42 @@ contract TaxOfficeV2 is Operator {
             uint256
         )
     {
-        require(amtTomb != 0 && amtToken != 0, "amounts can't be 0");
+        require(amtLibra != 0 && amtToken != 0, "amounts can't be 0");
         _excludeAddressFromTax(msg.sender);
 
-        IERC20(libra).transferFrom(msg.sender, address(this), amtTomb);
+        IERC20(libra).transferFrom(msg.sender, address(this), amtLibra);
         IERC20(token).transferFrom(msg.sender, address(this), amtToken);
         _approveTokenIfNeeded(libra, uniRouter);
         _approveTokenIfNeeded(token, uniRouter);
 
         _includeAddressInTax(msg.sender);
 
-        uint256 resultAmtTomb;
+        uint256 resultAmtLibra;
         uint256 resultAmtToken;
         uint256 liquidity;
-        (resultAmtTomb, resultAmtToken, liquidity) = IUniswapV2Router(uniRouter).addLiquidity(
+        (resultAmtLibra, resultAmtToken, liquidity) = IUniswapV2Router(uniRouter).addLiquidity(
             libra,
             token,
-            amtTomb,
+            amtLibra,
             amtToken,
-            amtTombMin,
+            amtLibraMin,
             amtTokenMin,
             msg.sender,
             block.timestamp
         );
 
-        if(amtTomb.sub(resultAmtTomb) > 0) {
-            IERC20(libra).transfer(msg.sender, amtTomb.sub(resultAmtTomb));
+        if(amtLibra.sub(resultAmtLibra) > 0) {
+            IERC20(libra).transfer(msg.sender, amtLibra.sub(resultAmtLibra));
         }
         if(amtToken.sub(resultAmtToken) > 0) {
             IERC20(token).transfer(msg.sender, amtToken.sub(resultAmtToken));
         }
-        return (resultAmtTomb, resultAmtToken, liquidity);
+        return (resultAmtLibra, resultAmtToken, liquidity);
     }
 
     function addLiquidityETHTaxFree(
-        uint256 amtTomb,
-        uint256 amtTombMin,
+        uint256 amtLibra,
+        uint256 amtLibraMin,
         uint256 amtFtmMin
     )
         external
@@ -138,34 +138,34 @@ contract TaxOfficeV2 is Operator {
             uint256
         )
     {
-        require(amtTomb != 0 && msg.value != 0, "amounts can't be 0");
+        require(amtLibra != 0 && msg.value != 0, "amounts can't be 0");
         _excludeAddressFromTax(msg.sender);
 
-        IERC20(libra).transferFrom(msg.sender, address(this), amtTomb);
+        IERC20(libra).transferFrom(msg.sender, address(this), amtLibra);
         _approveTokenIfNeeded(libra, uniRouter);
 
         _includeAddressInTax(msg.sender);
 
-        uint256 resultAmtTomb;
+        uint256 resultAmtLibra;
         uint256 resultAmtFtm;
         uint256 liquidity;
-        (resultAmtTomb, resultAmtFtm, liquidity) = IUniswapV2Router(uniRouter).addLiquidityETH{value: msg.value}(
+        (resultAmtLibra, resultAmtFtm, liquidity) = IUniswapV2Router(uniRouter).addLiquidityETH{value: msg.value}(
             libra,
-            amtTomb,
-            amtTombMin,
+            amtLibra,
+            amtLibraMin,
             amtFtmMin,
             msg.sender,
             block.timestamp
         );
 
-        if(amtTomb.sub(resultAmtTomb) > 0) {
-            IERC20(libra).transfer(msg.sender, amtTomb.sub(resultAmtTomb));
+        if(amtLibra.sub(resultAmtLibra) > 0) {
+            IERC20(libra).transfer(msg.sender, amtLibra.sub(resultAmtLibra));
         }
-        return (resultAmtTomb, resultAmtFtm, liquidity);
+        return (resultAmtLibra, resultAmtFtm, liquidity);
     }
 
-    function setTaxableTombOracle(address _libraOracle) external onlyOperator {
-        ITaxable(libra).setTombOracle(_libraOracle);
+    function setTaxableLibraOracle(address _libraOracle) external onlyOperator {
+        ITaxable(libra).setLibraOracle(_libraOracle);
     }
 
     function transferTaxOffice(address _newTaxOffice) external onlyOperator {

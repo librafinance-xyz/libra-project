@@ -36,7 +36,7 @@ const Sbs: React.FC = () => {
   const { account } = useWallet();
   const libraFinance = useLibraFinance();
   const [lbondAmount, setLbondAmount] = useState('');
-  const [lshareAmount, setTshareAmount] = useState('');
+  const [lshareAmount, setLshareAmount] = useState('');
 
   const [approveStatus, approve] = useApprove(libraFinance.LBOND, libraFinance.contracts.LShareSwapper.address);
   const { onSwapLShare } = useSwapLBondToLShare();
@@ -54,23 +54,23 @@ const Sbs: React.FC = () => {
   const handleLBondChange = async (e: any) => {
     if (e.currentTarget.value === '') {
       setLbondAmount('');
-      setTshareAmount('');
+      setLshareAmount('');
       return;
     }
     if (!isNumeric(e.currentTarget.value)) return;
     setLbondAmount(e.currentTarget.value);
     const updateLShareAmount = await libraFinance.estimateAmountOfLShare(e.currentTarget.value);
-    setTshareAmount(updateLShareAmount);
+    setLshareAmount(updateLShareAmount);
   };
 
   const handleLBondSelectMax = async () => {
     setLbondAmount(String(bondBalance));
     const updateLShareAmount = await libraFinance.estimateAmountOfLShare(String(bondBalance));
-    setTshareAmount(updateLShareAmount);
+    setLshareAmount(updateLShareAmount);
   };
 
   const handleLShareSelectMax = async () => {
-    setTshareAmount(String(lshareBalance));
+    setLshareAmount(String(lshareBalance));
     const rateLSharePerLibra = (await libraFinance.getLShareSwapperStat(account)).rateLSharePerLibra;
     const updateLBondAmount = BigNumber.from(10)
       .pow(30)
@@ -82,12 +82,12 @@ const Sbs: React.FC = () => {
   const handleLShareChange = async (e: any) => {
     const inputData = e.currentTarget.value;
     if (inputData === '') {
-      setTshareAmount('');
+      setLshareAmount('');
       setLbondAmount('');
       return;
     }
     if (!isNumeric(inputData)) return;
-    setTshareAmount(inputData);
+    setLshareAmount(inputData);
     const rateLSharePerLibra = (await libraFinance.getLShareSwapperStat(account)).rateLSharePerLibra;
     const updateLBondAmount = BigNumber.from(10)
       .pow(30)

@@ -237,7 +237,7 @@
       },
       {
         "inputs": [],
-        "name": "getTombPrice",
+        "name": "getLibraPrice",
         "outputs": [
           {
             "internalType": "uint256",

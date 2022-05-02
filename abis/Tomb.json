@@ -714,7 +714,7 @@
             "type": "address"
           }
         ],
-        "name": "setTombOracle",
+        "name": "setLibraOracle",
         "outputs": [],
         "stateMutability": "nonpayable",
         "type": "function"
@@ -994,7 +994,7 @@
   },
   "settings": {
     "compilationTarget": {
-      "contracts/Tomb.sol": "Tomb"
+      "contracts/Libra.sol": "Libra"
     },
     "evmVersion": "istanbul",
     "libraries": {},
@@ -1008,7 +1008,7 @@
     "remappings": []
   },
   "sources": {
-    "contracts/Tomb.sol": {
+    "contracts/Libra.sol": {
       "keccak256": "0x967c120a137d035844f393d92482dc6d758a5a7ae452f104cdbb3e047482d6ef",
       "license": "MIXED",
       "urls": [

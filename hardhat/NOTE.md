@@ -1,7 +1,7 @@
 https://www.figma.com/file/tAYQLfuZGtWD7femZdV4GD/LIBRA-Finance-%E5%9B%B3%E8%A7%A3?node-id=0%3A1
 
 https://www.figma.com/file/kfjY4fSwbFY70Tj8LIqZds/Untitled?node-id=0%3A1
-Tomb
+Libra
 constructor(uint256 \_taxRate, address \_taxCollectorAddress)
 
 taxRate => 0

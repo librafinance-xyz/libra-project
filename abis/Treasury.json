@@ -410,11 +410,11 @@
       },
       {
         "inputs": [],
-        "name": "getBurnableTombLeft",
+        "name": "getBurnableLibraLeft",
         "outputs": [
           {
             "internalType": "uint256",
-            "name": "_burnableTombLeft",
+            "name": "_burnableLibraLeft",
             "type": "uint256"
           }
         ],
@@ -449,7 +449,7 @@
       },
       {
         "inputs": [],
-        "name": "getTombCirculatingSupply",
+        "name": "getLibraCirculatingSupply",
         "outputs": [
           {
             "internalType": "uint256",
@@ -462,7 +462,7 @@
       },
       {
         "inputs": [],
-        "name": "getTombPrice",
+        "name": "getLibraPrice",
         "outputs": [
           {
             "internalType": "uint256",
@@ -475,7 +475,7 @@
       },
       {
         "inputs": [],
-        "name": "getTombUpdatedPrice",
+        "name": "getLibraUpdatedPrice",
         "outputs": [
           {
             "internalType": "uint256",
@@ -814,7 +814,7 @@
       },
       {
         "inputs": [],
-        "name": "previousEpochTombPrice",
+        "name": "previousEpochLibraPrice",
         "outputs": [
           {
             "internalType": "uint256",
@@ -1153,7 +1153,7 @@
             "type": "address"
           }
         ],
-        "name": "setTombOracle",
+        "name": "setLibraOracle",
         "outputs": [],
         "stateMutability": "nonpayable",
         "type": "function"
@@ -1166,7 +1166,7 @@
             "type": "uint256"
           }
         ],
-        "name": "setTombPriceCeiling",
+        "name": "setLibraPriceCeiling",
         "outputs": [],
         "stateMutability": "nonpayable",
         "type": "function"
