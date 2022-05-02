@@ -15,7 +15,7 @@ const configurations: { [env: string]: Configuration } = {
   production: {
     chainId: ChainId.MAINNET,
     networkName: 'Astar Network',
-    ftmscanUrl: 'https://blockscout.com/astar/address/',
+    astrscanUrl: 'https://blockscout.com/astar/address/',
     // defaultProvider: 'https://rpc.ftm.tools/',
     defaultProvider: 'https://astar-api.bwarelabs.com/7d1b6401-caba-4a39-8a84-13d4e9f105b4',
     //WSS: wss://astar-api.bwarelabs.com/ws/7d1b6401-caba-4a39-8a84-13d4e9f105b4
