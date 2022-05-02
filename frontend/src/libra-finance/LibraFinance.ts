@@ -99,20 +99,20 @@ export class LibraFinance {
   async getLibraStat(): Promise<TokenStat> {
     console.log('getLibraStat');
     console.log('getLibraStat:', this.LIBRA);
-    const { LibraFtmRewardPool, LibraFtmLpLibraRewardPool, LibraFtmLpLibraRewardPoolOld } = this.contracts;
-    console.log('getLibraStat:  LibraFtmLpLibraRewardPoolOld:', LibraFtmLpLibraRewardPoolOld);
-    console.log('getLibraStat:  LibraFtmLpLibraRewardPool:', LibraFtmLpLibraRewardPool);
+    const { LibraRewardPool } = this.contracts; // remove LibraFtmLpLibraRewardPool, LibraFtmLpLibraRewardPoolOld 
+    // console.log('getLibraStat:  LibraFtmLpLibraRewardPoolOld:', LibraFtmLpLibraRewardPoolOld);
+    // console.log('getLibraStat:  LibraFtmLpLibraRewardPool:', LibraFtmLpLibraRewardPool);
     console.log('getLibraStat:', this.LIBRA);
     const supply = await this.LIBRA.totalSupply();
 
     console.log('getLibraStat: supply: ', supply.toString());
-    const libraRewardPoolSupply = await this.LIBRA.balanceOf(LibraFtmRewardPool.address);
-    const libraRewardPoolSupply2 = await this.LIBRA.balanceOf(LibraFtmLpLibraRewardPool.address);
+    const libraRewardPoolSupply = await this.LIBRA.balanceOf(LibraRewardPool.address);
+    // const libraRewardPoolSupply2 = await this.LIBRA.balanceOf(LibraFtmLpLibraRewardPool.address);
     // const libraRewardPoolSupplyOld = await this.LIBRA.balanceOf(LibraFtmLpLibraRewardPoolOld.address);
 
-    const libraCirculatingSupply = supply.sub(libraRewardPoolSupply).sub(libraRewardPoolSupply2);
+    // const libraCirculatingSupply = supply.sub(libraRewardPoolSupply).sub(libraRewardPoolSupply2);
     // .sub(libraRewardPoolSupplyOld);
-    console.log('getLibraStat: libraCirculatingSupply: ', libraCirculatingSupply);
+    // console.log('getLibraStat: libraCirculatingSupply: ', libraCirculatingSupply);
 
     const priceOfOneASTR = await this.getWASTRPriceFromArthswapASTRUSDC();
     console.log('getLibraStat: priceOfOneASTR: ', priceOfOneASTR);
@@ -125,7 +125,7 @@ export class LibraFinance {
       tokenInAstar: priceInASTR,
       priceInDollars: priceOfLibraInDollars,
       totalSupply: getDisplayBalance(supply, this.LIBRA.decimal, 0),
-      circulatingSupply: getDisplayBalance(libraCirculatingSupply, this.LIBRA.decimal, 0),
+      circulatingSupply: getDisplayBalance(supply, this.LIBRA.decimal, 0), // getDisplayBalance(libraCirculatingSupply, this.LIBRA.decimal, 0),
     };
   }
 
@@ -194,7 +194,7 @@ export class LibraFinance {
     console.log('getShareStat ');
 
     console.log('getShareStat:', this.LSHARE);
-    // const { LibraFtmRewardPool, LibraFtmLpLibraRewardPool, LibraFtmLpLibraRewardPoolOld } = this.contracts;
+    // const { LibraRewardPool, LibraFtmLpLibraRewardPool, LibraFtmLpLibraRewardPoolOld } = this.contracts;
     // console.log('getShareStat:  LibraFtmLpLibraRewardPoolOld:', LibraFtmLpLibraRewardPoolOld);
     // console.log('getShareStat:  LibraFtmLpLibraRewardPool:', LibraFtmLpLibraRewardPool);
     // console.log('getShareStat:', this.LIBRA);
@@ -232,11 +232,11 @@ export class LibraFinance {
   }
 
   async getLibraStatInEstimatedTWAP(): Promise<TokenStat> {
-    const { SeigniorageOracle, LibraFtmRewardPool } = this.contracts;
+    const { SeigniorageOracle, LibraRewardPool } = this.contracts;
     const expectedPrice = await SeigniorageOracle.twap(this.LIBRA.address, ethers.utils.parseEther('1'));
 
     const supply = await this.LIBRA.totalSupply();
-    const libraRewardPoolSupply = await this.LIBRA.balanceOf(LibraFtmRewardPool.address);
+    const libraRewardPoolSupply = await this.LIBRA.balanceOf(LibraRewardPool.address);
     const libraCirculatingSupply = supply.sub(libraRewardPoolSupply);
     return {
       tokenInAstar: getDisplayBalance(expectedPrice),

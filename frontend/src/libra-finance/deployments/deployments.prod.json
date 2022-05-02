@@ -6512,7 +6512,7 @@
     ]
   },
 
-  "LibraFtmRewardPool": {
+  "LibraRewardPool": {
     "address": "0xcb0b0419e6a1f46be89c1c1eeeaf9172b7125b29",
     "abi": [
       {
