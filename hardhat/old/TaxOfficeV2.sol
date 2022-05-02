@@ -21,7 +21,7 @@ contract TaxOfficeV2 is Operator {
     using SafeMath for uint256;
 
     address public libra = address(0x6c021Ae822BEa943b2E66552bDe1D2696a53fbB7);
-    address public wftm = address(0x21be370D5312f44cB42ce377BC9b8a0cEF1A4C83);
+    address public wastr = address(0x21be370D5312f44cB42ce377BC9b8a0cEF1A4C83);
     address public uniRouter = address(0xF491e7B69E4244ad4002BC14e878a34207E38c29);
 
     mapping(address => bool) public taxExclusionEnabled;

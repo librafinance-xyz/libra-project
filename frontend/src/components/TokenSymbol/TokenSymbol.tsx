@@ -25,8 +25,8 @@ import bifiLogo from '../../assets/img/COW.svg';
 import mimLogo from '../../assets/img/mimlogopng.png';
 import bloomLogo from '../../assets/img/BLOOM.jpg';
 // import TwoombLPLogo from '../../assets/img/2OMB-WASTR.png';
-// import TwosharesLPLogo from '../../assets/img/2SHARES-WASTR.png';
-// import TwoombTwosharesLPLogo from '../../assets/img/2OMB-2SHARES.png';
+// import TwosharesLPLogo from '../../assets/img/LSHARE-WASTR.png';
+// import TwoombTwosharesLPLogo from '../../assets/img/2OMB-LSHARE.png';
 
 import UsdcLogo from '../../assets/img/USDC.png';
 

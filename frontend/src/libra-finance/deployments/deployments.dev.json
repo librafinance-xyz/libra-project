@@ -12843,7 +12843,7 @@
       }
     ]
   },
-  "TwoombTwoshareFtmLPLShareRewardPool": {
+  "TwoombTwoshareAstrLPLShareRewardPool": {
     "address": "0x1040085D268253e8D4f932399a8019f527e58d04",
     "abi": [
       {
@@ -13329,7 +13329,7 @@
       }
     ]
   },
-  "TwoshareFtmLPLShareRewardPool": {
+  "TwoshareAstrLPLShareRewardPool": {
     "address": "0x1040085D268253e8D4f932399a8019f527e58d04",
     "abi": [
       {
@@ -14301,7 +14301,7 @@
       }
     ]
   },
-  "TwoombFtmLPLShareRewardPool": {
+  "TwoombAstrLPLShareRewardPool": {
     "address": "0x1040085D268253e8D4f932399a8019f527e58d04",
     "abi": [
       {
@@ -15721,7 +15721,7 @@
       },
       {
         "inputs": [],
-        "name": "wftm",
+        "name": "wastr",
         "outputs": [
           {
             "internalType": "address",
@@ -16732,7 +16732,7 @@
           },
           {
             "internalType": "address",
-            "name": "_wftmAddress",
+            "name": "_wastrAddress",
             "type": "address"
           },
           {
@@ -17072,7 +17072,7 @@
       },
       {
         "inputs": [],
-        "name": "wftmAddress",
+        "name": "wastrAddress",
         "outputs": [
           {
             "internalType": "address",

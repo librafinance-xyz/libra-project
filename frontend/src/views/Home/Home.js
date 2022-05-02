@@ -16,7 +16,7 @@ import useZap from '../../hooks/useZap';
 import useBondStats from '../../hooks/useBondStats';
 import useLShareStats from '../../hooks/useLShareStats';
 import useTotalValueLocked from '../../hooks/useTotalValueLocked';
-import useFantomPrice from '../../hooks/useFantomPrice';
+import useAstarPrice from '../../hooks/useAstarPrice';
 // import { libra as libraStag, LShare as lShareStag } from '../../libra-finance/deployments/deployments.stag.json';
 // import { libra as libraProd, LShare as lShareProd } from '../../libra-finance/deployments/deployments.prod.json';
 // temporary
@@ -64,7 +64,7 @@ const Home = () => {
   const LShareStats = useLShareStats();
   const LBondStats = useBondStats();
   const libraFinance = useLibraFinance();
-  const { price: astarPrice, marketCap: astarMarketCap, priceChange: astarPriceChange } = useFantomPrice();
+  const { price: astarPrice, marketCap: astarMarketCap, priceChange: astarPriceChange } = useAstarPrice();
   const { balance: rebatesTVL } = useTotalTreasuryBalance();
   const totalTVL = TVL + rebatesTVL;
 

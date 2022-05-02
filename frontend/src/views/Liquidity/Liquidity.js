@@ -12,7 +12,7 @@ import useTokenBalance from '../../hooks/useTokenBalance';
 import { getDisplayBalance } from '../../utils/formatBalance';
 import useApproveTaxOffice from '../../hooks/useApproveTaxOffice';
 import { ApprovalState } from '../../hooks/useApprove';
-import useProvideLibraFtmLP from '../../hooks/useProvideLibraFtmLP';
+import useProvideLibraAstrLP from '../../hooks/useProvideLibraAstrLP';
 import { Alert } from '@material-ui/lab';
 
 const BackgroundImage = createGlobalStyle`
@@ -35,7 +35,7 @@ const ProvideLiquidity = () => {
   const [approveTaxOfficeStatus, approveTaxOffice] = useApproveTaxOffice();
   const libraBalance = useTokenBalance(libraFinance.LIBRA);
   const ftmBalance = (balance / 1e18).toFixed(4);
-  const { onProvideLibraFtmLP } = useProvideLibraFtmLP();
+  const { onProvideLibraAstrLP } = useProvideLibraAstrLP();
   // const libraAstarLpStats = useLpStats('LIBRA-ASTR-LP');
   const libraAstarLpStats = useLpStats('LIBRA-ASTR-LP');
 
@@ -137,7 +137,7 @@ const ProvideLiquidity = () => {
                         {approveTaxOfficeStatus === ApprovalState.APPROVED ? (
                           <Button
                             variant="contained"
-                            onClick={() => onProvideLibraFtmLP(astarAmount.toString(), libraAmount.toString())}
+                            onClick={() => onProvideLibraAstrLP(astarAmount.toString(), libraAmount.toString())}
                             color="primary"
                             style={{ margin: '0 10px', color: '#fff' }}
                           >

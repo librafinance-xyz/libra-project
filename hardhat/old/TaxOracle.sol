@@ -19,18 +19,18 @@ contract LibraTaxOracle is Ownable {
     using SafeMath for uint256;
 
     IERC20 public libra;
-    // IERC20 public wftm;
+    // IERC20 public wastr;
     IERC20 public wastr;
     address public pair;
 
     constructor(
         address _libra,
-        // address _wftm,
+        // address _wastr,
         address _wastr;
         address _pair
     ) public {
         require(_libra != address(0), "libra address cannot be 0");
-        // require(_wftm != address(0), "wftm address cannot be 0");
+        // require(_wastr != address(0), "wastr address cannot be 0");
         require(_wastr != address(0), "wastr address cannot be 0");
         require(_pair != address(0), "pair address cannot be 0");
         libra = IERC20(_libra);
@@ -41,9 +41,9 @@ contract LibraTaxOracle is Ownable {
     function consult(address _token, uint256 _amountIn) external view returns (uint144 amountOut) {
         require(_token == address(libra), "token needs to be libra");
         uint256 libraBalance = libra.balanceOf(pair);
-        // uint256 wftmBalance = wftm.balanceOf(pair);
+        // uint256 wastrBalance = wastr.balanceOf(pair);
         uint256 wastrBalance = wastr.balanceOf(pair);
-        // return uint144(libraBalance.div(wftmBalance));
+        // return uint144(libraBalance.div(wastrBalance));
         return uint144(libraBalance.div(wastrBalance));
     }
 
@@ -52,9 +52,9 @@ contract LibraTaxOracle is Ownable {
         libra = IERC20(_libra);
     }
 
-    // function setWftm(address _wftm) external onlyOwner {
-    //     require(_wftm != address(0), "wftm address cannot be 0");
-    //     wftm = IERC20(_wftm);
+    // function setWftm(address _wastr) external onlyOwner {
+    //     require(_wastr != address(0), "wastr address cannot be 0");
+    //     wastr = IERC20(_wastr);
     // }
     function setWastr(address _wastr) external onlyOwner {
         require(_wastr != address(0), "wastr address cannot be 0");

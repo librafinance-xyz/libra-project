@@ -39,10 +39,10 @@ const configurations: { [env: string]: Configuration } = {
       // '2OMB': ['0x067e31D66Eb9376790ADFB1522F6Bef634D56a70', 18],
       LIBRA: ['0x6d664cfe0ce55bced5250b9cc3f04e98a239ef22', 18], // DUMMY
 
-      // '2OMB-2SHARES LP': ['0xd9B5f00d183df52D717046521152303129F088DD', 18],
+      // '2OMB-LSHARE LP': ['0xd9B5f00d183df52D717046521152303129F088DD', 18],
       // '2OMB-WASTR LP': ['0xbdC7DFb7B88183e87f003ca6B5a2F81202343478', 18],
-      // '2SHARES-WASTR LP': ['0x6398ACBBAB2561553a9e458Ab67dCFbD58944e52', 18],
-      // '2SHARES': ['0xc54A1684fD1bef1f077a336E6be4Bd9a3096a6Ca', 18],
+      // 'LSHARE-WASTR LP': ['0x6398ACBBAB2561553a9e458Ab67dCFbD58944e52', 18],
+      // 'LSHARE': ['0xc54A1684fD1bef1f077a336E6be4Bd9a3096a6Ca', 18],
       // 'LIBRA-WASTR LP': ['0x83A52eff2E9D112E9B022399A9fD22a9DB7d33Ae', 18],
       'ASTR-USDC-LP': ['0xBB1290c1829007F440C771b37718FAbf309cd527', 18],
       // 'LIBRA-ASTR-LP': ['0xf4E19B3960a3ae1c08209f7709BFe15D4E19470a', 18], //DUMMY
@@ -81,11 +81,11 @@ export const bankDefinitions: { [contractName: string]: BankInfo } = {
   sort: the order of the pool
   */
   // Libra2sharesRewardPool: {
-  //   name: 'Earn LIBRA by staking 2SHARES',
+  //   name: 'Earn LIBRA by staking LSHARE',
   //   poolId: 0,
   //   sectionInUI: 0,
   //   contract: 'Libra2ShareRewardPool',
-  //   depositTokenName: '2SHARES',
+  //   depositTokenName: 'LSHARE',
   //   earnTokenName: 'LIBRA',
   //   finished: false,
   //   multiplier: '7500x',
@@ -95,11 +95,11 @@ export const bankDefinitions: { [contractName: string]: BankInfo } = {
   //   closedForStaking: true,
   // },
   // Libra2sharesWftmLPRewardPool: {
-  //   name: 'Earn LIBRA by staking 2SHARES-WASTR LP',
+  //   name: 'Earn LIBRA by staking LSHARE-WASTR LP',
   //   poolId: 1,
   //   sectionInUI: 0,
   //   contract: 'Libra2SharesWftmLPRewardPool',
-  //   depositTokenName: '2SHARES-WASTR LP',
+  //   depositTokenName: 'LSHARE-WASTR LP',
   //   earnTokenName: 'LIBRA',
   //   finished: false,
   //   multiplier: '6000x',
@@ -109,11 +109,11 @@ export const bankDefinitions: { [contractName: string]: BankInfo } = {
   //   closedForStaking: true,
   // },
   // Libra2shares2ombLPRewardPool: {
-  //   name: 'Earn LIBRA by staking 2OMB-2SHARES LP',
+  //   name: 'Earn LIBRA by staking 2OMB-LSHARE LP',
   //   poolId: 2,
   //   sectionInUI: 0,
   //   contract: 'Libra2Shares2ombLPRewardPool',
-  //   depositTokenName: '2OMB-2SHARES LP',
+  //   depositTokenName: '2OMB-LSHARE LP',
   //   earnTokenName: 'LIBRA',
   //   finished: false,
   //   multiplier: '6000',
@@ -236,7 +236,7 @@ export const bankDefinitions: { [contractName: string]: BankInfo } = {
   //   sort: 9,
   //   closedForStaking: true,
   // },
-  LibraFtmLPLibraRewardPool: {
+  LibraAstrLPLibraRewardPool: {
     name: 'Earn LIBRA by LIBRA-ASTR LP',
     poolId: 0,
     sectionInUI: 1,
@@ -250,7 +250,7 @@ export const bankDefinitions: { [contractName: string]: BankInfo } = {
     sort: 7,
     closedForStaking: true,
   },
-  LibraFtmLPLibraRewardPoolOld: {
+  LibraAstrLPLibraRewardPoolOld: {
     name: 'Earn LIBRA by LIBRA-ASTR LP',
     poolId: 0,
     sectionInUI: 1,
@@ -294,11 +294,11 @@ export const bankDefinitions: { [contractName: string]: BankInfo } = {
   },
 
   // TwoombTwosharesLPLShareRewardPool: {
-  //   name: 'Earn LSHARE by 2OMB-2SHARES LP',
+  //   name: 'Earn LSHARE by 2OMB-LSHARE LP',
   //   poolId: 4,
   //   sectionInUI: 2,
   //   contract: 'TwoombTwosharesLPLShareRewardPool',
-  //   depositTokenName: '2OMB-2SHARESLP',
+  //   depositTokenName: '2OMB-LSHARELP',
   //   earnTokenName: 'LSHARE',
   //   finished: false,
   //   multiplier: '0',
@@ -307,20 +307,6 @@ export const bankDefinitions: { [contractName: string]: BankInfo } = {
   //   sort: 12,
   //   closedForStaking: false,
   // },
-  Libra2SHARESRebates: {
-    name: 'Bond 2SHARES, earn LIBRA',
-    poolId: 0,
-    sectionInUI: 3,
-    contract: 'LibraFtmRewardPool',
-    depositTokenName: '2SHARES',
-    earnTokenName: 'LIBRA',
-    finished: false,
-    multiplier: '10000x',
-    buyLink: '',
-    site: '',
-    sort: 5,
-    closedForStaking: false,
-  },
   USDCRebates: {
     name: 'Bond USDC, earn LIBRA',
     poolId: 1,
@@ -335,12 +321,12 @@ export const bankDefinitions: { [contractName: string]: BankInfo } = {
     sort: 6,
     closedForStaking: false,
   },
-  Libra2SHARESASTRRebates: {
-    name: 'Bond 2SHARES-WASTR LP, earn LIBRA',
+  LibraLSHAREASTRRebates: {
+    name: 'Bond LSHARE-WASTR LP, earn LIBRA',
     poolId: 2,
     sectionInUI: 3,
     contract: 'LibraFtmRewardPool',
-    depositTokenName: '2SHARES-WASTR LP',
+    depositTokenName: 'LSHARE-WASTR LP',
     earnTokenName: 'LIBRA',
     finished: false,
     multiplier: '12000x',

@@ -9,7 +9,7 @@ import ModalTitle from '../../../components/ModalTitle';
 import TokenInput from '../../../components/TokenInput';
 import useRebateTreasury from '../../../hooks/useRebateTreasury';
 import useLibraFinance from '../../../hooks/useLibraFinance';
-import useFantomPrice from '../../../hooks/useFantomPrice';
+import useAstarPrice from '../../../hooks/useAstarPrice';
 
 import { getFullDisplayBalance } from '../../../utils/formatBalance';
 import { BigNumber } from 'ethers';
@@ -27,7 +27,7 @@ const DepositModal: React.FC<DepositModalProps> = ({ max, onConfirm, onDismiss, 
 
   const libraFinance = useLibraFinance();
   const rebateStats = useRebateTreasury();
-  const { price: astarPrice, marketCap: astarMarketCap, priceChange: astarPriceChange } = useFantomPrice();
+  const { price: astarPrice, marketCap: astarMarketCap, priceChange: astarPriceChange } = useAstarPrice();
 
   const fullBalance = useMemo(() => {
     return getFullDisplayBalance(max, tokenName === 'USDC' ? 6 : 18);

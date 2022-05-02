@@ -308,7 +308,7 @@ export class LibraFinance {
     if (earnTokenName === 'LIBRA') {
       if (!contractName.endsWith('LibraRewardPool')) {
         const rewardPerSecond = await poolContract.libraPerSecond();
-        if (depositTokenName === '2SHARES') {
+        if (depositTokenName === 'LSHARE') {
           return rewardPerSecond.mul(7500).div(25000).div(24).mul(20);
         } else if (depositTokenName === '2OMB') {
           return rewardPerSecond.mul(5000).div(25000).div(24).mul(20);
@@ -320,7 +320,7 @@ export class LibraFinance {
           return rewardPerSecond.mul(500).div(25000).div(24).mul(20);
         } else if (depositTokenName === '2OMB-WASTR LP') {
           return rewardPerSecond.mul(6000).div(25000).div(24).mul(20);
-        } else if (depositTokenName === '2SHARES-WASTR LP') {
+        } else if (depositTokenName === 'LSHARE-WASTR LP') {
           return rewardPerSecond.mul(6000).div(25000).div(24).mul(20);
         } else if (depositTokenName === 'BLOOM') {
           return rewardPerSecond.mul(500).div(25000).div(24).mul(20);
@@ -366,10 +366,10 @@ export class LibraFinance {
         tokenPrice = await this.getLPTokenPrice(token, this.LIBRA, true, false);
       } else if (tokenName === 'LSHARE-WASTR LP') {
         tokenPrice = await this.getLPTokenPrice(token, this.LSHARE, false, false);
-      } else if (tokenName === '2SHARES-WASTR LP') {
+      } else if (tokenName === 'LSHARE-WASTR LP') {
         tokenPrice = await this.getLPTokenPrice(
           token,
-          new ERC20('0xc54a1684fd1bef1f077a336e6be4bd9a3096a6ca', this.provider, '2SHARES'),
+          new ERC20('0xc54a1684fd1bef1f077a336e6be4bd9a3096a6ca', this.provider, 'LSHARE'),
           false,
           true,
         );
@@ -514,7 +514,7 @@ export class LibraFinance {
 
   // async get2ShareStatFake(): Promise<TokenStat> {
   //   const { TwoOmbFtmRewardPool, TwoOmbFtmLpLibraRewardPool, TwoOmbFtmLpLibraRewardPoolOld } = this.contracts;
-  //   const LSHARE = new ERC20('0xc54a1684fd1bef1f077a336e6be4bd9a3096a6ca', this.provider, '2SHARES');
+  //   const LSHARE = new ERC20('0xc54a1684fd1bef1f077a336e6be4bd9a3096a6ca', this.provider, 'LSHARE');
   //   const supply = await LSHARE.totalSupply();
   //   const libraRewardPoolSupply = await LSHARE.balanceOf(TwoOmbFtmRewardPool.address);
   //   const libraRewardPoolSupply2 = await LSHARE.balanceOf(TwoOmbFtmLpLibraRewardPool.address);
@@ -649,11 +649,11 @@ export class LibraFinance {
 
   //   const { WASTR } = this.externalTokens;
 
-  //   const wftm = new TokenSpirit(chainId, WASTR.address, WASTR.decimal);
+  //   const wastr = new TokenSpirit(chainId, WASTR.address, WASTR.decimal);
   //   const token = new TokenSpirit(chainId, tokenContract.address, tokenContract.decimal, tokenContract.symbol);
   //   try {
-  //     const wftmToToken = await FetcherSpirit.fetchPairData(wftm, token, this.provider);
-  //     const liquidityToken = wftmToToken.liquidityToken;
+  //     const wastrToToken = await FetcherSpirit.fetchPairData(wastr, token, this.provider);
+  //     const liquidityToken = wastrToToken.liquidityToken;
   //     let ftmBalanceInLP = await WASTR.balanceOf(liquidityToken.address);
   //     let astarAmount = Number(getFullDisplayBalance(ftmBalanceInLP, WASTR.decimal));
   //     let shibaBalanceInLP = await tokenContract.balanceOf(liquidityToken.address);
@@ -926,7 +926,7 @@ export class LibraFinance {
     return true;
   }
 
-  async provideLibraFtmLP(astarAmount: string, libraAmount: BigNumber): Promise<TransactionResponse> {
+  async provideLibraAstrLP(astarAmount: string, libraAmount: BigNumber): Promise<TransactionResponse> {
     const { TaxOffice } = this.contracts;
     let overrides = {
       value: parseUnits(astarAmount, 18),
