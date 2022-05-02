@@ -35,9 +35,17 @@ uint256 \_startTime
 \_period=300
 \_startTime=1647668829
 
-Masonry デプロイ
+Boardroom deployed
 
-treasury デプロイ
+treasury deployed
+
+LibraGenesisRewardPool deployed
+
+
+RebateTreasury
+constructor(address tomb, address tombOracle, address treasury)
+
+--In Progress--
 
 function initialize(
 address \_tomb,
@@ -46,11 +54,10 @@ address \_tshare,
 address \_tombOracle,
 address \_masonry,
 address \_genesisPool,
-address \_bondTreasury,
+address \_bondTreasury, ＝＞ rebate treasury のこと？？要確認
 uint256 \_startTime
 
-RebateTreasury
-constructor(address tomb, address tombOracle, address treasury)
+
 
 Masonry の initialize メソッドを叩く。
 function initialize(

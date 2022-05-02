@@ -1,8 +1,10 @@
+//SPDX-License-Identifier: MIXED
+
 // Sources flattened with hardhat v2.9.1 https://hardhat.org
 
 // File @openzeppelin/contracts/token/ERC20/IERC20.sol@v3.4.2
 
-// SPDX-License-Identifier: MIT
+// MIT
 
 pragma solidity >=0.6.0 <0.8.0;
 
@@ -83,7 +85,7 @@ interface IERC20 {
 
 // File @openzeppelin/contracts/math/SafeMath.sol@v3.4.2
 
-// SPDX-License-Identifier: MIT
+// MIT
 
 pragma solidity >=0.6.0 <0.8.0;
 
@@ -301,7 +303,7 @@ library SafeMath {
 
 // File @openzeppelin/contracts/utils/Address.sol@v3.4.2
 
-// SPDX-License-Identifier: MIT
+// MIT
 
 pragma solidity >=0.6.2 <0.8.0;
 
@@ -494,7 +496,7 @@ library Address {
 
 // File @openzeppelin/contracts/token/ERC20/SafeERC20.sol@v3.4.2
 
-// SPDX-License-Identifier: MIT
+// MIT
 
 pragma solidity >=0.6.0 <0.8.0;
 
@@ -571,7 +573,7 @@ library SafeERC20 {
 
 // File contracts/distribution/DummyLibraGenesisRewardPool.sol
 
-// SPDX-License-Identifier: MIT
+// MIT
 
 pragma solidity 0.6.12;
 
@@ -619,8 +621,8 @@ contract DummyLibraGenesisRewardPool {
     uint256 public poolEndTime;
 
     // MAINNET
-    uint256 public libraPerSecond = 0.11574 ether; // 10000 LIBRA / (24h * 60min * 60s)
-    uint256 public runningTime = 24 hours;
+    uint256 public libraPerSecond = 0.028935 ether; // 10000 LIBRA / (96h * 60min * 60s)
+    uint256 public runningTime = 96 hours;
     uint256 public constant TOTAL_REWARDS = 10000 ether;
     // END MAINNET
 
