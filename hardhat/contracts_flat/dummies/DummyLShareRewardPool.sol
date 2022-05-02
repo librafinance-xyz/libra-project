@@ -1,9 +1,8 @@
-// SPDX-License-Identifier: MIXED
-
+// Sources flattened with hardhat v2.9.1 https://hardhat.org
 
 // File @openzeppelin/contracts/token/ERC20/IERC20.sol@v3.4.2
 
-// MIT
+// SPDX-License-Identifier: MIT
 
 pragma solidity >=0.6.0 <0.8.0;
 
@@ -84,7 +83,7 @@ interface IERC20 {
 
 // File @openzeppelin/contracts/math/SafeMath.sol@v3.4.2
 
-// MIT
+// SPDX-License-Identifier: MIT
 
 pragma solidity >=0.6.0 <0.8.0;
 
@@ -302,7 +301,7 @@ library SafeMath {
 
 // File @openzeppelin/contracts/utils/Address.sol@v3.4.2
 
-// MIT
+// SPDX-License-Identifier: MIT
 
 pragma solidity >=0.6.2 <0.8.0;
 
@@ -495,7 +494,7 @@ library Address {
 
 // File @openzeppelin/contracts/token/ERC20/SafeERC20.sol@v3.4.2
 
-// MIT
+// SPDX-License-Identifier: MIT
 
 pragma solidity >=0.6.0 <0.8.0;
 
@@ -570,17 +569,17 @@ library SafeERC20 {
 }
 
 
-// File contracts/distribution/LibraGenesisRewardPool.sol
+// File contracts/distribution/LShareRewardPool.sol
 
-// MIT
+// SPDX-License-Identifier: MIT
 
 pragma solidity 0.6.12;
 
 
 
-// Note that this pool has no minter key of LIBRA (rewards).
-// Instead, the governance will call LIBRA distributeReward method and send reward to this pool at the beginning.
-contract LibraGenesisRewardPool {
+// Note that this pool has no minter key of lSHARE (rewards).
+// Instead, the governance will call lSHARE distributeReward method and send reward to this pool at the beginning.
+contract DummyLShareRewardPool {
     using SafeMath for uint256;
     using SafeERC20 for IERC20;
 
@@ -589,20 +588,20 @@ contract LibraGenesisRewardPool {
 
     // Info of each user.
     struct UserInfo {
-        uint256 amount; // How many tokens the user has provided.
+        uint256 amount; // How many LP tokens the user has provided.
         uint256 rewardDebt; // Reward debt. See explanation below.
     }
 
     // Info of each pool.
     struct PoolInfo {
         IERC20 token; // Address of LP token contract.
-        uint256 allocPoint; // How many allocation points assigned to this pool. LIBRA to distribute.
-        uint256 lastRewardTime; // Last time that LIBRA distribution occurs.
-        uint256 accLibraPerShare; // Accumulated LIBRA per share, times 1e18. See below.
-        bool isStarted; // if lastRewardBlock has passed
+        uint256 allocPoint; // How many allocation points assigned to this pool. lSHAREs to distribute per block.
+        uint256 lastRewardTime; // Last time that lSHAREs distribution occurs.
+        uint256 accLSharePerShare; // Accumulated lSHAREs per share, times 1e18. See below.
+        bool isStarted; // if lastRewardTime has passed
     }
 
-    IERC20 public libra;
+    IERC20 public lshare;
 
     // Info of each pool.
     PoolInfo[] public poolInfo;
@@ -613,17 +612,15 @@ contract LibraGenesisRewardPool {
     // Total allocation points. Must be the sum of all allocation points in all pools.
     uint256 public totalAllocPoint = 0;
 
-    // The time when LIBRA mining starts.
+    // The time when lSHARE mining starts.
     uint256 public poolStartTime;
 
-    // The time when LIBRA mining ends.
+    // The time when lSHARE mining ends.
     uint256 public poolEndTime;
 
-    // MAINNET
-    uint256 public libraPerSecond = 0.11574 ether; // 10000 LIBRA / (24h * 60min * 60s)
-    uint256 public runningTime = 24 hours;
-    uint256 public constant TOTAL_REWARDS = 10000 ether;
-    // END MAINNET
+    uint256 public lSharePerSecond = 0.00187687 ether; // 60000 Lshare / (370 days * 24h * 60min * 60s)
+    uint256 public runningTime = 370 days; // 370 days
+    uint256 public constant TOTAL_REWARDS = 60000 ether;
 
     event Deposit(address indexed user, uint256 indexed pid, uint256 amount);
     event Withdraw(address indexed user, uint256 indexed pid, uint256 amount);
@@ -631,29 +628,29 @@ contract LibraGenesisRewardPool {
     event RewardPaid(address indexed user, uint256 amount);
 
     constructor(
-        address _libra, 
+        address _lshare,
         uint256 _poolStartTime
     ) public {
         require(block.timestamp < _poolStartTime, "late");
-        if (_libra != address(0)) libra = IERC20(_libra);
+        if (_lshare != address(0)) lshare = IERC20(_lshare);
         poolStartTime = _poolStartTime;
         poolEndTime = poolStartTime + runningTime;
         operator = msg.sender;
     }
 
     modifier onlyOperator() {
-        require(operator == msg.sender, "AstarGenesisPool: caller is not the operator");
+        require(operator == msg.sender, "LShareRewardPool: caller is not the operator");
         _;
     }
 
     function checkPoolDuplicate(IERC20 _token) internal view {
         uint256 length = poolInfo.length;
         for (uint256 pid = 0; pid < length; ++pid) {
-            require(poolInfo[pid].token != _token, "AstarGenesisPool: existing pool?");
+            require(poolInfo[pid].token != _token, "LShareRewardPool: existing pool?");
         }
     }
 
-    // Add a new token to the pool. Can only be called by the owner.
+    // Add a new lp to the pool. Can only be called by the owner.
     function add(
         uint256 _allocPoint,
         IERC20 _token,
@@ -686,15 +683,15 @@ contract LibraGenesisRewardPool {
             token : _token,
             allocPoint : _allocPoint,
             lastRewardTime : _lastRewardTime,
-            accLibraPerShare : 0,
+            accLSharePerShare : 0,
             isStarted : _isStarted
-        }));
+            }));
         if (_isStarted) {
             totalAllocPoint = totalAllocPoint.add(_allocPoint);
         }
     }
 
-    // Update the given pool's LIBRA allocation point. Can only be called by the owner.
+    // Update the given pool's lSHARE allocation point. Can only be called by the owner.
     function set(uint256 _pid, uint256 _allocPoint) public onlyOperator {
         massUpdatePools();
         PoolInfo storage pool = poolInfo[_pid];
@@ -711,27 +708,27 @@ contract LibraGenesisRewardPool {
         if (_fromTime >= _toTime) return 0;
         if (_toTime >= poolEndTime) {
             if (_fromTime >= poolEndTime) return 0;
-            if (_fromTime <= poolStartTime) return poolEndTime.sub(poolStartTime).mul(libraPerSecond);
-            return poolEndTime.sub(_fromTime).mul(libraPerSecond);
+            if (_fromTime <= poolStartTime) return poolEndTime.sub(poolStartTime).mul(lSharePerSecond);
+            return poolEndTime.sub(_fromTime).mul(lSharePerSecond);
         } else {
             if (_toTime <= poolStartTime) return 0;
-            if (_fromTime <= poolStartTime) return _toTime.sub(poolStartTime).mul(libraPerSecond);
-            return _toTime.sub(_fromTime).mul(libraPerSecond);
+            if (_fromTime <= poolStartTime) return _toTime.sub(poolStartTime).mul(lSharePerSecond);
+            return _toTime.sub(_fromTime).mul(lSharePerSecond);
         }
     }
 
-    // View function to see pending LIBRA on frontend.
-    function pendingLIBRA(uint256 _pid, address _user) external view returns (uint256) {
+    // View function to see pending lSHAREs on frontend.
+    function pendingShare(uint256 _pid, address _user) external view returns (uint256) {
         PoolInfo storage pool = poolInfo[_pid];
         UserInfo storage user = userInfo[_pid][_user];
-        uint256 accLibraPerShare = pool.accLibraPerShare;
+        uint256 accLSharePerShare = pool.accLSharePerShare;
         uint256 tokenSupply = pool.token.balanceOf(address(this));
         if (block.timestamp > pool.lastRewardTime && tokenSupply != 0) {
             uint256 _generatedReward = getGeneratedReward(pool.lastRewardTime, block.timestamp);
-            uint256 _libraReward = _generatedReward.mul(pool.allocPoint).div(totalAllocPoint);
-            accLibraPerShare = accLibraPerShare.add(_libraReward.mul(1e18).div(tokenSupply));
+            uint256 _lshareReward = _generatedReward.mul(pool.allocPoint).div(totalAllocPoint);
+            accLSharePerShare = accLSharePerShare.add(_lshareReward.mul(1e18).div(tokenSupply));
         }
-        return user.amount.mul(accLibraPerShare).div(1e18).sub(user.rewardDebt);
+        return user.amount.mul(accLSharePerShare).div(1e18).sub(user.rewardDebt);
     }
 
     // Update reward variables for all pools. Be careful of gas spending!
@@ -759,8 +756,8 @@ contract LibraGenesisRewardPool {
         }
         if (totalAllocPoint > 0) {
             uint256 _generatedReward = getGeneratedReward(pool.lastRewardTime, block.timestamp);
-            uint256 _libraReward = _generatedReward.mul(pool.allocPoint).div(totalAllocPoint);
-            pool.accLibraPerShare = pool.accLibraPerShare.add(_libraReward.mul(1e18).div(tokenSupply));
+            uint256 _lshareReward = _generatedReward.mul(pool.allocPoint).div(totalAllocPoint);
+            pool.accLSharePerShare = pool.accLSharePerShare.add(_lshareReward.mul(1e18).div(tokenSupply));
         }
         pool.lastRewardTime = block.timestamp;
     }
@@ -772,9 +769,9 @@ contract LibraGenesisRewardPool {
         UserInfo storage user = userInfo[_pid][_sender];
         updatePool(_pid);
         if (user.amount > 0) {
-            uint256 _pending = user.amount.mul(pool.accLibraPerShare).div(1e18).sub(user.rewardDebt);
+            uint256 _pending = user.amount.mul(pool.accLSharePerShare).div(1e18).sub(user.rewardDebt);
             if (_pending > 0) {
-                safeLibraTransfer(_sender, _pending);
+                safeLShareTransfer(_sender, _pending);
                 emit RewardPaid(_sender, _pending);
             }
         }
@@ -782,7 +779,7 @@ contract LibraGenesisRewardPool {
             pool.token.safeTransferFrom(_sender, address(this), _amount);
             user.amount = user.amount.add(_amount);
         }
-        user.rewardDebt = user.amount.mul(pool.accLibraPerShare).div(1e18);
+        user.rewardDebt = user.amount.mul(pool.accLSharePerShare).div(1e18);
         emit Deposit(_sender, _pid, _amount);
     }
 
@@ -793,16 +790,16 @@ contract LibraGenesisRewardPool {
         UserInfo storage user = userInfo[_pid][_sender];
         require(user.amount >= _amount, "withdraw: not good");
         updatePool(_pid);
-        uint256 _pending = user.amount.mul(pool.accLibraPerShare).div(1e18).sub(user.rewardDebt);
+        uint256 _pending = user.amount.mul(pool.accLSharePerShare).div(1e18).sub(user.rewardDebt);
         if (_pending > 0) {
-            safeLibraTransfer(_sender, _pending);
+            safeLShareTransfer(_sender, _pending);
             emit RewardPaid(_sender, _pending);
         }
         if (_amount > 0) {
             user.amount = user.amount.sub(_amount);
             pool.token.safeTransfer(_sender, _amount);
         }
-        user.rewardDebt = user.amount.mul(pool.accLibraPerShare).div(1e18);
+        user.rewardDebt = user.amount.mul(pool.accLSharePerShare).div(1e18);
         emit Withdraw(_sender, _pid, _amount);
     }
 
@@ -817,14 +814,14 @@ contract LibraGenesisRewardPool {
         emit EmergencyWithdraw(msg.sender, _pid, _amount);
     }
 
-    // Safe LIBRA transfer function, just in case if rounding error causes pool to not have enough LIBRAs.
-    function safeLibraTransfer(address _to, uint256 _amount) internal {
-        uint256 _libraBalance = libra.balanceOf(address(this));
-        if (_libraBalance > 0) {
-            if (_amount > _libraBalance) {
-                libra.safeTransfer(_to, _libraBalance);
+    // Safe lshare transfer function, just in case if rounding error causes pool to not have enough lSHAREs.
+    function safeLShareTransfer(address _to, uint256 _amount) internal {
+        uint256 _lshareBal = lshare.balanceOf(address(this));
+        if (_lshareBal > 0) {
+            if (_amount > _lshareBal) {
+                lshare.safeTransfer(_to, _lshareBal);
             } else {
-                libra.safeTransfer(_to, _amount);
+                lshare.safeTransfer(_to, _amount);
             }
         }
     }
@@ -833,14 +830,10 @@ contract LibraGenesisRewardPool {
         operator = _operator;
     }
 
-    function governanceRecoverUnsupported(
-        IERC20 _token, 
-        uint256 amount, 
-        address to
-    ) external onlyOperator {
+    function governanceRecoverUnsupported(IERC20 _token, uint256 amount, address to) external onlyOperator {
         if (block.timestamp < poolEndTime + 90 days) {
-            // do not allow to drain core token (LIBRA or lps) if less than 90 days after pool ends
-            require(_token != libra, "libra");
+            // do not allow to drain core token (lSHARE or lps) if less than 90 days after pool ends
+            require(_token != lshare, "lshare");
             uint256 length = poolInfo.length;
             for (uint256 pid = 0; pid < length; ++pid) {
                 PoolInfo storage pool = poolInfo[pid];

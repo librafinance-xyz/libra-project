@@ -14,6 +14,15 @@
 # npx hardhat flatten contracts/LShareDummy.sol > ./contracts_flat/LShareDummy.sol 
 # npx hardhat flatten contracts/LBondDummy.sol > ./contracts_flat/LBondDummy.sol 
 
-npx hardhat flatten contracts/distribution/LibraGenesisRewardPool.sol > ./contracts_flat/LibraGenesisRewardPool.sol 
+npx hardhat flatten contracts/Libra.sol > ./contracts_flat/dummies/DummyLibra.sol 
+npx hardhat flatten contracts/LShare.sol > ./contracts_flat/dummies/DummyLShare.sol 
+npx hardhat flatten contracts/LBond.sol > ./contracts_flat/dummies/DummyLBond.sol 
 
+npx hardhat flatten contracts/distribution/LibraGenesisRewardPool.sol > ./contracts_flat/dummies/DummyLibraGenesisRewardPool.sol 
+npx hardhat flatten contracts/distribution/LibraRewardPool.sol > ./contracts_flat/dummies/DummyLibraRewardPool.sol 
+npx hardhat flatten contracts/distribution/LShareRewardPool.sol > ./contracts_flat/dummies/DummyLShareRewardPool.sol 
+
+npx hardhat flatten contracts/Oracle.sol > ./contracts_flat/dummies/DummyOracle.sol 
+npx hardhat flatten contracts/BoardRoom.sol > ./contracts_flat/dummies/DummyBoardRoom.sol 
+npx hardhat flatten contracts/Treasury.sol > ./contracts_flat/dummies/DummyTreasury.sol 
 
