@@ -76,12 +76,10 @@ const Cemetery = () => {
   const activeBanks = banks.filter((bank) => !bank.finished);
   const {
     balance,
-    balance_2shares_wastr,
     balance_libra_wastr,
     balance_Lshares_wastr,
     balance_libra,
     balance_Lshares,
-    balance_2shares,
   } = useTotalTreasuryBalance();
   return (
     <Switch>
@@ -145,10 +143,6 @@ const Cemetery = () => {
                         <Typography variant="h5">LSHARE-WASTR LP:</Typography>
                         <CountUp style={{ fontSize: '25px' }} end={balance_Lshares_wastr} separator="," prefix="$" />
                       </CardContent>
-                      <CardContent align="center">
-                        <Typography variant="h5">LSHARE-WASTR LP:</Typography>
-                        <CountUp style={{ fontSize: '25px' }} end={balance_2shares_wastr} separator="," prefix="$" />
-                      </CardContent>
                     </Card>
                   </Grid>
                   <Grid item xs={12} md={4} lg={4} className={classes.gridItem}>
@@ -160,10 +154,6 @@ const Cemetery = () => {
                       <CardContent align="center">
                         <Typography variant="h5">LSHARE:</Typography>
                         <CountUp style={{ fontSize: '25px' }} end={balance_Lshares} separator="," prefix="$" />
-                      </CardContent>
-                      <CardContent align="center">
-                        <Typography variant="h5">LSHARE:</Typography>
-                        <CountUp style={{ fontSize: '25px' }} end={balance_2shares} separator="," prefix="$" />
                       </CardContent>
                     </Card>
                   </Grid>

@@ -156,12 +156,10 @@ function useTotalTreasuryBalance() {
   const ThreeShares = new web3.eth.Contract(ERC20ABI, '0x6437ADAC543583C4b31Bf0323A0870430F5CC2e7');
   const WASTR = new web3.eth.Contract(ERC20ABI, '0x21be370d5312f44cb42ce377bc9b8a0cef1a4c83');
   const [balance, setBalance] = useState(0);
-  const [balance_2shares_wastr, setBalance_2shares_wastr] = useState(0);
   const [balance_libra_wastr, setBalance_libra_wastr] = useState(0);
   const [balance_Lshares_wastr, setBalance_Lshares_wastr] = useState(0);
   const [balance_libra, setBalance_libra] = useState(0);
   const [balance_Lshares, setBalance_Lshares] = useState(0);
-  const [balance_2shares, setBalance_2shares] = useState(0);
 
   useEffect(() => {
     getBalance();
@@ -175,12 +173,12 @@ function useTotalTreasuryBalance() {
 
   return {
     balance,
-    balance_2shares_wastr,
+
     balance_libra_wastr,
     balance_Lshares_wastr,
     balance_libra,
     balance_Lshares,
-    balance_2shares,
+
   };
 
   async function getBalance() {
@@ -191,17 +189,13 @@ function useTotalTreasuryBalance() {
     const { data } = await axios('https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&ids=3shares');
     const threeSharesBalance = web3.utils.fromWei(await ThreeShares.methods.balanceOf(treasuryAddress).call());
     const valueLshares = threeSharesBalance * data[0].current_price;
-
     const data2sharesAndlibra = await axios(
       'https://openapi.debank.com/v1/user/chain_balance?id=0x8f555E00ea0FAc871b3Aa70C015915dB094E7f88&chain_id=ftm',
     );
 
     console.log(`LShares USD: $${valueLshares}`);
     console.log(`2Shares + libra: $${data2sharesAndlibra.data.usd_value}`);
-    const LP_2shares_wastr = await getLPPrice(
-      '0x6398ACBBAB2561553a9e458Ab67dCFbD58944e52',
-      '0xc54a1684fd1bef1f077a336e6be4bd9a3096a6ca',
-    );
+
     const LP_libra_wastr = await getLPPrice(
       '0x83A52eff2E9D112E9B022399A9fD22a9DB7d33Ae',
       '0x14def7584a6c52f470ca4f4b9671056b22f4ffde',
@@ -210,13 +204,11 @@ function useTotalTreasuryBalance() {
       '0xd352daC95a91AfeFb112DBBB3463ccfA5EC15b65',
       '0x6437adac543583c4b31bf0323a0870430f5cc2e7',
     );
-    setBalance(data2sharesAndlibra.data.usd_value + valueLshares + LP_2shares_wastr + LP_libra_wastr + LP_Lshares_wastr);
-    setBalance_2shares_wastr(LP_2shares_wastr);
+    setBalance(data2sharesAndlibra.data.usd_value + valueLshares +LP_libra_wastr + LP_Lshares_wastr);
     setBalance_libra_wastr(LP_libra_wastr);
     setBalance_Lshares_wastr(LP_Lshares_wastr);
     setBalance_libra(await getlibraBalance());
     setBalance_Lshares(await getLsharesBalance());
-    setBalance_2shares(await get2sharesBalance());
   }
 
   async function getlibraBalance() {
