@@ -2431,7 +2431,7 @@
       }
     ]
   },
-  "tBond": {
+  "LBond": {
     "address": "0x981ee8AD300A219A5a569eA058C2A98bb8ab00e6",
     "abi": [
       {

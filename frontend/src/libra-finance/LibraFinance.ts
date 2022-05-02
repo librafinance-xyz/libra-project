@@ -49,7 +49,7 @@ export class LibraFinance {
     // this.LIBRA = new ERC20(deployments.libra.address, provider, 'LIBRA');
     this.LIBRA = new ERC20(deployments.libra.address, provider, 'LIBRA');
     this.LSHARE = new ERC20(deployments.LShare.address, provider, 'LSHARE');
-    this.LBOND = new ERC20(deployments.tBond.address, provider, 'LBOND');
+    this.LBOND = new ERC20(deployments.LBond.address, provider, 'LBOND');
     // this.FTM = this.externalTokens['WFTM'];
     this.FTM = this.externalTokens['WASTR'];
 
