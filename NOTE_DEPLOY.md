@@ -26,6 +26,10 @@ day 1
 
 //
 
+cd hardhat
+
+vim deploy/config.ts
+
 npx hardhat deploy --network astar --tags Init
 npx hardhat deploy --network astar --tags LShare
 npx hardhat deploy --network astar --tags Oracle

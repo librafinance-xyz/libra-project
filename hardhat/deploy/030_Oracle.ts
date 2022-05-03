@@ -5,6 +5,7 @@ import { ethers } from "hardhat";
 import { HardhatRuntimeEnvironment } from "hardhat/types";
 import { DeployFunction } from "hardhat-deploy/types";
 import LibraDeployConfig from "./config";
+import UniswapV2FactoryAbi from "./abi/UniswapV2Factory.json";
 import UniswapV2RouterAbi from "./abi/UniswapV2Router.json";
 import ERC20Abi from "./abi/erc20.json";
 

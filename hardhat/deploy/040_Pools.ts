@@ -47,7 +47,7 @@ const func: DeployFunction = async function (hre: HardhatRuntimeEnvironment) {
     LibraDeployConfig.poolStartTimeForLibraRewardPool;
   const LibraAddress = LibraDeployConfig.LibraAddress;
   // const poolStartTimeForLibraRewardPool = ""; // DAY 2-5 & Day 6-10
-
+  //////////////////////////////////////////////////////////////////////////////////////////
   const LibraGenesisRewardPool = await mydeploy(
     hre,
     "LibraGenesisRewardPool",
@@ -78,7 +78,7 @@ const func: DeployFunction = async function (hre: HardhatRuntimeEnvironment) {
       '";' +
       "\n"
   );
-
+  //////////////////////////////////////////////////////////////////////////////////////////
   const LibraRewardPool = await mydeploy(
     hre,
     "LibraRewardPool",
@@ -104,6 +104,36 @@ const func: DeployFunction = async function (hre: HardhatRuntimeEnvironment) {
   fs.writeFileSync(
     "../addresses/" + hre.network.name + "/LibraRewardPool.ts",
     'export const LibraRewardPool = "' + LibraRewardPool.address + '";' + "\n"
+  );
+  //////////////////////////////
+  const LShareAddress = LibraDeployConfig.LShareAddress;
+  const startTimeLSharePool = LibraDeployConfig.startTimeLShare;
+
+  const LShareRewardPool = await mydeploy(
+    hre,
+    "LShareRewardPool",
+    deployer,
+    [LShareAddress, startTimeLSharePool],
+    true,
+    gasLimit
+  );
+  console.log("#LShareRewardPool");
+  console.log(
+    "npx hardhat verify --network " +
+      hre.network.name +
+      " " +
+      LShareRewardPool.address +
+      " " +
+      LShareAddress +
+      " " +
+      " " +
+      startTimeLSharePool +
+      " " +
+      " --contract contracts/distribution/LShareRewardPool.sol:LShareRewardPool "
+  );
+  fs.writeFileSync(
+    "../addresses/" + hre.network.name + "/LShareRewardPool.ts",
+    'export const LShareRewardPool = "' + LShareRewardPool.address + '";' + "\n"
   );
 };
 

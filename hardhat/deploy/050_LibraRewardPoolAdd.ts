@@ -9,6 +9,9 @@ import fs from "fs";
 import LibraDeployConfig from "./config";
 import UniswapV2RouterAbi from "./abi/UniswapV2Router.json";
 import ERC20Abi from "./abi/erc20.json";
+import { abi as LibraRewardPoolAbi } from "./abi/LibraRewardPool.json";
+// import { abi as LibraGenesisRewardPoolAbi } from "./abi/LibraGenesisRewardPool.json";
+// import { abi as LShareRewardPoolAbi } from "./abi/LShareRewardPool.json";
 
 export async function mydeploy(
   hre: HardhatRuntimeEnvironment,
@@ -38,6 +41,18 @@ const func: DeployFunction = async function (hre: HardhatRuntimeEnvironment) {
   const deployer = signers[0].address;
   const gasLimit = 5000000;
   console.log("deployer = " + deployer);
+  const LibraRewardPoolAddress = LibraDeployConfig.LibraRewardPool;
+  const LibraGenesisRewardPoolAddress =
+    LibraDeployConfig.LibraGenesisRewardPool;
+
+  const LibraRewardPool = await ethers.getContractAt(
+    LibraRewardPoolAbi,
+    LibraRewardPoolAddress
+  );
+  // const LibraGenesisRewardPool = await ethers.getContractAt(
+  //   LibraGenesisRewardPoolAbi,
+  //   LibraGenesisRewardPoolAddress
+  // );
 
   // LShare ( DUMMY )
   // const startTime = "";
