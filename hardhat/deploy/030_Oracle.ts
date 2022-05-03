@@ -71,13 +71,21 @@ const func: DeployFunction = async function (hre: HardhatRuntimeEnvironment) {
     ERC20Abi,
     LShareAstarPair
   );
-  if (LShareAstarPairLP.balanceOf(deployer) == 0) {
+  console.log("LShareAstarPair: " + LShareAstarPair);
+  console.log("LibraAstarPair: " + LibraAstarPair);
+  if (
+    LShareAstarPair == "0x0000000000000000000000000000000000000000" ||
+    (await LShareAstarPairLP.balanceOf(deployer)) == 0
+  ) {
+    console.log("WASTR.approve...");
     await (
       await WASTR.approve(UniswapV2RouterAddress, "100000000000000000")
     ).wait();
+    console.log("LSHARE.approve...");
     await (
       await LSHARE.approve(UniswapV2RouterAddress, "100000000000000000")
     ).wait();
+    console.log("UniswapV2Router.addLiquidity...");
 
     await (
       await UniswapV2Router.addLiquidity(
@@ -91,19 +99,25 @@ const func: DeployFunction = async function (hre: HardhatRuntimeEnvironment) {
         "9999999999999"
       )
     ).wait();
-
+    console.log("UniswapV2Factory.getPair...");
     LShareAstarPair = await UniswapV2Factory.getPair(
       LShareAddress,
       WastarAddress
     );
   }
-  if (LibraAstarPairLP.balanceOf(deployer) == 0) {
+  if (
+    LibraAstarPair == "0x0000000000000000000000000000000000000000" ||
+    (await LibraAstarPairLP.balanceOf(deployer)) == 0
+  ) {
+    console.log("WASTR.approve...");
     await (
       await WASTR.approve(UniswapV2RouterAddress, "100000000000000000")
     ).wait();
+    console.log("LIBRA.approve...");
     await (
       await LIBRA.approve(UniswapV2RouterAddress, "100000000000000000")
     ).wait();
+    console.log("UniswapV2Router.addLiquidity...");
 
     await (
       await UniswapV2Router.addLiquidity(
@@ -117,6 +131,7 @@ const func: DeployFunction = async function (hre: HardhatRuntimeEnvironment) {
         "9999999999999"
       )
     ).wait();
+    console.log("UniswapV2Factory.getPair...");
 
     LibraAstarPair = await UniswapV2Factory.getPair(
       LibraAddress,

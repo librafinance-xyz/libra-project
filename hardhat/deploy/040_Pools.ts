@@ -141,10 +141,50 @@ const func: DeployFunction = async function (hre: HardhatRuntimeEnvironment) {
     UniswapV2FactoryAbi,
     UniswapV2FactoryAddress
   );
-  const LibraAstarPair = await UniswapV2Factory.getPair(
+  let LibraAstarPair = await UniswapV2Factory.getPair(
     LibraAddress,
     WASTRAddress
   );
+  console.log("UniswapV2FactoryAddress: " + UniswapV2FactoryAddress);
+  console.log("LibraAddress: " + LibraAddress);
+  console.log("WASTRAddress: " + WASTRAddress);
+  console.log("LibraAstarPair: " + LibraAstarPair);
+  const LibraAstarLP = await ethers.getContractAt(ERC20Abi, LibraAstarPair);
+  if (
+    LibraAstarPair == "0x0000000000000000000000000000000000000000" ||
+    (await LibraAstarLP.balanceOf(deployer)) == 0
+  ) {
+    const WASTR = await ethers.getContractAt(ERC20Abi, WASTRAddress);
+    const LIBRA = await ethers.getContractAt(ERC20Abi, LibraAddress);
+    console.log("WASTR.approve...");
+    await (
+      await WASTR.approve(UniswapV2RouterAddress, "100000000000000000")
+    ).wait();
+    console.log("LIBRA.approve...");
+    await (
+      await LIBRA.approve(UniswapV2RouterAddress, "100000000000000000")
+    ).wait();
+    console.log("UniswapV2Router.addLiquidity...");
+    const UniswapV2Router = await ethers.getContractAt(
+      UniswapV2RouterAbi,
+      UniswapV2RouterAddress
+    );
+    await (
+      await UniswapV2Router.addLiquidity(
+        LibraAddress,
+        WASTRAddress,
+        "100000000000000000",
+        "100000000000000000",
+        "0",
+        "0",
+        deployer,
+        "9999999999999"
+      )
+    ).wait();
+
+    console.log("UniswapV2Factory.getPair...");
+    LibraAstarPair = await UniswapV2Factory.getPair(LibraAddress, WASTRAddress);
+  }
   if ((await LibraRewardPool.totalAllocPoint()) == 0) {
     //
     await (await LibraRewardPool.add("100", LibraAstarPair, false, 0)).wait();

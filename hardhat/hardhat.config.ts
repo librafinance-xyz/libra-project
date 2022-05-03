@@ -535,51 +535,12 @@ const config: HardhatUserConfig = {
     ],
 
     overrides: {
-      "contracts/WeightedPoolFactory.sol": {
-        version: "0.7.6",
-        settings: {
-          optimizer: {
-            enabled: true,
-            runs: 1000,
-          },
-        },
-      },
       "contracts/distribution/LShareRewardPool.sol": {
         version: "0.6.12",
         settings: {
           optimizer: {
             enabled: true,
-            runs: 1000,
-          },
-        },
-      },
-      "contracts/Authorizer.sol": {
-        version: "0.7.6",
-        settings: {
-          optimizer: {
-            enabled: true,
-            runs: 200,
-            // evmVersion: "istanbul"
-          },
-        },
-      },
-      "contracts/Vault.sol": {
-        version: "0.7.6",
-        settings: {
-          optimizer: {
-            enabled: true,
-            runs: 200,
-            // evmVersion: "istanbul"
-          },
-        },
-      },
-      "contracts/NoProtocolFeeLiquidityBootstrappingPoolFactory.sol": {
-        version: "0.7.6",
-        settings: {
-          optimizer: {
-            enabled: true,
-            runs: 200,
-            // evmVersion: "istanbul"
+            runs: 1100,
           },
         },
       },
