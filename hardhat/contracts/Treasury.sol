@@ -14,9 +14,9 @@ import "./interfaces/IBasisAsset.sol";
 import "./interfaces/IOracle.sol";
 import "./interfaces/IBoardroom.sol";
 
-interface IBondTreasury {
-    function totalVested() external view returns (uint256);
-}
+// interface IBondTreasury {
+//     function totalVested() external view returns (uint256);
+// }
 
 contract Treasury is ContractGuard {
     using SafeERC20 for IERC20;
@@ -295,9 +295,9 @@ contract Treasury is ContractGuard {
         boardroom = _boardroom;
     }
 
-    function setBondTreasury(address _bondTreasury) external onlyOperator {
-        bondTreasury = _bondTreasury;
-    }
+    // function setBondTreasury(address _bondTreasury) external onlyOperator {
+    //     bondTreasury = _bondTreasury;
+    // }
 
     function setLibraOracle(address _libraOracle) external onlyOperator {
         libraOracle = _libraOracle;
