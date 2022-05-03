@@ -40,6 +40,7 @@ const func: DeployFunction = async function (hre: HardhatRuntimeEnvironment) {
   const gasLimit = 5000000;
   console.log("deployer = " + deployer);
   const UniswapV2RouterAddress = LibraDeployConfig.UniswapV2Router;
+  const UniswapV2FactoryAddress = LibraDeployConfig.UniswapV2Factory;
   const WastarAddress = LibraDeployConfig.WETH;
   const LibraAddress = LibraDeployConfig.LibraAddress;
 
@@ -47,6 +48,10 @@ const func: DeployFunction = async function (hre: HardhatRuntimeEnvironment) {
   const UniswapV2Router = await ethers.getContractAt(
     UniswapV2RouterAbi,
     UniswapV2RouterAddress
+  );
+  const UniswapV2Factory = await ethers.getContractAt(
+    UniswapV2FactoryAbi,
+    UniswapV2FactoryAddress
   );
   const WASTR = await ethers.getContractAt(ERC20Abi, WastarAddress);
   const LIBRA = await ethers.getContractAt(ERC20Abi, LibraAddress);
@@ -70,7 +75,7 @@ const func: DeployFunction = async function (hre: HardhatRuntimeEnvironment) {
     )
   ).wait();
 
-  const LibraAstarPair = await UniswapV2Router.getPair(
+  const LibraAstarPair = await UniswapV2Factory.getPair(
     LibraAddress,
     WastarAddress
   );
