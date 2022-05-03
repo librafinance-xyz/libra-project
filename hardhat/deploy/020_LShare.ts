@@ -38,7 +38,7 @@ const func: DeployFunction = async function (hre: HardhatRuntimeEnvironment) {
   console.log("deployer = " + deployer);
 
   // LShare ( DUMMY )
-  const startTime = LibraDeployConfig.startTimeLShare;
+  const startTimeLShare = LibraDeployConfig.startTimeLShare;
   const communityFund = LibraDeployConfig.communityFund;
   const devFund = LibraDeployConfig.devFund;
   const treasuryFund = LibraDeployConfig.treasuryFund;
@@ -47,7 +47,7 @@ const func: DeployFunction = async function (hre: HardhatRuntimeEnvironment) {
     hre,
     "LShareDummy",
     deployer,
-    [startTime, communityFund, devFund, treasuryFund],
+    [startTimeLShare, communityFund, devFund, treasuryFund],
     true,
     gasLimit
   );
@@ -58,7 +58,7 @@ const func: DeployFunction = async function (hre: HardhatRuntimeEnvironment) {
       " " +
       LShare.address +
       " " +
-      startTime +
+      startTimeLShare +
       " " +
       communityFund +
       " " +
