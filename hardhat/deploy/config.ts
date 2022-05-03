@@ -6,7 +6,8 @@ const startTimeLShare = genesisStartTime;
 const poolStartTimeForLibraGenesisRewardPool = genesisStartTime;
 // day 2-
 const poolStartTimeForLibraRewardPool = genesisStartTime + 3600 * 24;
-
+const OraclePeriod = 3600; // but usualy we should setup 3600 * 6 ;
+const OracleStartTime = genesisStartTime;
 const LibraDeployConfig = {
   WETH: "0xAeaaf0e2c81Af264101B9129C00F4440cCF0F720",
   UniswapV2Router: "0x92E4d13366C40Ad95D5bB396Beb1891F701CD85F",
@@ -22,16 +23,15 @@ const LibraDeployConfig = {
   taxRate: "0",
   taxCollectorAddress: "0x0000000000000000000000000000000000000000",
   // LSHARE
-  startTime: "",
-  startTimeLShare: "",
+  startTimeLShare: startTimeLShare,
   communityFund: "0x6eA8D23189aE68F1423c6Fc8f93b602B5C0524A7",
   devFund: "0x6eA8D23189aE68F1423c6Fc8f93b602B5C0524A7",
   treasuryFund: "0x6eA8D23189aE68F1423c6Fc8f93b602B5C0524A7",
   // Oracle
   LibraAddress: LibraAddress,
-  LibraAstarPair: "",
-  OraclePeriod: "",
-  OracleStartTime: "",
+  //   LibraAstarPair: "",
+  OraclePeriod: OraclePeriod,
+  OracleStartTime: OracleStartTime,
   // Pools
   poolStartTimeForLibraGenesisRewardPool:
     poolStartTimeForLibraGenesisRewardPool,

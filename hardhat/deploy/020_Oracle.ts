@@ -5,8 +5,10 @@ import { ethers } from "hardhat";
 import { HardhatRuntimeEnvironment } from "hardhat/types";
 import { DeployFunction } from "hardhat-deploy/types";
 import LibraDeployConfig from "./config";
+import UniswapV2RouterAbi from "./abi/UniswapV2Router.json";
 
 import fs from "fs";
+import { Libra } from "../../addresses/astar/Libra";
 
 export async function mydeploy(
   hre: HardhatRuntimeEnvironment,
@@ -36,8 +38,26 @@ const func: DeployFunction = async function (hre: HardhatRuntimeEnvironment) {
   const deployer = signers[0].address;
   const gasLimit = 5000000;
   console.log("deployer = " + deployer);
+  const UniswapV2RouterAddress = LibraDeployConfig.UniswapV2Router;
+  const WastarAddress = LibraDeployConfig.WETH;
+  const LibraAddress = LibraDeployConfig.LibraAddress;
+  // const UniswapV2RouterAddress = LibraDeployConfig.UniswapV2Router;
+  const UniswapV2Router = await ethers.getContractAt(
+    UniswapV2RouterAbi,
+    UniswapV2RouterAddress
+  );
+  await UniswapV2Router.addLiquidity(
+    LibraAddress,
+    WastarAddress,
+    "100000000000000000",
+    "100000000000000000",
+    "0",
+    "0",
+    deployer,
+    "9999999999999"
+  );
 
-  const LibraAstarPair = LibraDeployConfig.LibraAstarPair;
+  // const LibraAstarPair = LibraDeployConfig.LibraAstarPair;
   const OraclePeriod = LibraDeployConfig.OraclePeriod;
   const OracleStartTime = LibraDeployConfig.OracleStartTime;
 
@@ -57,7 +77,7 @@ const func: DeployFunction = async function (hre: HardhatRuntimeEnvironment) {
     "npx hardhat verify --network " +
       hre.network.name +
       " " +
-      pair +
+      LibraAstarPair +
       " " +
       period +
       " " +

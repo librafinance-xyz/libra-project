@@ -68,6 +68,11 @@ const func: DeployFunction = async function (hre: HardhatRuntimeEnvironment) {
       " " +
       " --contract contracts/mocks/LShareDummy.sol:LShareDummy "
   );
+
+  fs.writeFileSync(
+    "../addresses/" + hre.network.name + "/LShare.ts",
+    'export const LShare = "' + LShare.address + '";' + "\n"
+  );
 };
 
 func.tags = ["LShare"];
