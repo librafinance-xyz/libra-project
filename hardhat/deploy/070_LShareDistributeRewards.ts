@@ -45,7 +45,11 @@ const func: DeployFunction = async function (hre: HardhatRuntimeEnvironment) {
   const LShare = await ethers.getContractAt(LShareAbi, LShareAddress);
   if ((await LShare.rewardPoolDistributed()) == false) {
     console.log("LShare reward pool distributing... ");
-    await (await LShare.distributeReward(farmingIncentiveFund)).wait();
+    await (
+      await LShare.distributeReward(farmingIncentiveFund, {
+        gasLimit: gasLimit,
+      })
+    ).wait();
   } else {
     console.log("LShare reward pool already ");
   }

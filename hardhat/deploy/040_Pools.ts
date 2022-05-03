@@ -151,48 +151,48 @@ const func: DeployFunction = async function (hre: HardhatRuntimeEnvironment) {
   }
 
   //////////////////////////////
-  const LShareAddress = LibraDeployConfig.LShareAddress;
-  const startTimeLSharePool = LibraDeployConfig.startTimeLShare;
+  // const LShareAddress = LibraDeployConfig.LShareAddress;
+  // const startTimeLSharePool = LibraDeployConfig.startTimeLShare;
 
-  const LShareRewardPool = await mydeploy(
-    hre,
-    "LShareRewardPool",
-    deployer,
-    [LShareAddress, startTimeLSharePool],
-    true,
-    gasLimit
-  );
-  console.log("#LShareRewardPool");
-  console.log(
-    "npx hardhat verify --network " +
-      hre.network.name +
-      " " +
-      LShareRewardPool.address +
-      " " +
-      LShareAddress +
-      " " +
-      " " +
-      startTimeLSharePool +
-      " " +
-      " --contract contracts/distribution/LShareRewardPool.sol:LShareRewardPool "
-  );
-  fs.writeFileSync(
-    "../addresses/" + hre.network.name + "/LShareRewardPool.ts",
-    'export const LShareRewardPool = "' + LShareRewardPool.address + '";' + "\n"
-  );
+  // const LShareRewardPool = await mydeploy(
+  //   hre,
+  //   "LShareRewardPool",
+  //   deployer,
+  //   [LShareAddress, startTimeLSharePool],
+  //   true,
+  //   gasLimit
+  // );
+  // console.log("#LShareRewardPool");
+  // console.log(
+  //   "npx hardhat verify --network " +
+  //     hre.network.name +
+  //     " " +
+  //     LShareRewardPool.address +
+  //     " " +
+  //     LShareAddress +
+  //     " " +
+  //     " " +
+  //     startTimeLSharePool +
+  //     " " +
+  //     " --contract contracts/distribution/LShareRewardPool.sol:LShareRewardPool "
+  // );
+  // fs.writeFileSync(
+  //   "../addresses/" + hre.network.name + "/LShareRewardPool.ts",
+  //   'export const LShareRewardPool = "' + LShareRewardPool.address + '";' + "\n"
+  // );
 
-  console.log(
-    "LShareRewardPool.poolLength: " + (await LShareRewardPool.poolLength())
-  );
-  const LShareAstarPair = await UniswapV2Factory.getPair(
-    LShareAddress,
-    WASTRAddress
-  );
-  if ((await LShareRewardPool.poolLength()) == 0) {
-    //
-    await (await LShareRewardPool.add("100", LibraAstarPair, false, 0)).wait();
-    await (await LShareRewardPool.add("100", LShareAstarPair, false, 0)).wait();
-  }
+  // console.log(
+  //   "LShareRewardPool.poolLength: " + (await LShareRewardPool.poolLength())
+  // );
+  // const LShareAstarPair = await UniswapV2Factory.getPair(
+  //   LShareAddress,
+  //   WASTRAddress
+  // );
+  // if ((await LShareRewardPool.poolLength()) == 0) {
+  //   //
+  //   await (await LShareRewardPool.add("100", LibraAstarPair, false, 0)).wait();
+  //   await (await LShareRewardPool.add("100", LShareAstarPair, false, 0)).wait();
+  // }
 };
 
 func.tags = ["Pools"];

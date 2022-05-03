@@ -48,7 +48,9 @@ const func: DeployFunction = async function (hre: HardhatRuntimeEnvironment) {
   if ((await Boardroom.initialized()) == false) {
     console.log("Boardroom initilize....");
     await (
-      await Boardroom.initialize(LibraAddress, LShareAddress, TreasuryAddress)
+      await Boardroom.initialize(LibraAddress, LShareAddress, TreasuryAddress, {
+        gasLimit: gasLimit,
+      })
     ).wait();
   } else {
     console.log("Boardroom already initialized.");

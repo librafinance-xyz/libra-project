@@ -61,7 +61,8 @@ const func: DeployFunction = async function (hre: HardhatRuntimeEnvironment) {
         OracleAddress,
         Boardroom,
         LibraGenesisRewardPool,
-        TraesuryStartTime
+        TraesuryStartTime,
+        { gasLimit: gasLimit }
       )
     ).wait();
   } else {

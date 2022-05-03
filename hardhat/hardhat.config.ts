@@ -544,8 +544,8 @@ const config: HardhatUserConfig = {
           },
         },
       },
-      "contracts/StablePoolFactory.sol": {
-        version: "0.7.6",
+      "contracts/distribution/LShareRewardPool.sol": {
+        version: "0.6.12",
         settings: {
           optimizer: {
             enabled: true,

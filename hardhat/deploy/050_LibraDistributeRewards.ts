@@ -60,7 +60,8 @@ const func: DeployFunction = async function (hre: HardhatRuntimeEnvironment) {
       await LIBRA.distributeReward(
         LibraRewardPool,
         LibraGenesisRewardPool,
-        AirdropWallet
+        AirdropWallet,
+        { gasLimit: gasLimit }
       )
     ).wait();
   }
