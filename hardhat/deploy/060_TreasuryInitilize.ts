@@ -9,6 +9,8 @@ import fs from "fs";
 import LibraDeployConfig from "./config";
 import UniswapV2RouterAbi from "./abi/UniswapV2Router.json";
 import ERC20Abi from "./abi/erc20.json";
+import { abi as TreasuryAbi } from "./abi/Treasury.json";
+import { Boardroom } from "../../addresses/astar/Boardroom";
 
 export async function mydeploy(
   hre: HardhatRuntimeEnvironment,
@@ -38,86 +40,33 @@ const func: DeployFunction = async function (hre: HardhatRuntimeEnvironment) {
   const deployer = signers[0].address;
   const gasLimit = 5000000;
   console.log("deployer = " + deployer);
+  const TreasuryAddress = LibraDeployConfig.TreasuryAddress;
+  const LShareAddress = LibraDeployConfig.LShareAddress;
+  const LBondAddress = LibraDeployConfig.LBondAddress;
+  const LibraAddress = LibraDeployConfig.LibraAddress;
+  const OracleAddress = LibraDeployConfig.OracleAddress;
+  const LibraGenesisRewardPool = LibraDeployConfig.LibraGenesisRewardPool;
+  const Boardroom = LibraDeployConfig.Boardroom;
+  const TraesuryStartTime = LibraDeployConfig.TraesuryStartTime;
+  console.log("TreasuryAddress: " + TreasuryAddress);
 
-  // // LibraGenesisRewardPool
-  // const LibraAddress = "";
-  // const poolStartTimeForLibraGenesisRewardPool = ""; // DAY 1
-  // const poolStartTimeForLibraRewardPool = ""; // DAY 2-5 & Day 6-10
-  // const LibraGenesisRewardPool = await mydeploy(
-  //   hre,
-  //   "LibraGenesisRewardPool",
-  //   deployer,
-  //   [LibraAddress, poolStartTimeForLibraGenesisRewardPool],
-  //   true,
-  //   gasLimit
-  // );
-  // console.log("#LibraGenesisRewardPool");
-  // console.log(
-  //   "npx hardhat verify --network " +
-  //     hre.network.name +
-  //     " " +
-  //     LibraGenesisRewardPool.address +
-  //     " " +
-  //     LibraAddress +
-  //     " " +
-  //     " " +
-  //     poolStartTimeForLibraGenesisRewardPool +
-  //     " " +
-  //     " --contract contracts/distribution/LibraGenesisRewardPool.sol:LibraGenesisRewardPool "
-  // );
-  // const LibraRewardPool = await mydeploy(
-  //   hre,
-  //   "LibraRewardPool",
-  //   deployer,
-  //   [LibraAddress, poolStartTimeForLibraRewardPool],
-  //   true,
-  //   gasLimit
-  // );
-  // console.log("#LibraRewardPool");
-  // console.log(
-  //   "npx hardhat verify --network " +
-  //     hre.network.name +
-  //     " " +
-  //     LibraRewardPool.address +
-  //     " " +
-  //     LibraAddress +
-  //     " " +
-  //     " " +
-  //     poolStartTimeForLibraRewardPool +
-  //     " " +
-  //     " --contract contracts/distribution/LibraRewardPool.sol:LibraRewardPool "
-  // );
-
-  // // LShare ( DUMMY )
-  // const startTime = "";
-  // const communityFund = "";
-  // const devFund = "";
-  // const treasuryFund = "";
-  // const LShareDummy = await mydeploy(
-  //   hre,
-  //   "LShareDummy",
-  //   deployer,
-  //   [startTime, communityFund, devFund, treasuryFund],
-  //   true,
-  //   gasLimit
-  // );
-  // console.log("#LShareDummy");
-  // console.log(
-  //   "npx hardhat verify --network " +
-  //     hre.network.name +
-  //     " " +
-  //     LShareDummy.address +
-  //     " " +
-  //     startTime +
-  //     " " +
-  //     communityFund +
-  //     " " +
-  //     devFund +
-  //     " " +
-  //     treasuryFund +
-  //     " " +
-  //     " --contract contracts/mocks/LShareDummy.sol:LShareDummy "
-  // );
+  const Treasury = await ethers.getContractAt(TreasuryAbi, TreasuryAddress);
+  if ((await Treasury.initialized()) == false) {
+    console.log("Treasury.initilize.....");
+    await (
+      await Treasury.initialize(
+        LibraAddress,
+        LBondAddress,
+        LShareAddress,
+        OracleAddress,
+        Boardroom,
+        LibraGenesisRewardPool,
+        TraesuryStartTime
+      )
+    ).wait();
+  } else {
+    console.log("Treasury alraedy initilized ");
+  }
 };
 
 func.tags = ["TreasuryInitilize"];

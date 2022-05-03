@@ -2,6 +2,11 @@ import { Libra as LibraAddress } from "../../addresses/astar/Libra";
 import { LShare as LShareAddress } from "../../addresses/astar/LShare";
 import { LibraRewardPool as LibraRewardPool } from "../../addresses/astar/LibraRewardPool";
 import { LibraGenesisRewardPool as LibraGenesisRewardPool } from "../../addresses/astar/LibraGenesisRewardPool";
+import { Treasury as TreasuryAddress } from "../../addresses/astar/Treasury";
+import { Boardroom as Boardroom } from "../../addresses/astar/Boardroom";
+import { LBond as LBondAddress } from "../../addresses/astar/LBond";
+import { Oracle as OracleAddress } from "../../addresses/astar/Oracle";
+// import { LibraGenesisRewardPool as LibraGenesisRewardPool } from "../../addresses/astar/LibraGenesisRewardPool";
 
 const genesisStartTime = 1651572000; // Tue May 03 2022 10:00:00 GMT+0000, Tue May 03 2022 14:00:00 GMT+0400 (湾岸標準時)
 const startTimeLShare = genesisStartTime;
@@ -12,6 +17,8 @@ const poolStartTimeForLibraGenesisRewardPool = genesisStartTime;
 const poolStartTimeForLibraRewardPool = genesisStartTime + 3600 * 24;
 const OraclePeriod = 3600; //
 const OracleStartTime = genesisStartTime;
+const TraesuryStartTime = genesisStartTime;
+
 const LibraDeployConfig = {
   WETH: "0xAeaaf0e2c81Af264101B9129C00F4440cCF0F720", // WASTR
   UniswapV2Router: "0x92E4d13366C40Ad95D5bB396Beb1891F701CD85F",
@@ -44,8 +51,14 @@ const LibraDeployConfig = {
   startTimeLSharePool: startTimeLSharePool,
   // LibraDistributeRewards
   LibraRewardPool: LibraRewardPool,
-  LibraGenesisRewardPool: LibraRewardPool,
+  LibraGenesisRewardPool: LibraGenesisRewardPool,
+  Boardroom: Boardroom,
   AirdropWallet: "0x6eA8D23189aE68F1423c6Fc8f93b602B5C0524A7",
+  // TreasuryInitilize
+  TreasuryAddress: TreasuryAddress,
+  TraesuryStartTime: TraesuryStartTime,
+  LBondAddress: LBondAddress,
+  OracleAddress: OracleAddress,
 };
 
 export default LibraDeployConfig;

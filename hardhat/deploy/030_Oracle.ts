@@ -11,6 +11,7 @@ import ERC20Abi from "./abi/erc20.json";
 
 import fs from "fs";
 import { Libra } from "../../addresses/astar/Libra";
+import { LShare } from "../../addresses/astar/LShare";
 
 export async function mydeploy(
   hre: HardhatRuntimeEnvironment,
@@ -44,6 +45,7 @@ const func: DeployFunction = async function (hre: HardhatRuntimeEnvironment) {
   const UniswapV2FactoryAddress = LibraDeployConfig.UniswapV2Factory;
   const WastarAddress = LibraDeployConfig.WETH;
   const LibraAddress = LibraDeployConfig.LibraAddress;
+  const LShareAddress = LibraDeployConfig.LShareAddress;
 
   // create LP.
   const UniswapV2Router = await ethers.getContractAt(
@@ -56,30 +58,71 @@ const func: DeployFunction = async function (hre: HardhatRuntimeEnvironment) {
   );
   const WASTR = await ethers.getContractAt(ERC20Abi, WastarAddress);
   const LIBRA = await ethers.getContractAt(ERC20Abi, LibraAddress);
-  await (
-    await WASTR.approve(UniswapV2RouterAddress, "100000000000000000")
-  ).wait();
-  await (
-    await LIBRA.approve(UniswapV2RouterAddress, "100000000000000000")
-  ).wait();
-
-  await (
-    await UniswapV2Router.addLiquidity(
-      LibraAddress,
-      WastarAddress,
-      "100000000000000000",
-      "100000000000000000",
-      "0",
-      "0",
-      deployer,
-      "9999999999999"
-    )
-  ).wait();
-
-  const LibraAstarPair = await UniswapV2Factory.getPair(
-    LibraAddress,
+  const LSHARE = await ethers.getContractAt(ERC20Abi, LShareAddress);
+  let LibraAstarPair = "";
+  let LShareAstarPair = "";
+  LibraAstarPair = await UniswapV2Factory.getPair(LibraAddress, WastarAddress);
+  LShareAstarPair = await UniswapV2Factory.getPair(
+    LShareAddress,
     WastarAddress
   );
+  const LibraAstarPairLP = await ethers.getContractAt(ERC20Abi, LibraAstarPair);
+  const LShareAstarPairLP = await ethers.getContractAt(
+    ERC20Abi,
+    LShareAstarPair
+  );
+  if (LShareAstarPairLP.balanceOf(deployer) == 0) {
+    await (
+      await WASTR.approve(UniswapV2RouterAddress, "100000000000000000")
+    ).wait();
+    await (
+      await LSHARE.approve(UniswapV2RouterAddress, "100000000000000000")
+    ).wait();
+
+    await (
+      await UniswapV2Router.addLiquidity(
+        LShareAddress,
+        WastarAddress,
+        "100000000000000000",
+        "100000000000000000",
+        "0",
+        "0",
+        deployer,
+        "9999999999999"
+      )
+    ).wait();
+
+    LShareAstarPair = await UniswapV2Factory.getPair(
+      LShareAddress,
+      WastarAddress
+    );
+  }
+  if (LibraAstarPairLP.balanceOf(deployer) == 0) {
+    await (
+      await WASTR.approve(UniswapV2RouterAddress, "100000000000000000")
+    ).wait();
+    await (
+      await LIBRA.approve(UniswapV2RouterAddress, "100000000000000000")
+    ).wait();
+
+    await (
+      await UniswapV2Router.addLiquidity(
+        LibraAddress,
+        WastarAddress,
+        "100000000000000000",
+        "100000000000000000",
+        "0",
+        "0",
+        deployer,
+        "9999999999999"
+      )
+    ).wait();
+
+    LibraAstarPair = await UniswapV2Factory.getPair(
+      LibraAddress,
+      WastarAddress
+    );
+  }
 
   // const LibraAstarPair = LibraDeployConfig.LibraAstarPair;
   const OraclePeriod = LibraDeployConfig.OraclePeriod;

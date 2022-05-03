@@ -54,14 +54,16 @@ const func: DeployFunction = async function (hre: HardhatRuntimeEnvironment) {
   const LibraRewardPool = LibraDeployConfig.LibraRewardPool;
   const LibraGenesisRewardPool = LibraDeployConfig.LibraGenesisRewardPool;
   const AirdropWallet = LibraDeployConfig.AirdropWallet;
-
-  await (
-    await LIBRA.distributeReward(
-      LibraRewardPool,
-      LibraGenesisRewardPool,
-      AirdropWallet
-    )
-  ).wait();
+  console.log("LibraAddress: " + LibraAddress);
+  if ((await LIBRA.rewardPoolDistributed()) == false) {
+    await (
+      await LIBRA.distributeReward(
+        LibraRewardPool,
+        LibraGenesisRewardPool,
+        AirdropWallet
+      )
+    ).wait();
+  }
 };
 
 func.tags = ["LibraDistributeRewards"];
