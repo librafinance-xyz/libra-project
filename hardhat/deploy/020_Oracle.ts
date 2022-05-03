@@ -37,14 +37,17 @@ const func: DeployFunction = async function (hre: HardhatRuntimeEnvironment) {
   const gasLimit = 5000000;
   console.log("deployer = " + deployer);
 
-  const pair = "";
+  const LibraAstarPair = LibraDeployConfig.LibraAstarPair;
+  const OraclePeriod = LibraDeployConfig.OraclePeriod;
+  const OracleStartTime = LibraDeployConfig.OracleStartTime;
+
   const period = "";
   const startTime = "";
   const Oracle = await mydeploy(
     hre,
     "Oracle",
     deployer,
-    [pair, period, startTime],
+    [LibraAstarPair, OraclePeriod, OracleStartTime],
     true,
     gasLimit
   );
