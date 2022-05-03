@@ -16,7 +16,7 @@ export async function mydeploy(
   log: boolean,
   gasLimit: number
 ) {
-  console.log("mydeploy: " + contractName + "\n");
+  console.log(" deploying  " + contractName + "\n");
   await ethers.getContractFactory(contractName);
   const ret = await hre.deployments.deploy(contractName, {
     from: from,
@@ -38,11 +38,13 @@ const func: DeployFunction = async function (hre: HardhatRuntimeEnvironment) {
   console.log("deployer = " + deployer);
 
   // LIBRA ( DUMMY )
-  const taxRate = "0";
-  const taxCollectorAddress = "0x0000000000000000000000000000000000000000";
+  const taxRate = LibraDeployConfig.taxRate;
+  const taxCollectorAddress = LibraDeployConfig.taxCollectorAddress;
+  const libraContractName = LibraDeployConfig.libraContractName;
+  const libraContractPath = LibraDeployConfig.libraContractPath;
   const Libra = await mydeploy(
     hre,
-    "LibraDummy",
+    libraContractName,
     deployer,
     [taxRate, taxCollectorAddress],
     true,
@@ -59,7 +61,11 @@ const func: DeployFunction = async function (hre: HardhatRuntimeEnvironment) {
       " " +
       taxCollectorAddress +
       " " +
-      " --contract contracts/mocks/LibraDummy.sol:LibraDummy "
+      " --contract " +
+      libraContractPath +
+      ":" +
+      libraContractName +
+      " "
   );
 
   const content = 'export const Libra = "' + Libra.address + '";' + "\n";
@@ -71,15 +77,29 @@ const func: DeployFunction = async function (hre: HardhatRuntimeEnvironment) {
   );
 
   // LBOND (Dummy )
-  const LBond = await mydeploy(hre, "LBondDummy", deployer, [], true, gasLimit);
-  console.log("#LBondDummy");
+
+  const bondContractName = LibraDeployConfig.bondContractName;
+  const bondContractPath = LibraDeployConfig.bondContractPath;
+  const LBond = await mydeploy(
+    hre,
+    bondContractName,
+    deployer,
+    [],
+    true,
+    gasLimit
+  );
+  console.log("#LBOND");
   console.log(
     "npx hardhat verify --network " +
       hre.network.name +
       " " +
       LBond.address +
       " " +
-      " --contract contracts/mocks/LBondDummy.sol:LBondDummy "
+      " --contract " +
+      bondContractPath +
+      ":" +
+      bondContractName +
+      " "
   );
 
   fs.writeFileSync(
