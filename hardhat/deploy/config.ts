@@ -1,4 +1,8 @@
 const LibraDeployConfig = {
+  WETH: "0xAeaaf0e2c81Af264101B9129C00F4440cCF0F720",
+  UniswapV2Router: "0x92E4d13366C40Ad95D5bB396Beb1891F701CD85F",
+  UniswapV2Factory: "0x3e01891B309c29E441783F5A2C8CB7833D9b78ff",
+
   //INIT
   libraContractName: "LibraDummy",
   libraContractPath: "contracts/mocks/LibraDummy.sol",
