@@ -6,6 +6,7 @@ import { HardhatRuntimeEnvironment } from "hardhat/types";
 import { DeployFunction } from "hardhat-deploy/types";
 import LibraDeployConfig from "./config";
 import UniswapV2RouterAbi from "./abi/UniswapV2Router.json";
+import ERC20Abi from "./abi/erc20.json";
 
 import fs from "fs";
 import { Libra } from "../../addresses/astar/Libra";
@@ -41,28 +42,43 @@ const func: DeployFunction = async function (hre: HardhatRuntimeEnvironment) {
   const UniswapV2RouterAddress = LibraDeployConfig.UniswapV2Router;
   const WastarAddress = LibraDeployConfig.WETH;
   const LibraAddress = LibraDeployConfig.LibraAddress;
-  // const UniswapV2RouterAddress = LibraDeployConfig.UniswapV2Router;
+
+  // create LP.
   const UniswapV2Router = await ethers.getContractAt(
     UniswapV2RouterAbi,
     UniswapV2RouterAddress
   );
-  await UniswapV2Router.addLiquidity(
+  const WASTR = await ethers.getContractAt(ERC20Abi, WastarAddress);
+  const LIBRA = await ethers.getContractAt(ERC20Abi, LibraAddress);
+  await (
+    await WASTR.approve(UniswapV2RouterAddress, "100000000000000000")
+  ).wait();
+  await (
+    await LIBRA.approve(UniswapV2RouterAddress, "100000000000000000")
+  ).wait();
+
+  await (
+    await UniswapV2Router.addLiquidity(
+      LibraAddress,
+      WastarAddress,
+      "100000000000000000",
+      "100000000000000000",
+      "0",
+      "0",
+      deployer,
+      "9999999999999"
+    )
+  ).wait();
+
+  const LibraAstarPair = await UniswapV2Router.getPair(
     LibraAddress,
-    WastarAddress,
-    "100000000000000000",
-    "100000000000000000",
-    "0",
-    "0",
-    deployer,
-    "9999999999999"
+    WastarAddress
   );
 
   // const LibraAstarPair = LibraDeployConfig.LibraAstarPair;
   const OraclePeriod = LibraDeployConfig.OraclePeriod;
   const OracleStartTime = LibraDeployConfig.OracleStartTime;
 
-  const period = "";
-  const startTime = "";
   const Oracle = await mydeploy(
     hre,
     "Oracle",
@@ -79,9 +95,9 @@ const func: DeployFunction = async function (hre: HardhatRuntimeEnvironment) {
       " " +
       LibraAstarPair +
       " " +
-      period +
+      OraclePeriod +
       " " +
-      startTime +
+      OracleStartTime +
       " " +
       " " +
       " --contract contracts/mocks/Oracle.sol:Oracle "

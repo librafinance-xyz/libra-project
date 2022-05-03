@@ -90,37 +90,6 @@ const func: DeployFunction = async function (hre: HardhatRuntimeEnvironment) {
       " " +
       " --contract contracts/distribution/LibraRewardPool.sol:LibraRewardPool "
   );
-
-  // // LShare ( DUMMY )
-  // const startTime = "";
-  // const communityFund = "";
-  // const devFund = "";
-  // const treasuryFund = "";
-  // const LShareDummy = await mydeploy(
-  //   hre,
-  //   "LShareDummy",
-  //   deployer,
-  //   [startTime, communityFund, devFund, treasuryFund],
-  //   true,
-  //   gasLimit
-  // );
-  // console.log("#LShareDummy");
-  // console.log(
-  //   "npx hardhat verify --network " +
-  //     hre.network.name +
-  //     " " +
-  //     LShareDummy.address +
-  //     " " +
-  //     startTime +
-  //     " " +
-  //     communityFund +
-  //     " " +
-  //     devFund +
-  //     " " +
-  //     treasuryFund +
-  //     " " +
-  //     " --contract contracts/mocks/LShareDummy.sol:LShareDummy "
-  // );
 };
 
 func.tags = ["Pools"];
