@@ -9,6 +9,7 @@ import fs from "fs";
 import LibraDeployConfig from "./config";
 import UniswapV2RouterAbi from "./abi/UniswapV2Router.json";
 import ERC20Abi from "./abi/erc20.json";
+import { abi as BoardroomAbi } from "./abi/Boardroom.json";
 
 export async function mydeploy(
   hre: HardhatRuntimeEnvironment,
@@ -39,87 +40,20 @@ const func: DeployFunction = async function (hre: HardhatRuntimeEnvironment) {
   const gasLimit = 5000000;
   console.log("deployer = " + deployer);
 
-  // Boardroom.initialize(LibraDummy.address);
-
-  // // LibraGenesisRewardPool
-  // const LibraAddress = "";
-  // const poolStartTimeForLibraGenesisRewardPool = ""; // DAY 1
-  // const poolStartTimeForLibraRewardPool = ""; // DAY 2-5 & Day 6-10
-  // const LibraGenesisRewardPool = await mydeploy(
-  //   hre,
-  //   "LibraGenesisRewardPool",
-  //   deployer,
-  //   [LibraAddress, poolStartTimeForLibraGenesisRewardPool],
-  //   true,
-  //   gasLimit
-  // );
-  // console.log("#LibraGenesisRewardPool");
-  // console.log(
-  //   "npx hardhat verify --network " +
-  //     hre.network.name +
-  //     " " +
-  //     LibraGenesisRewardPool.address +
-  //     " " +
-  //     LibraAddress +
-  //     " " +
-  //     " " +
-  //     poolStartTimeForLibraGenesisRewardPool +
-  //     " " +
-  //     " --contract contracts/distribution/LibraGenesisRewardPool.sol:LibraGenesisRewardPool "
-  // );
-  // const LibraRewardPool = await mydeploy(
-  //   hre,
-  //   "LibraRewardPool",
-  //   deployer,
-  //   [LibraAddress, poolStartTimeForLibraRewardPool],
-  //   true,
-  //   gasLimit
-  // );
-  // console.log("#LibraRewardPool");
-  // console.log(
-  //   "npx hardhat verify --network " +
-  //     hre.network.name +
-  //     " " +
-  //     LibraRewardPool.address +
-  //     " " +
-  //     LibraAddress +
-  //     " " +
-  //     " " +
-  //     poolStartTimeForLibraRewardPool +
-  //     " " +
-  //     " --contract contracts/distribution/LibraRewardPool.sol:LibraRewardPool "
-  // );
-
-  // // LShare ( DUMMY )
-  // const startTime = "";
-  // const communityFund = "";
-  // const devFund = "";
-  // const treasuryFund = "";
-  // const LShareDummy = await mydeploy(
-  //   hre,
-  //   "LShareDummy",
-  //   deployer,
-  //   [startTime, communityFund, devFund, treasuryFund],
-  //   true,
-  //   gasLimit
-  // );
-  // console.log("#LShareDummy");
-  // console.log(
-  //   "npx hardhat verify --network " +
-  //     hre.network.name +
-  //     " " +
-  //     LShareDummy.address +
-  //     " " +
-  //     startTime +
-  //     " " +
-  //     communityFund +
-  //     " " +
-  //     devFund +
-  //     " " +
-  //     treasuryFund +
-  //     " " +
-  //     " --contract contracts/mocks/LShareDummy.sol:LShareDummy "
-  // );
+  const BoardroomAddress = LibraDeployConfig.Boardroom;
+  const LibraAddress = LibraDeployConfig.LibraAddress;
+  const LShareAddress = LibraDeployConfig.LShareAddress;
+  const TreasuryAddress = LibraDeployConfig.TreasuryAddress;
+  const Boardroom = await ethers.getContractAt(BoardroomAbi, BoardroomAddress);
+  if ((await Boardroom.initialized()) == false) {
+    console.log("Boardroom initilize....");
+    await (
+      await Boardroom.initialize(LibraAddress, LShareAddress, TreasuryAddress)
+    ).wait();
+  } else {
+    console.log("Boardroom already initialized.");
+  }
+  //
 };
 
 func.tags = ["BoardroomInitilize"];

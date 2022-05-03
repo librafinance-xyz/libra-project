@@ -18,7 +18,7 @@ const poolStartTimeForLibraRewardPool = genesisStartTime + 3600 * 24;
 const OraclePeriod = 3600; //
 const OracleStartTime = genesisStartTime;
 const TraesuryStartTime = genesisStartTime;
-
+const farmingIncentiveFund = "0x6eA8D23189aE68F1423c6Fc8f93b602B5C0524A7";
 const LibraDeployConfig = {
   WETH: "0xAeaaf0e2c81Af264101B9129C00F4440cCF0F720", // WASTR
   UniswapV2Router: "0x92E4d13366C40Ad95D5bB396Beb1891F701CD85F",
@@ -54,6 +54,8 @@ const LibraDeployConfig = {
   LibraGenesisRewardPool: LibraGenesisRewardPool,
   Boardroom: Boardroom,
   AirdropWallet: "0x6eA8D23189aE68F1423c6Fc8f93b602B5C0524A7",
+  // LShareDistributeRewards
+  farmingIncentiveFund: farmingIncentiveFund,
   // TreasuryInitilize
   TreasuryAddress: TreasuryAddress,
   TraesuryStartTime: TraesuryStartTime,

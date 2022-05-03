@@ -9,6 +9,7 @@ import fs from "fs";
 import LibraDeployConfig from "./config";
 import UniswapV2RouterAbi from "./abi/UniswapV2Router.json";
 import ERC20Abi from "./abi/erc20.json";
+import { abi as LShareAbi } from "./abi/LShare.json";
 
 export async function mydeploy(
   hre: HardhatRuntimeEnvironment,
@@ -38,6 +39,19 @@ const func: DeployFunction = async function (hre: HardhatRuntimeEnvironment) {
   const deployer = signers[0].address;
   const gasLimit = 5000000;
   console.log("deployer = " + deployer);
+  const LShareAddress = LibraDeployConfig.LShareAddress;
+  const farmingIncentiveFund = LibraDeployConfig.farmingIncentiveFund;
+
+  const LShare = await ethers.getContractAt(LShareAbi, LShareAddress);
+  if ((await LShare.rewardPoolDistributed()) == false) {
+    console.log("LShare reward pool distributing... ");
+    await (await LShare.distributeReward(farmingIncentiveFund)).wait();
+  } else {
+    console.log("LShare reward pool already ");
+  }
+  // const BoardroomAddress = LibraDeployConfig.Boardroom;
+  // const LibraAddress = LibraDeployConfig.LibraAddress;
+  // const TreasuryAddress = LibraDeployConfig.TreasuryAddress;
 };
 
 func.tags = ["LShareDistributeRewards"];
