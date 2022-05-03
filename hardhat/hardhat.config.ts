@@ -51,6 +51,7 @@ const config: HardhatUserConfig = {
     // apiKey: ETHERSCAN_TOKEN, // ETHERSCAN_TOKEN,
     apiKey: {
       astar: "your API key",
+      opera: "DERPVHFYTQ172GWWMWQDMMKSYHNJHPCGWM",
     },
   },
   gasReporter: {
