@@ -1,5 +1,5 @@
-// npx hardhat deploy --network astar --tags TreasuryInitilize
-// npx hardhat deploy --network fantom --tags TreasuryInitilize
+// npx hardhat deploy --network astar --tags LibraRewardPoolAdd
+// npx hardhat deploy --network fantom --tags LibraRewardPoolAdd
 
 import { ethers } from "hardhat";
 import { HardhatRuntimeEnvironment } from "hardhat/types";
@@ -36,56 +36,7 @@ const func: DeployFunction = async function (hre: HardhatRuntimeEnvironment) {
   const gasLimit = 5000000;
   console.log("deployer = " + deployer);
 
-  // // LibraGenesisRewardPool
-  // const LibraAddress = "";
-  // const poolStartTimeForLibraGenesisRewardPool = ""; // DAY 1
-  // const poolStartTimeForLibraRewardPool = ""; // DAY 2-5 & Day 6-10
-  // const LibraGenesisRewardPool = await mydeploy(
-  //   hre,
-  //   "LibraGenesisRewardPool",
-  //   deployer,
-  //   [LibraAddress, poolStartTimeForLibraGenesisRewardPool],
-  //   true,
-  //   gasLimit
-  // );
-  // console.log("#LibraGenesisRewardPool");
-  // console.log(
-  //   "npx hardhat verify --network " +
-  //     hre.network.name +
-  //     " " +
-  //     LibraGenesisRewardPool.address +
-  //     " " +
-  //     LibraAddress +
-  //     " " +
-  //     " " +
-  //     poolStartTimeForLibraGenesisRewardPool +
-  //     " " +
-  //     " --contract contracts/distribution/LibraGenesisRewardPool.sol:LibraGenesisRewardPool "
-  // );
-  // const LibraRewardPool = await mydeploy(
-  //   hre,
-  //   "LibraRewardPool",
-  //   deployer,
-  //   [LibraAddress, poolStartTimeForLibraRewardPool],
-  //   true,
-  //   gasLimit
-  // );
-  // console.log("#LibraRewardPool");
-  // console.log(
-  //   "npx hardhat verify --network " +
-  //     hre.network.name +
-  //     " " +
-  //     LibraRewardPool.address +
-  //     " " +
-  //     LibraAddress +
-  //     " " +
-  //     " " +
-  //     poolStartTimeForLibraRewardPool +
-  //     " " +
-  //     " --contract contracts/distribution/LibraRewardPool.sol:LibraRewardPool "
-  // );
-
-  // // LShare ( DUMMY )
+  // LShare ( DUMMY )
   // const startTime = "";
   // const communityFund = "";
   // const devFund = "";
@@ -117,7 +68,7 @@ const func: DeployFunction = async function (hre: HardhatRuntimeEnvironment) {
   // );
 };
 
-func.tags = ["TreasuryInitilize"];
+func.tags = ["LibraRewardPoolAdd"];
 
 func.skip = async (hre) => {
   return (
