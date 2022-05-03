@@ -184,7 +184,7 @@ const func: DeployFunction = async function (hre: HardhatRuntimeEnvironment) {
       "../addresses/" + hre.network.name + "/LShareAstarPair.ts",
       'export const LShareAstarPair = "' + LShareAstarPair + '";' + "\n"
     );
-  
+  }
 };
 
 func.tags = ["Oracle"];
