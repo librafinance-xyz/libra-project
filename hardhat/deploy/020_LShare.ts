@@ -4,6 +4,7 @@
 import { ethers } from "hardhat";
 import { HardhatRuntimeEnvironment } from "hardhat/types";
 import { DeployFunction } from "hardhat-deploy/types";
+import LibraDeployConfig from "./config";
 
 import fs from "fs";
 
@@ -37,11 +38,12 @@ const func: DeployFunction = async function (hre: HardhatRuntimeEnvironment) {
   console.log("deployer = " + deployer);
 
   // LShare ( DUMMY )
-  const startTime = "";
-  const communityFund = "";
-  const devFund = "";
-  const treasuryFund = "";
-  const LShareDummy = await mydeploy(
+  const startTime = LibraDeployConfig.startTimeLShare;
+  const communityFund = LibraDeployConfig.communityFund;
+  const devFund = LibraDeployConfig.devFund;
+  const treasuryFund = LibraDeployConfig.treasuryFund;
+
+  const LShare = await mydeploy(
     hre,
     "LShareDummy",
     deployer,
@@ -49,12 +51,12 @@ const func: DeployFunction = async function (hre: HardhatRuntimeEnvironment) {
     true,
     gasLimit
   );
-  console.log("#LShareDummy");
+  console.log("#LShare");
   console.log(
     "npx hardhat verify --network " +
       hre.network.name +
       " " +
-      LShareDummy.address +
+      LShare.address +
       " " +
       startTime +
       " " +

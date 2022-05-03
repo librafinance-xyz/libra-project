@@ -4,6 +4,7 @@
 import { ethers } from "hardhat";
 import { HardhatRuntimeEnvironment } from "hardhat/types";
 import { DeployFunction } from "hardhat-deploy/types";
+import LibraDeployConfig from "./config";
 
 import fs from "fs";
 
@@ -36,7 +37,6 @@ const func: DeployFunction = async function (hre: HardhatRuntimeEnvironment) {
   const gasLimit = 5000000;
   console.log("deployer = " + deployer);
 
-  // LShare ( DUMMY )
   const pair = "";
   const period = "";
   const startTime = "";
