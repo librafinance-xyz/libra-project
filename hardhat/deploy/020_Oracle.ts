@@ -102,6 +102,10 @@ const func: DeployFunction = async function (hre: HardhatRuntimeEnvironment) {
       " " +
       " --contract contracts/mocks/Oracle.sol:Oracle "
   );
+  fs.writeFileSync(
+    "../addresses/" + hre.network.name + "/Oracle.ts",
+    'export const Oracle = "' + Oracle.address + '";' + "\n"
+  );
 };
 
 func.tags = ["Oracle"];

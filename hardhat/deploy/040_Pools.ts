@@ -68,6 +68,15 @@ const func: DeployFunction = async function (hre: HardhatRuntimeEnvironment) {
       " " +
       " --contract contracts/distribution/LibraGenesisRewardPool.sol:LibraGenesisRewardPool "
   );
+
+  fs.writeFileSync(
+    "../addresses/" + hre.network.name + "/LibraGenesisRewardPool.ts",
+    'export const LibraGenesisRewardPool = "' +
+      LibraGenesisRewardPool.address +
+      '";' +
+      "\n"
+  );
+
   const LibraRewardPool = await mydeploy(
     hre,
     "LibraRewardPool",
@@ -89,6 +98,10 @@ const func: DeployFunction = async function (hre: HardhatRuntimeEnvironment) {
       poolStartTimeForLibraRewardPool +
       " " +
       " --contract contracts/distribution/LibraRewardPool.sol:LibraRewardPool "
+  );
+  fs.writeFileSync(
+    "../addresses/" + hre.network.name + "/LibraRewardPool.ts",
+    'export const LibraRewardPool = "' + LibraRewardPool.address + '";' + "\n"
   );
 };
 
