@@ -57,6 +57,27 @@ const func: DeployFunction = async function (hre: HardhatRuntimeEnvironment) {
     UniswapV2FactoryAbi,
     UniswapV2FactoryAddress
   );
+
+  const WASTR = await ethers.getContractAt(ERC20Abi, WastarAddress);
+  const LIBRA = await ethers.getContractAt(ERC20Abi, LibraAddress);
+  const LSHARE = await ethers.getContractAt(ERC20Abi, LShareAddress);
+  const LBOND = await ethers.getContractAt(ERC20Abi, LBondAddress);
+  let LibraAstarPair = "";
+  let LShareAstarPair = "";
+  LibraAstarPair = await UniswapV2Factory.getPair(LibraAddress, WastarAddress);
+  LShareAstarPair = await UniswapV2Factory.getPair(
+    LShareAddress,
+    WastarAddress
+  );
+  const LibraAstarPairLP = await ethers.getContractAt(ERC20Abi, LibraAstarPair);
+  const LShareAstarPairLP = await ethers.getContractAt(
+    ERC20Abi,
+    LShareAstarPair
+  );
+  if ((await LibraAstarPairLP.balanceof(deployer)) > 0) {
+    const bal = await LibraAstarPairLP.balanceof(deployer);
+    console.log("bal: " + bal);
+  }
 };
 
 func.tags = ["Test"];
