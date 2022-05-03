@@ -1,3 +1,25 @@
+# Schedule
+
+https://docs.librafinance.xyz/welcome-start-here/launch
+
+day 1
+
+- ASTR pool ( LIBRA reward )
+  day 2-5
+- close genesis pool
+- open LIBRA-ASTR farm ( LIBRA reward )
+  day 6-10
+- LIBRA-ASTR farm ( LIBRA reward ) ( going on )
+- LIBRA-ASTR farm ( LSHARE reward )
+- LSHARE-ASTR farm ( LSHARE reward )
+  day 11
+- $LIBRA/$ASTR to get $LIBRA closed on Day 11
+- $LSHARE stake (boardroom) open on Day11 ( for $LIBRA )
+- $LIBRA/$ASTR to get $LSHARE
+- $LSHARE/$ASTR to get $LSHARE
+
+---
+
 //
 npx hardhat deploy --network fantom --tags Init
 npx hardhat deploy --network fantom --tags LShare

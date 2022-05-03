@@ -1,3 +1,12 @@
+import { Libra as LibraAddress } from "../../addresses/astar/Libra";
+
+const genesisStartTime = 1651572000; // Tue May 03 2022 10:00:00 GMT+0000, Tue May 03 2022 14:00:00 GMT+0400 (湾岸標準時)
+const startTimeLShare = genesisStartTime;
+// day 1
+const poolStartTimeForLibraGenesisRewardPool = genesisStartTime;
+// day 2-
+const poolStartTimeForLibraRewardPool = genesisStartTime + 3600 * 24;
+
 const LibraDeployConfig = {
   WETH: "0xAeaaf0e2c81Af264101B9129C00F4440cCF0F720",
   UniswapV2Router: "0x92E4d13366C40Ad95D5bB396Beb1891F701CD85F",
@@ -19,9 +28,14 @@ const LibraDeployConfig = {
   devFund: "0x6eA8D23189aE68F1423c6Fc8f93b602B5C0524A7",
   treasuryFund: "0x6eA8D23189aE68F1423c6Fc8f93b602B5C0524A7",
   // Oracle
+  LibraAddress: LibraAddress,
   LibraAstarPair: "",
   OraclePeriod: "",
   OracleStartTime: "",
+  // Pools
+  poolStartTimeForLibraGenesisRewardPool:
+    poolStartTimeForLibraGenesisRewardPool,
+  poolStartTimeForLibraRewardPool: poolStartTimeForLibraRewardPool,
 };
 
 export default LibraDeployConfig;

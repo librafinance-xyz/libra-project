@@ -38,9 +38,14 @@ const func: DeployFunction = async function (hre: HardhatRuntimeEnvironment) {
   console.log("deployer = " + deployer);
 
   // LibraGenesisRewardPool
+  const poolStartTimeForLibraGenesisRewardPool =
+    LibraDeployConfig.poolStartTimeForLibraGenesisRewardPool;
+  // const poolStartTimeForLibraGenesisRewardPool = ""; // DAY 1
+  const poolStartTimeForLibraRewardPool =
+    LibraDeployConfig.poolStartTimeForLibraRewardPool;
+  // const poolStartTimeForLibraRewardPool = ""; // DAY 2-5 & Day 6-10
+
   const LibraAddress = "";
-  const poolStartTimeForLibraGenesisRewardPool = ""; // DAY 1
-  const poolStartTimeForLibraRewardPool = ""; // DAY 2-5 & Day 6-10
   const LibraGenesisRewardPool = await mydeploy(
     hre,
     "LibraGenesisRewardPool",
