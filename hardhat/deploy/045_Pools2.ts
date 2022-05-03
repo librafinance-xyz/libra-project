@@ -178,10 +178,6 @@ const func: DeployFunction = async function (hre: HardhatRuntimeEnvironment) {
     'export const LShareRewardPool = "' + LShareRewardPool.address + '";' + "\n"
   );
 
-  console.log(
-    "LShareRewardPool.totalAllocPoint(): " +
-      (await LShareRewardPool.totalAllocPoint())
-  );
   const UniswapV2Factory = await ethers.getContractAt(
     UniswapV2FactoryAbi,
     UniswapV2FactoryAddress
@@ -196,33 +192,77 @@ const func: DeployFunction = async function (hre: HardhatRuntimeEnvironment) {
   console.log("LIBRA: " + (await LIBRA.balanceOf(deployer)));
   console.log("WASTR: " + (await WASTR.balanceOf(deployer)));
 
-  // const LibraAstarPair = await UniswapV2Factory.getPair(
-  //   WASTRAddress,
-  //   LibraAddress
-  // );
+  const LibraAstarPair = await UniswapV2Factory.getPair(
+    WASTRAddress,
+    LibraAddress
+  );
 
-  // console.log("UniswapV2FactoryAddress: " + UniswapV2FactoryAddress);
-  // console.log("LibraAddress: " + LibraAddress);
-  // console.log("WASTRAddress: " + WASTRAddress);
-  // let LibraAstarPair = await UniswapV2Factory.getPair(
-  //   LibraAddress,
-  //   WASTRAddress
-  // );
+  console.log("UniswapV2FactoryAddress: " + UniswapV2FactoryAddress);
+  console.log("LibraAddress: " + LibraAddress);
+  console.log("LibraAstarPair: " + LibraAstarPair);
+  console.log("WASTRAddress: " + WASTRAddress);
 
-  // console.log("LibraAstarPair: " + LibraAstarPair);
+  console.log("LibraAstarPair: " + LibraAstarPair);
 
-  // const LShareAstarPair = await UniswapV2Factory.getPair(
-  //   LShareAddress,
-  //   WASTRAddress
-  // );
+  let LShareAstarPair = await UniswapV2Factory.getPair(
+    LShareAddress,
+    WASTRAddress
+  );
 
-  // console.log("LShareAstarPair: " + LShareAstarPair);
+  console.log("LShareAstarPair: " + LShareAstarPair);
 
-  // if (LShareAstarPair=="0x0000000000000000000000000000000000000000" || (await LShareRewardPool.totalAllocPoint()) == 0) {
-  //   //
-  //   await (await LShareRewardPool.add("100", LibraAstarPair, false, 0)).wait();
-  //   await (await LShareRewardPool.add("100", LShareAstarPair, false, 0)).wait();
-  // }
+  console.log(
+    "LShareRewardPool.totalAllocPoint(): " +
+      (await LShareRewardPool.totalAllocPoint())
+  );
+  const LShareAstarLP = await ethers.getContractAt(ERC20Abi, LShareAstarPair);
+
+  if (
+    LShareAstarPair == "0x0000000000000000000000000000000000000000" ||
+    (await LShareAstarLP.balanceOf(deployer)) == 0
+  ) {
+    const WASTR = await ethers.getContractAt(ERC20Abi, WASTRAddress);
+    const LShare = await ethers.getContractAt(ERC20Abi, LShareAddress);
+    console.log("WASTR.approve...");
+    await (
+      await WASTR.approve(UniswapV2RouterAddress, "100000000000000000")
+    ).wait();
+    console.log("LShare.approve...");
+    await (
+      await LShare.approve(UniswapV2RouterAddress, "100000000000000000")
+    ).wait();
+    console.log("UniswapV2Router.addLiquidity...");
+    const UniswapV2Router = await ethers.getContractAt(
+      UniswapV2RouterAbi,
+      UniswapV2RouterAddress
+    );
+    await (
+      await UniswapV2Router.addLiquidity(
+        LShareAddress,
+        WASTRAddress,
+        "100000000000000000",
+        "100000000000000000",
+        "0",
+        "0",
+        deployer,
+        "9999999999999"
+      )
+    ).wait();
+
+    console.log("UniswapV2Factory.getPair...");
+    LShareAstarPair = await UniswapV2Factory.getPair(
+      LibraAddress,
+      WASTRAddress
+    );
+  }
+  if ((await LShareRewardPool.totalAllocPoint()) == 0) {
+    //
+    console.log("LShareRewardPool.add.. LibraAstarPair = " + LibraAstarPair);
+    await (await LShareRewardPool.add("100", LibraAstarPair, false, 0)).wait();
+    console.log("LShareRewardPool.add.. LShareAstarPair = " + LShareAstarPair);
+    await (await LShareRewardPool.add("100", LShareAstarPair, false, 0)).wait();
+  } else {
+  }
 };
 
 func.tags = ["Pools2"];

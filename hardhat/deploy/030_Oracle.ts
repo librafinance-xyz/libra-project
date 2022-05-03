@@ -170,6 +170,21 @@ const func: DeployFunction = async function (hre: HardhatRuntimeEnvironment) {
     "../addresses/" + hre.network.name + "/Oracle.ts",
     'export const Oracle = "' + Oracle.address + '";' + "\n"
   );
+
+  if (LibraAstarPair != "0x0000000000000000000000000000000000000000") {
+    // LibraAstarPair
+    fs.writeFileSync(
+      "../addresses/" + hre.network.name + "/LibraAstarPair.ts",
+      'export const LibraAstarPair = "' + LibraAstarPair + '";' + "\n"
+    );
+  }
+  if (LShareAstarPair != "0x0000000000000000000000000000000000000000") {
+    // LShareAstarPair
+    fs.writeFileSync(
+      "../addresses/" + hre.network.name + "/LShareAstarPair.ts",
+      'export const LShareAstarPair = "' + LShareAstarPair + '";' + "\n"
+    );
+  
 };
 
 func.tags = ["Oracle"];
