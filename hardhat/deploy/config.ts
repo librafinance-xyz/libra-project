@@ -1,4 +1,6 @@
 import { Libra as LibraAddress } from "../../addresses/astar/Libra";
+import { LibraRewardPool as LibraRewardPool } from "../../addresses/astar/LibraRewardPool";
+import { LibraGenesisRewardPool as LibraGenesisRewardPool } from "../../addresses/astar/LibraGenesisRewardPool";
 
 const genesisStartTime = 1651572000; // Tue May 03 2022 10:00:00 GMT+0000, Tue May 03 2022 14:00:00 GMT+0400 (湾岸標準時)
 const startTimeLShare = genesisStartTime;
@@ -36,6 +38,11 @@ const LibraDeployConfig = {
   poolStartTimeForLibraGenesisRewardPool:
     poolStartTimeForLibraGenesisRewardPool,
   poolStartTimeForLibraRewardPool: poolStartTimeForLibraRewardPool,
+
+  // LibraDistributeRewards
+  LibraRewardPool: LibraRewardPool,
+  LibraGenesisRewardPool: LibraRewardPool,
+  AirdropWallet: "0x6eA8D23189aE68F1423c6Fc8f93b602B5C0524A7",
 };
 
 export default LibraDeployConfig;

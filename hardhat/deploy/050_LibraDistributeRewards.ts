@@ -51,15 +51,15 @@ const func: DeployFunction = async function (hre: HardhatRuntimeEnvironment) {
   );
   const WASTR = await ethers.getContractAt(ERC20Abi, WastarAddress);
   const LIBRA = await ethers.getContractAt(LibraAbi, LibraAddress);
-  const _genesisPool = "";
-  const _libraPool = "";
-  const _airdropWallet = "";
+  const LibraRewardPool = LibraDeployConfig.LibraRewardPool;
+  const LibraGenesisRewardPool = LibraDeployConfig.LibraGenesisRewardPool;
+  const AirdropWallet = LibraDeployConfig.AirdropWallet;
+
   await (
     await LIBRA.distributeReward(
-      _genesisPool,
-      _libraPool,
-
-      _airdropWallet
+      LibraRewardPool,
+      LibraGenesisRewardPool,
+      AirdropWallet
     )
   ).wait();
   // // LibraGenesisRewardPool
