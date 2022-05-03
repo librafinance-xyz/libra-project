@@ -1,4 +1,5 @@
-// npx hardhat deploy --network astar --tags Dummy
+// npx hardhat deploy --network astar --tags TreasuryInitilize
+// npx hardhat deploy --network fantom --tags TreasuryInitilize
 
 import { ethers } from "hardhat";
 import { HardhatRuntimeEnvironment } from "hardhat/types";
@@ -35,86 +36,54 @@ const func: DeployFunction = async function (hre: HardhatRuntimeEnvironment) {
   const gasLimit = 5000000;
   console.log("deployer = " + deployer);
 
-  // LIBRA ( DUMMY )
-  const taxRate = "0";
-  const taxCollectorAddress = "0x0000000000000000000000000000000000000000";
-  const LibraDummy = await mydeploy(
-    hre,
-    "LibraDummy",
-    deployer,
-    [taxRate, taxCollectorAddress],
-    true,
-    gasLimit
-  );
-  console.log("#LibraDummy");
-  console.log(
-    "npx hardhat verify --network " +
-      hre.network.name +
-      " " +
-      LibraDummy.address +
-      " " +
-      taxRate +
-      " " +
-      taxCollectorAddress +
-      " " +
-      " --contract contracts/mocks/LibraDummy.sol:LibraDummy "
-  );
-  // LBOND (Dummy )
-  const LBondDummy = await mydeploy(
-    hre,
-    "LBondDummy",
-    deployer,
-    [],
-    true,
-    gasLimit
-  );
-  console.log("#LBondDummy");
-  console.log(
-    "npx hardhat verify --network " +
-      hre.network.name +
-      " " +
-      LBondDummy.address +
-      " " +
-      " --contract contracts/mocks/LBondDummy.sol:LBondDummy "
-  );
-
-  // Treasury
-  const Treasury = await mydeploy(
-    hre,
-    "Treasury",
-    deployer,
-    [],
-    true,
-    gasLimit
-  );
-  console.log("#Treasury");
-  console.log(
-    "npx hardhat verify --network " +
-      hre.network.name +
-      " " +
-      Treasury.address +
-      " " +
-      " --contract contracts/Treasury.sol:Treasury "
-  );
-
-  // Boardroom
-  const Boardroom = await mydeploy(
-    hre,
-    "Boardroom",
-    deployer,
-    [],
-    true,
-    gasLimit
-  );
-  console.log("#Boardroom");
-  console.log(
-    "npx hardhat verify --network " +
-      hre.network.name +
-      " " +
-      Boardroom.address +
-      " " +
-      " --contract contracts/Boardroom.sol:Boardroom "
-  );
+  // // LibraGenesisRewardPool
+  // const LibraAddress = "";
+  // const poolStartTimeForLibraGenesisRewardPool = ""; // DAY 1
+  // const poolStartTimeForLibraRewardPool = ""; // DAY 2-5 & Day 6-10
+  // const LibraGenesisRewardPool = await mydeploy(
+  //   hre,
+  //   "LibraGenesisRewardPool",
+  //   deployer,
+  //   [LibraAddress, poolStartTimeForLibraGenesisRewardPool],
+  //   true,
+  //   gasLimit
+  // );
+  // console.log("#LibraGenesisRewardPool");
+  // console.log(
+  //   "npx hardhat verify --network " +
+  //     hre.network.name +
+  //     " " +
+  //     LibraGenesisRewardPool.address +
+  //     " " +
+  //     LibraAddress +
+  //     " " +
+  //     " " +
+  //     poolStartTimeForLibraGenesisRewardPool +
+  //     " " +
+  //     " --contract contracts/distribution/LibraGenesisRewardPool.sol:LibraGenesisRewardPool "
+  // );
+  // const LibraRewardPool = await mydeploy(
+  //   hre,
+  //   "LibraRewardPool",
+  //   deployer,
+  //   [LibraAddress, poolStartTimeForLibraRewardPool],
+  //   true,
+  //   gasLimit
+  // );
+  // console.log("#LibraRewardPool");
+  // console.log(
+  //   "npx hardhat verify --network " +
+  //     hre.network.name +
+  //     " " +
+  //     LibraRewardPool.address +
+  //     " " +
+  //     LibraAddress +
+  //     " " +
+  //     " " +
+  //     poolStartTimeForLibraRewardPool +
+  //     " " +
+  //     " --contract contracts/distribution/LibraRewardPool.sol:LibraRewardPool "
+  // );
 
   // // LShare ( DUMMY )
   // const startTime = "";
@@ -148,7 +117,7 @@ const func: DeployFunction = async function (hre: HardhatRuntimeEnvironment) {
   // );
 };
 
-func.tags = ["Dummy"];
+func.tags = ["TreasuryInitilize"];
 
 func.skip = async (hre) => {
   return (
