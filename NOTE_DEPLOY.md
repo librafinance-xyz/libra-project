@@ -36,9 +36,15 @@ npx hardhat deploy --network astar --tags Oracle
 
 npx hardhat deploy --network astar --tags Pools
 
+npx hardhat deploy --network astar --tags Pools2
+
 npx hardhat deploy --network astar --tags LibraDistributeRewards
 npx hardhat deploy --network astar --tags LibraRewardPoolAdd
 npx hardhat deploy --network astar --tags PoolsAdd
 npx hardhat deploy --network astar --tags TreasuryInitilize
 npx hardhat deploy --network astar --tags LShareDistributeRewards
 npx hardhat deploy --network astar --tags BoardroomInitilize
+
+#
+
+npx hardhat clean

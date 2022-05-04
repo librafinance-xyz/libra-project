@@ -1,0 +1,1 @@
+export const LibraAstarPair = "0x74B4F8303B753f310C70Ea8BF68f8DC1466B0CCD";
