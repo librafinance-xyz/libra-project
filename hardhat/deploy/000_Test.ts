@@ -82,10 +82,11 @@ const func: DeployFunction = async function (hre: HardhatRuntimeEnvironment) {
     const bal = await LibraAstarPairLP.balanceOf(deployer);
     console.log("bal: " + bal);
     console.log("UniswapV2Router.removeLiquidity....");
+
     await (
-      await UniswapV2Router.removeLiquidity(
+      await UniswapV2Router.removeLiquidityETHSupportingFeeOnTransferTokens(
         LibraAddress,
-        WastarAddress,
+        // WastarAddress,
         bal.div(3).toString(),
         0,
         0,
@@ -94,6 +95,19 @@ const func: DeployFunction = async function (hre: HardhatRuntimeEnvironment) {
         { gasLimit: gasLimit }
       )
     ).wait();
+
+    // await (
+    //   await UniswapV2Router.removeLiquidity(
+    //     LibraAddress,
+    //     WastarAddress,
+    //     bal.div(3).toString(),
+    //     0,
+    //     0,
+    //     deployer,
+    //     "9999999999999",
+    //     { gasLimit: gasLimit }
+    //   )
+    // ).wait();
     console.log("UniswapV2Router.removeLiquidity....ok ");
   }
 };

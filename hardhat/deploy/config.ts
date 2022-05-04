@@ -25,7 +25,8 @@ const TraesuryStartTime = genesisStartTime;
 const farmingIncentiveFund = "0x6eA8D23189aE68F1423c6Fc8f93b602B5C0524A7";
 const LibraDeployConfig = {
   WETH: "0xAeaaf0e2c81Af264101B9129C00F4440cCF0F720", // WASTR
-  UniswapV2Router: "0x92E4d13366C40Ad95D5bB396Beb1891F701CD85F",
+  // UniswapV2Router: "0x92E4d13366C40Ad95D5bB396Beb1891F701CD85F",
+  UniswapV2Router: "0xd8C353015c58613Bdb869De10ae4F143B4f7d0F0",
   UniswapV2Factory: "0x3e01891B309c29E441783F5A2C8CB7833D9b78ff",
   //
   //INIT
