@@ -1,8 +1,10 @@
-// npx hardhat deploy --network astar --tags Dummy
+// npx hardhat deploy --network astar --tags Init
+// npx hardhat deploy --network fantom --tags Init
 
 import { ethers } from "hardhat";
 import { HardhatRuntimeEnvironment } from "hardhat/types";
 import { DeployFunction } from "hardhat-deploy/types";
+import LibraDeployConfig from "./config";
 
 import fs from "fs";
 
@@ -14,7 +16,7 @@ export async function mydeploy(
   log: boolean,
   gasLimit: number
 ) {
-  console.log("mydeploy: " + contractName + "\n");
+  console.log(" deploying  " + contractName + "\n");
   await ethers.getContractFactory(contractName);
   const ret = await hre.deployments.deploy(contractName, {
     from: from,
@@ -36,46 +38,73 @@ const func: DeployFunction = async function (hre: HardhatRuntimeEnvironment) {
   console.log("deployer = " + deployer);
 
   // LIBRA ( DUMMY )
-  const taxRate = "0";
-  const taxCollectorAddress = "0x0000000000000000000000000000000000000000";
-  const LibraDummy = await mydeploy(
+  const taxRate = LibraDeployConfig.taxRate;
+  const taxCollectorAddress = LibraDeployConfig.taxCollectorAddress;
+  const libraContractName = LibraDeployConfig.libraContractName;
+  const libraContractPath = LibraDeployConfig.libraContractPath;
+  const Libra = await mydeploy(
     hre,
-    "LibraDummy",
+    libraContractName,
     deployer,
     [taxRate, taxCollectorAddress],
     true,
     gasLimit
   );
-  console.log("#LibraDummy");
+  console.log("#Libra");
   console.log(
     "npx hardhat verify --network " +
       hre.network.name +
       " " +
-      LibraDummy.address +
+      Libra.address +
       " " +
       taxRate +
       " " +
       taxCollectorAddress +
       " " +
-      " --contract contracts/mocks/LibraDummy.sol:LibraDummy "
+      " --contract " +
+      libraContractPath +
+      ":" +
+      libraContractName +
+      " "
   );
+
+  const content = 'export const Libra = "' + Libra.address + '";' + "\n";
+  fs.writeFileSync("../addresses/" + hre.network.name + "/Libra.ts", content);
+
+  fs.writeFileSync(
+    "../addresses/" + hre.network.name + "/Libra.ts",
+    'export const Libra = "' + Libra.address + '";' + "\n"
+  );
+
   // LBOND (Dummy )
-  const LBondDummy = await mydeploy(
+
+  const bondContractName = LibraDeployConfig.bondContractName;
+  const bondContractPath = LibraDeployConfig.bondContractPath;
+  const LBond = await mydeploy(
     hre,
-    "LBondDummy",
+    bondContractName,
     deployer,
     [],
     true,
     gasLimit
   );
-  console.log("#LBondDummy");
+  console.log("#LBOND");
   console.log(
     "npx hardhat verify --network " +
       hre.network.name +
       " " +
-      LBondDummy.address +
+      LBond.address +
       " " +
-      " --contract contracts/mocks/LBondDummy.sol:LBondDummy "
+      " --contract " +
+      bondContractPath +
+      ":" +
+      bondContractName +
+      " "
+  );
+
+  fs.writeFileSync(
+    "../addresses/" + hre.network.name + "/LBond.ts",
+    'export const LBond = "' + LBond.address + '";' + "\n"
   );
 
   // Treasury
@@ -97,6 +126,11 @@ const func: DeployFunction = async function (hre: HardhatRuntimeEnvironment) {
       " --contract contracts/Treasury.sol:Treasury "
   );
 
+  fs.writeFileSync(
+    "../addresses/" + hre.network.name + "/Treasury.ts",
+    'export const Treasury = "' + Treasury.address + '";' + "\n"
+  );
+
   // Boardroom
   const Boardroom = await mydeploy(
     hre,
@@ -115,6 +149,50 @@ const func: DeployFunction = async function (hre: HardhatRuntimeEnvironment) {
       " " +
       " --contract contracts/Boardroom.sol:Boardroom "
   );
+
+  fs.writeFileSync(
+    "../addresses/" + hre.network.name + "/Boardroom.ts",
+    'export const Boardroom = "' + Boardroom.address + '";' + "\n"
+  );
+  // Boardroom.initialize(LibraDummy.address);
+
+  // // LibraGenesisRewardPool
+  // const poolStartTimeForLibraGenesisRewardPool = ""; // DAY 1
+  // const poolStartTimeForLibraRewardPool = ""; // DAY 2-5 & Day 6-10
+  // const LibraGenesisRewardPool = await mydeploy(
+  //   hre,
+  //   "LibraGenesisRewardPool",
+  //   deployer,
+  //   [LibraDummy.address, poolStartTimeForLibraGenesisRewardPool],
+  //   true,
+  //   gasLimit
+  // );
+  // console.log("#LibraGenesisRewardPool");
+  // console.log(
+  //   "npx hardhat verify --network " +
+  //     hre.network.name +
+  //     " " +
+  //     LibraGenesisRewardPool.address +
+  //     " " +
+  //     " --contract contracts/distribution/LibraGenesisRewardPool.sol:LibraGenesisRewardPool "
+  // );
+  // const LibraRewardPool = await mydeploy(
+  //   hre,
+  //   "LibraRewardPool",
+  //   deployer,
+  //   [LibraDummy.address, poolStartTimeForLibraRewardPool],
+  //   true,
+  //   gasLimit
+  // );
+  // console.log("#LibraRewardPool");
+  // console.log(
+  //   "npx hardhat verify --network " +
+  //     hre.network.name +
+  //     " " +
+  //     LibraRewardPool.address +
+  //     " " +
+  //     " --contract contracts/distribution/LibraRewardPool.sol:LibraRewardPool "
+  // );
 
   // // LShare ( DUMMY )
   // const startTime = "";
@@ -148,7 +226,7 @@ const func: DeployFunction = async function (hre: HardhatRuntimeEnvironment) {
   // );
 };
 
-func.tags = ["Dummy"];
+func.tags = ["Init"];
 
 func.skip = async (hre) => {
   return (
