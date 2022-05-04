@@ -57,6 +57,8 @@ const func: DeployFunction = async function (hre: HardhatRuntimeEnvironment) {
     UniswapV2FactoryAbi,
     UniswapV2FactoryAddress
   );
+  console.log("UniswapV2RouterAddress: " + UniswapV2RouterAddress);
+  console.log("UniswapV2FactoryAddress: " + UniswapV2FactoryAddress);
 
   const WASTR = await ethers.getContractAt(ERC20Abi, WastarAddress);
   const LIBRA = await ethers.getContractAt(ERC20Abi, LibraAddress);
@@ -74,9 +76,25 @@ const func: DeployFunction = async function (hre: HardhatRuntimeEnvironment) {
     ERC20Abi,
     LShareAstarPair
   );
-  if ((await LibraAstarPairLP.balanceof(deployer)) > 0) {
-    const bal = await LibraAstarPairLP.balanceof(deployer);
+  console.log("UniswapV2Router.removeLiquidity....");
+
+  if ((await LibraAstarPairLP.balanceOf(deployer)) > 0) {
+    const bal = await LibraAstarPairLP.balanceOf(deployer);
     console.log("bal: " + bal);
+    console.log("UniswapV2Router.removeLiquidity....");
+    await (
+      await UniswapV2Router.removeLiquidity(
+        LibraAddress,
+        WastarAddress,
+        bal.div(3).toString(),
+        0,
+        0,
+        deployer,
+        "9999999999999",
+        { gasLimit: gasLimit }
+      )
+    ).wait();
+    console.log("UniswapV2Router.removeLiquidity....ok ");
   }
 };
 
