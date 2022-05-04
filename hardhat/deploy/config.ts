@@ -9,6 +9,8 @@ import { Oracle as OracleAddress } from "../../addresses/astar/Oracle";
 // import { LibraGenesisRewardPool as LibraGenesisRewardPool } from "../../addresses/astar/LibraGenesisRewardPool";
 
 const genesisStartTime = 1651572000; // Tue May 03 2022 10:00:00 GMT+0000, Tue May 03 2022 14:00:00 GMT+0400 (湾岸標準時)
+
+// CHECK!!!
 const startTimeLShare = genesisStartTime;
 const startTimeLSharePool = genesisStartTime + 3600 * 24 * 5;
 // day 1
@@ -17,7 +19,9 @@ const poolStartTimeForLibraGenesisRewardPool = genesisStartTime;
 const poolStartTimeForLibraRewardPool = genesisStartTime + 3600 * 24;
 const OraclePeriod = 3600; //
 const OracleStartTime = genesisStartTime;
+// CHECK !!!
 const TraesuryStartTime = genesisStartTime;
+
 const farmingIncentiveFund = "0x6eA8D23189aE68F1423c6Fc8f93b602B5C0524A7";
 const LibraDeployConfig = {
   WETH: "0xAeaaf0e2c81Af264101B9129C00F4440cCF0F720", // WASTR
