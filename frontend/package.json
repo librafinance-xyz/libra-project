@@ -44,7 +44,7 @@
     "redux-localstorage-simple": "^2.3.1",
     "styled-components": "^5.1.1",
     "typescript": "^3.9.7",
-    "use-wallet": "OGBoogieLibra/use-wallet",
+    "use-wallet": "^0.13.6",
     "web3": "^1.2.11"
   },
   "scripts": {
