@@ -17,7 +17,11 @@ const configurations: { [env: string]: Configuration } = {
     networkName: 'Astar Network',
     astrscanUrl: 'https://blockscout.com/astar/address/',
     // defaultProvider: 'https://rpc.ftm.tools/',
-    defaultProvider: 'https://astar-api.bwarelabs.com/7d1b6401-caba-4a39-8a84-13d4e9f105b4',
+    // defaultProvider: 'https://astar-api.bwarelabs.com/7d1b6401-caba-4a39-8a84-13d4e9f105b4',
+    // defaultProvider: 'https://evm.astar.network',
+    defaultProvider: 'https://astar.blastapi.io/a14986c5-535f-418d-91db-d1c6d632bfdc',
+    
+  
     //WSS: wss://astar-api.bwarelabs.com/ws/7d1b6401-caba-4a39-8a84-13d4e9f105b4
 
     deployments: require('./libra-finance/deployments/deployments.dev.json'),
