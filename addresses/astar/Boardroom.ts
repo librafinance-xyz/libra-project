@@ -1,1 +1,1 @@
-export const Boardroom = "0xAFa77F13E78b32FA8f2D2C2055fe14dA3e957A72";
+export const Boardroom = "0x9D05Fb36D257D6Dc40b706e23855454bB6E1aC4F";

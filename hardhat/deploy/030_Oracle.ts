@@ -1,5 +1,4 @@
-// npx hardhat deploy --network astar --tags LShare
-// npx hardhat deploy --network fantom --tags LShare
+// npx hardhat deploy --network astar --tags Oracle
 
 import { ethers } from "hardhat";
 import { HardhatRuntimeEnvironment } from "hardhat/types";
@@ -157,6 +156,8 @@ const func: DeployFunction = async function (hre: HardhatRuntimeEnvironment) {
     "npx hardhat verify --network " +
       hre.network.name +
       " " +
+      Oracle.address+
+      " " +
       LibraAstarPair +
       " " +
       OraclePeriod +
@@ -164,7 +165,7 @@ const func: DeployFunction = async function (hre: HardhatRuntimeEnvironment) {
       OracleStartTime +
       " " +
       " " +
-      " --contract contracts/mocks/Oracle.sol:Oracle "
+      " --contract contracts/Oracle.sol:Oracle "
   );
   fs.writeFileSync(
     "../addresses/" + hre.network.name + "/Oracle.ts",
