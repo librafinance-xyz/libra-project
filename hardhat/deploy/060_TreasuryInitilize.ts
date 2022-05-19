@@ -1,5 +1,4 @@
 // npx hardhat deploy --network astar --tags TreasuryInitilize
-// npx hardhat deploy --network fantom --tags TreasuryInitilize
 
 import { ethers } from "hardhat";
 import { HardhatRuntimeEnvironment } from "hardhat/types";
@@ -65,6 +64,7 @@ const func: DeployFunction = async function (hre: HardhatRuntimeEnvironment) {
         { gasLimit: gasLimit }
       )
     ).wait();
+    console.log("Treasury.initilize.....ok");
   } else {
     console.log("Treasury alraedy initilized ");
   }

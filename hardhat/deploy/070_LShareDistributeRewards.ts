@@ -1,5 +1,4 @@
 // npx hardhat deploy --network astar --tags LShareDistributeRewards
-// npx hardhat deploy --network fantom --tags LShareDistributeRewards
 
 import { ethers } from "hardhat";
 import { HardhatRuntimeEnvironment } from "hardhat/types";
@@ -50,12 +49,10 @@ const func: DeployFunction = async function (hre: HardhatRuntimeEnvironment) {
         gasLimit: gasLimit,
       })
     ).wait();
+    console.log("LShare reward pool distributing... ok");
   } else {
     console.log("LShare reward pool already ");
   }
-  // const BoardroomAddress = LibraDeployConfig.Boardroom;
-  // const LibraAddress = LibraDeployConfig.LibraAddress;
-  // const TreasuryAddress = LibraDeployConfig.TreasuryAddress;
 };
 
 func.tags = ["LShareDistributeRewards"];

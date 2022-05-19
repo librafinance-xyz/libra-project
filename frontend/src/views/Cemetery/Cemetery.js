@@ -29,6 +29,9 @@ const Cemetery = () => {
   const { path } = useRouteMatch();
   const { account } = useWallet();
   const activeBanks = banks.filter((bank) => !bank.finished);
+  // console.log(activeBanks);
+  // // console.log(bank);
+  
   return (
     <Switch>
       <Page>

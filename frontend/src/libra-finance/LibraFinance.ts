@@ -247,7 +247,9 @@ export class LibraFinance {
   }
 
   async getLibraPriceInLastTWAP(): Promise<BigNumber> {
+    console.log("getLibraPriceInLastTWAP... this.contracts => ", this.contracts)
     const { Treasury } = this.contracts;
+    console.log("getLibraPriceInLastTWAP... ")
     return Treasury.getLibraUpdatedPrice();
   }
 

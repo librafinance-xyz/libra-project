@@ -47,6 +47,7 @@ const WalletProviderModal = ({ open, handleClose }) => {
 					<WalletCard
 						icon={<img src={metamaskLogo} alt="Metamask logo" style={{ height: 32 }} />}
 						onConnect={() => {
+							console.log("onConnect injected")
 							connect('injected');
 						}}
 						title="Metamask"
@@ -54,6 +55,7 @@ const WalletProviderModal = ({ open, handleClose }) => {
 					<WalletCard
 						icon={<img src={walletConnectLogo} alt="Wallet Connect logo" style={{ height: 24 }} />}
 						onConnect={() => {
+							console.log("onConnect walletconnect")
 							connect('walletconnect');
 						}}
 						title="WalletConnect"

@@ -1,5 +1,4 @@
 // npx hardhat deploy --network astar --tags BoardroomInitilize
-// npx hardhat deploy --network fantom --tags BoardroomInitilize
 
 import { ethers } from "hardhat";
 import { HardhatRuntimeEnvironment } from "hardhat/types";
@@ -52,6 +51,7 @@ const func: DeployFunction = async function (hre: HardhatRuntimeEnvironment) {
         gasLimit: gasLimit,
       })
     ).wait();
+    console.log("Boardroom initilize....ok");
   } else {
     console.log("Boardroom already initialized.");
   }

@@ -1,5 +1,4 @@
 // npx hardhat deploy --network astar --tags LibraDistributeRewards
-// npx hardhat deploy --network fantom --tags LibraDistributeRewards
 
 import { ethers } from "hardhat";
 import { HardhatRuntimeEnvironment } from "hardhat/types";
@@ -56,6 +55,7 @@ const func: DeployFunction = async function (hre: HardhatRuntimeEnvironment) {
   const AirdropWallet = LibraDeployConfig.AirdropWallet;
   console.log("LibraAddress: " + LibraAddress);
   if ((await LIBRA.rewardPoolDistributed()) == false) {
+    console.log("rewardPoolDistributed.....")
     await (
       await LIBRA.distributeReward(
         LibraRewardPool,
@@ -64,6 +64,8 @@ const func: DeployFunction = async function (hre: HardhatRuntimeEnvironment) {
         { gasLimit: gasLimit }
       )
     ).wait();
+  } else {
+    console.log("rewardPoolDistributed...... already")
   }
 };
 

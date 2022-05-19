@@ -8,11 +8,13 @@ const useCashPriceInLastTWAP = () => {
   const libraFinance = useLibraFinance();
 
   const fetchCashPrice = useCallback(async () => {
+    console.log("useCashPriceInLastTWAP: ")
+    console.log("useCashPriceInLastTWAP: await libraFinance.getLibraPriceInLastTWAP()=", await libraFinance.getLibraPriceInLastTWAP())
     setPrice(await libraFinance.getLibraPriceInLastTWAP());
   }, [libraFinance]);
 
   useEffect(() => {
-    fetchCashPrice().catch((err) => console.error(`Failed to fetch LIBRA price: ${err.stack}`));
+    fetchCashPrice().catch((err) => console.error(`LOGTEST: Failed to fetch LIBRA price: ${err.stack}`));
     const refreshInterval = setInterval(fetchCashPrice, config.refreshInterval);
     return () => clearInterval(refreshInterval);
   }, [setPrice, libraFinance, fetchCashPrice]);
