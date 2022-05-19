@@ -8,9 +8,8 @@ import { LBond as LBondAddress } from "../../addresses/astar/LBond";
 import { Oracle as OracleAddress } from "../../addresses/astar/Oracle";
 // import { LibraGenesisRewardPool as LibraGenesisRewardPool } from "../../addresses/astar/LibraGenesisRewardPool";
 
-const genesisStartTime = 1651572000; // Tue May 03 2022 10:00:00 GMT+0000, Tue May 03 2022 14:00:00 GMT+0400 (湾岸標準時)
+const genesisStartTime = 1652948970; // May 19, 2022 8:29:30 AM GMT
 
-// CHECK!!!
 const startTimeLShare = genesisStartTime;
 const startTimeLSharePool = genesisStartTime + 3600 * 24 * 5;
 // day 1
@@ -36,12 +35,12 @@ const LibraDeployConfig = {
   shareContractName: "LibraDummy",
   shareContractPath: "contracts/mocks/LibraDummy.sol",
   taxRate: "0",
-  taxCollectorAddress: "0x0000000000000000000000000000000000000000",
+  taxCollectorAddress: "0xDD9442f4a7e01756D09a045A811627757C020eeE",
   // LSHARE
   startTimeLShare: startTimeLShare,
-  communityFund: "0x6eA8D23189aE68F1423c6Fc8f93b602B5C0524A7",
-  devFund: "0x6eA8D23189aE68F1423c6Fc8f93b602B5C0524A7",
-  treasuryFund: "0x6eA8D23189aE68F1423c6Fc8f93b602B5C0524A7",
+  communityFund: "0x08e4fd990A6Fc98FA110E824267c7e896aB7b0Af",
+  devFund: "0x1Ec16347F61Ee8B3e5369A1A5e9a76Ede7A64AEA",
+  treasuryFund: "0x9D388Ae1B93203eb293AD763FAda3c80A6042028",
   // Oracle
   LibraAddress: LibraAddress,
   //   LibraAstarPair: "",
