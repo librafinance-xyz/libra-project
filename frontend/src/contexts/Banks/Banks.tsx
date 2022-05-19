@@ -11,8 +11,10 @@ const Banks: React.FC = ({ children }) => {
 
   const fetchPools = useCallback(async () => {
     const banks: Bank[] = [];
-
+    console.log(bankDefinitions)
     for (const bankInfo of Object.values(bankDefinitions)) {
+      console.log("Banks: ", bankInfo)
+      console.log("bankInfo.finished: ", bankInfo.finished)
       if (bankInfo.finished) {
         if (!libraFinance.isUnlocked) continue;
 
@@ -26,12 +28,18 @@ const Banks: React.FC = ({ children }) => {
           continue;
         }
       }
+      console.log("bankInfo.name,: ",bankInfo.name,)
+      console.log("bankInfo.contract,: ",bankInfo.contract,)
+      console.log("config.deployments[bankInfo.contract].address,: ",config.deployments[bankInfo.contract].address,)
+      console.log("bankInfo.depositTokenName,: ",bankInfo.depositTokenName,)
+      console.log("libraFinance.externalTokens[bankInfo.depositTokenName],: ",libraFinance.externalTokens[bankInfo.depositTokenName],)
       banks.push({
         ...bankInfo,
         address: config.deployments[bankInfo.contract].address,
         depositToken: libraFinance.externalTokens[bankInfo.depositTokenName],
         earnToken: bankInfo.earnTokenName === 'LIBRA' ? libraFinance.LIBRA : libraFinance.LSHARE,
       });
+      console.log("bankInfo.name2: ",bankInfo.name,)
     }
     banks.sort((a, b) => (a.sort > b.sort ? 1 : -1));
     setBanks(banks);
