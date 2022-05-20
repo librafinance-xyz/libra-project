@@ -21,7 +21,7 @@ const poolStartTimeForLibraGenesisRewardPool = genesisStartTime;
 const poolStartTimeForLibraRewardPool = genesisStartTime + 3600 * 24;
 const OraclePeriod = 3600; //
 const OracleStartTime = genesisStartTime;
-// CHECK !!!
+// CHECK !!! => 疑問、LSHARE配り始める時間を genesisと同じタイミングにしていいのか？ 
 const TraesuryStartTime = genesisStartTime;
 
 const farmingIncentiveFund = "0x6eA8D23189aE68F1423c6Fc8f93b602B5C0524A7";
