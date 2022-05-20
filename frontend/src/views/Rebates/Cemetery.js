@@ -107,7 +107,7 @@ const Cemetery = () => {
                 3DAO - Treasury * Still under Mantance 70% done *
               </Typography> */}
               <Box mt={2}>
-                <Grid container justify="center" spacing={3}>
+                <Grid container justifyContent="center" spacing={3}>
                   <Grid item xs={12} md={3} lg={3} className={classes.gridItem}>
                     <Card className={classes.gridItem}>
                       <CardContent align="center">
@@ -152,7 +152,7 @@ const Cemetery = () => {
                 </Grid>
               </div>
               <Box mt={2}>
-                <Grid container justify="center" spacing={3}>
+                <Grid container justifyContent="center" spacing={3}>
                   <Grid item xs={12} md={3} lg={3} className={classes.gridItem}>
                     <Card style={{ height: 'auto' }}>
                       <CardContent align="center">

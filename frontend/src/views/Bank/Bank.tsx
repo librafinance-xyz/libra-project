@@ -43,7 +43,7 @@ const Bank: React.FC = () => {
         title={bank?.name}
       />
       <Box>
-        <Grid container justify="center" spacing={3} style={{ marginBottom: '50px' }}>
+        <Grid container justifyContent="center" spacing={3} style={{ marginBottom: '50px' }}>
           <Grid item xs={12} md={2} lg={2} className={classes.gridItem}>
             <Card className={classes.gridItem}>
               <CardContent style={{ textAlign: 'center', boxShadow: 'none !important' }}>

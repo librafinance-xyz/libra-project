@@ -70,8 +70,8 @@ export const bankDefinitions: { [contractName: string]: BankInfo } = {
     finished: false,
     multiplier: '500x',
     site: 'https://astar.network',
-    buyLink: 'https://librax.finance',
-    sort: 7,
+    buyLink: 'https://librax.finance', //[LIBRA FINANCE]token address will be added
+    sort: 1,
     closedForStaking: true,
   },
  
@@ -84,40 +84,41 @@ export const bankDefinitions: { [contractName: string]: BankInfo } = {
     earnTokenName: 'LIBRA',
     finished: false,
     multiplier: '0',
-    buyLink: '',
+    buyLink: 'https://librax.finance', //[LIBRA FINANCE]token address will be added
     site: '',
-    sort: 7,
+    sort: 2,
     closedForStaking: true,
   },
 
-  // LibraAstarLPLShareRewardPool: {
-  //   name: 'Earn LSHARE by LIBRA-WASTR LP',
-  //   poolId: 0,
-  //   sectionInUI: 2,
-  //   contract: 'LShareRewardPool',
-  //   depositTokenName: 'LIBRA-ASTR-LP',
-  //   earnTokenName: 'LSHARE',
-  //   finished: false,
-  //   multiplier: '24000x',
-  //   buyLink: 'https://www.librax.finance/add/ASTR', //[LIBRA FINANCE]token address will be added
-  //   site: '/',
-  //   sort: 8,
-  //   closedForStaking: false,
-  // },
-  // LshareAstarLPLShareRewardPool: {
-  //   name: 'Earn LSHARE by LSHARE-WASTR LP',
-  //   poolId: 1,
-  //   sectionInUI: 2,
-  //   contract: 'LShareRewardPool',
-  //   depositTokenName: 'LSHARE-ASTR-LP',
-  //   earnTokenName: 'LSHARE',
-  //   finished: false,
-  //   multiplier: '35500x',
-  //   buyLink: 'https://www.librax.finance/add/ASTR', //[LIBRA FINANCE]token address will be added
-  //   site: '/',
-  //   sort: 9,
-  //   closedForStaking: false,
-  // },
+  LibraAstarLPLShareRewardPool: {
+    name: 'Earn LSHARE by LIBRA-WASTR LP',
+    poolId: 1,
+    sectionInUI: 2,
+    contract: 'LibraAstarLPLShareRewardPool',
+    depositTokenName: 'LIBRA-ASTR-LP',
+    earnTokenName: 'LSHARE',
+    finished: false,
+    multiplier: '24000x',
+    buyLink: 'https://librax.finance', //[LIBRA FINANCE]token address will be added
+    site: '/',
+    sort: 3,
+    closedForStaking: false,
+  },
+
+  LshareAstarLPLShareRewardPool: {
+    name: 'Earn LSHARE by LSHARE-WASTR LP',
+    poolId: 1,
+    sectionInUI: 2,
+    contract: 'LshareAstarLPLShareRewardPool',
+    depositTokenName: 'LSHARE-ASTR-LP',
+    earnTokenName: 'LSHARE',
+    finished: false,
+    multiplier: '35500x',
+    buyLink: 'https://www.librax.finance', //[LIBRA FINANCE]token address will be added
+    site: '/',
+    sort: 9,
+    closedForStaking: false,
+  },
 
 
   // USDCRebates: {
