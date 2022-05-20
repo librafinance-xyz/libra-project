@@ -91,7 +91,7 @@ const ProvideLiquidity = () => {
         Provide Liquidity
       </Typography>
 
-      <Grid container justify="center">
+      <Grid container justifyContent="center">
         <Box style={{ width: '600px' }}>
           <Alert variant="filled" severity="warning" style={{ marginBottom: '10px' }}>
             <b>
