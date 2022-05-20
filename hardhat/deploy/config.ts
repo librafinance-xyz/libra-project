@@ -8,7 +8,7 @@ import { LBond as LBondAddress } from "../../addresses/astar/LBond";
 import { Oracle as OracleAddress } from "../../addresses/astar/Oracle";
 
 
-const genesisStartTime = 1652942416; // Thu May 19 2022 06:40:16 GMT+0000, Thu May 19 2022 10:40:16 GMT+0400 (Gulf Standard Time)
+const genesisStartTime = 1653030000; // Date and time (GMT): Friday, May 20, 2022 7:00:00 AM
 
 
 
@@ -41,9 +41,9 @@ const LibraDeployConfig = {
   taxCollectorAddress: "0x0000000000000000000000000000000000000000",
   // LSHARE
   startTimeLShare: startTimeLShare,
-  communityFund: "0x6eA8D23189aE68F1423c6Fc8f93b602B5C0524A7",
-  devFund: "0x6eA8D23189aE68F1423c6Fc8f93b602B5C0524A7",
-  treasuryFund: "0x6eA8D23189aE68F1423c6Fc8f93b602B5C0524A7",
+  communityFund: "0x08e4fd990A6Fc98FA110E824267c7e896aB7b0Af",
+  devFund: "0x1Ec16347F61Ee8B3e5369A1A5e9a76Ede7A64AEA",
+  treasuryFund: "0x9D388Ae1B93203eb293AD763FAda3c80A6042028",
   // Oracle
   LibraAddress: LibraAddress,
   //   LibraAstarPair: "",
