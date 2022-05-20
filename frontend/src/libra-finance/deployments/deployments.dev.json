@@ -2877,7 +2877,7 @@
     ]
   },
   "Treasury": {
-    "address": "0xF833a56AE3eA2A1B103893897734daAF7f9dC12B",
+    "address": "0x570c34d270948e5A31403fA49492af971c69c5a8",
     "abi": [
       {
         "anonymous": false,
@@ -9916,9 +9916,9 @@
       }
     ]
   },
-
-  "LibraBifiGenesisRewardPool": {
-    "address": "0x986682C9A4aAaeEC4a7b306262AF36Cff0bd94B1",
+  
+  "SpookyRouter": {
+    "address": "0x13381C52765EaB0a2A132a79Cc27798ef80ca6A2",
     "abi": [
       {
         "inputs": [
