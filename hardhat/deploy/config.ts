@@ -38,7 +38,7 @@ const LibraDeployConfig = {
   shareContractName: "LibraDummy",
   shareContractPath: "contracts/mocks/LibraDummy.sol",
   taxRate: "0",
-  taxCollectorAddress: "0xDD9442f4a7e01756D09a045A811627757C020eeE",
+  taxCollectorAddress: "0x0000000000000000000000000000000000000000",
   // LSHARE
   startTimeLShare: startTimeLShare,
   communityFund: "0x08e4fd990A6Fc98FA110E824267c7e896aB7b0Af",
