@@ -18900,7 +18900,7 @@
       },
       {
         "inputs": [],
-        "name": "two_ombPerSecond",
+        "name": "libraPerSecond",
         "outputs": [
           {
             "internalType": "uint256",
