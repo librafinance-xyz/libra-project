@@ -35,6 +35,13 @@ const Bank: React.FC = () => {
   const { account } = useWallet();
   const { onRedeem } = useRedeem(bank);
   const statsOnPool = useStatsForPool(bank);
+
+  console.log("@@@@@bank", bank);
+  console.log("@@@@@statsOnPool", statsOnPool);
+  console.log("@@@@@bank.closedForStaking", bank.closedForStaking);
+  console.log("@@@@@statsOnPool?.yearlyAPR", statsOnPool?.yearlyAPR);
+
+
   return account && bank ? (
     <>
       <PageHeader
@@ -78,7 +85,7 @@ const Bank: React.FC = () => {
               
             </StyledCardWrapper>
             <Spacer />
-            <StyledCardWrapper>{<Stake bank={bank} />}
+            <StyledCardWrapper>{<Stake bank={bank} />}aaaaa
             </StyledCardWrapper>
           </StyledCardsWrapper>
           <Spacer size="lg" />

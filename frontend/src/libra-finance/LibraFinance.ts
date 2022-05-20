@@ -359,9 +359,9 @@ export class LibraFinance {
    */
   async getDepositTokenPriceInDollars(tokenName: string, token: ERC20) {
     let tokenPrice;
-    const priceOfOneFtmInDollars = await this.getWASTRPriceFromArthswapASTRUSDC();
-    if (tokenName === 'wASTR') {
-      tokenPrice = priceOfOneFtmInDollars;
+    const priceOfOneAstarInDollars = await this.getWASTRPriceFromArthswapASTRUSDC();
+    if (tokenName === 'WASTR') {
+      tokenPrice = priceOfOneAstarInDollars;
     } else {
       console.log('token name:', tokenName);
       if (tokenName === 'LIBRA-WASTR LP') {
@@ -393,7 +393,7 @@ export class LibraFinance {
         //   tokenPrice = data['beluga-fi'].usd;
       } else {
         tokenPrice = await this.getTokenPriceFromLP(token);
-        tokenPrice = (Number(tokenPrice) * Number(priceOfOneFtmInDollars)).toString();
+        tokenPrice = (Number(tokenPrice) * Number(priceOfOneAstarInDollars)).toString();
       }
     }
     return tokenPrice;
@@ -660,8 +660,8 @@ export class LibraFinance {
   //     let astarAmount = Number(getFullDisplayBalance(ftmBalanceInLP, WASTR.decimal));
   //     let shibaBalanceInLP = await tokenContract.balanceOf(liquidityToken.address);
   //     let shibaAmount = Number(getFullDisplayBalance(shibaBalanceInLP, tokenContract.decimal));
-  //     const priceOfOneFtmInDollars = await this.getWASTRPriceFromArthswapASTRUSDC();
-  //     let priceOfShiba = (astarAmount / shibaAmount) * Number(priceOfOneFtmInDollars);
+  //     const priceOfOneAstarInDollars = await this.getWASTRPriceFromArthswapASTRUSDC();
+  //     let priceOfShiba = (astarAmount / shibaAmount) * Number(priceOfOneAstarInDollars);
   //     return priceOfShiba.toString();
   //   } catch (err) {
   //     console.error(`Failed to fetch token price of ${tokenContract.symbol}: ${err}`);
