@@ -15,7 +15,9 @@ const configurations: { [env: string]: Configuration } = {
   production: {
     chainId: ChainId.MAINNET,
     networkName: 'Astar Network',
-    astrscanUrl: 'https://blockscout.com/astar/address/',
+    // astrscanUrl: 'https://blockscout.com/astar/address/',
+    astrscanUrl: 'https://blockscout.com/astar',
+    // astrscanUrl: 'https://astar.subscan.io',
     // defaultProvider: 'https://rpc.ftm.tools/',
     // defaultProvider: 'https://astar-api.bwarelabs.com/7d1b6401-caba-4a39-8a84-13d4e9f105b4',
     // defaultProvider: 'https://evm.astar.network',
@@ -72,7 +74,7 @@ export const bankDefinitions: { [contractName: string]: BankInfo } = {
     site: 'https://astar.network',
     buyLink: 'https://librax.finance', //[LIBRA FINANCE]token address will be added
     sort: 1,
-    closedForStaking: true,
+    closedForStaking: false,
   },
  
   LibraAstrLPLibraRewardPool: {
