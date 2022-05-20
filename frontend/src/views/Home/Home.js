@@ -146,7 +146,6 @@ const Home = () => {
         libraLpZap.onZap(zappingToken, tokenName, amount);
         onDissmissLibraZap();
       }}
-      // tokenName={'LIBRA-ASTR-LP'}
       tokenName={'LIBRA-ASTR-LP'}
     />,
   );

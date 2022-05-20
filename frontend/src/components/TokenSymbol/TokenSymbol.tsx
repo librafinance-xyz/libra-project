@@ -48,8 +48,6 @@ const logosBySymbol: { [title: string]: string } = {
   // BLOOM: bloomLogo,
   WASTR: astrLogo,
   ASTR: astrLogo,
-  // 'LSHARE-ASTR-LP': TwosharesLPLogo,
-  // 'LSHARE-ASTR-LP': ThreesharesLPLogo,
   wASTR: astrLogo,
   'LIBRA-ASTR-LP': LibraAstrLPlogo,
   'LSHARE-ASTR-LP': LshareAstrLPlogo,
