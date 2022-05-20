@@ -74,7 +74,7 @@ const Boardroom = () => {
             3Room
           </Typography>
           <Box mt={5}>
-            <Grid container justify="center" spacing={3}>
+            <Grid container justifyContent="center" spacing={3}>
               <Grid item xs={12} md={2} lg={2} className={classes.gridItem}>
                 <Card className={classes.gridItem}>
                   <CardContent>
@@ -119,7 +119,7 @@ const Boardroom = () => {
               </Grid>
             </Grid>
 
-            <Grid container justify="center">
+            <Grid container justifyContent="center">
               <Box mt={3} style={{ width: '525px' }}>
                 <Alert variant="transparent" severity="info">
                   Staked LSHARE can only be withdrawn after 3 epochs since deposit.
@@ -141,7 +141,7 @@ const Boardroom = () => {
               </StyledBoardroom>
             </Box>
 
-            {/* <Grid container justify="center" spacing={3}>
+            {/* <Grid container justifyContent="center" spacing={3}>
             <Grid item xs={4}>
               <Card>
                 <CardContent align="center">
@@ -173,7 +173,7 @@ const Boardroom = () => {
           </Box>
 
           <Box mt={5}>
-            <Grid container justify="center" spacing={3} mt={10}>
+            <Grid container justifyContent="center" spacing={3} mt={10}>
               <Button
                 disabled={stakedBalance.eq(0) || (!canWithdraw && !canClaimReward)}
                 onClick={onRedeem}

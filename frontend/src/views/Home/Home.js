@@ -146,7 +146,6 @@ const Home = () => {
         libraLpZap.onZap(zappingToken, tokenName, amount);
         onDissmissLibraZap();
       }}
-      // tokenName={'LIBRA-ASTR-LP'}
       tokenName={'LIBRA-ASTR-LP'}
     />,
   );
@@ -168,7 +167,7 @@ const Home = () => {
       <BackgroundImage />
       <Grid container spacing={3} style={{ marginBottom: '100px' }}>
         {/* Logo */}
-        <Grid container item xs={12} sm={3} justify="center">
+        <Grid container item xs={12} sm={3} justifyContent="center">
           {/* <Paper>xs=6 sm=3</Paper> */}
           <Image className="ombImg-home" color="none" style={{ width: '300px', paddingTop: '0px' }} src={CashImage} />
         </Grid>
@@ -221,7 +220,7 @@ const Home = () => {
             </Box>
           </Paper>
         </Grid>
-        <Grid container justify="center">
+        <Grid container justifyContent="center">
           <Box mt={3} style={{ width: '98%' }}>
             <Alert variant="filled" severity="error">
               THIS IS CURRENRY UNDER TEST VERSION. YOU MIGHT BE ABLE TO GET "DUMMY TOKEN", HOWEVER IT'S ZERO VALUE.
@@ -233,7 +232,7 @@ const Home = () => {
         </Grid>
 
         {/* <Grid container spacing={3}>
-    <Grid item  xs={12} sm={12} justify="center"  style={{ margin: '12px', display: 'flex' }}>
+    <Grid item  xs={12} sm={12} justifyContent="center"  style={{ margin: '12px', display: 'flex' }}>
             <Alert severity="warning" style={{ backgroundColor: "transparent", border: "1px solid var(--white)" }}>
               <b>
       Please visit our <StyledLink target="_blank" href="https://docs.libra.finance">documentation</StyledLink> before purchasing LIBRA or LSHARE!</b>

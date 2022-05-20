@@ -110,7 +110,7 @@ const Cemetery = () => {
               </Box> */}
 
               <Box mt={2}>
-                <Grid container justify="center" spacing={3}>
+                <Grid container justifyContent="center" spacing={3}>
                   <Grid item xs={12} md={4} lg={4} className={classes.gridItem}>
                     <Card style={{ height: 'auto' }}>
                       <CardContent align="center">
@@ -132,7 +132,7 @@ const Cemetery = () => {
                 >
                   Protocol Owned Liquidity
                 </Typography>
-                <Grid container justify="center" spacing={3}>
+                <Grid container justifyContent="center" spacing={3}>
                   <Grid item xs={12} md={4} lg={4} className={classes.gridItem}>
                     <Card style={{ height: 'auto' }}>
                       <CardContent align="center">
@@ -160,7 +160,7 @@ const Cemetery = () => {
                 </Grid>
               </Box>
 
-              {/* <Grid container justify="center" spacing={3}>
+              {/* <Grid container justifyContent="center" spacing={3}>
                 {assetList.map((asset) => 
                 <Card>
                   <CemeteryCard bank={asset} />

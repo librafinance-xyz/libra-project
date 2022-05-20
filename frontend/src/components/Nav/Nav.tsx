@@ -171,8 +171,8 @@ const Nav = () => {
 
             <Drawer
               className={classes.drawer}
-              onEscapeKeyDown={handleDrawerClose}
-              onBackdropClick={handleDrawerClose}
+              // onEscapeKeyDown={handleDrawerClose} // [ISSUE] Libra Finance
+              // onBackdropClick={handleDrawerClose}  //[ISSUE] Libra Finance
               variant="temporary"
               anchor="left"
               open={open}
