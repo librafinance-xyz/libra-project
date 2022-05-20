@@ -29,7 +29,6 @@ const configurations: { [env: string]: Configuration } = {
     deployments: require('./libra-finance/deployments/deployments.dev.json'),
     externalTokens: {
       USDC: ['0x6a2d262D56735DbA19Dd70682B39F6bE9a931D98', 6], // Astar USDC
-      wASTR: ['0xAeaaf0e2c81Af264101B9129C00F4440cCF0F720', 18],
       WASTR: ['0xAeaaf0e2c81Af264101B9129C00F4440cCF0F720', 18],
       LIBRA: ['0x275d719111a7c6bfF2090BEa4B4C264852b774d2', 18], // DUMMY
 

@@ -331,7 +331,7 @@ const Home = () => {
               <h2>ASTR</h2>
               <Box mt={2} style={{ backgroundColor: 'transparent !important' }}>
                 <CardIcon style={{ backgroundColor: 'transparent !important' }}>
-                  {/* <TokenSymbol symbol="wASTR" style={{ backgroundColor: 'transparent !important' }} /> */}
+                  {/* <TokenSymbol symbol="WASTR" style={{ backgroundColor: 'transparent !important' }} /> */}
                   <TokenSymbol symbol="WASTR" style={{ backgroundColor: 'transparent !important' }} />
                 </CardIcon>
               </Box>
