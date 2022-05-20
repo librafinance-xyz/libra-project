@@ -70,7 +70,7 @@ export const bankDefinitions: { [contractName: string]: BankInfo } = {
     finished: false,
     multiplier: '500x',
     site: 'https://astar.network',
-    buyLink: 'https://librax.finance',
+    buyLink: 'https://librax.finance', //[LIBRA FINANCE]token address will be added
     sort: 1,
     closedForStaking: true,
   },
@@ -84,7 +84,7 @@ export const bankDefinitions: { [contractName: string]: BankInfo } = {
     earnTokenName: 'LIBRA',
     finished: false,
     multiplier: '0',
-    buyLink: '',
+    buyLink: 'https://librax.finance', //[LIBRA FINANCE]token address will be added
     site: '',
     sort: 2,
     closedForStaking: true,
@@ -99,7 +99,7 @@ export const bankDefinitions: { [contractName: string]: BankInfo } = {
     earnTokenName: 'LSHARE',
     finished: false,
     multiplier: '24000x',
-    buyLink: '', //[LIBRA FINANCE]token address will be added
+    buyLink: 'https://librax.finance', //[LIBRA FINANCE]token address will be added
     site: '/',
     sort: 3,
     closedForStaking: false,
@@ -114,7 +114,7 @@ export const bankDefinitions: { [contractName: string]: BankInfo } = {
     earnTokenName: 'LSHARE',
     finished: false,
     multiplier: '35500x',
-    buyLink: 'https://www.librax.finance/add/ASTR', //[LIBRA FINANCE]token address will be added
+    buyLink: 'https://www.librax.finance', //[LIBRA FINANCE]token address will be added
     site: '/',
     sort: 9,
     closedForStaking: false,
