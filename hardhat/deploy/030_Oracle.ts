@@ -58,8 +58,8 @@ const func: DeployFunction = async function (hre: HardhatRuntimeEnvironment) {
   const WASTR = await ethers.getContractAt(ERC20Abi, WastarAddress);
   const LIBRA = await ethers.getContractAt(ERC20Abi, LibraAddress);
   const LSHARE = await ethers.getContractAt(ERC20Abi, LShareAddress);
-  let LibraAstarPair = "0x2696Ad71eD72345110FC6E4CbEdc67B9B91A937A"; // Insert pair address
-  let LShareAstarPair = "0x0CbcE8d4580dA96b71C0B46215AFa4249325390d"; // Insert pair address
+  let LibraAstarPair = ""; 
+  let LShareAstarPair = ""; 
   LibraAstarPair = await UniswapV2Factory.getPair(LibraAddress, WastarAddress);
   LShareAstarPair = await UniswapV2Factory.getPair(
     LShareAddress,
