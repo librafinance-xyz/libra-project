@@ -110,16 +110,16 @@ const LPTokenHelpText: React.FC<{ bank: BankEntity }> = ({ bank }) => {
   let uniswapUrl: string;
   if (bank.depositTokenName.includes('LIBRA')) {
     pairName = 'LIBRA-WASTR pair';
-    uniswapUrl = 'https://spookyswap.finance/add/ASTR/' + libraAddr;
+    uniswapUrl = 'https://librax.finance/add/ASTR/' + libraAddr;
   } else {
     pairName = 'LSHARE-WASTR pair';
-    uniswapUrl = 'https://spookyswap.finance/add/ASTR/' + lshareAddr;
+    uniswapUrl = 'https://librax.finance/add/ASTR/' + lshareAddr;
   }
   return (
     <Card>
       <CardContent>
         <StyledLink href={uniswapUrl} target="_blank">
-          {`👻 Provide liquidity for ${pairName} now on SpookySwap 👻`}
+          {`👾 Provide liquidity for ${pairName} now on LibraX 👾`}
         </StyledLink>
       </CardContent>
     </Card>
