@@ -194,10 +194,8 @@ export class LibraFinance {
     console.log('getShareStat ');
 
     console.log('getShareStat:', this.LSHARE);
-    // const { LibraRewardPool, LibraFtmLpLibraRewardPool, LibraFtmLpLibraRewardPoolOld } = this.contracts;
     // console.log('getShareStat:  LibraFtmLpLibraRewardPoolOld:', LibraFtmLpLibraRewardPoolOld);
-    // console.log('getShareStat:  LibraFtmLpLibraRewardPool:', LibraFtmLpLibraRewardPool);
-    // console.log('getShareStat:', this.LIBRA);
+
     const supply = await this.LSHARE.totalSupply();
     console.log('getShareStat:  supply= ' + supply.toString());
 
@@ -314,24 +312,25 @@ export class LibraFinance {
           return rewardPerSecond.mul(7500).div(25000).div(24).mul(20);
         } else if (depositTokenName === 'LIBRA') {
           return rewardPerSecond.mul(5000).div(25000).div(24).mul(20);
-        } else if (depositTokenName === 'BELUGA') {
-          return rewardPerSecond.mul(500).div(25000).div(24).mul(20);
-        } else if (depositTokenName === 'BIFI') {
-          return rewardPerSecond.mul(500).div(25000).div(24).mul(20);
+        // } else if (depositTokenName === 'BELUGA') {
+        //   return rewardPerSecond.mul(500).div(25000).div(24).mul(20);
+        // } else if (depositTokenName === 'BIFI') {
+        //   return rewardPerSecond.mul(500).div(25000).div(24).mul(20);
         } else if (depositTokenName === 'WASTR') {
           return rewardPerSecond.mul(500).div(25000).div(24).mul(20);
-        } else if (depositTokenName === 'LIBRA-WASTR LP') {
+        } else if (depositTokenName === 'LIBRA-ASTR-LP') {
           return rewardPerSecond.mul(6000).div(25000).div(24).mul(20);
-        } else if (depositTokenName === 'LSHARE-WASTR LP') {
+        } else if (depositTokenName === 'LSHARE-ASTR-LP') {
           return rewardPerSecond.mul(6000).div(25000).div(24).mul(20);
-        } else if (depositTokenName === 'BLOOM') {
-          return rewardPerSecond.mul(500).div(25000).div(24).mul(20);
+        // } else if (depositTokenName === 'BLOOM') {
+        //   return rewardPerSecond.mul(500).div(25000).div(24).mul(20);
         }
         return rewardPerSecond.div(24);
       }
       const poolStartTime = await poolContract.poolStartTime();
       const startDateTime = new Date(poolStartTime.toNumber() * 1000);
       const FOUR_DAYS = 4 * 24 * 60 * 60 * 1000;
+      
       if (Date.now() - startDateTime.getTime() > FOUR_DAYS) {
         return await poolContract.epochLibraPerSecond(1);
       }
@@ -340,9 +339,9 @@ export class LibraFinance {
     const rewardPerSecond = await poolContract.lSharePerSecond();
     if (depositTokenName.startsWith('LIBRA')) {
       return rewardPerSecond.mul(35500).div(89500);
-    } else if (depositTokenName.startsWith('LIBRA')) {
-      return rewardPerSecond.mul(15000).div(89500);
-    } else if (depositTokenName.startsWith('2SHARE')) {
+    // } else if (depositTokenName.startsWith('LIBRA')) {
+    //   return rewardPerSecond.mul(15000).div(89500);
+    } else if (depositTokenName.startsWith('LSHARE')) {
       return rewardPerSecond.mul(15000).div(89500);
     } else {
       return rewardPerSecond.mul(24000).div(89500);
@@ -363,28 +362,27 @@ export class LibraFinance {
     if (tokenName === 'WASTR') {
       tokenPrice = priceOfOneAstarInDollars;
     } else {
-      console.log('token name:', tokenName);
-      if (tokenName === 'LIBRA-WASTR LP') {
+      if (tokenName === 'LIBRA-ASTR-LP') {
         tokenPrice = await this.getLPTokenPrice(token, this.LIBRA, true, false);
-      } else if (tokenName === 'LSHARE-WASTR LP') {
+      } else if (tokenName === 'LSHARE-ASTR-LP') {
         tokenPrice = await this.getLPTokenPrice(token, this.LSHARE, false, false);
-      } else if (tokenName === 'LSHARE-WASTR LP') {
-        tokenPrice = await this.getLPTokenPrice(
-          token,
-          new ERC20('0xc54a1684fd1bef1f077a336e6be4bd9a3096a6ca', this.provider, 'LSHARE'),
-          false,
-          true,
-        );
-      } else if (tokenName === 'LIBRA-WASTR LP') {
-        console.log('getting the LP token price here');
-        tokenPrice = await this.getLPTokenPrice(
-          token,
-          new ERC20('0x7a6e4e3cc2ac9924605dca4ba31d1831c84b44ae', this.provider, 'LIBRA'),
-          true,
-          true,
-        );
-        console.log('my token price:', tokenPrice);
-        // } else if (tokenName === 'BLOOM') {
+      // } else if (tokenName === 'LSHARE-WASTR LP') {
+        // tokenPrice = await this.getLPTokenPrice(
+        //   token,
+        //   new ERC20('0xc54a1684fd1bef1f077a336e6be4bd9a3096a6ca', this.provider, 'LSHARE'),
+        //   false,
+        //   true,
+        // );
+      // } else if (tokenName === 'LIBRA-WASTR LP') {
+        // console.log('getting the LP token price here');
+        // tokenPrice = await this.getLPTokenPrice(
+        //   token,
+        //   new ERC20('0x7a6e4e3cc2ac9924605dca4ba31d1831c84b44ae', this.provider, 'LIBRA'),
+        //   true,
+        //   true,
+        // );
+        // console.log('my token price:', tokenPrice);
+        // // } else if (tokenName === 'BLOOM') {
         //   tokenPrice = await this.getTokenPriceFromSpiritswap(token);
         // } else if (tokenName === 'BELUGA') {
         //   const data = await fetch('https://api.coingecko.com/api/v3/simple/price?ids=beluga-fi&vs_currencies=usd').then(

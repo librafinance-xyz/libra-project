@@ -118,7 +118,7 @@ const Home = () => {
   );
   const lShareTotalSupply = useMemo(() => (LShareStats ? String(LShareStats.totalSupply) : null), [LShareStats]);
 
-  const lBondPriceInDollars = useMemo(
+  const LBondPriceInDollars = useMemo(
     () => (LBondStats ? Number(LBondStats.priceInDollars).toFixed(2) : null),
     [LBondStats],
   );
@@ -451,10 +451,10 @@ const Home = () => {
                 <span style={{ fontSize: '30px' }}>{LBondPriceInASTR ? LBondPriceInASTR : '-.----'} ASTR</span>
               </Box>
               <Box>
-                <span style={{ fontSize: '16px' }}>${lBondPriceInDollars ? lBondPriceInDollars : '-.--'}</span>
+                <span style={{ fontSize: '16px' }}>${LBondPriceInDollars ? LBondPriceInDollars : '-.--'}</span>
               </Box>
               <span style={{ fontSize: '12px' }}>
-                Market Cap: ${(LBondCirculatingSupply * lBondPriceInDollars).toFixed(2)} <br />
+                Market Cap: ${(LBondCirculatingSupply * LBondPriceInDollars).toFixed(2)} <br />
                 Circulating Supply: {LBondCirculatingSupply} <br />
                 Total Supply: {LBondTotalSupply}
               </span>
