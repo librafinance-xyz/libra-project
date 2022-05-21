@@ -42,7 +42,7 @@ const AccountButton: React.FC<AccountButtonProps> = ({ text, onOpen }) => {
           {buttonText}
         </Button>
       ) : (
-        <Button variant="contained" onClick={handleAccountModalOpen}>
+        <Button variant="contained" onClick={handleAccountModalOpen}style={{ backgroundColor: 'rgba(255,255,255,0)'}} >
           My Wallet
         </Button>
       )}
