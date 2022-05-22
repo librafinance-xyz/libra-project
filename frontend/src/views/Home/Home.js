@@ -35,6 +35,8 @@ import ZapModal from '../Bank/components/ZapModal';
 import { makeStyles } from '@material-ui/core/styles';
 import useLibraFinance from '../../hooks/useLibraFinance';
 
+import { registerTokenLibra } from '../../utils/wallet'
+
 const BackgroundImage = createGlobalStyle`
   body {
     background: url(${HomeImage}) no-repeat !important;
@@ -85,8 +87,8 @@ const Home = () => {
     LShare = lShareDev;
   }
 
-  const buyLibraAddress = 'https://twinkleswap.finance/swap?outputCurrency=' + libra.address;
-  const buyLShareAddress = 'https://twinkleswap.finance/swap?outputCurrency=' + LShare.address;
+  const buyLibraAddress = 'https://www.librax.finance/swap?outputCurrency=' + libra.address;
+  const buyLShareAddress = 'https://www.librax.finance/swap?outputCurrency=' + LShare.address;
 
   const libraLPStats = useMemo(() => (libraAstarLpStats ? libraAstarLpStats : null), [libraAstarLpStats]);
   const lshareLPStats = useMemo(() => (lShareAstarLpStats ? lShareAstarLpStats : null), [lShareAstarLpStats]);
@@ -267,8 +269,15 @@ const Home = () => {
             }}
           >
             <CardContent align="center">
-              {/* <h2 style={{ marginBottom: '20px' }}>Wallet Balance</h2> */}
-              <Button color="primary" href="/#" variant="contained" style={{ marginRight: '8px' }}>
+              <h2 style={{ marginBottom: '20px' }}>Wallet Balance</h2> 
+              <Button 
+                variant="contained" 
+                style={{ marginRight: '10px' }}
+                onClick={() => registerTokenLibra(libra.address, "LIBRA", 18)}
+              >
+                Add to LIBRA
+              </Button>
+              <Button color="primary" href="/farms" variant="contained" style={{ marginRight: '8px' }}>
                 Farms
               </Button>
               <Button color="primary" href="/#" variant="contained" style={{ marginRight: '8px' }}>
@@ -297,12 +306,12 @@ const Home = () => {
               >
                 Buy LIBRA
               </Button> */}
-              <Button href="/#" variant="contained" style={{ marginRight: '10px' }} className={classes.button}>
+              {/* <Button href="/#" variant="contained" style={{ marginRight: '10px' }} className={classes.button}>
                 Buy LIBRA
               </Button>
               <Button variant="contained" href="/#" style={{ marginRight: '10px' }} className={classes.button}>
                 Buy LSHARE
-              </Button>
+              </Button> */}
               {/* <Button
                 variant="contained"
                 target="_blank"
