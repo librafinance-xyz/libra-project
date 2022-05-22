@@ -7,7 +7,7 @@
  * @param tokenDecimals
  * @returns {boolean} true if the token has been added, false otherwise
  */
-export const registerTokenLibra = async (tokenAddress: string, tokenSymbol: string, tokenDecimals: number) => {
+export const registerToken = async (tokenAddress: string, tokenSymbol: string, tokenDecimals: number) => {
   const tokenAdded = await window.ethereum.request({
     method: 'wallet_watchAsset',
     params: {
@@ -16,7 +16,7 @@ export const registerTokenLibra = async (tokenAddress: string, tokenSymbol: stri
         address: tokenAddress,
         symbol: tokenSymbol,
         decimals: tokenDecimals,
-        image: 'https://raw.githubusercontent.com/LibraXFinance/librax-assets/main/astar/LIBRA.png',
+        image: `https://raw.githubusercontent.com/LibraXFinance/librax-assets/main/astar/${tokenSymbol}.png`,
       },
     },
   })

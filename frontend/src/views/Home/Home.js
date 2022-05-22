@@ -35,7 +35,7 @@ import ZapModal from '../Bank/components/ZapModal';
 import { makeStyles } from '@material-ui/core/styles';
 import useLibraFinance from '../../hooks/useLibraFinance';
 
-import { registerTokenLibra } from '../../utils/wallet'
+import { registerToken } from '../../utils/wallet'
 
 const BackgroundImage = createGlobalStyle`
   body {
@@ -273,9 +273,17 @@ const Home = () => {
               <Button 
                 variant="contained" 
                 style={{ marginRight: '10px' }}
-                onClick={() => registerTokenLibra(libra.address, "LIBRA", 18)}
+                onClick={() => registerToken(libra.address, "LIBRA", 18)}
               >
-                Add to LIBRA
+                 LIBRA to Wallet
+              </Button>
+
+              <Button 
+                variant="contained" 
+                style={{ marginRight: '10px' }}
+                onClick={() => registerToken(LShare.address, "LSHARE", 18)}
+              >
+                LSHARE to Wallet
               </Button>
               <Button color="primary" href="/farms" variant="contained" style={{ marginRight: '8px' }}>
                 Farms
