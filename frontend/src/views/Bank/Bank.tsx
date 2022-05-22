@@ -83,7 +83,7 @@ const Bank: React.FC = () => {
             </StyledCardWrapper>
           </StyledCardsWrapper>
           <Spacer size="lg" />
-          {/* {bank.depositTokenName.includes('LP') && <LPTokenHelpText bank={bank} />} */}
+            {bank.depositTokenName.includes('LP') && <LPTokenHelpText bank={bank} />}
           <Spacer size="lg" />
           <div>
             <Button onClick={onRedeem} color="primary" variant="contained">
