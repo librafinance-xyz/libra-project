@@ -83,7 +83,10 @@ const Bank: React.FC = () => {
             </StyledCardWrapper>
           </StyledCardsWrapper>
           <Spacer size="lg" />
-            {bank.depositTokenName.includes('LP') && <LPTokenHelpText bank={bank} />}
+            {bank.depositTokenName.includes('LP') 
+            ? <LPTokenHelpText bank={bank} />
+            : <SingleTokenHelpText bank={bank} />
+            }
           <Spacer size="lg" />
           <div>
             <Button onClick={onRedeem} color="primary" variant="contained">
@@ -120,6 +123,18 @@ const LPTokenHelpText: React.FC<{ bank: BankEntity }> = ({ bank }) => {
       <CardContent>
         <StyledLink href={uniswapUrl} target="_blank">
           {`👾 Provide liquidity for ${pairName} now on LibraX 👾`}
+        </StyledLink>
+      </CardContent>
+    </Card>
+  );
+};
+
+const SingleTokenHelpText: React.FC<{ bank: BankEntity }> = ({ bank }) => {
+  return (
+    <Card>
+      <CardContent>
+        <StyledLink href={bank.buyLink} target="_blank">
+          {`👾 Don't you have ${bank.depositTokenName}? Let's swap on LibraX 👾`}
         </StyledLink>
       </CardContent>
     </Card>
