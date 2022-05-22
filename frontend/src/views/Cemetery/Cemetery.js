@@ -59,13 +59,15 @@ const Cemetery = () => {
                   </Grid>
                 </div>
 
+              <Alert variant="filled" severity="warning" style={{ marginTop: '60px' }}>
+                All below pools have ended. Please unstake and collect your rewards.
+              </Alert>
+
               <div hidden={activeBanks.filter((bank) => bank.sectionInUI === 1).length === 0}>
                   <Typography color="textPrimary" variant="h4" gutterBottom style={{ marginTop: '20px' }}>
                     Earn LIBRA by staking LP
                   </Typography>
-                  <Alert variant="filled" severity="warning">
-                    All below pools have ended. Please unstake and collect your rewards.
-                  </Alert>
+                 
                   <Grid container spacing={3} style={{ marginTop: '20px' }}>
                     {activeBanks
                       .filter((bank) => bank.sectionInUI === 1)
@@ -77,9 +79,9 @@ const Cemetery = () => {
                   </Grid>
                 </div> 
 
-                {/* <Alert variant="filled" severity="info" style={{ marginTop: '50px' }}>
+                <Alert variant="filled" severity="warning" style={{ marginTop: '60px' }}>
                   All below pools have ended. Please unstake and collect your rewards.
-                </Alert> */}
+                </Alert> 
 
                 <div hidden={activeBanks.filter((bank) => bank.sectionInUI === 0).length === 0}>
                   <Typography

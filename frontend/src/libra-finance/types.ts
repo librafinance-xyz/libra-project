@@ -13,6 +13,7 @@ export interface BankInfo {
   site: string;
   multiplier: string;
   buyLink: string;
+  createLpLink: string;
   finished: boolean;
   closedForStaking: boolean;
 }

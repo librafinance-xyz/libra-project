@@ -71,7 +71,8 @@ export const bankDefinitions: { [contractName: string]: BankInfo } = {
     finished: false,
     multiplier: '500x',
     site: 'https://astar.network',
-    buyLink: 'https://librax.finance', //[LIBRA FINANCE]token address will be added
+    buyLink: 'https://librax.finance/swap/'+'0xAeaaf0e2c81Af264101B9129C00F4440cCF0F720', //[LIBRA FINANCE]token address will be added
+    createLpLink: '',
     sort: 1,
     closedForStaking: false,
   },
@@ -85,7 +86,8 @@ export const bankDefinitions: { [contractName: string]: BankInfo } = {
     earnTokenName: 'LIBRA',
     finished: false,
     multiplier: '0',
-    buyLink: 'https://librax.finance', //[LIBRA FINANCE]token address will be added
+    buyLink: '', 
+    createLpLink: 'https://librax.finance/add/'+'0xAeaaf0e2c81Af264101B9129C00F4440cCF0F720'+'/'+'0x544412825dA3a43b691dab45a59e7097FB5964a8',
     site: '',
     sort: 2,
     closedForStaking: true,
@@ -100,7 +102,8 @@ export const bankDefinitions: { [contractName: string]: BankInfo } = {
     earnTokenName: 'LSHARE',
     finished: false,
     multiplier: '24000x',
-    buyLink: 'https://librax.finance', //[LIBRA FINANCE]token address will be added
+    buyLink: '', 
+    createLpLink: 'https://librax.finance/add/'+'0xAeaaf0e2c81Af264101B9129C00F4440cCF0F720'+'/'+'0x544412825dA3a43b691dab45a59e7097FB5964a8',
     site: '/',
     sort: 3,
     closedForStaking: false,
@@ -115,7 +118,8 @@ export const bankDefinitions: { [contractName: string]: BankInfo } = {
     earnTokenName: 'LSHARE',
     finished: false,
     multiplier: '35500x',
-    buyLink: 'https://www.librax.finance', //[LIBRA FINANCE]token address will be added
+    buyLink: '', 
+    createLpLink: 'https://librax.finance/add/'+'0xAeaaf0e2c81Af264101B9129C00F4440cCF0F720'+'/'+'0x8A4Bbac689064ebB78c7643cbc6DC7c5093E5E4F',
     site: '/',
     sort: 9,
     closedForStaking: false,

@@ -39,12 +39,17 @@ const CemeteryCard = ({ bank }) => {
           </Box>
         </CardContent>
         <CardActions style={{ justifyContent: 'flex-end' }}>
-        <Button color="primary" size="small" variant="contained" target="_blank" href={`${bank.site}`}>
+        {/* <Button color="primary" size="small" variant="contained" target="_blank" href={`${bank.site}`}>
           ↗
-        </Button>
-        <Button color="primary" size="small" variant="contained" target="_blank" href={`${bank.buyLink}`}>
-            Buy
-          </Button>
+        </Button> */}
+          {bank.depositTokenName.includes('LP') 
+          ?  <Button color="primary" size="small" variant="contained" target="_blank" href={`${bank.createLpLink}`}>
+              Create LP
+            </Button>
+          :  <Button color="primary" size="small" variant="contained" target="_blank" href={`${bank.buyLink}`}>
+              buy
+            </Button>
+          }
           <Button color="primary" size="small" variant="contained" component={Link} to={`/farms/${bank.contract}`}>
             Stake
           </Button>
