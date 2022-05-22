@@ -71,7 +71,7 @@ const Boardroom = () => {
       {!!account ? (
         <>
           <Typography color="textPrimary" align="center" variant="h3" gutterBottom>
-            3Room
+            Boardroom
           </Typography>
           <Box mt={5}>
             <Grid container justifyContent="center" spacing={3}>
