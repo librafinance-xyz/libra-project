@@ -271,6 +271,7 @@ const Home = () => {
             <CardContent align="center">
               <h2 style={{ marginBottom: '20px' }}>Wallet Balance</h2> 
               <Button 
+                color="secondary"
                 variant="contained" 
                 style={{ marginRight: '10px' }}
                 onClick={() => registerToken(libra.address, "LIBRA", 18)}
@@ -279,6 +280,7 @@ const Home = () => {
               </Button>
 
               <Button 
+                color="secondary"
                 variant="contained" 
                 style={{ marginRight: '10px' }}
                 onClick={() => registerToken(LShare.address, "LSHARE", 18)}

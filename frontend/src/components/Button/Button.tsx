@@ -20,10 +20,10 @@ const Button: React.FC<ButtonProps> = ({ children, disabled, href, onClick, size
   let buttonColor: string;
   switch (variant) {
     case 'secondary':
-      buttonColor = color.teal[200];
+      buttonColor = color.gray.main;
       break;
     case 'tertiary':
-      buttonColor = color.gray[400]
+      buttonColor = color.gray.main
       break;
     case 'default':
     default:
