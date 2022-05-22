@@ -12,15 +12,15 @@ const newTheme = createTheme({
       paper: 'transparent',
     },
     primary: {
-      light: '#757CE8',
-      main: '#41A0D6',
-      dark: '#41A0D6',
+      light: '#308FFF',
+      main: '#308FFF',
+      dark: '#308FFF',
       contrastText: '#16191E',
     },
     secondary: {
-      light: '#757CE8',
-      main: '#757CE8',
-      dark: '#757CE8',
+      light: '#ACACAC',
+      main: '#ACACAC',
+      dark: '#ACACAC',
       contrastText: '#000',
     },
     action: {

@@ -8,7 +8,7 @@ const useStakeToBoardroom = () => {
 
   const handleStake = useCallback(
     (amount: string) => {
-      handleTransactionReceipt(libraFinance.stakeShareToBoardroom(amount), `Stake ${amount} LSHARE to the 3Room `);
+      handleTransactionReceipt(libraFinance.stakeShareToBoardroom(amount), `Stake ${amount} LSHARE to the Boardroom `);
     },
     [libraFinance, handleTransactionReceipt],
   );
