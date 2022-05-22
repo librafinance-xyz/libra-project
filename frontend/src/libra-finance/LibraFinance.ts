@@ -40,6 +40,17 @@ export class LibraFinance {
     // loads contracts from deployments
     this.contracts = {};
     for (const [name, deployment] of Object.entries(deployments)) {
+      // if (name=="Boardroom"){
+      //   console.log("LibraFinance: deployment.name = ", name)
+      //   console.log("LibraFinance: deployment.address = ", deployment.address)
+      //   console.log("LibraFinance: deployment.abi = ", deployment.abi)
+      // }
+      if (name=="LShare"){
+        console.log("LibraFinance: deployment.name = ", name)
+        console.log("LibraFinance: deployment.address = ", deployment.address)
+        console.log("LibraFinance: deployment.abi = ", deployment.abi)
+      }
+      
       this.contracts[name] = new Contract(deployment.address, deployment.abi, provider);
     }
     this.externalTokens = {};
@@ -610,6 +621,7 @@ export class LibraFinance {
   }
 
   currentBoardroom(): Contract {
+    console.log("currentBoardroom: boardroomVersionOfUser = ",this.boardroomVersionOfUser)
     if (!this.boardroomVersionOfUser) {
       //throw new Error('you must unlock the wallet to continue.');
     }
@@ -772,6 +784,9 @@ export class LibraFinance {
     // const Boardroom = this.currentBoardroom();
     // const mason = await Boardroom.masons(this.myAccount);
     return BigNumber.from(0);
+    // const Boardroom = this.currentBoardroom();
+    // const mason = await Boardroom.members(this.myAccount);
+    // return mason['']
   }
 
   async getTotalStakedInBoardroom(): Promise<BigNumber> {
@@ -780,10 +795,13 @@ export class LibraFinance {
   }
 
   async stakeShareToBoardroom(amount: string): Promise<TransactionResponse> {
+    console.log("stakeShareToBoardroom... amount=", amount)
     if (this.isOldBoardroomMember()) {
       throw new Error("you're using old boardroom. please withdraw and deposit the LSHARE again.");
     }
+    console.log("stakeShareToBoardroom... 2")
     const Boardroom = this.currentBoardroom();
+    console.log("stakeShareToBoardroom... 3")
     return await Boardroom.stake(decimalToBalance(amount));
   }
 
@@ -839,7 +857,8 @@ export class LibraFinance {
     const { Boardroom, Treasury } = this.contracts;
     const nextEpochTimestamp = await Boardroom.nextEpochPoint(); //in unix timestamp
     const currentEpoch = await Boardroom.epoch();
-    const mason = await Boardroom.masons(this.myAccount);
+    // const mason = await Boardroom.masons(this.myAccount);
+    const mason = await Boardroom.members(this.myAccount);
     const startTimeEpoch = mason.epochTimerStart;
     const period = await Treasury.PERIOD();
     const periodInHours = period / 60 / 60; // 6 hours, period is displayed in seconds which is 21600
@@ -872,7 +891,8 @@ export class LibraFinance {
     const { Boardroom, Treasury } = this.contracts;
     const nextEpochTimestamp = await Boardroom.nextEpochPoint();
     const currentEpoch = await Boardroom.epoch();
-    const mason = await Boardroom.masons(this.myAccount);
+    // const mason = await Boardroom.masons(this.myAccount);
+    const mason = await Boardroom.members(this.myAccount);
     const startTimeEpoch = mason.epochTimerStart;
     const period = await Treasury.PERIOD();
     const PeriodInHours = period / 60 / 60;
