@@ -12576,7 +12576,7 @@
       },
       {
         "inputs": [],
-        "name": "LSharePerSecond",
+        "name": "lSharePerSecond",
         "outputs": [
           {
             "internalType": "uint256",
@@ -13062,7 +13062,7 @@
       },
       {
         "inputs": [],
-        "name": "LSharePerSecond",
+        "name": "lSharePerSecond",
         "outputs": [
           {
             "internalType": "uint256",
@@ -13548,7 +13548,7 @@
       },
       {
         "inputs": [],
-        "name": "LSharePerSecond",
+        "name": "lSharePerSecond",
         "outputs": [
           {
             "internalType": "uint256",
@@ -14034,7 +14034,7 @@
       },
       {
         "inputs": [],
-        "name": "LSharePerSecond",
+        "name": "lSharePerSecond",
         "outputs": [
           {
             "internalType": "uint256",
@@ -14520,7 +14520,7 @@
       },
       {
         "inputs": [],
-        "name": "LSharePerSecond",
+        "name": "lSharePerSecond",
         "outputs": [
           {
             "internalType": "uint256",
