@@ -131,7 +131,6 @@ export class LibraFinance {
     // const priceInASTR = await this.getTokenPriceFromLP(this.LIBRA);
     console.log('getLibraStat: price in astr :', priceInASTR);
     const priceOfLibraInDollars = (Number(priceInASTR) * Number(priceOfOneASTR)).toFixed(2);
-
     return {
       tokenInAstar: priceInASTR,
       priceInDollars: priceOfLibraInDollars,
@@ -181,6 +180,7 @@ export class LibraFinance {
   async getBondStat(): Promise<TokenStat> {
     const { Treasury } = this.contracts;
     const libraStat = await this.getLibraStat();
+  
     const bondLibraRatioBN = await Treasury.getBondPremiumRate();
     const modifier = bondLibraRatioBN / 1e18 > 1 ? bondLibraRatioBN / 1e18 : 1;
     const bondpriceInASTR = (Number(libraStat.tokenInAstar) * modifier).toFixed(2);
@@ -347,7 +347,7 @@ export class LibraFinance {
       }
       return await poolContract.epochLibraPerSecond(0);
     }
-    const rewardPerSecond = await poolContract.lSharePerSecond();
+    const rewardPerSecond = await poolContract.LSharePerSecond();
     if (depositTokenName.startsWith('LIBRA')) {
       return rewardPerSecond.mul(35500).div(89500);
     // } else if (depositTokenName.startsWith('LIBRA')) {
@@ -480,8 +480,8 @@ export class LibraFinance {
       //   ? await this.get2ombStatFake()
       //   : await this.get2ShareStatFake()
       // :
+      
       isLibra === true ? await this.getLibraStat() : await this.getShareStat();
-
     const priceOfToken = stat.priceInDollars;
     const tokenInLP = Number(tokenSupply) / Number(totalSupply);
     const tokenPrice = (Number(priceOfToken) * tokenInLP * 2) //We multiply by 2 since half the price of the lp token is the price of each piece of the pair. So twice gives the total
@@ -623,7 +623,7 @@ export class LibraFinance {
   currentBoardroom(): Contract {
     console.log("currentBoardroom: boardroomVersionOfUser = ",this.boardroomVersionOfUser)
     if (!this.boardroomVersionOfUser) {
-      //throw new Error('you must unlock the wallet to continue.');
+      throw new Error('you must unlock the wallet to continue.');
     }
     return this.contracts.Boardroom;
   }
@@ -747,6 +747,7 @@ export class LibraFinance {
     const lastRewardsReceived = lastHistory[1];
 
     const LSHAREPrice = (await this.getShareStat()).priceInDollars;
+    console.log("const LSHAREPrice = (await this.getShareStat()).priceInDollars");
     const LIBRAPrice = (await this.getLibraStat()).priceInDollars;
     const epochRewardsPerShare = lastRewardsReceived / 1e18;
 
@@ -960,13 +961,13 @@ export class LibraFinance {
   }
 
   async quoteFromSpooky(tokenAmount: string, tokenName: string): Promise<string> {
-    const { SpookyRouter } = this.contracts;
+    const { LibraXRouter } = this.contracts;
     const { _reserve0, _reserve1 } = await this.LIBRAWASTR_LP.getReserves();
     let quote;
     if (tokenName === 'LIBRA') {
-      quote = await SpookyRouter.quote(parseUnits(tokenAmount), _reserve1, _reserve0);
+      quote = await LibraXRouter.quote(parseUnits(tokenAmount), _reserve1, _reserve0);
     } else {
-      quote = await SpookyRouter.quote(parseUnits(tokenAmount), _reserve0, _reserve1);
+      quote = await LibraXRouter.quote(parseUnits(tokenAmount), _reserve0, _reserve1);
     }
     return (quote / 1e18).toString();
   }
