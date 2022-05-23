@@ -14,7 +14,7 @@ import moment from 'moment';
 import { parseUnits } from 'ethers/lib/utils';
 import { ASTR_TICKER, SPOOKY_ROUTER_ADDR, LIBRA_TICKER } from '../utils/constants';
 /**
- * An API module of 2omb Finance contracts.
+ * An API module of Libra Finance contracts.
  * All contract-interacting domain logic should be defined in here.
  */
 export class LibraFinance {
@@ -28,7 +28,6 @@ export class LibraFinance {
 
   LIBRAWASTR_LP: Contract;
   LIBRA: ERC20;
-  // LSHARE: ERC20;
   LSHARE: ERC20;
   LBOND: ERC20;
   ASTR: ERC20;
@@ -40,11 +39,6 @@ export class LibraFinance {
     // loads contracts from deployments
     this.contracts = {};
     for (const [name, deployment] of Object.entries(deployments)) {
-      // if (name=="Boardroom"){
-      //   console.log("LibraFinance: deployment.name = ", name)
-      //   console.log("LibraFinance: deployment.address = ", deployment.address)
-      //   console.log("LibraFinance: deployment.abi = ", deployment.abi)
-      // }
       if (name=="LShare"){
         console.log("LibraFinance: deployment.name = ", name)
         console.log("LibraFinance: deployment.address = ", deployment.address)
@@ -57,15 +51,12 @@ export class LibraFinance {
     for (const [symbol, [address, decimal]] of Object.entries(externalTokens)) {
       this.externalTokens[symbol] = new ERC20(address, provider, symbol, decimal);
     }
-    // this.LIBRA = new ERC20(deployments.libra.address, provider, 'LIBRA');
     this.LIBRA = new ERC20(deployments.libra.address, provider, 'LIBRA');
     this.LSHARE = new ERC20(deployments.LShare.address, provider, 'LSHARE');
     this.LBOND = new ERC20(deployments.LBond.address, provider, 'LBOND');
-    // this.ASTR = this.externalTokens['WASTR'];
     this.ASTR = this.externalTokens['WASTR'];
 
     // Uniswap V2 Pair
-    // this.LIBRAWASTR_LP = new Contract(externalTokens['LIBRA-ASTR-LP'][0], IUniswapV2PairABI, provider);
     this.LIBRAWASTR_LP = new Contract(externalTokens['LIBRA-ASTR-LP'][0], IUniswapV2PairABI, provider);
 
     this.config = cfg;
@@ -108,34 +99,17 @@ export class LibraFinance {
   //===================================================================
 
   async getLibraStat(): Promise<TokenStat> {
-    console.log('getLibraStat');
-    console.log('getLibraStat:', this.LIBRA);
-    const { LibraRewardPool } = this.contracts; // remove LibraFtmLpLibraRewardPool, LibraFtmLpLibraRewardPoolOld 
-    // console.log('getLibraStat:  LibraFtmLpLibraRewardPoolOld:', LibraFtmLpLibraRewardPoolOld);
-    // console.log('getLibraStat:  LibraFtmLpLibraRewardPool:', LibraFtmLpLibraRewardPool);
-    console.log('getLibraStat:', this.LIBRA);
+    const { LibraRewardPool } = this.contracts; 
     const supply = await this.LIBRA.totalSupply();
-
-    console.log('getLibraStat: supply: ', supply.toString());
     const libraRewardPoolSupply = await this.LIBRA.balanceOf(LibraRewardPool.address);
-    // const libraRewardPoolSupply2 = await this.LIBRA.balanceOf(LibraFtmLpLibraRewardPool.address);
-    // const libraRewardPoolSupplyOld = await this.LIBRA.balanceOf(LibraFtmLpLibraRewardPoolOld.address);
-
-    // const libraCirculatingSupply = supply.sub(libraRewardPoolSupply).sub(libraRewardPoolSupply2);
-    // .sub(libraRewardPoolSupplyOld);
-    // console.log('getLibraStat: libraCirculatingSupply: ', libraCirculatingSupply);
-
     const priceOfOneASTR = await this.getWASTRPriceFromArthswapASTRUSDC();
-    console.log('getLibraStat: priceOfOneASTR: ', priceOfOneASTR);
     const priceInASTR = await this.getLibraPriceFromLibraAstr();
-    // const priceInASTR = await this.getTokenPriceFromLP(this.LIBRA);
-    console.log('getLibraStat: price in astr :', priceInASTR);
     const priceOfLibraInDollars = (Number(priceInASTR) * Number(priceOfOneASTR)).toFixed(2);
     return {
       tokenInAstar: priceInASTR,
       priceInDollars: priceOfLibraInDollars,
       totalSupply: getDisplayBalance(supply, this.LIBRA.decimal, 0),
-      circulatingSupply: getDisplayBalance(supply, this.LIBRA.decimal, 0), // getDisplayBalance(libraCirculatingSupply, this.LIBRA.decimal, 0),
+      circulatingSupply: getDisplayBalance(supply, this.LIBRA.decimal, 0), 
     };
   }
 
@@ -157,7 +131,7 @@ export class LibraFinance {
     const astarAmount = getDisplayBalance(astarAmountBN, 18);
     const tokenAmountInOneLP = Number(tokenAmount) / Number(lpTokenSupply);
     const astarAmountInOneLP = Number(astarAmount) / Number(lpTokenSupply);
-    const lpTokenPrice = await this.getLPTokenPrice(lpToken, token0, isLibra, false);
+    const lpTokenPrice = await this.getLPTokenPrice(lpToken, token0, isLibra);
     const lpTokenPriceFixed = Number(lpTokenPrice).toFixed(2).toString();
     const liquidity = (Number(lpTokenSupply) * Number(lpTokenPrice)).toFixed(2).toString();
     return {
@@ -180,7 +154,6 @@ export class LibraFinance {
   async getBondStat(): Promise<TokenStat> {
     const { Treasury } = this.contracts;
     const libraStat = await this.getLibraStat();
-  
     const bondLibraRatioBN = await Treasury.getBondPremiumRate();
     const modifier = bondLibraRatioBN / 1e18 > 1 ? bondLibraRatioBN / 1e18 : 1;
     const bondpriceInASTR = (Number(libraStat.tokenInAstar) * modifier).toFixed(2);
@@ -202,36 +175,14 @@ export class LibraFinance {
    * CirculatingSupply (always equal to total supply for bonds)
    */
   async getShareStat(): Promise<TokenStat> {
-    console.log('getShareStat ');
-
-    console.log('getShareStat:', this.LSHARE);
-    // console.log('getShareStat:  LibraFtmLpLibraRewardPoolOld:', LibraFtmLpLibraRewardPoolOld);
-
     const supply = await this.LSHARE.totalSupply();
-    console.log('getShareStat:  supply= ' + supply.toString());
-
     const { LibraAstarLPLShareRewardPool } = this.contracts;
-
-    console.log('getShareStat LibraAstarLPLShareRewardPool=', LibraAstarLPLShareRewardPool);
-    // const supply = await this.LSHARE.totalSupply();
-    // console.log('getShareStat supply=', supply);
-    console.log('getShareStat LSHARE=', this.LSHARE);
-    console.log('getShareStat LSHARE=', this.LSHARE.address);
-
-    // const priceInASTR = await this.getTokenPriceFromLP(this.LSHARE);
     const priceInASTR = await this.getLSharePrice();
-
-    console.log('getShareStat priceInASTR=', priceInASTR);
     const libraRewardPoolSupply = await this.LSHARE.balanceOf(LibraAstarLPLShareRewardPool.address);
-    console.log('getShareStat libraRewardPoolSupply=', libraRewardPoolSupply);
     const lShareCirculatingSupply = supply.sub(libraRewardPoolSupply);
-    console.log('getShareStat lShareCirculatingSupply=', lShareCirculatingSupply);
     const astarPriceInUSDC = await this.getWASTRPriceFromArthswapASTRUSDC();
-    console.log('getShareStat astarPriceInUSDC=', astarPriceInUSDC);
-    console.log('getShareStat priceInASTR=', priceInASTR);
     const priceOfSharesInDollars = (Number(priceInASTR) * Number(astarPriceInUSDC)).toFixed(2);
-    console.log('getShareStat priceOfSharesInDollars=', priceOfSharesInDollars);
-
+   
     return {
       tokenInAstar: priceInASTR,
       priceInDollars: priceOfSharesInDollars,
@@ -277,7 +228,6 @@ export class LibraFinance {
     const depositToken = bank.depositToken;
     const poolContract = this.contracts[bank.contract];
     const depositTokenPrice = await this.getDepositTokenPriceInDollars(bank.depositTokenName, depositToken);
-    console.log('deposit token price:', depositTokenPrice);
     const stakeInPool = await depositToken.balanceOf(bank.address);
     const TVL = Number(depositTokenPrice) * Number(getDisplayBalance(stakeInPool, depositToken.decimal));
     const stat = bank.earnTokenName === 'LIBRA' ? await this.getLibraStat() : await this.getShareStat();
@@ -319,29 +269,20 @@ export class LibraFinance {
     if (earnTokenName === 'LIBRA') {
       if (!contractName.endsWith('LibraRewardPool')) {
         const rewardPerSecond = await poolContract.libraPerSecond();
-        if (depositTokenName === 'LSHARE') {
-          return rewardPerSecond.mul(7500).div(25000).div(24).mul(20);
-        } else if (depositTokenName === 'LIBRA') {
-          return rewardPerSecond.mul(5000).div(25000).div(24).mul(20);
-        // } else if (depositTokenName === 'BELUGA') {
-        //   return rewardPerSecond.mul(500).div(25000).div(24).mul(20);
-        // } else if (depositTokenName === 'BIFI') {
-        //   return rewardPerSecond.mul(500).div(25000).div(24).mul(20);
-        } else if (depositTokenName === 'WASTR') {
-          return rewardPerSecond.mul(500).div(25000).div(24).mul(20);
-        } else if (depositTokenName === 'LIBRA-ASTR-LP') {
-          return rewardPerSecond.mul(6000).div(25000).div(24).mul(20);
-        } else if (depositTokenName === 'LSHARE-ASTR-LP') {
-          return rewardPerSecond.mul(6000).div(25000).div(24).mul(20);
-        // } else if (depositTokenName === 'BLOOM') {
-        //   return rewardPerSecond.mul(500).div(25000).div(24).mul(20);
+        if (depositTokenName === 'WASTR') {
+          return rewardPerSecond.mul(6000).div(11000).div(24);
+        // } else if (depositTokenName === 'BOO') {
+        //   return rewardPerSecond.mul(2500).div(11000).div(24);
+        // } else if (depositTokenName === 'ZOO') {
+        //   return rewardPerSecond.mul(1000).div(11000).div(24);
+        // } else if (depositTokenName === 'SHIBA') {
+        //   return rewardPerSecond.mul(1500).div(11000).div(24);
         }
         return rewardPerSecond.div(24);
       }
       const poolStartTime = await poolContract.poolStartTime();
       const startDateTime = new Date(poolStartTime.toNumber() * 1000);
       const FOUR_DAYS = 4 * 24 * 60 * 60 * 1000;
-      
       if (Date.now() - startDateTime.getTime() > FOUR_DAYS) {
         return await poolContract.epochLibraPerSecond(1);
       }
@@ -349,13 +290,9 @@ export class LibraFinance {
     }
     const rewardPerSecond = await poolContract.LSharePerSecond();
     if (depositTokenName.startsWith('LIBRA')) {
-      return rewardPerSecond.mul(35500).div(89500);
-    // } else if (depositTokenName.startsWith('LIBRA')) {
-    //   return rewardPerSecond.mul(15000).div(89500);
-    } else if (depositTokenName.startsWith('LSHARE')) {
-      return rewardPerSecond.mul(15000).div(89500);
+      return rewardPerSecond.mul(35500).div(59500);
     } else {
-      return rewardPerSecond.mul(24000).div(89500);
+      return rewardPerSecond.mul(24000).div(59500);
     }
   }
 
@@ -374,32 +311,9 @@ export class LibraFinance {
       tokenPrice = priceOfOneAstarInDollars;
     } else {
       if (tokenName === 'LIBRA-ASTR-LP') {
-        tokenPrice = await this.getLPTokenPrice(token, this.LIBRA, true, false);
+        tokenPrice = await this.getLPTokenPrice(token, this.LIBRA, true);
       } else if (tokenName === 'LSHARE-ASTR-LP') {
-        tokenPrice = await this.getLPTokenPrice(token, this.LSHARE, false, false);
-      // } else if (tokenName === 'LSHARE-WASTR LP') {
-        // tokenPrice = await this.getLPTokenPrice(
-        //   token,
-        //   new ERC20('0xc54a1684fd1bef1f077a336e6be4bd9a3096a6ca', this.provider, 'LSHARE'),
-        //   false,
-        //   true,
-        // );
-      // } else if (tokenName === 'LIBRA-WASTR LP') {
-        // console.log('getting the LP token price here');
-        // tokenPrice = await this.getLPTokenPrice(
-        //   token,
-        //   new ERC20('0x7a6e4e3cc2ac9924605dca4ba31d1831c84b44ae', this.provider, 'LIBRA'),
-        //   true,
-        //   true,
-        // );
-        // console.log('my token price:', tokenPrice);
-        // // } else if (tokenName === 'BLOOM') {
-        //   tokenPrice = await this.getTokenPriceFromSpiritswap(token);
-        // } else if (tokenName === 'BELUGA') {
-        //   const data = await fetch('https://api.coingecko.com/api/v3/simple/price?ids=beluga-fi&vs_currencies=usd').then(
-        //     (res) => res.json(),
-        //   );
-        //   tokenPrice = data['beluga-fi'].usd;
+        tokenPrice = await this.getLPTokenPrice(token, this.LSHARE, false);
       } else {
         tokenPrice = await this.getTokenPriceFromLP(token);
         tokenPrice = (Number(tokenPrice) * Number(priceOfOneAstarInDollars)).toString();
@@ -445,19 +359,18 @@ export class LibraFinance {
 
   async getTotalValueLocked(): Promise<Number> {
     let totalValue = 0;
-    // for (const bankInfo of Object.values(bankDefinitions)) {
-    //   const pool = this.contracts[bankInfo.contract];
-    //   const token = this.externalTokens[bankInfo.depositTokenName];
-    //   const tokenPrice = await this.getDepositTokenPriceInDollars(bankInfo.depositTokenName, token);
-    //   const tokenAmountInPool = await token.balanceOf(pool.address);
-    //   const value = Number(getDisplayBalance(tokenAmountInPool, token.decimal)) * Number(tokenPrice);
-    //   const poolValue = Number.isNaN(value) ? 0 : value;
-    //   totalValue += poolValue;
-    // }
-    let boardroomTVL = 0;
-    // const LSHAREPrice = (await this.getShareStat()).priceInDollars;
-    // const boardroomlShareBalanceOf = await this.LSHARE.balanceOf(this.currentBoardroom().address);
-    // boardroomTVL = Number(getDisplayBalance(boardroomlShareBalanceOf, this.LSHARE.decimal)) * Number(LSHAREPrice);
+    for (const bankInfo of Object.values(bankDefinitions)) {
+      const pool = this.contracts[bankInfo.contract];
+      const token = this.externalTokens[bankInfo.depositTokenName];
+      const tokenPrice = await this.getDepositTokenPriceInDollars(bankInfo.depositTokenName, token);
+      const tokenAmountInPool = await token.balanceOf(pool.address);
+      const value = Number(getDisplayBalance(tokenAmountInPool, token.decimal)) * Number(tokenPrice);
+      const poolValue = Number.isNaN(value) ? 0 : value;
+      totalValue += poolValue;
+    }
+    const LSHAREPrice = (await this.getShareStat()).priceInDollars;
+    const boardroomlShareBalanceOf = await this.LSHARE.balanceOf(this.currentBoardroom().address);
+    const boardroomTVL = Number(getDisplayBalance(boardroomlShareBalanceOf, this.LSHARE.decimal)) * Number(LSHAREPrice);
 
     return totalValue + boardroomTVL;
   }
@@ -470,81 +383,17 @@ export class LibraFinance {
    * @param isLibra sanity check for usage of libra token or lShare
    * @returns price of the LP token
    */
-  async getLPTokenPrice(lpToken: ERC20, token: ERC20, isLibra: boolean, isFake: boolean): Promise<string> {
+  async getLPTokenPrice(lpToken: ERC20, token: ERC20, isLibra: boolean): Promise<string> {
     const totalSupply = getFullDisplayBalance(await lpToken.totalSupply(), lpToken.decimal);
     //Get amount of tokenA
     const tokenSupply = getFullDisplayBalance(await token.balanceOf(lpToken.address), token.decimal);
-    const stat =
-      // isFake === true
-      // ? isLibra === true
-      //   ? await this.get2ombStatFake()
-      //   : await this.get2ShareStatFake()
-      // :
-      
-      isLibra === true ? await this.getLibraStat() : await this.getShareStat();
+    const stat = isLibra === true ? await this.getLibraStat() : await this.getShareStat();
     const priceOfToken = stat.priceInDollars;
     const tokenInLP = Number(tokenSupply) / Number(totalSupply);
     const tokenPrice = (Number(priceOfToken) * tokenInLP * 2) //We multiply by 2 since half the price of the lp token is the price of each piece of the pair. So twice gives the total
       .toString();
     return tokenPrice;
   }
-
-  /*
-  async getLibraStatFake() {
-    const price = await fetch("https://api.coingecko.com/api/v3/simple/price?ids=2omb-finance&vs_currencies=usd").then(res => res.json())
-    return { priceInDollars: price["2omb-finance"].usd }
-  }
-
-  async getShareStatFake() {
-    const price = await fetch("https://api.coingecko.com/api/v3/simple/price?ids=2share&vs_currencies=usd").then(res => res.json())
-    return { priceInDollars: price["2share"].usd }
-  }
-*/
-  // async get2ombStatFake(): Promise<TokenStat> {
-  //   const { TwoOmbFtmRewardPool, TwoOmbFtmLpLibraRewardPool, TwoOmbFtmLpLibraRewardPoolOld } = this.contracts;
-  //   const LIBRA = new ERC20('0x7a6e4e3cc2ac9924605dca4ba31d1831c84b44ae', this.provider, 'LIBRA');
-  //   const supply = await LIBRA.totalSupply();
-  //   const libraRewardPoolSupply = await LIBRA.balanceOf(TwoOmbFtmRewardPool.address);
-  //   const libraRewardPoolSupply2 = await LIBRA.balanceOf(TwoOmbFtmLpLibraRewardPool.address);
-  //   const libraRewardPoolSupplyOld = await LIBRA.balanceOf(TwoOmbFtmLpLibraRewardPoolOld.address);
-  //   const libraCirculatingSupply = supply
-  //     .sub(libraRewardPoolSupply)
-  //     .sub(libraRewardPoolSupply2)
-  //     .sub(libraRewardPoolSupplyOld);
-  //   const priceInASTR = await this.getTokenPriceFromLP(LIBRA);
-  //   const priceOfOneASTR = await this.getWASTRPriceFromArthswapASTRUSDC();
-  //   const priceOfLibraInDollars = (Number(priceInASTR) * Number(priceOfOneASTR)).toFixed(2);
-
-  //   return {
-  //     tokenInAstar: priceInASTR,
-  //     priceInDollars: priceOfLibraInDollars,
-  //     totalSupply: getDisplayBalance(supply, LIBRA.decimal, 0),
-  //     circulatingSupply: getDisplayBalance(libraCirculatingSupply, LIBRA.decimal, 0),
-  //   };
-  // }
-
-  // async get2ShareStatFake(): Promise<TokenStat> {
-  //   const { TwoOmbFtmRewardPool, TwoOmbFtmLpLibraRewardPool, TwoOmbFtmLpLibraRewardPoolOld } = this.contracts;
-  //   const LSHARE = new ERC20('0xc54a1684fd1bef1f077a336e6be4bd9a3096a6ca', this.provider, 'LSHARE');
-  //   const supply = await LSHARE.totalSupply();
-  //   const libraRewardPoolSupply = await LSHARE.balanceOf(TwoOmbFtmRewardPool.address);
-  //   const libraRewardPoolSupply2 = await LSHARE.balanceOf(TwoOmbFtmLpLibraRewardPool.address);
-  //   const libraRewardPoolSupplyOld = await LSHARE.balanceOf(TwoOmbFtmLpLibraRewardPoolOld.address);
-  //   const libraCirculatingSupply = supply
-  //     .sub(libraRewardPoolSupply)
-  //     .sub(libraRewardPoolSupply2)
-  //     .sub(libraRewardPoolSupplyOld);
-  //   const priceInASTR = await this.getTokenPriceFromLP(LSHARE);
-  //   const priceOfOneASTR = await this.getWASTRPriceFromArthswapASTRUSDC();
-  //   const priceOfLibraInDollars = (Number(priceInASTR) * Number(priceOfOneASTR)).toFixed(2);
-
-  //   return {
-  //     tokenInAstar: priceInASTR,
-  //     priceInDollars: priceOfLibraInDollars,
-  //     totalSupply: getDisplayBalance(supply, LSHARE.decimal, 0),
-  //     circulatingSupply: getDisplayBalance(libraCirculatingSupply, LSHARE.decimal, 0),
-  //   };
-  // }
 
   async earnedFromBank(
     poolName: ContractName,
@@ -621,7 +470,6 @@ export class LibraFinance {
   }
 
   currentBoardroom(): Contract {
-    console.log("currentBoardroom: boardroomVersionOfUser = ",this.boardroomVersionOfUser)
     if (!this.boardroomVersionOfUser) {
       throw new Error('you must unlock the wallet to continue.');
     }
@@ -637,47 +485,18 @@ export class LibraFinance {
     if (!ready) return;
     const { chainId } = this.config;
     const { WASTR } = this.config.externalTokens;
-    console.log('getTokenPriceFromLP: WASTR:', WASTR);
     const wastr = new Token(chainId, WASTR[0], WASTR[1]);
     const token = new Token(chainId, tokenContract.address, tokenContract.decimal, tokenContract.symbol);
-    console.log('getTokenPriceFromLP: wastr:', wastr);
-    console.log('getTokenPriceFromLP: token:', token);
     try {
-      console.log('getTokenPriceFromLP: Fetcher.fetchPairData1');
       const wastrToToken = await Fetcher.fetchPairData(wastr, token, this.provider);
-      console.log('getTokenPriceFromLP: Fetcher.fetchPairData2');
       const priceInUSDC = new Route([wastrToToken], token);
-      console.log('getTokenPriceFromLP: Fetcher.fetchPairData3');
       return priceInUSDC.midPrice.toFixed(4);
     } catch (err) {
       console.error(`Failed to fetch token price of ${tokenContract.symbol}: ${err}`);
     }
   }
 
-  // async getTokenPriceFromSpiritswap(tokenContract: ERC20): Promise<string> {
-  //   const ready = await this.provider.ready;
-  //   if (!ready) return;
-  //   const { chainId } = this.config;
-
-  //   const { WASTR } = this.externalTokens;
-
-  //   const wastr = new TokenSpirit(chainId, WASTR.address, WASTR.decimal);
-  //   const token = new TokenSpirit(chainId, tokenContract.address, tokenContract.decimal, tokenContract.symbol);
-  //   try {
-  //     const wastrToToken = await FetcherSpirit.fetchPairData(wastr, token, this.provider);
-  //     const liquidityToken = wastrToToken.liquidityToken;
-  //     let ftmBalanceInLP = await WASTR.balanceOf(liquidityToken.address);
-  //     let astarAmount = Number(getFullDisplayBalance(ftmBalanceInLP, WASTR.decimal));
-  //     let shibaBalanceInLP = await tokenContract.balanceOf(liquidityToken.address);
-  //     let shibaAmount = Number(getFullDisplayBalance(shibaBalanceInLP, tokenContract.decimal));
-  //     const priceOfOneAstarInDollars = await this.getWASTRPriceFromArthswapASTRUSDC();
-  //     let priceOfShiba = (astarAmount / shibaAmount) * Number(priceOfOneAstarInDollars);
-  //     return priceOfShiba.toString();
-  //   } catch (err) {
-  //     console.error(`Failed to fetch token price of ${tokenContract.symbol}: ${err}`);
-  //   }
   async getLSharePrice(): Promise<string> {
-    console.log('LibraFinance: getLSharePrice .');
     const ready = await this.provider.ready;
     if (!ready) return;
     const { WASTR, LSHARE } = this.externalTokens;
@@ -690,43 +509,28 @@ export class LibraFinance {
     return (LSHARE_amount / astr_amount).toString();
   }
   async getLibraPriceFromLibraAstr(): Promise<string> {
-    console.log('LibraFinance: getLibraPrice FromLibraAstr.');
     const ready = await this.provider.ready;
     if (!ready) return;
-    // console.log('LibraFinance: getLibraPriceFromLibraAstr..');
     const { WASTR, LIBRA } = this.externalTokens;
-    // console.log('LibraFinance: getLibraPriceFromLibraAstr....');
     const libra_astr_lp_pair = this.externalTokens['LIBRA-ASTR-LP'];
-    // console.log('LibraFinance: getLibraPriceFromLibraAstr.......libra_astr_lp_pair = ' + libra_astr_lp_pair);
     let astr_amount_BN = await WASTR.balanceOf(libra_astr_lp_pair.address);
     let astr_amount = Number(getFullDisplayBalance(astr_amount_BN, WASTR.decimal));
-    // console.log('LibraFinance: getLibraPriceFromLibraAstr() 7. astr_amount=', astr_amount);
     let LIBRA_amount_BN = await LIBRA.balanceOf(libra_astr_lp_pair.address);
     let LIBRA_amount = Number(getFullDisplayBalance(LIBRA_amount_BN, libra_astr_lp_pair.decimal));
-    // console.log('LibraFinance: getLibraPriceFromLibraAstr() 8. LIBRA_amount=', LIBRA_amount);
     return (LIBRA_amount / astr_amount).toString();
   }
   // }
 
   async getWASTRPriceFromArthswapASTRUSDC(): Promise<string> {
-    console.log('LibraFinance: getWASTRPriceFromArthswapASTRUSDC() ');
     const ready = await this.provider.ready;
-    console.log('LibraFinance: getWASTRPriceFromArthswapASTRUSDC() 2');
     if (!ready) return;
-    console.log('LibraFinance: getWASTRPriceFromArthswapASTRUSDC() 3');
-    // const { WASTR, USDC } = this.externalTokens;
     const { WASTR, USDC } = this.externalTokens;
-    console.log('LibraFinance: getWASTRPriceFromArthswapASTRUSDC() 4');
     try {
-      console.log('LibraFinance: getWASTRPriceFromArthswapASTRUSDC() 5');
       const astr_usdc_lp_pair = this.externalTokens['ASTR-USDC-LP'];
-      console.log('LibraFinance: getWASTRPriceFromArthswapASTRUSDC() 6. astr_usdc_lp_pair=', astr_usdc_lp_pair);
       let astr_amount_BN = await WASTR.balanceOf(astr_usdc_lp_pair.address);
       let astr_amount = Number(getFullDisplayBalance(astr_amount_BN, WASTR.decimal));
-      console.log('LibraFinance: getWASTRPriceFromArthswapASTRUSDC() 7. astr_amount=', astr_amount);
       let USDC_amount_BN = await USDC.balanceOf(astr_usdc_lp_pair.address);
       let USDC_amount = Number(getFullDisplayBalance(USDC_amount_BN, USDC.decimal));
-      console.log('LibraFinance: getWASTRPriceFromArthswapASTRUSDC() 8. USDC_amount=', USDC_amount);
       return (USDC_amount / astr_amount).toString();
     } catch (err) {
       console.error(`Failed to fetch token price of WASTR: ${err}`);
@@ -796,13 +600,10 @@ export class LibraFinance {
   }
 
   async stakeShareToBoardroom(amount: string): Promise<TransactionResponse> {
-    console.log("stakeShareToBoardroom... amount=", amount)
     if (this.isOldBoardroomMember()) {
       throw new Error("you're using old boardroom. please withdraw and deposit the LSHARE again.");
     }
-    console.log("stakeShareToBoardroom... 2")
     const Boardroom = this.currentBoardroom();
-    console.log("stakeShareToBoardroom... 3")
     return await Boardroom.stake(decimalToBalance(amount));
   }
 
