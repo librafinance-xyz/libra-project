@@ -77,7 +77,7 @@ export const bankDefinitions: { [contractName: string]: BankInfo } = {
     closedForStaking: false,
   },
  
-  LibraAstrLPLibraRewardPool: {
+  LibraAstarLPLibraRewardPool: {
     name: 'Earn LIBRA by LIBRA-ASTR LP',
     poolId: 0,
     sectionInUI: 1,
