@@ -173,7 +173,7 @@ const Boardroom = () => {
           </Box>
 
           <Box mt={5}>
-            <Grid container justifyContent="center" spacing={3} mt={10}>
+            <Grid container justifyContent="center" spacing={3} mt={10} style={{ marginBottom: '96px' }}>
               <Button
                 disabled={stakedBalance.eq(0) || (!canWithdraw && !canClaimReward)}
                 onClick={onRedeem}

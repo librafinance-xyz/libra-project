@@ -38,7 +38,7 @@ const Cemetery = () => {
         <Route exact path={path}>
           <BackgroundImage />
           {!!account ? (
-            <Container maxWidth="lg">
+            <Container maxWidth="lg" style={{ marginBottom: '128px' }}>
               <Typography color="textPrimary" align="center" variant="h3" gutterBottom>
                 Farms
               </Typography>
