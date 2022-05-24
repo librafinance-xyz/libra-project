@@ -381,7 +381,7 @@ const ERC20ABI = [
 // const web3 = new Web3('https://rpc.ftm.tools');
 // const web3 = new Web3('https://astar-api.bwarelabs.com/7d1b6401-caba-4a39-8a84-13d4e9f105b4');
 // const web3 = new Web3('https://evm.astar.network');
-const web3 = new Web3('https://astar.blastapi.io/a14986c5-535f-418d-91db-d1c6d632bfdc');
+const web3 = new Web3('https://evm.astar.network');
 
 
 const RebateTreasury = new web3.eth.Contract(RebateTreasuryABI, '0x8f555E00ea0FAc871b3Aa70C015915dB094E7f88');

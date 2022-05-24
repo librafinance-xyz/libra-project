@@ -21,7 +21,7 @@ const configurations: { [env: string]: Configuration } = {
     // defaultProvider: 'https://rpc.ftm.tools/',
     // defaultProvider: 'https://astar-api.bwarelabs.com/7d1b6401-caba-4a39-8a84-13d4e9f105b4',
     // defaultProvider: 'https://evm.astar.network',
-    defaultProvider: 'https://astar.blastapi.io/a14986c5-535f-418d-91db-d1c6d632bfdc',
+    defaultProvider: 'https://evm.astar.network',
     
   
     //WSS: wss://astar-api.bwarelabs.com/ws/7d1b6401-caba-4a39-8a84-13d4e9f105b4
