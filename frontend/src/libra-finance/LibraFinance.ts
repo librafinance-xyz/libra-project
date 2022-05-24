@@ -288,7 +288,7 @@ export class LibraFinance {
       }
       return await poolContract.epochLibraPerSecond(0);
     }
-    const rewardPerSecond = await poolContract.LSharePerSecond();
+    const rewardPerSecond = await poolContract.lSharePerSecond();
     if (depositTokenName.startsWith('LIBRA')) {
       return rewardPerSecond.mul(35500).div(59500);
     } else {
