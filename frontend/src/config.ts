@@ -29,12 +29,13 @@ const configurations: { [env: string]: Configuration } = {
     deployments: require('./libra-finance/deployments/deployments.dev.json'),
     externalTokens: {
       USDC: ['0x6a2d262D56735DbA19Dd70682B39F6bE9a931D98', 6], // Astar USDC
+      JPYC: ['0x431D5dfF03120AFA4bDf332c61A6e1766eF37BDB', 18], // Astar JPYC
       WASTR: ['0xAeaaf0e2c81Af264101B9129C00F4440cCF0F720', 18],
-      LIBRA: ['0x544412825dA3a43b691dab45a59e7097FB5964a8', 18], // DUMMY
 
       'ASTR-USDC-LP': ['0xBB1290c1829007F440C771b37718FAbf309cd527', 18],
       'LIBRA-ASTR-LP': ['0xf5297D10B18Af22532d8E629056B1e051f163582', 18], //DUMMY
       'LSHARE-ASTR-LP': ['0x69Bc36a355F21286A503a0B8Efbb399B87513EE8', 18], //DUMMY
+      LIBRA: ['0x544412825dA3a43b691dab45a59e7097FB5964a8', 18], // DUMMY
       LBOND: ['0xA082934461B6308fBcA0c0d51820B4a49c2460cE', 18], // DUMMY
       LSHARE: ['0x8A4Bbac689064ebB78c7643cbc6DC7c5093E5E4F', 18], // DUMMY
     },
@@ -60,6 +61,54 @@ export const bankDefinitions: { [contractName: string]: BankInfo } = {
   finished: will disable the pool on the UI if set to true
   sort: the order of the pool
   */
+
+  LibraUsdcAstarLPRewardPool: {
+    name: 'Earn LIBRA by staking ASTR-USDC-LP on LibraX',
+    poolId: 3,
+    sectionInUI: 0,
+    contract: 'LibraUsdcAstarLPRewardPool',
+    depositTokenName: 'ASTR-USDC-LP',
+    earnTokenName: 'LIBRA',
+    finished: false,
+    multiplier: '250x',
+    site: 'https://astar.network',
+    buyLink: 'https://librax.finance/swap/'+'0xAeaaf0e2c81Af264101B9129C00F4440cCF0F720',
+    createLpLink: 'https://librax.finance/add/'+'0xAeaaf0e2c81Af264101B9129C00F4440cCF0F720'+'/'+'0x8A4Bbac689064ebB78c7643cbc6DC7c5093E5E4F',
+    sort: 1,
+    closedForStaking: false,
+  },
+
+  LibraJpycRewardPool: {
+    name: 'Earn LIBRA by staking JPYC',
+    poolId: 2,
+    sectionInUI: 0,
+    contract: 'LibraJpycRewardPool',
+    depositTokenName: 'JPYC',
+    earnTokenName: 'LIBRA',
+    finished: false,
+    multiplier: '150x',
+    site: 'https://astar.network',
+    buyLink: 'https://librax.finance/swap/'+'0x431D5dfF03120AFA4bDf332c61A6e1766eF37BDB',
+    createLpLink: '',
+    sort: 1,
+    closedForStaking: false,
+  },
+
+  LibraUsdcRewardPool: {
+    name: 'Earn LIBRA by staking USDC',
+    poolId: 1,
+    sectionInUI: 0,
+    contract: 'LibraUsdcRewardPool',
+    depositTokenName: 'USDC',
+    earnTokenName: 'LIBRA',
+    finished: false,
+    multiplier: '100x',
+    site: 'https://astar.network',
+    buyLink: 'https://librax.finance/swap/'+'0x6a2d262D56735DbA19Dd70682B39F6bE9a931D98',
+    createLpLink: '',
+    sort: 1,
+    closedForStaking: false,
+  },
   
   LibraAstarRewardPool: {
     name: 'Earn LIBRA by staking WASTR',
@@ -69,13 +118,15 @@ export const bankDefinitions: { [contractName: string]: BankInfo } = {
     depositTokenName: 'WASTR',
     earnTokenName: 'LIBRA',
     finished: false,
-    multiplier: '500x',
+    multiplier: '600x',
     site: 'https://astar.network',
     buyLink: 'https://librax.finance/swap/'+'0xAeaaf0e2c81Af264101B9129C00F4440cCF0F720', //[LIBRA FINANCE]token address will be added
     createLpLink: '',
     sort: 1,
     closedForStaking: false,
   },
+
+  
  
   LibraAstarLPLibraRewardPool: {
     name: 'Earn LIBRA by LIBRA-ASTR LP',

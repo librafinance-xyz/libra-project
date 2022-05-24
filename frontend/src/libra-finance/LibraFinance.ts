@@ -30,6 +30,7 @@ export class LibraFinance {
   LIBRA: ERC20;
   LSHARE: ERC20;
   LBOND: ERC20;
+  USDC: ERC20;
   ASTR: ERC20;
 
   constructor(cfg: Configuration) {
@@ -54,6 +55,7 @@ export class LibraFinance {
     this.LIBRA = new ERC20(deployments.libra.address, provider, 'LIBRA');
     this.LSHARE = new ERC20(deployments.LShare.address, provider, 'LSHARE');
     this.LBOND = new ERC20(deployments.LBond.address, provider, 'LBOND');
+    this.USDC = new ERC20("0x6a2d262D56735DbA19Dd70682B39F6bE9a931D98", provider, 'USDC');
     this.ASTR = this.externalTokens['WASTR'];
 
     // Uniswap V2 Pair
@@ -271,12 +273,12 @@ export class LibraFinance {
         const rewardPerSecond = await poolContract.libraPerSecond();
         if (depositTokenName === 'WASTR') {
           return rewardPerSecond.mul(6000).div(11000).div(24);
-        // } else if (depositTokenName === 'BOO') {
-        //   return rewardPerSecond.mul(2500).div(11000).div(24);
-        // } else if (depositTokenName === 'ZOO') {
-        //   return rewardPerSecond.mul(1000).div(11000).div(24);
-        // } else if (depositTokenName === 'SHIBA') {
-        //   return rewardPerSecond.mul(1500).div(11000).div(24);
+        } else if (depositTokenName === 'USDC') {
+          return rewardPerSecond.mul(1000).div(11000).div(24);
+        } else if (depositTokenName === 'JPYC') {
+          return rewardPerSecond.mul(1500).div(11000).div(24);
+        } else if (depositTokenName === 'ASTR-USDC-LP') {
+          return rewardPerSecond.mul(2500).div(11000).div(24);
         }
         return rewardPerSecond.div(24);
       }
@@ -487,6 +489,9 @@ export class LibraFinance {
     const { WASTR } = this.config.externalTokens;
     const wastr = new Token(chainId, WASTR[0], WASTR[1]);
     const token = new Token(chainId, tokenContract.address, tokenContract.decimal, tokenContract.symbol);
+    console.log("@@@@@@@wastr ",wastr);
+    console.log("@@@@@@@token ",token);
+    console.log("@@@@@@@this.provider ",wastr);
     try {
       const wastrToToken = await Fetcher.fetchPairData(wastr, token, this.provider);
       const priceInUSDC = new Route([wastrToToken], token);

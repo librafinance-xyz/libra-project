@@ -75,8 +75,7 @@ const Bank: React.FC = () => {
         <StyledBank>
           <StyledCardsWrapper>
             <StyledCardWrapper>
-              <Harvest bank={bank} />
-              
+              <Harvest bank={bank} />              
             </StyledCardWrapper>
             <Spacer />
             <StyledCardWrapper>{<Stake bank={bank} />}
@@ -108,12 +107,17 @@ const LPTokenHelpText: React.FC<{ bank: BankEntity }> = ({ bank }) => {
   const libraFinance = useLibraFinance();
   const libraAddr = libraFinance.LIBRA.address;
   const lshareAddr = libraFinance.LSHARE.address;
+  const UsdcAddr = libraFinance.USDC.address;
+  const WastrAddr = libraFinance.ASTR.address;
 
   let pairName: string;
   let uniswapUrl: string;
   if (bank.depositTokenName.includes('LIBRA')) {
     pairName = 'LIBRA-WASTR pair';
     uniswapUrl = 'https://librax.finance/add/ASTR/' + libraAddr;
+  } else if (bank.depositTokenName.includes('USDC')) {
+    pairName = 'WASTR-USDC pair';
+    uniswapUrl = 'https://librax.finance/add/' + WastrAddr + '/' + UsdcAddr;
   } else {
     pairName = 'LSHARE-WASTR pair';
     uniswapUrl = 'https://librax.finance/add/ASTR/' + lshareAddr;

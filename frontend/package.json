@@ -8,7 +8,7 @@
     "@fortawesome/free-solid-svg-icons": "^5.14.0",
     "@fortawesome/react-fontawesome": "^0.1.11",
     "@librafinance-xyz/sdk": "https://github.com/SpookySwap/spookyswap-sdk",
-    "@librax/sdk": "^0.0.1",
+    "@librax/sdk": "^0.0.9",
     "@material-ui/core": "^4.11.4",
     "@material-ui/icons": "^4.11.2",
     "@material-ui/lab": "^4.0.0-alpha.58",
