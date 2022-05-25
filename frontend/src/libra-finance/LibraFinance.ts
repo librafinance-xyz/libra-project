@@ -30,6 +30,7 @@ export class LibraFinance {
   LIBRA: ERC20;
   LSHARE: ERC20;
   LBOND: ERC20;
+  ASTR_USDC_LP_LIBRAX: ERC20;
   USDC: ERC20;
   ASTR: ERC20;
 
@@ -55,6 +56,7 @@ export class LibraFinance {
     this.LIBRA = new ERC20(deployments.libra.address, provider, 'LIBRA');
     this.LSHARE = new ERC20(deployments.LShare.address, provider, 'LSHARE');
     this.LBOND = new ERC20(deployments.LBond.address, provider, 'LBOND');
+    this.ASTR_USDC_LP_LIBRAX = new ERC20("0x139B81e5728026FAA8d7Ef6C79bb07f4d912641B", provider, 'ASTR-USDC-LP-LIBRAX');
     this.USDC = new ERC20("0x6a2d262D56735DbA19Dd70682B39F6bE9a931D98", provider, 'USDC');
     this.ASTR = this.externalTokens['WASTR'];
 
@@ -277,7 +279,7 @@ export class LibraFinance {
           return rewardPerSecond.mul(1000).div(11000).div(24);
         } else if (depositTokenName === 'JPYC') {
           return rewardPerSecond.mul(1500).div(11000).div(24);
-        } else if (depositTokenName === 'ASTR-USDC-LP') {
+        } else if (depositTokenName === 'ASTR-USDC-LP-LIBRAX') {
           return rewardPerSecond.mul(2500).div(11000).div(24);
         }
         return rewardPerSecond.div(24);
@@ -316,6 +318,11 @@ export class LibraFinance {
         tokenPrice = await this.getLPTokenPrice(token, this.LIBRA, true);
       } else if (tokenName === 'LSHARE-ASTR-LP') {
         tokenPrice = await this.getLPTokenPrice(token, this.LSHARE, false);
+      } else if (tokenName === 'ASTR-USDC-LP-LIBRAX') {
+        console.log("@@@@@@@ASTR-USDC-LP-LIBRAX",this.ASTR_USDC_LP_LIBRAX);
+        console.log("@@@@@@@token",token);
+        tokenPrice = await this.getLPTokenPrice(token, this.ASTR, false); // Under problems
+        console.log("@@@@@@@tokenPrice",tokenPrice);
       } else {
         tokenPrice = await this.getTokenPriceFromLP(token);
         tokenPrice = (Number(tokenPrice) * Number(priceOfOneAstarInDollars)).toString();

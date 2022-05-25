@@ -54,6 +54,7 @@ const logosBySymbol: { [title: string]: string } = {
   'LIBRA-ASTR-LP': LibraAstrLPlogo,
   'LSHARE-ASTR-LP': LshareAstrLPlogo,
   'ASTR-USDC-LP': AstrUsdcLPlogo,
+  'ASTR-USDC-LP-LIBRAX': AstrUsdcLPlogo,
 };
 
 type LogoProps = {

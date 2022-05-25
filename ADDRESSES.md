@@ -24,8 +24,8 @@ ORACLE:
 https://blockscout.com/astar/address/0xf5297D10B18Af22532d8E629056B1e051f163582/transactions
 
 LibraGenesisRewardPool:
-0xbE1B0874F070d1983B7dB54fF91Ed3F18257AA83
-https://blockscout.com/astar/address/0xbE1B0874F070d1983B7dB54fF91Ed3F18257AA83/transactions
+0xc8EE4d74E2584A2C38b787247fD592B48D08F3F4
+https://blockscout.com/astar/address/0xc8EE4d74E2584A2C38b787247fD592B48D08F3F4/transactions
 
 LibraRewardPool:
 0x716FC8495FF52a1C5bb60549A026B33beC36282F
