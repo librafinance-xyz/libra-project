@@ -10,8 +10,12 @@ const useStakedTokenPriceInDollars = (stakedTokenName: string, stakedToken: ERC2
   const isUnlocked = libraFinance?.isUnlocked;
 
   const fetchBalance = useCallback(async () => {
+    // console.log("useStakedTokenPriceInDollars: stakedTokenName: ",stakedTokenName)
+    // console.log("useStakedTokenPriceInDollars: stakedToken.address: ",stakedToken.address)
     const balance = await libraFinance.getDepositTokenPriceInDollars(stakedTokenName, stakedToken);
+    // console.log("useStakedTokenPriceInDollars: balance:", balance)
     setStakedTokenPriceInDollars(balance);
+    // setStakedTokenPriceInDollars(balance.toString());
   }, [stakedToken, stakedTokenName, libraFinance]);
 
   useEffect(() => {
