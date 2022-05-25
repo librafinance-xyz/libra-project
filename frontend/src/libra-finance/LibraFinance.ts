@@ -319,15 +319,22 @@ export class LibraFinance {
       } else if (tokenName === 'LSHARE-ASTR-LP') {
         tokenPrice = await this.getLPTokenPrice(token, this.LSHARE, false);
       } else if (tokenName === 'ASTR-USDC-LP-LIBRAX') {
-        console.log("@@@@@@@ASTR-USDC-LP-LIBRAX",this.ASTR_USDC_LP_LIBRAX);
-        console.log("@@@@@@@token",token);
-        tokenPrice = await this.getLPTokenPrice(token, this.ASTR, false); // Under problems
-        console.log("@@@@@@@tokenPrice",tokenPrice);
+        // tokenPrice=1;
+        //これで、LPに入っているUSDC*2が取得できる。 6 decimals 
+        const a = (await this.USDC.balanceOf(token.address)).mul(2);
+        // console.log("getDepositTokenPriceInDollars: token.address=",token.address)
+        // console.log("getDepositTokenPriceInDollars: this.USDC.address=",this.USDC.address)
+        // console.log("getDepositTokenPriceInDollars: a=",a.toString())
+        // console.log("getDepositTokenPriceInDollars:  (await this.USDC.balanceOf(token.address)=", (await this.USDC.balanceOf(token.address)) .toString())
+        tokenPrice = (a.toNumber()/1000000).toString()
+
+
       } else {
         tokenPrice = await this.getTokenPriceFromLP(token);
         tokenPrice = (Number(tokenPrice) * Number(priceOfOneAstarInDollars)).toString();
       }
     }
+    console.log("getDepositTokenPriceInDollars: ", tokenPrice)
     return tokenPrice;
   }
 
@@ -503,6 +510,7 @@ export class LibraFinance {
       const wastrToToken = await Fetcher.fetchPairData(wastr, token, this.provider);
       const priceInUSDC = new Route([wastrToToken], token);
       return priceInUSDC.midPrice.toFixed(4);
+      // return priceInUSDC.midPrice.toFixed(8);
     } catch (err) {
       console.error(`Failed to fetch token price of ${tokenContract.symbol}: ${err}`);
     }
