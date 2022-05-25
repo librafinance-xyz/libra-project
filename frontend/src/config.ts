@@ -33,6 +33,7 @@ const configurations: { [env: string]: Configuration } = {
       WASTR: ['0xAeaaf0e2c81Af264101B9129C00F4440cCF0F720', 18],
 
       'ASTR-USDC-LP': ['0xBB1290c1829007F440C771b37718FAbf309cd527', 18],
+      'ASTR-USDC-LP-LIBRAX': ['0x139B81e5728026FAA8d7Ef6C79bb07f4d912641B', 18], // LibraX Pair
       'LIBRA-ASTR-LP': ['0xf5297D10B18Af22532d8E629056B1e051f163582', 18], //DUMMY
       'LSHARE-ASTR-LP': ['0x69Bc36a355F21286A503a0B8Efbb399B87513EE8', 18], //DUMMY
       LIBRA: ['0x544412825dA3a43b691dab45a59e7097FB5964a8', 18], // DUMMY
@@ -62,27 +63,27 @@ export const bankDefinitions: { [contractName: string]: BankInfo } = {
   sort: the order of the pool
   */
 
-  LibraUsdcAstarLPRewardPool: {
+  UsdcAstarLPGenesisRewardPool: {
     name: 'Earn LIBRA by staking ASTR-USDC-LP on LibraX',
-    poolId: 3,
+    poolId: 5, // Must check
     sectionInUI: 0,
-    contract: 'LibraUsdcAstarLPRewardPool',
-    depositTokenName: 'ASTR-USDC-LP',
+    contract: 'UsdcAstarLPGenesisRewardPool',
+    depositTokenName: 'ASTR-USDC-LP-LIBRAX',
     earnTokenName: 'LIBRA',
     finished: false,
     multiplier: '250x',
     site: 'https://astar.network',
-    buyLink: 'https://librax.finance/swap/'+'0xAeaaf0e2c81Af264101B9129C00F4440cCF0F720',
+    buyLink: '',
     createLpLink: 'https://librax.finance/add/'+'0xAeaaf0e2c81Af264101B9129C00F4440cCF0F720'+'/'+'0x8A4Bbac689064ebB78c7643cbc6DC7c5093E5E4F',
     sort: 1,
     closedForStaking: false,
   },
 
-  LibraJpycRewardPool: {
+  JpycGenesisRewardPool: {
     name: 'Earn LIBRA by staking JPYC',
     poolId: 2,
     sectionInUI: 0,
-    contract: 'LibraJpycRewardPool',
+    contract: 'JpycGenesisRewardPool',
     depositTokenName: 'JPYC',
     earnTokenName: 'LIBRA',
     finished: false,
@@ -94,11 +95,11 @@ export const bankDefinitions: { [contractName: string]: BankInfo } = {
     closedForStaking: false,
   },
 
-  LibraUsdcRewardPool: {
+  UsdcGenesisRewardPool: {
     name: 'Earn LIBRA by staking USDC',
     poolId: 1,
     sectionInUI: 0,
-    contract: 'LibraUsdcRewardPool',
+    contract: 'UsdcGenesisRewardPool',
     depositTokenName: 'USDC',
     earnTokenName: 'LIBRA',
     finished: false,
@@ -110,11 +111,11 @@ export const bankDefinitions: { [contractName: string]: BankInfo } = {
     closedForStaking: false,
   },
   
-  LibraAstarRewardPool: {
+  AstarGenesisRewardPool: {
     name: 'Earn LIBRA by staking WASTR',
-    poolId: 0,
+    poolId: 4, // Must check
     sectionInUI: 0,
-    contract: 'LibraAstarRewardPool',
+    contract: 'AstarGenesisRewardPool',
     depositTokenName: 'WASTR',
     earnTokenName: 'LIBRA',
     finished: false,
