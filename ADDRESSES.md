@@ -5,7 +5,8 @@ https://blockscout.com/astar/address/0x544412825dA3a43b691dab45a59e7097FB5964a8/
 
 LBOND(DUMMY):
 0xA082934461B6308fBcA0c0d51820B4a49c2460cE
-https://astar.subscan.io/account/0xA082934461B6308fBcA0c0d51820B4a49c2460cE?tab=contract
+<!-- https://astar.subscan.io/account/0xA082934461B6308fBcA0c0d51820B4a49c2460cE?tab=contract -->
+https://blockscout.com/astar/address/0xA082934461B6308fBcA0c0d51820B4a49c2460cE/transactions
 
 Boardroom:
 0x3BC8c48367dcb8b8af1c0B732D7D783BD9eF81cB
@@ -13,7 +14,8 @@ https://blockscout.com/astar/address/0x3BC8c48367dcb8b8af1c0B732D7D783BD9eF81cB/
 
 Treasury:
 0xbc667a0B65F2690A9267305eb6644641CDB66F0f
-https://astar.subscan.io/account/0xbc667a0B65F2690A9267305eb6644641CDB66F0f?tab=contract
+<!-- https://astar.subscan.io/account/0xbc667a0B65F2690A9267305eb6644641CDB66F0f?tab=contract -->
+https://blockscout.com/astar/address/0xbc667a0B65F2690A9267305eb6644641CDB66F0f/transactions
 
 LSHARE(DUMMY):
 0x8A4Bbac689064ebB78c7643cbc6DC7c5093E5E4F

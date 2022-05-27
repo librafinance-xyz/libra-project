@@ -125,25 +125,16 @@ const Nav = () => {
               </a>
               {/* <Link color="textPrimary" to="/rebates" className={classes.link}>
                 3DAO
-              </Link> */}
-              {/* <Link color="textPrimary" to="/treasury" className={classes.link}>
+              </Link>  */}
+              <Link color="textPrimary" to="/treasury" className={classes.link}>
                 Treasury
-              </Link> */}
-              {/* <Link color="textPrimary" to="/treasury" className={classes.link}>
-                Treasury
-              </Link>
-              <a href="/" target="_blank" className={classes.link}>
-                Vaults
-              </a> */}
-              {/* <Link color="textPrimary" to="/sbs" className={classes.link}>
+              </Link> 
+              <Link color="textPrimary" to="/sbs" className={classes.link}>
                 SBS
-              </Link>
-              <Link color="textPrimary" to="/liquidity" className={classes.link}>
-                Liquidity
               </Link>
               <Link color="textPrimary" to="/regulations" className={classes.link}>
                 Regulations
-              </Link> */}
+              </Link>
               {/* <a href="https://alnair.finance" target="_blank" className={classes.link}>
                 Vaults
               </a> */}

@@ -8,12 +8,18 @@ import RegulationsImage from '../../assets/img/regulations_bg.png';
 import { createGlobalStyle } from 'styled-components';
 import useLibraFinance from '../../hooks/useLibraFinance';
 
+import HomeImage from '../../assets/img/home.png'; //  Subject to change
+
 const BackgroundImage = createGlobalStyle`
-  body, html {
-    background: url(${RegulationsImage}) no-repeat !important;
+  body {
+    background: url(${HomeImage}) no-repeat !important;
     background-size: cover !important;
   }
+* {
+    border-radius: 0 !important;
+}
 `;
+
 const StyledTableCell = withStyles((theme) => ({
   head: {
     fontSize: 18,
