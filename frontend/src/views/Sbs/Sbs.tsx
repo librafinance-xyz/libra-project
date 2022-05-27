@@ -19,12 +19,16 @@ import TokenInput from '../../components/TokenInput';
 import Card from '../../components/Card';
 import CardContent from '../../components/CardContent';
 import TokenSymbol from '../../components/TokenSymbol';
+import HomeImage from '../../assets/img/home.png'; //  Subject to change
 
 const BackgroundImage = createGlobalStyle`
   body {
-    background: url(${PitImage}) no-repeat !important;
+    background: url(${HomeImage}) no-repeat !important;
     background-size: cover !important;
   }
+* {
+    border-radius: 0 !important;
+}
 `;
 
 function isNumeric(n: any) {
