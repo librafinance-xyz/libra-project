@@ -10,7 +10,7 @@ const useWithdrawFromBoardroom = () => {
     (amount: string) => {
       handleTransactionReceipt(
         libraFinance.withdrawShareFromBoardroom(amount),
-        `Withdraw ${amount} LSHARE from the 3Room `,
+        `Withdraw ${amount} LSHARE from the Boardroom `,
       );
     },
     [libraFinance, handleTransactionReceipt],
