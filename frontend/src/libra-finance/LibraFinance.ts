@@ -537,9 +537,8 @@ export class LibraFinance {
     let astr_amount = Number(getFullDisplayBalance(astr_amount_BN, WASTR.decimal));
     let LIBRA_amount_BN = await LIBRA.balanceOf(libra_astr_lp_pair.address);
     let LIBRA_amount = Number(getFullDisplayBalance(LIBRA_amount_BN, libra_astr_lp_pair.decimal));
-    return (LIBRA_amount / astr_amount).toString();
+    return (astr_amount /LIBRA_amount).toString();
   }
-  // }
 
   async getWASTRPriceFromArthswapASTRUSDC(): Promise<string> {
     const ready = await this.provider.ready;

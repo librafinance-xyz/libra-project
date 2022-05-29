@@ -97,7 +97,8 @@ const Boardroom = () => {
                     <Typography>
                       LIBRA Price<small> (TWAP)</small>
                     </Typography>
-                    <Typography>{rebateStats.libraPrice.toFixed(4)} ASTR</Typography>
+                    {/* <Typography>{rebateStats.libraPrice.toFixed(4)} ASTR</Typography> */}
+                     <Typography>{scalingFactor}</Typography>
                   </CardContent>
                 </Card>
               </Grid>

@@ -24,7 +24,7 @@ const Boardroom = lazy(() => import('./views/Boardroom'));
 const Rebates = lazy(() => import('./views/Rebates'));
 const Bonds = lazy(() => import('./views/Pit'));
 const Treasury = lazy(() => import('./views/Treasury'));
-const SBS = lazy(() => import('./views/Sbs'));
+// const SBS = lazy(() => import('./views/Sbs'));
 const Liquidity = lazy(() => import('./views/Liquidity'));
 
 const NoMatch = () => (
@@ -66,9 +66,9 @@ const App: React.FC = () => {
             <Route path="/treasury">
               <Treasury />
             </Route>
-            <Route path="/sbs">
+            {/* <Route path="/sbs">
               <SBS />
-            </Route>
+            </Route> */}
             <Route path="/regulations">
               <Regulations />
             </Route>
