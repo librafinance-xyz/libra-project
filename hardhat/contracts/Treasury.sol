@@ -275,9 +275,9 @@ contract Treasury is ContractGuard {
         premiumThreshold = 110;
         premiumPercent = 7000;
 
-        // First 28 epochs with 2.5% expansion
+        // First 28 epochs with 4.5% expansion
         bootstrapEpochs = 28;
-        bootstrapSupplyExpansionPercent = 250;
+        bootstrapSupplyExpansionPercent = 450;
 
         // set seigniorageSaved to it's balance
         seigniorageSaved = IERC20(libra).balanceOf(address(this));
