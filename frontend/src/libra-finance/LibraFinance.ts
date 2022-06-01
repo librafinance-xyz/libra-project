@@ -41,12 +41,12 @@ export class LibraFinance {
     // loads contracts from deployments
     this.contracts = {};
     for (const [name, deployment] of Object.entries(deployments)) {
-      if (name=="LShare"){
-        console.log("LibraFinance: deployment.name = ", name)
-        console.log("LibraFinance: deployment.address = ", deployment.address)
-        console.log("LibraFinance: deployment.abi = ", deployment.abi)
+      if (name == 'LShare') {
+        console.log('LibraFinance: deployment.name = ', name);
+        console.log('LibraFinance: deployment.address = ', deployment.address);
+        console.log('LibraFinance: deployment.abi = ', deployment.abi);
       }
-      
+
       this.contracts[name] = new Contract(deployment.address, deployment.abi, provider);
     }
     this.externalTokens = {};
@@ -56,8 +56,8 @@ export class LibraFinance {
     this.LIBRA = new ERC20(deployments.libra.address, provider, 'LIBRA');
     this.LSHARE = new ERC20(deployments.LShare.address, provider, 'LSHARE');
     this.LBOND = new ERC20(deployments.LBond.address, provider, 'LBOND');
-    this.ASTR_USDC_LP_LIBRAX = new ERC20("0x139B81e5728026FAA8d7Ef6C79bb07f4d912641B", provider, 'ASTR-USDC-LP-LIBRAX');
-    this.USDC = new ERC20("0x6a2d262D56735DbA19Dd70682B39F6bE9a931D98", provider, 'USDC');
+    this.ASTR_USDC_LP_LIBRAX = new ERC20('0x139B81e5728026FAA8d7Ef6C79bb07f4d912641B', provider, 'ASTR-USDC-LP-LIBRAX');
+    this.USDC = new ERC20('0x6a2d262D56735DbA19Dd70682B39F6bE9a931D98', provider, 'USDC');
     this.ASTR = this.externalTokens['WASTR'];
 
     // Uniswap V2 Pair
@@ -103,7 +103,7 @@ export class LibraFinance {
   //===================================================================
 
   async getLibraStat(): Promise<TokenStat> {
-    const { LibraRewardPool } = this.contracts; 
+    const { LibraRewardPool } = this.contracts;
     const supply = await this.LIBRA.totalSupply();
     const libraRewardPoolSupply = await this.LIBRA.balanceOf(LibraRewardPool.address);
     const priceOfOneASTR = await this.getWASTRPriceFromArthswapASTRUSDC();
@@ -113,7 +113,7 @@ export class LibraFinance {
       tokenInAstar: priceInASTR,
       priceInDollars: priceOfLibraInDollars,
       totalSupply: getDisplayBalance(supply, this.LIBRA.decimal, 0),
-      circulatingSupply: getDisplayBalance(supply, this.LIBRA.decimal, 0), 
+      circulatingSupply: getDisplayBalance(supply, this.LIBRA.decimal, 0),
     };
   }
 
@@ -186,7 +186,7 @@ export class LibraFinance {
     const lShareCirculatingSupply = supply.sub(libraRewardPoolSupply);
     const astarPriceInUSDC = await this.getWASTRPriceFromArthswapASTRUSDC();
     const priceOfSharesInDollars = (Number(priceInASTR) * Number(astarPriceInUSDC)).toFixed(2);
-   
+
     return {
       tokenInAstar: priceInASTR,
       priceInDollars: priceOfSharesInDollars,
@@ -211,9 +211,9 @@ export class LibraFinance {
   }
 
   async getLibraPriceInLastTWAP(): Promise<BigNumber> {
-    console.log("getLibraPriceInLastTWAP... this.contracts => ", this.contracts)
+    console.log('getLibraPriceInLastTWAP... this.contracts => ', this.contracts);
     const { Treasury } = this.contracts;
-    console.log("getLibraPriceInLastTWAP... ")
+    console.log('getLibraPriceInLastTWAP... ');
     return Treasury.getLibraUpdatedPrice();
   }
 
@@ -320,21 +320,19 @@ export class LibraFinance {
         tokenPrice = await this.getLPTokenPrice(token, this.LSHARE, false);
       } else if (tokenName === 'ASTR-USDC-LP-LIBRAX') {
         // tokenPrice=1;
-        //これで、LPに入っているUSDC*2が取得できる。 6 decimals 
+        //これで、LPに入っているUSDC*2が取得できる。 6 decimals
         const a = (await this.USDC.balanceOf(token.address)).mul(2);
         // console.log("getDepositTokenPriceInDollars: token.address=",token.address)
         // console.log("getDepositTokenPriceInDollars: this.USDC.address=",this.USDC.address)
         // console.log("getDepositTokenPriceInDollars: a=",a.toString())
         // console.log("getDepositTokenPriceInDollars:  (await this.USDC.balanceOf(token.address)=", (await this.USDC.balanceOf(token.address)) .toString())
-        tokenPrice = (a.toNumber()/1000000).toString()
-
-
+        tokenPrice = (a.toNumber() / 1000000).toString();
       } else {
         tokenPrice = await this.getTokenPriceFromLP(token);
         tokenPrice = (Number(tokenPrice) * Number(priceOfOneAstarInDollars)).toString();
       }
     }
-    console.log("getDepositTokenPriceInDollars: ", tokenPrice)
+    console.log('getDepositTokenPriceInDollars: ', tokenPrice);
     return tokenPrice;
   }
 
@@ -503,9 +501,9 @@ export class LibraFinance {
     const { WASTR } = this.config.externalTokens;
     const wastr = new Token(chainId, WASTR[0], WASTR[1]);
     const token = new Token(chainId, tokenContract.address, tokenContract.decimal, tokenContract.symbol);
-    console.log("@@@@@@@wastr ",wastr);
-    console.log("@@@@@@@token ",token);
-    console.log("@@@@@@@this.provider ",wastr);
+    console.log('@@@@@@@wastr ', wastr);
+    console.log('@@@@@@@token ', token);
+    console.log('@@@@@@@this.provider ', wastr);
     try {
       const wastrToToken = await Fetcher.fetchPairData(wastr, token, this.provider);
       const priceInUSDC = new Route([wastrToToken], token);
@@ -537,7 +535,7 @@ export class LibraFinance {
     let astr_amount = Number(getFullDisplayBalance(astr_amount_BN, WASTR.decimal));
     let LIBRA_amount_BN = await LIBRA.balanceOf(libra_astr_lp_pair.address);
     let LIBRA_amount = Number(getFullDisplayBalance(LIBRA_amount_BN, libra_astr_lp_pair.decimal));
-    return (astr_amount /LIBRA_amount).toString();
+    return (astr_amount / LIBRA_amount).toString();
   }
 
   async getWASTRPriceFromArthswapASTRUSDC(): Promise<string> {
@@ -570,7 +568,7 @@ export class LibraFinance {
     const lastRewardsReceived = lastHistory[1];
 
     const LSHAREPrice = (await this.getShareStat()).priceInDollars;
-    console.log("const LSHAREPrice = (await this.getShareStat()).priceInDollars");
+    console.log('const LSHAREPrice = (await this.getShareStat()).priceInDollars');
     const LIBRAPrice = (await this.getLibraStat()).priceInDollars;
     const epochRewardsPerShare = lastRewardsReceived / 1e18;
 
@@ -805,7 +803,17 @@ export class LibraFinance {
     const redeemBondsFilter = Treasury.filters.RedeemedBonds();
 
     let epochBlocksRanges: any[] = [];
-    let boardroomFundEvents = await Treasury.queryFilter(treasuryBoardroomFundedFilter);
+    console.log('queryFilter..listenForRegulationsEvents....');
+    console.log(
+      'queryFilter..listenForRegulationsEvents....treasuryBoardroomFundedFilter=',
+      treasuryBoardroomFundedFilter,
+    );
+    // now 1148764
+    // start 1100000
+    // latest 10000 => -10000
+    console.log('listenForRegulationsEvents..............');
+    let boardroomFundEvents = await Treasury.queryFilter(treasuryBoardroomFundedFilter, -10000);
+    console.log('queryFilter.. listenForRegulationsEvents.........boardroomFundEvents=', boardroomFundEvents);
     var events: any[] = [];
     boardroomFundEvents.forEach(function callback(value, index) {
       events.push({ epoch: index + 1 });
@@ -828,7 +836,7 @@ export class LibraFinance {
         epochBlocksRanges[index - 1].endBlock = value.blockNumber;
       }
     });
-
+    console.log('enForRegulationsEvents...................');
     epochBlocksRanges.forEach(async (value, index) => {
       events[index].bondsBought = await this.getBondsWithFilterForPeriod(
         boughtBondsFilter,
@@ -841,14 +849,28 @@ export class LibraFinance {
         value.endBlock,
       );
     });
-    let DEVFundEvents = await Treasury.queryFilter(treasuryDevFundedFilter);
+    //
+    console.log('listenForRegulationsEvents. Treasury.queryFilter(treasuryDevFundedFilter....');
+    // let DEVFundEvents = await Treasury.queryFilter(treasuryDevFundedFilter);
+    let DEVFundEvents = await Treasury.queryFilter(treasuryDevFundedFilter, -10000);
+    console.log(
+      'listenForRegulationsEvents.Treasury.queryFilter(treasuryDevFundedFilter.... DEVFundEvents =',
+      DEVFundEvents,
+    );
     DEVFundEvents.forEach(function callback(value, index) {
       events[index].devFund = getDisplayBalance(value.args[1]);
     });
-    let DAOFundEvents = await Treasury.queryFilter(treasuryDaoFundedFilter);
+    // let DAOFundEvents = await Treasury.queryFilter(treasuryDaoFundedFilter);
+    console.log('listenForRegulationsEvents.Treasury.queryFilter(treasuryDaoFundedFilter....');
+    let DAOFundEvents = await Treasury.queryFilter(treasuryDaoFundedFilter, -10000);
+    console.log(
+      'listenForRegulationsEvents.Treasury.queryFilter(treasuryDaoFundedFilter....DAOFundEvents=',
+      DAOFundEvents,
+    );
     DAOFundEvents.forEach(function callback(value, index) {
       events[index].daoFund = getDisplayBalance(value.args[1]);
     });
+    console.log('listenForRegulationsEvents events=', events);
     return events;
   }
 
