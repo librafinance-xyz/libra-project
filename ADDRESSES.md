@@ -37,3 +37,7 @@ LShareRewardPool:
 0x9095f6120835C820E45D856E8bc0a47978d5C7A4
 https://blockscout.com/astar/address/0x9095f6120835C820E45D856E8bc0a47978d5C7A4/transactions
 
+
+Zap:
+0xF5D9e97cEF13eb9EFBD0B74845A39e448991c49F
+https://astar.subscan.io/account/0xF5D9e97cEF13eb9EFBD0B74845A39e448991c49F?tab=contract
