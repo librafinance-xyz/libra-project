@@ -1,12 +1,12 @@
 // SPDX-License-Identifier: MIT
 
-pragma solidity 0.8.11;
+pragma solidity 0.8.4;
 
 //  IUniswapRouter01
 
 interface IUniswapRouter01 {
     function factory() external pure returns (address);
-    function WFTM() external pure returns (address);
+    function WASTR() external pure returns (address);
 
     function addLiquidity(
         address tokenA,
