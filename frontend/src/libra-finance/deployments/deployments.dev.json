@@ -2186,7 +2186,7 @@
             "internalType": "address"
           },
           {
-            "namev: "routerAddr",
+            "name": "routerAddr",
             "type": "address",
             "internalType": "address"
           },
@@ -2200,7 +2200,7 @@
         "stateMutability": "nonpayable"
       },
       {
-        "namev: "zapOut",
+        "name": "zapOut",
         "type": "function",
         "inputs": [
           {
