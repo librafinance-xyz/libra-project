@@ -18,17 +18,17 @@ const Button: React.FC<ButtonProps> = ({ children, disabled, href, onClick, size
   const { color, spacing } = useContext(ThemeContext);
 
   let buttonColor: string;
-  // switch (variant) {
-  //   case 'secondary':
-  //     buttonColor = color.gray.main;
-  //     break;
-  //   case 'tertiary':
-  //     buttonColor = color.gray.main
-  //     break;
-  //   case 'default':
-  //   default:
-  //     buttonColor = color.primary.main;
-  // }
+  switch (variant) {
+    case 'secondary':
+      buttonColor = color.secondary.main;
+      break;
+    case 'tertiary':
+      buttonColor = color.secondary.main
+      break;
+    case 'default':
+    default:
+      buttonColor = color.primary.main;
+  }
 
   let boxShadow: string;
   let buttonSize: number;
