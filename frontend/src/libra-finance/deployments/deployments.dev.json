@@ -1948,7 +1948,7 @@
         "type": "function",
         "inputs": [],
         "outputs": [],
-        "stateMutability:" "nonpayable"
+        "stateMutability": "nonpayable"
       },
       {
         "name": "setFee",
@@ -2011,12 +2011,12 @@
       },
       {
         "name": "swapToNative",
-        "type:" "function",
+        "type": "function",
         "inputs": [
           {
-            "name:" "_from",
+            "name": "_from",
             "type": "address",
-            "internalType:" "address"
+            "internalType": "address"
           },
           {
             "name": "amount",
@@ -2035,20 +2035,20 @@
           }
         ],
         "outputs": [],
-        "stateMutability:" "nonpayable"
+        "stateMutability": "nonpayable"
       },
       {
         "name": "swapToken",
         "type": "function",
-        "inputs:" [
+        "inputs": [
           {
             "name": "_from",
-            "type:" "address",
-            "internalType:" "address"
+            "type": "address",
+            "internalType": "address"
           },
           {
             "name": "amount",
-            "type:" "uint256",
+            "type": "uint256",
             "internalType": "uint256"
           },
           {
@@ -2089,7 +2089,7 @@
         "inputs": [
           {
             "name": "",
-            "type:" "address",
+            "type": "address",
             "internalType": "address"
           }
         ],
