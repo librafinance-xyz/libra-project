@@ -72,17 +72,17 @@ const Stake: React.FC<StakeProps> = ({ bank }) => {
     />,
   );
 
-  // const [onPresentZap, onDissmissZap] = useModal(
-  //   <ZapModal
-  //     decimals={bank.depositToken.decimal}
-  //     onConfirm={(zappingToken, tokenName, amount) => {
-  //       if (Number(amount) <= 0 || isNaN(Number(amount))) return;
-  //       onZap(zappingToken, tokenName, amount);
-  //       onDissmissZap();
-  //     }}
-  //     tokenName={bank.depositTokenName}
-  //   />,
-  // );
+  const [onPresentZap, onDissmissZap] = useModal(
+    <ZapModal
+      decimals={bank.depositToken.decimal}
+      onConfirm={(zappingToken, tokenName, amount) => {
+        if (Number(amount) <= 0 || isNaN(Number(amount))) return;
+        onZap(zappingToken, tokenName, amount);
+        onDissmissZap();
+      }}
+      tokenName={bank.depositTokenName}
+    />,
+  );
 
   const [onPresentWithdraw, onDismissWithdraw] = useModal(
     <WithdrawModal
@@ -130,12 +130,12 @@ const Stake: React.FC<StakeProps> = ({ bank }) => {
                   <RemoveIcon />
                 </IconButton>
                 <StyledActionSpacer />
-                {/* <IconButton
+                <IconButton
                   disabled={bank.closedForStaking || bank.depositTokenName === 'LIBRA-ASTR-LP'}
                   onClick={() => (bank.closedForStaking ? null : onPresentZap())}
                 >
                   <FlashOnIcon style={{ color: themeColor.grey[400] }} />
-                </IconButton> */}
+                </IconButton>
                 <StyledActionSpacer />
                 <IconButton
                   disabled={bank.closedForStaking}
