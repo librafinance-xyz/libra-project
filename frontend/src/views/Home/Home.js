@@ -489,12 +489,12 @@ const Home = () => {
                   <TokenSymbol symbol="LIBRA-ASTR-LP" />
                 </CardIcon>
               </Box>
-              {/*
+      
               <Box mt={2}>
                 <Button color="primary" disabled={true} onClick={onPresentLibraZap} variant="contained">
                   Zap In
                 </Button>
-              </Box>*/}
+              </Box>
               <Box mt={2}>
                 <span style={{ fontSize: '26px' }}>
                   {libraLPStats?.tokenAmount ? libraLPStats?.tokenAmount : '-.--'} LIBRA /{' '}
@@ -518,12 +518,12 @@ const Home = () => {
                   <TokenSymbol symbol="LSHARE-ASTR-LP" />
                 </CardIcon>
               </Box>
-              {/*<Box mt={2}>
-                <Button color="primary" onClick={onPresentLshareZap} variant="contained">
-                  Zap In
-                </Button>
-            </Box>*/}
               <Box mt={2}>
+                  <Button color="primary" onClick={onPresentLshareZap} variant="contained">
+                    Zap In
+                  </Button>
+              </Box>
+                <Box mt={2}>
                 <span style={{ fontSize: '26px' }}>
                   {lshareLPStats?.tokenAmount ? lshareLPStats?.tokenAmount : '-.--'} LSHARE /{' '}
                   {lshareLPStats?.astarAmount ? lshareLPStats?.astarAmount : '-.--'} ASTR
