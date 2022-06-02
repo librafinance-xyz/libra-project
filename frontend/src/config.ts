@@ -74,7 +74,7 @@ export const bankDefinitions: { [contractName: string]: BankInfo } = {
     multiplier: '250x',
     site: 'https://astar.network',
     buyLink: '',
-    createLpLink: 'https://librax.finance/add/'+'0xAeaaf0e2c81Af264101B9129C00F4440cCF0F720'+'/'+'0x8A4Bbac689064ebB78c7643cbc6DC7c5093E5E4F',
+    createLpLink: 'https://librax.finance/add/'+'0xAeaaf0e2c81Af264101B9129C00F4440cCF0F720'+'/'+'0x6a2d262D56735DbA19Dd70682B39F6bE9a931D98',
     sort: 1,
     closedForStaking: false,
   },
