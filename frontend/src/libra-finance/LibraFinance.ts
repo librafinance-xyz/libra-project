@@ -524,7 +524,7 @@ export class LibraFinance {
     let astr_amount = Number(getFullDisplayBalance(astr_amount_BN, WASTR.decimal));
     let LSHARE_amount_BN = await LSHARE.balanceOf(lshare_astr_lp_pair.address);
     let LSHARE_amount = Number(getFullDisplayBalance(LSHARE_amount_BN, lshare_astr_lp_pair.decimal));
-    return (LSHARE_amount / astr_amount).toString();
+    return (astr_amount/LSHARE_amount).toString();
   }
   async getLibraPriceFromLibraAstr(): Promise<string> {
     const ready = await this.provider.ready;
