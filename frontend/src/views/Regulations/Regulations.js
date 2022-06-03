@@ -83,7 +83,7 @@ const Regulations = () => {
     <Page>
       <BackgroundImage />
       <Typography color="textPrimary" align="center" variant="h3" gutterBottom>
-        Graveyard regulations
+        Regulations
       </Typography>
       <TableContainer>
         <Table className={classes.table} aria-label="simple table">

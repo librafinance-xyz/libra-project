@@ -12,8 +12,7 @@ const useStyles = makeStyles((theme) => ({
 		position: 'absolute',
 		width: '400px',
 		maxWidth: '100%',
-		// backgroundColor: theme.palette.background.paper,
-		'background-color': '#ffbdb475',
+		backgroundColor: theme.palette.background.paper,
 		boxShadow: theme.shadows[5],
 		padding: theme.spacing(4),
 		outline: 'none',
@@ -42,7 +41,7 @@ const WalletProviderModal = ({ open, handleClose }) => {
 			onClose={handleClose}
 		>
 			<div className={classes.paper}>
-				<h2>Connect Wallet</h2>
+				<h2 style={{ color:"#ffffff" }} >Connect Wallet</h2>
 				<List component="nav" aria-label="main mailbox folders">
 					<WalletCard
 						icon={<img src={metamaskLogo} alt="Metamask logo" style={{ height: 32 }} />}
@@ -52,14 +51,14 @@ const WalletProviderModal = ({ open, handleClose }) => {
 						}}
 						title="Metamask"
 					/>
-					<WalletCard
+					{/* <WalletCard
 						icon={<img src={walletConnectLogo} alt="Wallet Connect logo" style={{ height: 24 }} />}
 						onConnect={() => {
 							console.log("onConnect walletconnect")
 							connect('walletconnect');
 						}}
 						title="WalletConnect"
-					/>
+					/> */}
 					{/* <WalletCard
             icon={<img src={coingBaseLogo} alt="Coinbase wallet logo" style={{ height: 32 }} />}
             onConnect={() => {
