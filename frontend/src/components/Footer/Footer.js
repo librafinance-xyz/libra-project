@@ -72,7 +72,7 @@ const Footer = () => {
             <a href="https://github.com/librafinance-xyz" rel="noopener noreferrer" target="_blank" className={classes.link}>
               Github
             </a>
-            <a href="https://github.com/librafinance-xyz/libra-project/blob/main/audit/Libra_Finance_xyz_Protocol_Smart_Contracts_Security_Audit_Report.pdf" rel="noopener noreferrer" target="_blank" className={classes.link}>
+            <a href="https://github.com/librafinance-xyz/libra-contracts/blob/main/audit/Libra_Finance_xyz_Protocol_Smart_Contracts_Security_Audit_Report.pdf" rel="noopener noreferrer" target="_blank" className={classes.link}>
               Audit
             </a>
             </Typography>
