@@ -539,15 +539,22 @@ export class LibraFinance {
   }
 
   async getWASTRPriceFromArthswapASTRUSDC(): Promise<string> {
+    console.log('getWASTRPriceFromArthswapASTRUSDC....');
     const ready = await this.provider.ready;
     if (!ready) return;
     const { WASTR, USDC } = this.externalTokens;
     try {
+      console.log('getWASTRPriceFromArthswapASTRUSDC....0');
       const astr_usdc_lp_pair = this.externalTokens['ASTR-USDC-LP'];
+      console.log('getWASTRPriceFromArthswapASTRUSDC....1');
       let astr_amount_BN = await WASTR.balanceOf(astr_usdc_lp_pair.address);
+      console.log('getWASTRPriceFromArthswapASTRUSDC....2');
       let astr_amount = Number(getFullDisplayBalance(astr_amount_BN, WASTR.decimal));
+      console.log('getWASTRPriceFromArthswapASTRUSDC....3');
       let USDC_amount_BN = await USDC.balanceOf(astr_usdc_lp_pair.address);
+      console.log('getWASTRPriceFromArthswapASTRUSDC....4');
       let USDC_amount = Number(getFullDisplayBalance(USDC_amount_BN, USDC.decimal));
+      console.log('getWASTRPriceFromArthswapASTRUSDC....5');
       return (USDC_amount / astr_amount).toString();
     } catch (err) {
       console.error(`Failed to fetch token price of WASTR: ${err}`);
