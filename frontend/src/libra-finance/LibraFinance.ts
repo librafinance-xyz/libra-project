@@ -524,7 +524,7 @@ export class LibraFinance {
     let astr_amount = Number(getFullDisplayBalance(astr_amount_BN, WASTR.decimal));
     let LSHARE_amount_BN = await LSHARE.balanceOf(lshare_astr_lp_pair.address);
     let LSHARE_amount = Number(getFullDisplayBalance(LSHARE_amount_BN, lshare_astr_lp_pair.decimal));
-    return (astr_amount/LSHARE_amount).toString();
+    return (astr_amount / LSHARE_amount).toString();
   }
   async getLibraPriceFromLibraAstr(): Promise<string> {
     const ready = await this.provider.ready;
@@ -538,24 +538,45 @@ export class LibraFinance {
     return (astr_amount / LIBRA_amount).toString();
   }
 
+  // const [ASTRPrice, setASTRPrice] = useState("");
+  // const [isWalletProviderOpen, setWalletProviderOpen] = useState(false);
+
+  // let astarPriceOnArthswap = 0;
   async getWASTRPriceFromArthswapASTRUSDC(): Promise<string> {
     console.log('getWASTRPriceFromArthswapASTRUSDC....');
     const ready = await this.provider.ready;
     if (!ready) return;
     const { WASTR, USDC } = this.externalTokens;
     try {
-      console.log('getWASTRPriceFromArthswapASTRUSDC....0');
+      // console.log('getWASTRPriceFromArthswapASTRUSDC....0');
       const astr_usdc_lp_pair = this.externalTokens['ASTR-USDC-LP'];
-      console.log('getWASTRPriceFromArthswapASTRUSDC....1');
+      // console.log('getWASTRPriceFromArthswapASTRUSDC....1');
+      // console.log('getWASTRPriceFromArthswapASTRUSDC....1 astr_usdc_lp_pair.address=', astr_usdc_lp_pair.address);
       let astr_amount_BN = await WASTR.balanceOf(astr_usdc_lp_pair.address);
-      console.log('getWASTRPriceFromArthswapASTRUSDC....2');
+      // console.log('getWASTRPriceFromArthswapASTRUSDC....2');
+      // console.log('getWASTRPriceFromArthswapASTRUSDC....2 WASTR.decimal=', WASTR.decimal);
+      // console.log('getWASTRPriceFromArthswapASTRUSDC....2 astr_amount_BN=', astr_amount_BN.toString());
       let astr_amount = Number(getFullDisplayBalance(astr_amount_BN, WASTR.decimal));
-      console.log('getWASTRPriceFromArthswapASTRUSDC....3');
+      // console.log('getWASTRPriceFromArthswapASTRUSDC....3');
+      // console.log('getWASTRPriceFromArthswapASTRUSDC....3');
       let USDC_amount_BN = await USDC.balanceOf(astr_usdc_lp_pair.address);
-      console.log('getWASTRPriceFromArthswapASTRUSDC....4');
+      // console.log('getWASTRPriceFromArthswapASTRUSDC....4');
+      // console.log('getWASTRPriceFromArthswapASTRUSDC....4');
+      // console.log('getWASTRPriceFromArthswapASTRUSDC....4 USDC_amount_BN=', USDC_amount_BN.toString());
+      // console.log('getWASTRPriceFromArthswapASTRUSDC....4 USDC.decimal=', USDC.decimal);
       let USDC_amount = Number(getFullDisplayBalance(USDC_amount_BN, USDC.decimal));
-      console.log('getWASTRPriceFromArthswapASTRUSDC....5');
-      return (USDC_amount / astr_amount).toString();
+      // console.log('getWASTRPriceFromArthswapASTRUSDC....5 USDC_amount=', USDC_amount);
+      // console.log('getWASTRPriceFromArthswapASTRUSDC....5 astr_amount=', astr_amount);
+
+      //雑計算。流動性がたっぷりある時だけの雑計算。
+      const tmp = (
+        parseInt(USDC_amount_BN.div('1000000').toString()) /
+        parseInt(astr_amount_BN.div(BigNumber.from('1000000000000000000')).toString())
+      ).toString();
+
+      return tmp;
+
+      // return (USDC_amount / astr_amount).toString();
     } catch (err) {
       console.error(`Failed to fetch token price of WASTR: ${err}`);
     }
