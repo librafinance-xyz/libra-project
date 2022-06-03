@@ -23,7 +23,7 @@ const Farms = lazy(() => import('./views/Cemetery'));
 const Boardroom = lazy(() => import('./views/Boardroom'));
 const Rebates = lazy(() => import('./views/Rebates'));
 const Bonds = lazy(() => import('./views/Pit'));
-const Treasury = lazy(() => import('./views/Treasury'));
+// const Treasury = lazy(() => import('./views/Treasury'));
 // const SBS = lazy(() => import('./views/Sbs'));
 const Liquidity = lazy(() => import('./views/Liquidity'));
 

@@ -45,7 +45,7 @@ const useStyles = makeStyles((theme) => ({
   drawer: {
     width: 240,
     flexShrink: 0,
-    backgroundColor: 'var(--pureWhite)',
+    backgroundColor: 'var(--backcolor)',
   },
   drawerPaper: {
     width: 240,
@@ -126,9 +126,9 @@ const Nav = () => {
               {/* <Link color="textPrimary" to="/rebates" className={classes.link}>
                 3DAO
               </Link>  */}
-              <Link color="textPrimary" to="/treasury" className={classes.link}>
+              {/* <Link color="textPrimary" to="/treasury" className={classes.link}>
                 Treasury
-              </Link> 
+              </Link>  */}
               {/* <Link color="textPrimary" to="/sbs" className={classes.link}>
                 SBS
               </Link> */}
@@ -172,7 +172,11 @@ const Nav = () => {
               }}
             >
               <div>
-                <IconButton onClick={handleDrawerClose}>
+                <IconButton 
+                  color="inherit"
+                  onClick={handleDrawerClose}
+                  
+                >
                   {theme.direction === 'rtl' ? <ChevronRightIcon /> : <ChevronLeftIcon />}
                 </IconButton>
               </div>
@@ -182,13 +186,16 @@ const Nav = () => {
                 <ListItemLink primary="Farms" to="/farms" />
                 <ListItemLink primary="Room" to="/boardroom" />
                 <ListItemLink primary="LBonds" to="/bonds" />
+                <ListItem button component="a" href="https://www.librax.finance">
+                  <ListItemText>Swap</ListItemText>
+                </ListItem> 
                 {/* <ListItemLink primary="3DAO" to="/rebates" /> */}
                 {/* <ListItemLink primary="Treasury" to="/treasury" /> */}
-                {/* <ListItemLink primary="Boardroom" to="/boardroom" />
-                <ListItemLink primary="Pit" to="/pit" />
+                <ListItemLink primary="Boardroom" to="/boardroom" />
+                {/* <ListItemLink primary="Pit" to="/pit" />
                 <ListItemLink primary="SBS" to="/sbs" />
-                <ListItemLink primary="Liquidity" to="/liquidity" />
-                <ListItemLink primary="Regulations" to="/regulations" /> */}
+                <ListItemLink primary="Liquidity" to="/liquidity" /> */}
+                <ListItemLink primary="Regulations" to="/regulations" /> 
                 {/* <ListItem button component="a" href="https://beluga.fi">
                   <ListItemText>Vaults</ListItemText>
                 </ListItem> */}
