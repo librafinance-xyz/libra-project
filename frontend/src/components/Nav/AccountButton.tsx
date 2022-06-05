@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Button } from '@material-ui/core';
-import { useWallet } from 'use-wallet';
+import { useWallet } from '@librafinance-xyz/use-wallet';
 import useModal from '../../hooks/useModal';
 import WalletProviderModal from '../WalletProviderModal';
 import AccountModal from './AccountModal';
@@ -28,9 +28,9 @@ const AccountButton: React.FC<AccountButtonProps> = ({ text, onOpen }) => {
   };
 
   const handleAccountModalOpen = () => {
-    onPresentAccountModal()
+    onPresentAccountModal();
     onOpen && onOpen();
-  }
+  };
 
   const buttonText = text ? text : 'Unlock';
 

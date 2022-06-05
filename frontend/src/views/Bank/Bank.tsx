@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import styled from 'styled-components';
 
 import { useParams } from 'react-router-dom';
-import { useWallet } from 'use-wallet';
+import { useWallet } from '@librafinance-xyz/use-wallet';
 import { makeStyles } from '@material-ui/core/styles';
 
 import { Box, Button, Card, CardContent, Typography, Grid } from '@material-ui/core';
@@ -75,17 +75,13 @@ const Bank: React.FC = () => {
         <StyledBank>
           <StyledCardsWrapper>
             <StyledCardWrapper>
-              <Harvest bank={bank} />             
+              <Harvest bank={bank} />
             </StyledCardWrapper>
             <Spacer />
-            <StyledCardWrapper>{<Stake bank={bank} />}
-            </StyledCardWrapper>
+            <StyledCardWrapper>{<Stake bank={bank} />}</StyledCardWrapper>
           </StyledCardsWrapper>
           <Spacer size="lg" />
-            {bank.depositTokenName.includes('LP') 
-            ? <LPTokenHelpText bank={bank} />
-            : <SingleTokenHelpText bank={bank} />
-            }
+          {bank.depositTokenName.includes('LP') ? <LPTokenHelpText bank={bank} /> : <SingleTokenHelpText bank={bank} />}
           <Spacer size="lg" />
           <div>
             <Button onClick={onRedeem} color="primary" variant="contained">
