@@ -1,5 +1,5 @@
 import React from 'react';
-import { useWallet } from 'use-wallet';
+import { useWallet } from '@librafinance-xyz/use-wallet';
 import { Route, Switch, useRouteMatch } from 'react-router-dom';
 import CountUp from 'react-countup';
 import Bank from '../Bank';
@@ -74,13 +74,8 @@ const Cemetery = () => {
   const { path } = useRouteMatch();
   const { account } = useWallet();
   const activeBanks = banks.filter((bank) => !bank.finished);
-  const {
-    balance,
-    balance_libra_wastr,
-    balance_Lshares_wastr,
-    balance_libra,
-    balance_Lshares,
-  } = useTotalTreasuryBalance();
+  const { balance, balance_libra_wastr, balance_Lshares_wastr, balance_libra, balance_Lshares } =
+    useTotalTreasuryBalance();
   return (
     <Switch>
       <Page>

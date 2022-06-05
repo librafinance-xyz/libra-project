@@ -1,5 +1,5 @@
 import React, { useMemo } from 'react';
-import { useWallet } from 'use-wallet';
+import { useWallet } from '@librafinance-xyz/use-wallet';
 import moment from 'moment';
 import styled from 'styled-components';
 import Spacer from '../../components/Spacer';
@@ -98,7 +98,7 @@ const Boardroom = () => {
                       LIBRA Price<small> (TWAP)</small>
                     </Typography>
                     {/* <Typography>{rebateStats.libraPrice.toFixed(4)} ASTR</Typography> */}
-                     <Typography>{scalingFactor}</Typography>
+                    <Typography>{scalingFactor}</Typography>
                   </CardContent>
                 </Card>
               </Grid>

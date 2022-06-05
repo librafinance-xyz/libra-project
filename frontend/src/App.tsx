@@ -3,7 +3,7 @@ import { Provider } from 'react-redux';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { ThemeProvider as TP } from '@material-ui/core/styles';
 import { ThemeProvider as TP1 } from 'styled-components';
-import { UseWalletProvider } from 'use-wallet';
+import { UseWalletProvider } from '@librafinance-xyz/use-wallet';
 import usePromptNetwork from './hooks/useNetworkPrompt';
 import BanksProvider from './contexts/Banks';
 import LibraFinanceProvider from './contexts/LibraFinanceProvider';
@@ -74,7 +74,7 @@ const App: React.FC = () => {
             </Route>
             <Route path="/liquidity">
               <Liquidity />
-            </Route> 
+            </Route>
             <Route path="*">
               <NoMatch />
             </Route>

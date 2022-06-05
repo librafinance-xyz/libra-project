@@ -13,7 +13,7 @@ import Label from '../../../components/Label';
 import useLpStats from '../../../hooks/useLpStats';
 import useTokenBalance from '../../../hooks/useTokenBalance';
 import useLibraFinance from '../../../hooks/useLibraFinance';
-import { useWallet } from 'use-wallet';
+import { useWallet } from '@librafinance-xyz/use-wallet';
 import useApproveZapper, { ApprovalState } from '../../../hooks/useApproveZapper';
 import { LIBRA_TICKER, LSHARE_TICKER, ASTR_TICKER } from '../../../utils/constants';
 import { Alert } from '@material-ui/lab';

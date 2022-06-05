@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useState } from 'react';
 import useLibraFinance from '../useLibraFinance';
-import { useWallet } from 'use-wallet';
+import { useWallet } from '@librafinance-xyz/use-wallet';
 import { BigNumber } from 'ethers';
 import { parseUnits } from 'ethers/lib/utils';
 

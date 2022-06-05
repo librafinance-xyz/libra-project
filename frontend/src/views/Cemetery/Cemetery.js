@@ -1,5 +1,5 @@
 import React from 'react';
-import { useWallet } from 'use-wallet';
+import { useWallet } from '@librafinance-xyz/use-wallet';
 import { Route, Switch, useRouteMatch } from 'react-router-dom';
 import Bank from '../Bank';
 
@@ -31,7 +31,7 @@ const Cemetery = () => {
   const activeBanks = banks.filter((bank) => !bank.finished);
   // console.log(activeBanks);
   // // console.log(bank);
-  
+
   return (
     <Switch>
       <Page>
@@ -59,15 +59,15 @@ const Cemetery = () => {
                   </Grid>
                 </div>
 
-              <Alert variant="filled" severity="warning" style={{ marginTop: '60px' }}>
-                All below pools have ended. Please unstake and collect your rewards.
-              </Alert>
+                <Alert variant="filled" severity="warning" style={{ marginTop: '60px' }}>
+                  All below pools have ended. Please unstake and collect your rewards.
+                </Alert>
 
-              <div hidden={activeBanks.filter((bank) => bank.sectionInUI === 1).length === 0}>
+                <div hidden={activeBanks.filter((bank) => bank.sectionInUI === 1).length === 0}>
                   <Typography color="textPrimary" variant="h4" gutterBottom style={{ marginTop: '20px' }}>
                     Earn LIBRA by staking LP
                   </Typography>
-                 
+
                   <Grid container spacing={3} style={{ marginTop: '20px' }}>
                     {activeBanks
                       .filter((bank) => bank.sectionInUI === 1)
@@ -77,11 +77,11 @@ const Cemetery = () => {
                         </React.Fragment>
                       ))}
                   </Grid>
-                </div> 
+                </div>
 
                 <Alert variant="filled" severity="warning" style={{ marginTop: '60px' }}>
                   All below pools have ended. Please unstake and collect your rewards.
-                </Alert> 
+                </Alert>
 
                 <div hidden={activeBanks.filter((bank) => bank.sectionInUI === 0).length === 0}>
                   <Typography
