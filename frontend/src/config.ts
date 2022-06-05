@@ -3,11 +3,11 @@ import { ChainId } from '@librax/sdk';
 import { Configuration } from './libra-finance/config';
 import { BankInfo } from './libra-finance';
 
-export const AppHostEnv = window.location.host.includes('prod-env')
-  ? 'prod'
-  : window.location.host.includes('stag-env')
-  ? 'stag'
-  : 'test'; // basically, test.
+export const AppHostEnv = window.location.host.includes('test')
+  ? 'test' //  test.
+  : // : window.location.host.includes('stag-env')
+    // ? 'stag'
+    'production';
 
 // window.location.host.includes('test') || window.location.host.includes('localhost') ? 'test' : window.location.host.includes('librafinance.xyz')? 'test': window.location.host.includes('librafinance.xyz')? '' 'prod';
 
@@ -22,8 +22,7 @@ const configurations: { [env: string]: Configuration } = {
     // defaultProvider: 'https://astar-api.bwarelabs.com/7d1b6401-caba-4a39-8a84-13d4e9f105b4',
     // defaultProvider: 'https://evm.astar.network',
     defaultProvider: 'https://evm.astar.network',
-    
-  
+
     //WSS: wss://astar-api.bwarelabs.com/ws/7d1b6401-caba-4a39-8a84-13d4e9f105b4
 
     deployments: require('./libra-finance/deployments/deployments.dev.json'),
@@ -74,7 +73,11 @@ export const bankDefinitions: { [contractName: string]: BankInfo } = {
     multiplier: '250x',
     site: 'https://astar.network',
     buyLink: '',
-    createLpLink: 'https://librax.finance/add/'+'0xAeaaf0e2c81Af264101B9129C00F4440cCF0F720'+'/'+'0x6a2d262D56735DbA19Dd70682B39F6bE9a931D98',
+    createLpLink:
+      'https://librax.finance/add/' +
+      '0xAeaaf0e2c81Af264101B9129C00F4440cCF0F720' +
+      '/' +
+      '0x6a2d262D56735DbA19Dd70682B39F6bE9a931D98',
     sort: 1,
     closedForStaking: false,
   },
@@ -89,7 +92,7 @@ export const bankDefinitions: { [contractName: string]: BankInfo } = {
     finished: false,
     multiplier: '150x',
     site: 'https://astar.network',
-    buyLink: 'https://librax.finance/swap/'+'0x431D5dfF03120AFA4bDf332c61A6e1766eF37BDB',
+    buyLink: 'https://librax.finance/swap/' + '0x431D5dfF03120AFA4bDf332c61A6e1766eF37BDB',
     createLpLink: '',
     sort: 1,
     closedForStaking: false,
@@ -105,12 +108,12 @@ export const bankDefinitions: { [contractName: string]: BankInfo } = {
     finished: false,
     multiplier: '100x',
     site: 'https://astar.network',
-    buyLink: 'https://librax.finance/swap/'+'0x6a2d262D56735DbA19Dd70682B39F6bE9a931D98',
+    buyLink: 'https://librax.finance/swap/' + '0x6a2d262D56735DbA19Dd70682B39F6bE9a931D98',
     createLpLink: '',
     sort: 1,
     closedForStaking: false,
   },
-  
+
   AstarGenesisRewardPool: {
     name: 'Earn LIBRA by staking WASTR',
     poolId: 4, // Must check
@@ -121,14 +124,12 @@ export const bankDefinitions: { [contractName: string]: BankInfo } = {
     finished: false,
     multiplier: '600x',
     site: 'https://astar.network',
-    buyLink: 'https://librax.finance/swap/'+'0xAeaaf0e2c81Af264101B9129C00F4440cCF0F720', //[LIBRA FINANCE]token address will be added
+    buyLink: 'https://librax.finance/swap/' + '0xAeaaf0e2c81Af264101B9129C00F4440cCF0F720', //[LIBRA FINANCE]token address will be added
     createLpLink: '',
     sort: 1,
     closedForStaking: false,
   },
 
-  
- 
   LibraAstarLPLibraRewardPool: {
     name: 'Earn LIBRA by LIBRA-ASTR LP',
     poolId: 0,
@@ -138,8 +139,12 @@ export const bankDefinitions: { [contractName: string]: BankInfo } = {
     earnTokenName: 'LIBRA',
     finished: false,
     multiplier: '0',
-    buyLink: '', 
-    createLpLink: 'https://librax.finance/add/'+'0xAeaaf0e2c81Af264101B9129C00F4440cCF0F720'+'/'+'0x544412825dA3a43b691dab45a59e7097FB5964a8',
+    buyLink: '',
+    createLpLink:
+      'https://librax.finance/add/' +
+      '0xAeaaf0e2c81Af264101B9129C00F4440cCF0F720' +
+      '/' +
+      '0x544412825dA3a43b691dab45a59e7097FB5964a8',
     site: '',
     sort: 2,
     closedForStaking: true,
@@ -154,8 +159,12 @@ export const bankDefinitions: { [contractName: string]: BankInfo } = {
     earnTokenName: 'LSHARE',
     finished: false,
     multiplier: '24000x',
-    buyLink: '', 
-    createLpLink: 'https://librax.finance/add/'+'0xAeaaf0e2c81Af264101B9129C00F4440cCF0F720'+'/'+'0x544412825dA3a43b691dab45a59e7097FB5964a8',
+    buyLink: '',
+    createLpLink:
+      'https://librax.finance/add/' +
+      '0xAeaaf0e2c81Af264101B9129C00F4440cCF0F720' +
+      '/' +
+      '0x544412825dA3a43b691dab45a59e7097FB5964a8',
     site: '/',
     sort: 3,
     closedForStaking: false,
@@ -170,13 +179,16 @@ export const bankDefinitions: { [contractName: string]: BankInfo } = {
     earnTokenName: 'LSHARE',
     finished: false,
     multiplier: '35500x',
-    buyLink: '', 
-    createLpLink: 'https://librax.finance/add/'+'0xAeaaf0e2c81Af264101B9129C00F4440cCF0F720'+'/'+'0x8A4Bbac689064ebB78c7643cbc6DC7c5093E5E4F',
+    buyLink: '',
+    createLpLink:
+      'https://librax.finance/add/' +
+      '0xAeaaf0e2c81Af264101B9129C00F4440cCF0F720' +
+      '/' +
+      '0x8A4Bbac689064ebB78c7643cbc6DC7c5093E5E4F',
     site: '/',
     sort: 9,
     closedForStaking: false,
   },
-
 
   // USDCRebates: {
   //   name: 'Bond USDC, earn LIBRA',
@@ -220,7 +232,7 @@ export const bankDefinitions: { [contractName: string]: BankInfo } = {
   //   sort: 3,
   //   closedForStaking: false,
   // },
-
 };
 
-export default configurations['production'];
+//export default configurations['production'];
+export default configurations[AppHostEnv];

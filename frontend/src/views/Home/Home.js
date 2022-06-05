@@ -20,9 +20,9 @@ import useAstarPrice from '../../hooks/useAstarPrice';
 // import { libra as libraStag, LShare as lShareStag } from '../../libra-finance/deployments/deployments.stag.json';
 // import { libra as libraProd, LShare as lShareProd } from '../../libra-finance/deployments/deployments.prod.json';
 // temporary
-import { libra as libraStag, LShare as lShareStag } from '../../libra-finance/deployments/deployments.dev.json';
+// import { libra as libraStag, LShare as lShareStag } from '../../libra-finance/deployments/deployments.dev.json';
 import { libra as libraProd, LShare as lShareProd } from '../../libra-finance/deployments/deployments.dev.json';
-import { libra as libraDev, LShare as lShareDev } from '../../libra-finance/deployments/deployments.dev.json';
+import { libra as libraTest, LShare as lShareTest } from '../../libra-finance/deployments/deployments.test.json';
 import AppHostEnv from '../../config';
 
 import Countdown from 'react-countdown';
@@ -35,7 +35,7 @@ import ZapModal from '../Bank/components/ZapModal';
 import { makeStyles } from '@material-ui/core/styles';
 import useLibraFinance from '../../hooks/useLibraFinance';
 
-import { registerToken } from '../../utils/wallet'
+import { registerToken } from '../../utils/wallet';
 
 const BackgroundImage = createGlobalStyle`
   body {
@@ -70,18 +70,18 @@ const Home = () => {
   let libra;
   let LShare;
   // if (!process.env.NODE_ENV || process.env.NODE_ENV === 'development') {
-  if (AppHostEnv == 'stag') {
-    // stag
-    libra = libraStag;
-    LShare = lShareStag;
-  } else if (AppHostEnv == 'prod') {
+  if (AppHostEnv == 'production') {
     // prod
     libra = libraProd;
     LShare = lShareProd;
+    // } else if (AppHostEnv == 'stag') {
+    //   // stag
+    //   libra = libraStag;
+    //   LShare = lShareStag;
   } else {
-    // dev
-    libra = libraDev;
-    LShare = lShareDev;
+    // test
+    libra = libraTest;
+    LShare = lShareTest;
   }
 
   const buyLibraAddress = 'https://www.librax.finance/swap?outputCurrency=' + libra.address;
@@ -121,7 +121,10 @@ const Home = () => {
     () => (LBondStats ? Number(LBondStats.priceInDollars).toFixed(2) : null),
     [LBondStats],
   );
-  const LBondPriceInASTR = useMemo(() => (LBondStats ? Number(LBondStats.tokenInAstar).toFixed(4) : null), [LBondStats]);
+  const LBondPriceInASTR = useMemo(
+    () => (LBondStats ? Number(LBondStats.tokenInAstar).toFixed(4) : null),
+    [LBondStats],
+  );
   const LBondCirculatingSupply = useMemo(
     () => (LBondStats ? String(LBondStats.circulatingSupply) : null),
     [LBondStats],
@@ -262,21 +265,21 @@ const Home = () => {
             }}
           >
             <CardContent align="center">
-              <h2 style={{ marginBottom: '20px' }}>Wallet Balance</h2> 
-              <Button 
+              <h2 style={{ marginBottom: '20px' }}>Wallet Balance</h2>
+              <Button
                 color="secondary"
-                variant="contained" 
+                variant="contained"
                 style={{ marginRight: '10px' }}
-                onClick={() => registerToken(libra.address, "LIBRA", 18)}
+                onClick={() => registerToken(libra.address, 'LIBRA', 18)}
               >
-                 LIBRA to Wallet
+                LIBRA to Wallet
               </Button>
 
-              <Button 
+              <Button
                 color="secondary"
-                variant="contained" 
+                variant="contained"
                 style={{ marginRight: '10px' }}
-                onClick={() => registerToken(LShare.address, "LSHARE", 18)}
+                onClick={() => registerToken(LShare.address, 'LSHARE', 18)}
               >
                 LSHARE to Wallet
               </Button>
@@ -482,7 +485,7 @@ const Home = () => {
                   <TokenSymbol symbol="LIBRA-ASTR-LP" />
                 </CardIcon>
               </Box>
-      
+
               <Box mt={2}>
                 <Button color="primary" disabled={true} onClick={onPresentLibraZap} variant="contained">
                   Zap In
@@ -512,11 +515,11 @@ const Home = () => {
                 </CardIcon>
               </Box>
               <Box mt={2}>
-                  <Button color="primary" onClick={onPresentLshareZap} variant="contained">
-                    Zap In
-                  </Button>
+                <Button color="primary" onClick={onPresentLshareZap} variant="contained">
+                  Zap In
+                </Button>
               </Box>
-                <Box mt={2}>
+              <Box mt={2}>
                 <span style={{ fontSize: '26px' }}>
                   {lshareLPStats?.tokenAmount ? lshareLPStats?.tokenAmount : '-.--'} LSHARE /{' '}
                   {lshareLPStats?.astarAmount ? lshareLPStats?.astarAmount : '-.--'} ASTR
