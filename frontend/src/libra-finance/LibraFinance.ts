@@ -826,6 +826,7 @@ export class LibraFinance {
 
     const treasuryDaoFundedFilter = Treasury.filters.DaoFundFunded();
     const treasuryDevFundedFilter = Treasury.filters.DevFundFunded();
+    const treasuryInsuranceFundedFilter = Treasury.filters.InsuranceFundFunded();
     const treasuryBoardroomFundedFilter = Treasury.filters.BoardroomFunded();
     const boughtBondsFilter = Treasury.filters.BoughtBonds();
     const redeemBondsFilter = Treasury.filters.RedeemedBonds();
@@ -877,28 +878,22 @@ export class LibraFinance {
         value.endBlock,
       );
     });
-    //
-    console.log('listenForRegulationsEvents. Treasury.queryFilter(treasuryDevFundedFilter....');
-    // let DEVFundEvents = await Treasury.queryFilter(treasuryDevFundedFilter);
+    
     let DEVFundEvents = await Treasury.queryFilter(treasuryDevFundedFilter, -10000);
-    console.log(
-      'listenForRegulationsEvents.Treasury.queryFilter(treasuryDevFundedFilter.... DEVFundEvents =',
-      DEVFundEvents,
-    );
     DEVFundEvents.forEach(function callback(value, index) {
       events[index].devFund = getDisplayBalance(value.args[1]);
     });
-    // let DAOFundEvents = await Treasury.queryFilter(treasuryDaoFundedFilter);
-    console.log('listenForRegulationsEvents.Treasury.queryFilter(treasuryDaoFundedFilter....');
+    
     let DAOFundEvents = await Treasury.queryFilter(treasuryDaoFundedFilter, -10000);
-    console.log(
-      'listenForRegulationsEvents.Treasury.queryFilter(treasuryDaoFundedFilter....DAOFundEvents=',
-      DAOFundEvents,
-    );
     DAOFundEvents.forEach(function callback(value, index) {
       events[index].daoFund = getDisplayBalance(value.args[1]);
     });
-    console.log('listenForRegulationsEvents events=', events);
+
+    let InsuranceFundEvents = await Treasury.queryFilter(treasuryInsuranceFundedFilter, -10000);
+    InsuranceFundEvents.forEach(function callback(value, index) {
+      events[index].insuranceFund = getDisplayBalance(value.args[1]);
+    });
+
     return events;
   }
 

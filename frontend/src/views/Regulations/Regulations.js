@@ -53,9 +53,9 @@ const Regulations = () => {
   const classes = useStyles();
   const libraFinance = useLibraFinance();
   const [rows, setRows] = useState(null);
-  function createData(epoch, dao, dev, boardroom, bondsBought, bondsRedeemed) {
-    var sum = (Number(dao) + Number(dev) + Number(boardroom)).toFixed(2);
-    return { epoch, dao, dev, boardroom, sum, bondsBought, bondsRedeemed };
+  function createData(epoch, dao, dev, insurance, boardroom, bondsBought, bondsRedeemed) {
+    var sum = (Number(dao) + Number(dev) + Number(insurance) + Number(boardroom)).toFixed(2);
+    return { epoch, dao, dev, insurance, boardroom, sum, bondsBought, bondsRedeemed };
   }
   useEffect(() => {
     if (libraFinance) {
@@ -69,6 +69,7 @@ const Regulations = () => {
                 element.epoch,
                 element.daoFund,
                 element.devFund,
+                element.insuranceFund,
                 element.boardroomFund,
                 element.bondsBought,
                 element.bondsRedeemed,
@@ -90,9 +91,10 @@ const Regulations = () => {
           <TableHead>
             <TableRow>
               <StyledTableCell align="center">Epoch</StyledTableCell>
-              <StyledTableCell align="center">Boardroom funding</StyledTableCell>
-              <StyledTableCell align="center">DAO funding</StyledTableCell>
-              <StyledTableCell align="center">DEV funding</StyledTableCell>
+              <StyledTableCell align="center">Boardroom</StyledTableCell>
+              <StyledTableCell align="center">DAO</StyledTableCell>
+              <StyledTableCell align="center">DEV</StyledTableCell>
+              <StyledTableCell align="center">Insurance</StyledTableCell>
               <StyledTableCell align="center">Total</StyledTableCell>
               <StyledTableCell align="center">Bonds Bought</StyledTableCell>
               <StyledTableCell align="center">Bonds Redeemed</StyledTableCell>
@@ -110,6 +112,7 @@ const Regulations = () => {
                 <StyledTableCell align="center">{row.boardroom}</StyledTableCell>
                 <StyledTableCell align="center">{row.dao}</StyledTableCell>
                 <StyledTableCell align="center">{row.dev}</StyledTableCell>
+                <StyledTableCell align="center">{row.insurance}</StyledTableCell>
                 <StyledTableCell align="center">{row.sum}</StyledTableCell>
                 <StyledTableCell align="center">{row.bondsBought}</StyledTableCell>
                 <StyledTableCell align="center">{row.bondsRedeemed}</StyledTableCell>
