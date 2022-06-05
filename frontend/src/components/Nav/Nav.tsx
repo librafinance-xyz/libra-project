@@ -23,6 +23,7 @@ import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import AccountButton from './AccountButton';
+import LibnraFinanceLogo from '../../assets/libra/librafinance.svg';
 
 const useStyles = makeStyles((theme) => ({
   '@global': {
@@ -34,13 +35,14 @@ const useStyles = makeStyles((theme) => ({
   },
   appBar: {
     color: 'var(--white)',
-    'max-width': '80%',
+    'max-width': '85%',
     margin: '16px auto 2rem',
-    'background-color': 'rgba(255,255,255,0.001)',
-    'backdrop-filter': 'blur(2px)',
+    'background-color': 'rgba(255,255,255,0.1)',
+    // 'backdrop-filter': 'blur(2px)',
     // borderBottom: `1px solid ${theme.palette.divider}`,
-    padding: '0 10px',
-    'border-radius': '16px 16px 16px 16px',
+    // padding: '0 10px',
+    'border': '2px solid rgba(255, 255, 255, 0.2)',
+    'border-radius': '8px',
   },
   drawer: {
     width: 240,
@@ -58,7 +60,7 @@ const useStyles = makeStyles((theme) => ({
   },
   toolbarTitle: {
     fontFamily: 'Avenir',
-    fontSize: '30px',
+    fontSize: '0px',
     flexGrow: 1,
   },
   link: {
@@ -97,13 +99,14 @@ const Nav = () => {
 
   return (
     <AppBar position="static" elevation={0} className={classes.appBar}>
-      <Toolbar className={classes.toolbar}>
+      <Toolbar style={{ height: '72px'}}>
         {matches ? (
           <>
             <Typography variant="h6" color="inherit" noWrap className={classes.toolbarTitle}>
               {/* <a className={ classes.brandLink } href="/">2omb Finance</a> */}
               <Link to="/" color="inherit" className={classes.brandLink}>
-                Libra Finance
+               
+                <img src={LibnraFinanceLogo} />
               </Link>
             </Typography>
             <Box mr={5}>

@@ -41,7 +41,7 @@ const WalletProviderModal = ({ open, handleClose }) => {
 			onClose={handleClose}
 		>
 			<div className={classes.paper}>
-				<h2 style={{ color:"#ffffff" }} >Connect Wallet</h2>
+				<h2 style={{ color:"#ffffff", "text-align": "center" }} >Connect Wallet</h2>
 				<List component="nav" aria-label="main mailbox folders">
 					<WalletCard
 						icon={<img src={metamaskLogo} alt="Metamask logo" style={{ height: 32 }} />}

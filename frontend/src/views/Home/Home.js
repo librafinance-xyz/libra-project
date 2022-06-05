@@ -42,9 +42,6 @@ const BackgroundImage = createGlobalStyle`
     background: url(${HomeImage}) no-repeat !important;
     background-size: cover !important;
   }
-* {
-    border-radius: 0 !important;
-}
 `;
 
 const useStyles = makeStyles((theme) => ({
