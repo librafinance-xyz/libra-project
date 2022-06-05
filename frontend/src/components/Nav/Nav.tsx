@@ -146,7 +146,7 @@ const Nav = () => {
               </a> */}
              
             </Box>
-            <AccountButton text="Connect" />
+            <AccountButton text="Connect"/>
           </>
         ) : (
           <>

@@ -81,7 +81,7 @@ footer .a:hover {
 }
 
 .MuiButton-contained {
-    color: var(--black) !important;
+    /* color: var(--black) !important; */
     /* background-color: rgba(255,255,255,0); */
 }
 .makeStyles-button-1 {
@@ -90,9 +90,9 @@ footer .a:hover {
 
 
 
-.MuiButton-label {
+/* .MuiButton-label {
     color: white !important;
-}
+} */
 
 code {
     font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;

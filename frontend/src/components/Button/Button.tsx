@@ -11,7 +11,7 @@ interface ButtonProps {
   size?: 'sm' | 'md' | 'lg';
   text?: string;
   to?: string;
-  variant?: 'default' | 'secondary' | 'tertiary';
+  variant?: 'default' | 'secondary' | 'tertiary' | 'white';
 }
 
 const Button: React.FC<ButtonProps> = ({ children, disabled, href, onClick, size, text, to, variant }) => {
@@ -19,6 +19,9 @@ const Button: React.FC<ButtonProps> = ({ children, disabled, href, onClick, size
 
   let buttonColor: string;
   switch (variant) {
+    case 'white':
+      buttonColor = color.white.main;
+      break;
     case 'secondary':
       buttonColor = color.secondary.main;
       break;
