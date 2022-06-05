@@ -1,4 +1,5 @@
 import React, { useMemo } from 'react';
+import ReactLoading from 'react-loading';
 import Page from '../../components/Page';
 import HomeImage from '../../assets/img/home.png';
 import CashImage from '../../assets/img/libra_main.svg';
@@ -244,7 +245,12 @@ const Home = () => {
           <Card style={{ backgroundColor: 'transparent', boxShadow: 'none' }}>
             <CardContent align="center">
               <h2>Total Value Locked</h2>
-              <CountUp style={{ fontSize: '25px' }} end={totalTVL} separator="," prefix="$" />
+              {totalTVL? (
+                <CountUp style={{ fontSize: '32px' }} end={totalTVL} separator="," prefix="$" />
+              ):(
+                <ReactLoading type="balls" height={32} width={48}/>
+              )}
+              
             </CardContent>
           </Card>
         </Grid>
@@ -349,7 +355,11 @@ const Home = () => {
               </Box>
               Current Price
               <Box>
-                <span style={{ fontSize: '30px' }}>${astarPrice ? astarPrice : '-.----'} USD</span>
+                {astarPrice? (
+                  <span style={{ fontSize: '30px' }}>${astarPrice ? astarPrice : '-.----'} USD</span>
+                ):(
+                  <ReactLoading type="balls" height={32} width={48}/>
+                )}
               </Box>
               <span style={{ fontSize: '12px' }}>
                 Market Cap: ${astarMarketCap} <br />
@@ -384,7 +394,11 @@ const Home = () => {
               </Box>
               Current Price
               <Box>
-                <span style={{ fontSize: '30px' }}>{libraPriceInASTR ? libraPriceInASTR : '-.----'} ASTR </span>
+                {libraPriceInASTR? (
+                   <span style={{ fontSize: '30px' }}>{libraPriceInASTR ? libraPriceInASTR : '-.----'} ASTR </span>
+                ):(
+                  <ReactLoading type="balls" height={32} width={36}/>
+                )}
               </Box>
               <Box>
                 <span style={{ fontSize: '16px', alignContent: 'flex-start' }}>
@@ -423,7 +437,11 @@ const Home = () => {
               </Box>
               Current Price
               <Box>
-                <span style={{ fontSize: '30px' }}>{LSharePriceInASTR ? LSharePriceInASTR : '-.----'} ASTR</span>
+                {LSharePriceInASTR? (
+                   <span style={{ fontSize: '30px' }}>{LSharePriceInASTR ? LSharePriceInASTR : '-.----'} ASTR</span>
+                ):(
+                  <ReactLoading type="balls" height={32} width={36}/>
+                )}
               </Box>
               <Box>
                 <span style={{ fontSize: '16px' }}>${LSharePriceInDollars ? LSharePriceInDollars : '-.--'}</span>
@@ -460,7 +478,11 @@ const Home = () => {
               </Box>
               Current Price
               <Box>
-                <span style={{ fontSize: '30px' }}>{LBondPriceInASTR ? LBondPriceInASTR : '-.----'} ASTR</span>
+                {LBondPriceInASTR? (
+                  <span style={{ fontSize: '30px' }}>{LBondPriceInASTR ? LBondPriceInASTR : '-.----'} ASTR</span>
+                ):(
+                  <ReactLoading type="balls" height={32} width={36}/>
+                )}
               </Box>
               <Box>
                 <span style={{ fontSize: '16px' }}>${LBondPriceInDollars ? LBondPriceInDollars : '-.--'}</span>
