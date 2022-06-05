@@ -1,5 +1,5 @@
 import React, { createContext, useEffect, useState } from 'react';
-import { useWallet } from 'use-wallet';
+import { useWallet } from '@librafinance-xyz/use-wallet';
 import LibraFinance from '../../libra-finance';
 import config from '../../config';
 
