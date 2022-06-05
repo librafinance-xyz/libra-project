@@ -42,7 +42,7 @@ const useStyles = makeStyles((theme) => ({
     // borderBottom: `1px solid ${theme.palette.divider}`,
     // padding: '0 10px',
     'border': '2px solid rgba(255, 255, 255, 0.2)',
-    'border-radius': '8px',
+    'border-radius': '8px!important',
   },
   drawer: {
     width: 240,
@@ -159,8 +159,8 @@ const Nav = () => {
             >
               <MenuIcon />
             </IconButton>
-            <Typography variant="h6" noWrap>
-              Libra Finance TEST VERSION
+            <Typography variant="h6" noWrap  style={{ display: 'flex'}}>
+              <img src={LibnraFinanceLogo} />
             </Typography>
 
             <Drawer
