@@ -176,7 +176,7 @@ const Home = () => {
             <Box p={4}>
               <h2>Welcome to Libra Finance!</h2>
               <Countdown
-                date={1648339200 * 1000} // 3/27 0:0:0 GMT
+                date={1654520400 * 1000} // Monday, June 6, 2022 1:00:00 PM
                 intervalDelay={0}
                 precision={3}
                 renderer={(props) => (
