@@ -178,7 +178,7 @@ const Home = () => {
         <Grid item xs={12} sm={8}>
           <Paper style={{ backgroundColor: 'transparent', boxShadow: 'none' }}>
             <Box p={4}>
-              <h2>Welcome to Libra Finance!</h2>
+              <h2>Welcome to Libra Finance! (TEST VERSION)</h2>
               <Countdown
                 date={1654520400 * 1000} // Monday, June 6, 2022 1:00:00 PM
                 intervalDelay={0}
@@ -275,7 +275,7 @@ const Home = () => {
                 color="white"
                 variant="contained"
                 style={{ marginRight: '10px' }}
-                onClick={() => registerToken(libra.address, 'LIBRA', 18)}
+                onClick={() => registerToken(libra.address, 'LIBRADUMMY', 18)}
               >
                 LIBRA to Wallet
               </Button>
@@ -284,7 +284,7 @@ const Home = () => {
                 color="white"
                 variant="contained"
                 style={{ marginRight: '10px' }}
-                onClick={() => registerToken(LShare.address, 'LSHARE', 18)}
+                onClick={() => registerToken(LShare.address, 'LSHAREDUMMY', 18)}
               >
                 LSHARE to Wallet
               </Button>
@@ -508,7 +508,7 @@ const Home = () => {
               </Box>
 
               <Box mt={2}>
-                <Button color="primary" disabled={false} onClick={onPresentLibraZap} variant="contained">
+                <Button color="primary" disabled={true} onClick={onPresentLibraZap} variant="contained">
                   Zap In
                 </Button>
               </Box>
@@ -536,7 +536,7 @@ const Home = () => {
                 </CardIcon>
               </Box>
               <Box mt={2}>
-                <Button color="primary" onClick={onPresentLshareZap} variant="contained">
+                <Button color="primary" disabled={true} onClick={onPresentLshareZap} variant="contained">
                   Zap In
                 </Button>
               </Box>
