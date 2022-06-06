@@ -447,7 +447,9 @@ export class LibraFinance {
    */
   async stake(poolName: ContractName, poolId: Number, amount: BigNumber): Promise<TransactionResponse> {
     const pool = this.contracts[poolName];
-    return await pool.deposit(poolId, amount);
+    // return await pool.deposit(poolId, amount);
+    const gas = await pool.estimateGas.deposit(poolId, amount);
+    return await pool.deposit(poolId, amount, { gasLimit: gas.mul(5).toString() });
   }
 
   /**
@@ -458,7 +460,9 @@ export class LibraFinance {
    */
   async unstake(poolName: ContractName, poolId: Number, amount: BigNumber): Promise<TransactionResponse> {
     const pool = this.contracts[poolName];
-    return await pool.withdraw(poolId, amount);
+    // return await pool.withdraw(poolId, amount);
+    const gas = await pool.estimateGas.withdraw(poolId, amount);
+    return await pool.withdraw(poolId, amount, { gasLimit: gas.mul(5).toString() });
   }
 
   /**
@@ -467,7 +471,9 @@ export class LibraFinance {
   async harvest(poolName: ContractName, poolId: Number): Promise<TransactionResponse> {
     const pool = this.contracts[poolName];
     //By passing 0 as the amount, we are asking the contract to only redeem the reward and not the currently staked token
-    return await pool.withdraw(poolId, 0);
+    // return await pool.withdraw(poolId, 0);
+    const gas = await pool.estimateGas.withdraw(poolId, 0);
+    return await pool.withdraw(poolId, 0, { gasLimit: gas.mul(5).toString() });
   }
 
   /**
@@ -476,7 +482,9 @@ export class LibraFinance {
   async exit(poolName: ContractName, poolId: Number, account = this.myAccount): Promise<TransactionResponse> {
     const pool = this.contracts[poolName];
     let userInfo = await pool.userInfo(poolId, account);
-    return await pool.withdraw(poolId, userInfo.amount);
+    // return await pool.withdraw(poolId, userInfo.amount);
+    const gas = await pool.estimateGas.withdraw(poolId, userInfo.amount);
+    return await pool.withdraw(poolId, userInfo.amount, { gasLimit: gas.mul(5).toString() });
   }
 
   async fetchBoardroomVersionOfUser(): Promise<string> {
@@ -878,12 +886,12 @@ export class LibraFinance {
         value.endBlock,
       );
     });
-    
+
     let DEVFundEvents = await Treasury.queryFilter(treasuryDevFundedFilter, -10000);
     DEVFundEvents.forEach(function callback(value, index) {
       events[index].devFund = getDisplayBalance(value.args[1]);
     });
-    
+
     let DAOFundEvents = await Treasury.queryFilter(treasuryDaoFundedFilter, -10000);
     DAOFundEvents.forEach(function callback(value, index) {
       events[index].daoFund = getDisplayBalance(value.args[1]);
