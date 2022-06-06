@@ -36,7 +36,7 @@ import ZapModal from '../Bank/components/ZapModal';
 import { makeStyles } from '@material-ui/core/styles';
 import useLibraFinance from '../../hooks/useLibraFinance';
 
-import { registerToken } from '../../utils/wallet'
+import { registerToken } from '../../utils/wallet';
 
 const BackgroundImage = createGlobalStyle`
   body {
@@ -122,7 +122,10 @@ const Home = () => {
     () => (LBondStats ? Number(LBondStats.priceInDollars).toFixed(2) : null),
     [LBondStats],
   );
-  const LBondPriceInASTR = useMemo(() => (LBondStats ? Number(LBondStats.tokenInAstar).toFixed(4) : null), [LBondStats]);
+  const LBondPriceInASTR = useMemo(
+    () => (LBondStats ? Number(LBondStats.tokenInAstar).toFixed(4) : null),
+    [LBondStats],
+  );
   const LBondCirculatingSupply = useMemo(
     () => (LBondStats ? String(LBondStats.circulatingSupply) : null),
     [LBondStats],
@@ -245,12 +248,11 @@ const Home = () => {
           <Card style={{ backgroundColor: 'transparent', boxShadow: 'none' }}>
             <CardContent align="center">
               <h2>Total Value Locked</h2>
-              {totalTVL? (
+              {totalTVL ? (
                 <CountUp style={{ fontSize: '32px' }} end={totalTVL} separator="," prefix="$" />
-              ):(
-                <ReactLoading type="balls" height={32} width={48}/>
+              ) : (
+                <ReactLoading type="balls" height={32} width={48} />
               )}
-              
             </CardContent>
           </Card>
         </Grid>
@@ -268,21 +270,21 @@ const Home = () => {
             }}
           >
             <CardContent align="center">
-              <h2 style={{ marginBottom: '20px' }}>Wallet Balance</h2> 
-              <Button 
+              <h2 style={{ marginBottom: '20px' }}>Wallet Balance</h2>
+              <Button
                 color="white"
-                variant="contained" 
+                variant="contained"
                 style={{ marginRight: '10px' }}
-                onClick={() => registerToken(libra.address, "LIBRA", 18)}
+                onClick={() => registerToken(libra.address, 'LIBRA', 18)}
               >
-                 LIBRA to Wallet
+                LIBRA to Wallet
               </Button>
 
-              <Button 
+              <Button
                 color="white"
-                variant="contained" 
+                variant="contained"
                 style={{ marginRight: '10px' }}
-                onClick={() => registerToken(LShare.address, "LSHARE", 18)}
+                onClick={() => registerToken(LShare.address, 'LSHARE', 18)}
               >
                 LSHARE to Wallet
               </Button>
@@ -355,10 +357,10 @@ const Home = () => {
               </Box>
               Current Price
               <Box>
-                {astarPrice? (
+                {astarPrice ? (
                   <span style={{ fontSize: '30px' }}>${astarPrice ? astarPrice : '-.----'} USD</span>
-                ):(
-                  <ReactLoading type="balls" height={32} width={48}/>
+                ) : (
+                  <ReactLoading type="balls" height={32} width={48} />
                 )}
               </Box>
               <span style={{ fontSize: '12px' }}>
@@ -394,10 +396,10 @@ const Home = () => {
               </Box>
               Current Price
               <Box>
-                {libraPriceInASTR? (
-                   <span style={{ fontSize: '30px' }}>{libraPriceInASTR ? libraPriceInASTR : '-.----'} ASTR </span>
-                ):(
-                  <ReactLoading type="balls" height={32} width={36}/>
+                {libraPriceInASTR ? (
+                  <span style={{ fontSize: '30px' }}>{libraPriceInASTR ? libraPriceInASTR : '-.----'} ASTR </span>
+                ) : (
+                  <ReactLoading type="balls" height={32} width={36} />
                 )}
               </Box>
               <Box>
@@ -437,10 +439,10 @@ const Home = () => {
               </Box>
               Current Price
               <Box>
-                {LSharePriceInASTR? (
-                   <span style={{ fontSize: '30px' }}>{LSharePriceInASTR ? LSharePriceInASTR : '-.----'} ASTR</span>
-                ):(
-                  <ReactLoading type="balls" height={32} width={36}/>
+                {LSharePriceInASTR ? (
+                  <span style={{ fontSize: '30px' }}>{LSharePriceInASTR ? LSharePriceInASTR : '-.----'} ASTR</span>
+                ) : (
+                  <ReactLoading type="balls" height={32} width={36} />
                 )}
               </Box>
               <Box>
@@ -478,10 +480,10 @@ const Home = () => {
               </Box>
               Current Price
               <Box>
-                {LBondPriceInASTR? (
+                {LBondPriceInASTR ? (
                   <span style={{ fontSize: '30px' }}>{LBondPriceInASTR ? LBondPriceInASTR : '-.----'} ASTR</span>
-                ):(
-                  <ReactLoading type="balls" height={32} width={36}/>
+                ) : (
+                  <ReactLoading type="balls" height={32} width={36} />
                 )}
               </Box>
               <Box>
@@ -504,9 +506,9 @@ const Home = () => {
                   <TokenSymbol symbol="LIBRA-ASTR-LP" />
                 </CardIcon>
               </Box>
-      
+
               <Box mt={2}>
-                <Button color="primary" disabled={true} onClick={onPresentLibraZap} variant="contained">
+                <Button color="primary" disabled={false} onClick={onPresentLibraZap} variant="contained">
                   Zap In
                 </Button>
               </Box>
@@ -534,11 +536,11 @@ const Home = () => {
                 </CardIcon>
               </Box>
               <Box mt={2}>
-                  <Button color="primary" onClick={onPresentLshareZap} variant="contained">
-                    Zap In
-                  </Button>
+                <Button color="primary" onClick={onPresentLshareZap} variant="contained">
+                  Zap In
+                </Button>
               </Box>
-                <Box mt={2}>
+              <Box mt={2}>
                 <span style={{ fontSize: '26px' }}>
                   {lshareLPStats?.tokenAmount ? lshareLPStats?.tokenAmount : '-.--'} LSHARE /{' '}
                   {lshareLPStats?.astarAmount ? lshareLPStats?.astarAmount : '-.--'} ASTR
