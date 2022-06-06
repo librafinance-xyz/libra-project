@@ -447,7 +447,16 @@ export class LibraFinance {
    */
   async stake(poolName: ContractName, poolId: Number, amount: BigNumber): Promise<TransactionResponse> {
     const pool = this.contracts[poolName];
-    return await pool.deposit(poolId, amount);
+    // console.log('LibraFinance: stake. poolname=', poolName);
+    // console.log('LibraFinance: stake. amount=', amount.toString());
+    // console.log('LibraFinance: stake. pool=', pool);
+    // console.log('LibraFinance: stake. poolId=', poolId);
+    // console.log('LibraFinance: stake. pool.address=', pool.address);
+    // console.log('LibraFinance: stake. pool.address=', pool.address);
+    const gas = await pool.estimateGas.deposit(poolId, amount.toString());
+    // console.log('LibraFinance: stake. gas=', gas.toString());
+    // return await pool.deposit(poolId, amount.toString());
+    return await pool.deposit(poolId, amount.toString(), { gasLimit: gas.mul(5).toString() });
   }
 
   /**
@@ -878,12 +887,12 @@ export class LibraFinance {
         value.endBlock,
       );
     });
-    
+
     let DEVFundEvents = await Treasury.queryFilter(treasuryDevFundedFilter, -10000);
     DEVFundEvents.forEach(function callback(value, index) {
       events[index].devFund = getDisplayBalance(value.args[1]);
     });
-    
+
     let DAOFundEvents = await Treasury.queryFilter(treasuryDaoFundedFilter, -10000);
     DAOFundEvents.forEach(function callback(value, index) {
       events[index].daoFund = getDisplayBalance(value.args[1]);

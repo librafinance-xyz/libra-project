@@ -22,8 +22,7 @@ const configurations: { [env: string]: Configuration } = {
     // defaultProvider: 'https://astar-api.bwarelabs.com/7d1b6401-caba-4a39-8a84-13d4e9f105b4',
     // defaultProvider: 'https://evm.astar.network',
     defaultProvider: 'https://evm.astar.network',
-    
-  
+
     //WSS: wss://astar-api.bwarelabs.com/ws/7d1b6401-caba-4a39-8a84-13d4e9f105b4
 
     deployments: require('./libra-finance/deployments/deployments.dev.json'),
@@ -74,7 +73,11 @@ export const bankDefinitions: { [contractName: string]: BankInfo } = {
     multiplier: '250x',
     site: 'https://astar.network',
     buyLink: '',
-    createLpLink: 'https://librax.finance/add/'+'0xAeaaf0e2c81Af264101B9129C00F4440cCF0F720'+'/'+'0x6a2d262D56735DbA19Dd70682B39F6bE9a931D98',
+    createLpLink:
+      'https://librax.finance/add/' +
+      '0xAeaaf0e2c81Af264101B9129C00F4440cCF0F720' +
+      '/' +
+      '0x6a2d262D56735DbA19Dd70682B39F6bE9a931D98',
     sort: 1,
     closedForStaking: false,
   },
@@ -89,7 +92,7 @@ export const bankDefinitions: { [contractName: string]: BankInfo } = {
     finished: false,
     multiplier: '150x',
     site: 'https://astar.network',
-    buyLink: 'https://librax.finance/swap/'+'0x431D5dfF03120AFA4bDf332c61A6e1766eF37BDB',
+    buyLink: 'https://librax.finance/swap/' + '0x431D5dfF03120AFA4bDf332c61A6e1766eF37BDB',
     createLpLink: '',
     sort: 1,
     closedForStaking: false,
@@ -105,15 +108,15 @@ export const bankDefinitions: { [contractName: string]: BankInfo } = {
     finished: false,
     multiplier: '100x',
     site: 'https://astar.network',
-    buyLink: 'https://librax.finance/swap/'+'0x6a2d262D56735DbA19Dd70682B39F6bE9a931D98',
+    buyLink: 'https://librax.finance/swap/' + '0x6a2d262D56735DbA19Dd70682B39F6bE9a931D98',
     createLpLink: '',
     sort: 1,
     closedForStaking: false,
   },
-  
+
   AstarGenesisRewardPool: {
     name: 'Earn LIBRA by staking WASTR',
-    poolId: 4, // Must check
+    poolId: 0, // Must check
     sectionInUI: 0,
     contract: 'AstarGenesisRewardPool',
     depositTokenName: 'WASTR',
@@ -121,14 +124,12 @@ export const bankDefinitions: { [contractName: string]: BankInfo } = {
     finished: false,
     multiplier: '600x',
     site: 'https://astar.network',
-    buyLink: 'https://librax.finance/swap/'+'0xAeaaf0e2c81Af264101B9129C00F4440cCF0F720', //[LIBRA FINANCE]token address will be added
+    buyLink: 'https://librax.finance/swap/' + '0xAeaaf0e2c81Af264101B9129C00F4440cCF0F720', //[LIBRA FINANCE]token address will be added
     createLpLink: '',
     sort: 1,
     closedForStaking: false,
   },
 
-  
- 
   LibraAstarLPLibraRewardPool: {
     name: 'Earn LIBRA by LIBRA-ASTR LP',
     poolId: 0,
@@ -138,8 +139,12 @@ export const bankDefinitions: { [contractName: string]: BankInfo } = {
     earnTokenName: 'LIBRA',
     finished: false,
     multiplier: '0',
-    buyLink: '', 
-    createLpLink: 'https://librax.finance/add/'+'0xAeaaf0e2c81Af264101B9129C00F4440cCF0F720'+'/'+'0x467E086e506C76381D3B8C74BfDCE9D3bB36Ca6D',
+    buyLink: '',
+    createLpLink:
+      'https://librax.finance/add/' +
+      '0xAeaaf0e2c81Af264101B9129C00F4440cCF0F720' +
+      '/' +
+      '0x467E086e506C76381D3B8C74BfDCE9D3bB36Ca6D',
     site: '',
     sort: 2,
     closedForStaking: true,
@@ -154,8 +159,12 @@ export const bankDefinitions: { [contractName: string]: BankInfo } = {
     earnTokenName: 'LSHARE',
     finished: false,
     multiplier: '24000x',
-    buyLink: '', 
-    createLpLink: 'https://librax.finance/add/'+'0xAeaaf0e2c81Af264101B9129C00F4440cCF0F720'+'/'+'0x467E086e506C76381D3B8C74BfDCE9D3bB36Ca6D',
+    buyLink: '',
+    createLpLink:
+      'https://librax.finance/add/' +
+      '0xAeaaf0e2c81Af264101B9129C00F4440cCF0F720' +
+      '/' +
+      '0x467E086e506C76381D3B8C74BfDCE9D3bB36Ca6D',
     site: '/',
     sort: 3,
     closedForStaking: false,
@@ -170,13 +179,16 @@ export const bankDefinitions: { [contractName: string]: BankInfo } = {
     earnTokenName: 'LSHARE',
     finished: false,
     multiplier: '35500x',
-    buyLink: '', 
-    createLpLink: 'https://librax.finance/add/'+'0xAeaaf0e2c81Af264101B9129C00F4440cCF0F720'+'/'+'0xa17920b27ce43CCd08ceBf6D89012F8724D1aB02',
+    buyLink: '',
+    createLpLink:
+      'https://librax.finance/add/' +
+      '0xAeaaf0e2c81Af264101B9129C00F4440cCF0F720' +
+      '/' +
+      '0xa17920b27ce43CCd08ceBf6D89012F8724D1aB02',
     site: '/',
     sort: 9,
     closedForStaking: false,
   },
-
 
   // USDCRebates: {
   //   name: 'Bond USDC, earn LIBRA',
@@ -220,7 +232,6 @@ export const bankDefinitions: { [contractName: string]: BankInfo } = {
   //   sort: 3,
   //   closedForStaking: false,
   // },
-
 };
 
 export default configurations['production'];
