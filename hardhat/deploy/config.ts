@@ -8,7 +8,7 @@ import { LBond as LBondAddress } from "../../addresses/astar/LBond";
 import { Oracle as OracleAddress } from "../../addresses/astar/Oracle";
 
 
-const genesisStartTime = 1653122400; // Saturday, May 21, 2022 8:40:00 AM GMT
+const genesisStartTime = 1654520400; // Monday, June 6, 2022 1:00:00 PM GMT
 
 
 
