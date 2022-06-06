@@ -35,19 +35,19 @@ interface StakeProps {
 }
 
 const Stake: React.FC<StakeProps> = ({ bank }) => {
-  console.log("bank: ",bank)
+  console.log('bank: ', bank);
   const [approveStatus, approve] = useApprove(bank.depositToken, bank.address);
 
   const { color: themeColor } = useContext(ThemeContext);
   const tokenBalance = useTokenBalance(bank.depositToken);
-  console.log("@@@@@@@bank.contract",bank.contract )
-  console.log("@@@@@@@bank.poolId",bank.poolId )
+  console.log('@@@@@@@bank.contract', bank.contract);
+  console.log('@@@@@@@bank.poolId', bank.poolId);
 
   const stakedBalance = useStakedBalance(bank.contract, bank.poolId);
-  console.log("@@@@@@@bank.depositTokenName", bank.depositTokenName )
-  console.log("@@@@@@@bank.depositToken", bank.depositToken )
+  console.log('@@@@@@@bank.depositTokenName', bank.depositTokenName);
+  console.log('@@@@@@@bank.depositToken', bank.depositToken);
   const stakedTokenPriceInDollars = useStakedTokenPriceInDollars(bank.depositTokenName, bank.depositToken);
-  console.log("@@@@@@@stakedTokenPriceInDollars", stakedTokenPriceInDollars )
+  console.log('@@@@@@@stakedTokenPriceInDollars', stakedTokenPriceInDollars);
   const tokenPriceInDollars = useMemo(
     () => (stakedTokenPriceInDollars ? stakedTokenPriceInDollars : null),
     [stakedTokenPriceInDollars],
@@ -130,13 +130,20 @@ const Stake: React.FC<StakeProps> = ({ bank }) => {
                   <RemoveIcon />
                 </IconButton>
                 <StyledActionSpacer />
-                <IconButton
-                  disabled={bank.closedForStaking || bank.depositTokenName === 'LIBRA-ASTR-LP'}
-                  onClick={() => (bank.closedForStaking ? null : onPresentZap())}
-                >
-                  <FlashOnIcon style={{ color: themeColor.grey[400] }} />
-                </IconButton>
-                <StyledActionSpacer />
+                {/* {bank.depositTokenName === 'ASTR-USDC-LP-LIBRAX' ? (
+                  <>
+                    <IconButton
+                      disabled={bank.closedForStaking}
+                      onClick={() => (bank.closedForStaking ? null : onPresentZap())}
+                    >
+                      <FlashOnIcon style={{ color: themeColor.grey[400] }} />
+                    </IconButton>
+                    <StyledActionSpacer />
+                  </>
+                ) : (
+                  <></>
+                )} */}
+
                 <IconButton
                   disabled={bank.closedForStaking}
                   onClick={() => (bank.closedForStaking ? null : onPresentDeposit())}

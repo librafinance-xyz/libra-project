@@ -27,10 +27,10 @@ const DepositModal: React.FC<DepositModalProps> = ({ max, decimals, onConfirm, o
     return (
       parseInt(
         max
-          .mul(1000000)
+          .mul(1000)
           .div(10 ** decimals)
           .toString(),
-      ) / 1000000
+      ) / 1000
     ).toString();
     // return getFullDisplayBalance(max, decimals, false);
   }, [max, decimals]);
