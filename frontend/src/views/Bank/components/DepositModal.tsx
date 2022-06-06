@@ -7,7 +7,7 @@ import ModalActions from '../../../components/ModalActions';
 import ModalTitle from '../../../components/ModalTitle';
 import TokenInput from '../../../components/TokenInput';
 
-// import { getFullDisplayBalance } from '../../../utils/formatBalance';
+import { getFullDisplayBalance, getLibraBalance } from '../../../utils/formatBalance';
 import { BigNumber } from 'ethers';
 
 interface DepositModalProps extends ModalProps {
@@ -24,15 +24,16 @@ const DepositModal: React.FC<DepositModalProps> = ({ max, decimals, onConfirm, o
     // console.log('getFullDisplayBalance(max.toString=', max.toString());
     // console.log('getFullDisplayBalance(max=', max);
     // console.log('getFullDisplayBalance(max, decimals, false)', getFullDisplayBalance(max, decimals, false));
-    return (
-      parseInt(
-        max
-          .mul(1000)
-          .div(10 ** decimals)
-          .toString(),
-      ) / 1000
-    ).toString();
+    // return (
+    //   parseInt(
+    //     max
+    //       .mul(1000)
+    //       .div(10 ** decimals)
+    //       .toString(),
+    //   ) / 1000
+    // ).toString();
     // return getFullDisplayBalance(max, decimals, false);
+    return getLibraBalance(max, decimals, false).toString();
   }, [max, decimals]);
 
   const handleChange = useCallback(

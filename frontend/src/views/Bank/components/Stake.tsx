@@ -23,6 +23,7 @@ import useTokenBalance from '../../../hooks/useTokenBalance';
 import useWithdraw from '../../../hooks/useWithdraw';
 
 import { getDisplayBalance } from '../../../utils/formatBalance';
+import { getLibraBalance } from '../../../utils/formatBalance';
 
 import DepositModal from './DepositModal';
 import WithdrawModal from './WithdrawModal';
@@ -105,7 +106,19 @@ const Stake: React.FC<StakeProps> = ({ bank }) => {
             <CardIcon>
               <TokenSymbol symbol={bank.depositToken.symbol} size={54} />
             </CardIcon>
-            <Value value={getDisplayBalance(stakedBalance, bank.depositToken.decimal)} />
+            {/* <Value value={getDisplayBalance(stakedBalance, bank.depositToken.decimal)} /> */}
+            <Value value={getLibraBalance(stakedBalance, bank.depositToken.decimal).toString()} />
+            {/* <Value
+              value={(
+                parseFloat(
+                  stakedBalance
+                    .mul(100000000000)
+                    .div(10 ** bank.depositToken.decimal)
+                    .toString(),
+                ) / 1000000000000
+              ).toString()}
+            /> */}
+
             <Label text={`≈ $${earnedInDollars}`} />
             <Label text={`${bank.depositTokenName} Staked`} />
           </StyledCardHeader>
