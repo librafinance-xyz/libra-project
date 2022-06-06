@@ -7,7 +7,7 @@ import ModalActions from '../../../components/ModalActions';
 import ModalTitle from '../../../components/ModalTitle';
 import TokenInput from '../../../components/TokenInput';
 
-import { getFullDisplayBalance } from '../../../utils/formatBalance';
+// import { getFullDisplayBalance } from '../../../utils/formatBalance';
 import { BigNumber } from 'ethers';
 
 interface DepositModalProps extends ModalProps {
@@ -21,10 +21,18 @@ const DepositModal: React.FC<DepositModalProps> = ({ max, decimals, onConfirm, o
   const [val, setVal] = useState('');
 
   const fullBalance = useMemo(() => {
-    console.log("getFullDisplayBalance(max.toString=",max.toString() );
-    console.log("getFullDisplayBalance(max=",max );
-    console.log("getFullDisplayBalance(max, decimals, false)",getFullDisplayBalance(max, decimals, false));
-    return getFullDisplayBalance(max, decimals, false);
+    // console.log('getFullDisplayBalance(max.toString=', max.toString());
+    // console.log('getFullDisplayBalance(max=', max);
+    // console.log('getFullDisplayBalance(max, decimals, false)', getFullDisplayBalance(max, decimals, false));
+    return (
+      parseInt(
+        max
+          .mul(1000000)
+          .div(10 ** decimals)
+          .toString(),
+      ) / 1000000
+    ).toString();
+    // return getFullDisplayBalance(max, decimals, false);
   }, [max, decimals]);
 
   const handleChange = useCallback(
@@ -40,6 +48,7 @@ const DepositModal: React.FC<DepositModalProps> = ({ max, decimals, onConfirm, o
 
   return (
     <Modal>
+      {/* {max.toString()} */}
       <ModalTitle text={`Deposit ${tokenName}`} />
       <TokenInput
         value={val}
