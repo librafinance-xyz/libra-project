@@ -18,14 +18,14 @@ interface IUniswapRouter01 {
         address to,
         uint deadline
     ) external returns (uint amountA, uint amountB, uint liquidity);
-    function addLiquidityFTM(
+    function addLiquidityASTR(
         address token,
         uint amountTokenDesired,
         uint amountTokenMin,
-        uint amountFTMMin,
+        uint amountASTRMin,
         address to,
         uint deadline
-    ) external payable returns (uint amountToken, uint amountFTM, uint liquidity);
+    ) external payable returns (uint amountToken, uint amountASTR, uint liquidity);
     function removeLiquidity(
         address tokenA,
         address tokenB,
@@ -35,14 +35,14 @@ interface IUniswapRouter01 {
         address to,
         uint deadline
     ) external returns (uint amountA, uint amountB);
-    function removeLiquidityFTM(
+    function removeLiquidityASTR(
         address token,
         uint liquidity,
         uint amountTokenMin,
-        uint amountFTMMin,
+        uint amountASTRMin,
         address to,
         uint deadline
-    ) external returns (uint amountToken, uint amountFTM);
+    ) external returns (uint amountToken, uint amountASTR);
     function removeLiquidityWithPermit(
         address tokenA,
         address tokenB,
@@ -53,15 +53,15 @@ interface IUniswapRouter01 {
         uint deadline,
         bool approveMax, uint8 v, bytes32 r, bytes32 s
     ) external returns (uint amountA, uint amountB);
-    function removeLiquidityFTMWithPermit(
+    function removeLiquidityASTRWithPermit(
         address token,
         uint liquidity,
         uint amountTokenMin,
-        uint amountFTMMin,
+        uint amountASTRMin,
         address to,
         uint deadline,
         bool approveMax, uint8 v, bytes32 r, bytes32 s
-    ) external returns (uint amountToken, uint amountFTM);
+    ) external returns (uint amountToken, uint amountASTR);
     function swapExactTokensForTokens(
         uint amountIn,
         uint amountOutMin,
@@ -76,17 +76,17 @@ interface IUniswapRouter01 {
         address to,
         uint deadline
     ) external returns (uint[] memory amounts);
-    function swapExactFTMForTokens(uint amountOutMin, address[] calldata path, address to, uint deadline)
+    function swapExactASTRForTokens(uint amountOutMin, address[] calldata path, address to, uint deadline)
         external
         payable
         returns (uint[] memory amounts);
-    function swapTokensForExactFTM(uint amountOut, uint amountInMax, address[] calldata path, address to, uint deadline)
+    function swapTokensForExactASTR(uint amountOut, uint amountInMax, address[] calldata path, address to, uint deadline)
         external
         returns (uint[] memory amounts);
-    function swapExactTokensForFTM(uint amountIn, uint amountOutMin, address[] calldata path, address to, uint deadline)
+    function swapExactTokensForASTR(uint amountIn, uint amountOutMin, address[] calldata path, address to, uint deadline)
         external
         returns (uint[] memory amounts);
-    function swapFTMForExactTokens(uint amountOut, address[] calldata path, address to, uint deadline)
+    function swapASTRForExactTokens(uint amountOut, address[] calldata path, address to, uint deadline)
         external
         payable
         returns (uint[] memory amounts);
@@ -1145,7 +1145,7 @@ contract Zap is Ownable {
             _approveTokenIfNeeded(token, routerAddress);
             if (useNativeRouter[routerAddress]) {
                 IUniswapRouter01 router = IUniswapRouter01(routerAddress);
-                return router.addLiquidityFTM{value : amount.sub(swapValue)}(token, tokenAmount, 0, 0, recipient, block.timestamp);
+                return router.addLiquidityASTR{value : amount.sub(swapValue)}(token, tokenAmount, 0, 0, recipient, block.timestamp);
             }
             else {
                 IUniswapV2Router01 router = IUniswapV2Router01(routerAddress);
