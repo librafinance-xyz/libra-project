@@ -35,7 +35,7 @@ import ZapModal from '../Bank/components/ZapModal';
 import { makeStyles } from '@material-ui/core/styles';
 import useLibraFinance from '../../hooks/useLibraFinance';
 
-import { registerToken } from '../../utils/wallet'
+import { registerToken } from '../../utils/wallet';
 
 const BackgroundImage = createGlobalStyle`
   body {
@@ -121,7 +121,10 @@ const Home = () => {
     () => (LBondStats ? Number(LBondStats.priceInDollars).toFixed(2) : null),
     [LBondStats],
   );
-  const LBondPriceInASTR = useMemo(() => (LBondStats ? Number(LBondStats.tokenInAstar).toFixed(4) : null), [LBondStats]);
+  const LBondPriceInASTR = useMemo(
+    () => (LBondStats ? Number(LBondStats.tokenInAstar).toFixed(4) : null),
+    [LBondStats],
+  );
   const LBondCirculatingSupply = useMemo(
     () => (LBondStats ? String(LBondStats.circulatingSupply) : null),
     [LBondStats],
@@ -262,21 +265,21 @@ const Home = () => {
             }}
           >
             <CardContent align="center">
-              <h2 style={{ marginBottom: '20px' }}>Wallet Balance</h2> 
-              <Button 
+              <h2 style={{ marginBottom: '20px' }}>Wallet Balance</h2>
+              <Button
                 color="secondary"
-                variant="contained" 
+                variant="contained"
                 style={{ marginRight: '10px' }}
-                onClick={() => registerToken(libra.address, "LIBRA", 18)}
+                onClick={() => registerToken(libra.address, 'LIBRA', 18)}
               >
-                 LIBRA to Wallet
+                LIBRA to Wallet
               </Button>
 
-              <Button 
+              <Button
                 color="secondary"
-                variant="contained" 
+                variant="contained"
                 style={{ marginRight: '10px' }}
-                onClick={() => registerToken(LShare.address, "LSHARE", 18)}
+                onClick={() => registerToken(LShare.address, 'LSHARE', 18)}
               >
                 LSHARE to Wallet
               </Button>
@@ -482,9 +485,9 @@ const Home = () => {
                   <TokenSymbol symbol="LIBRA-ASTR-LP" />
                 </CardIcon>
               </Box>
-      
+
               <Box mt={2}>
-                <Button color="primary" disabled={true} onClick={onPresentLibraZap} variant="contained">
+                <Button color="primary" disabled={false} onClick={onPresentLibraZap} variant="contained">
                   Zap In
                 </Button>
               </Box>
@@ -512,11 +515,11 @@ const Home = () => {
                 </CardIcon>
               </Box>
               <Box mt={2}>
-                  <Button color="primary" onClick={onPresentLshareZap} variant="contained">
-                    Zap In
-                  </Button>
+                <Button color="primary" onClick={onPresentLshareZap} variant="contained">
+                  Zap In
+                </Button>
               </Box>
-                <Box mt={2}>
+              <Box mt={2}>
                 <span style={{ fontSize: '26px' }}>
                   {lshareLPStats?.tokenAmount ? lshareLPStats?.tokenAmount : '-.--'} LSHARE /{' '}
                   {lshareLPStats?.astarAmount ? lshareLPStats?.astarAmount : '-.--'} ASTR
