@@ -65,7 +65,7 @@ export const bankDefinitions: { [contractName: string]: BankInfo } = {
 
   UsdcAstarLPGenesisRewardPool: {
     name: 'Earn LIBRA by staking ASTR-USDC-LP on LibraX',
-    poolId: 5, // Must check
+    poolId: 3, // Must check
     sectionInUI: 0,
     contract: 'UsdcAstarLPGenesisRewardPool',
     depositTokenName: 'ASTR-USDC-LP-LIBRAX',
@@ -113,7 +113,7 @@ export const bankDefinitions: { [contractName: string]: BankInfo } = {
   
   AstarGenesisRewardPool: {
     name: 'Earn LIBRA by staking WASTR',
-    poolId: 4, // Must check
+    poolId: 0, // Must check
     sectionInUI: 0,
     contract: 'AstarGenesisRewardPool',
     depositTokenName: 'WASTR',
