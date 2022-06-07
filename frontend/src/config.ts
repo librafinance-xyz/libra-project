@@ -76,7 +76,7 @@ export const bankDefinitions: { [contractName: string]: BankInfo } = {
     buyLink: '',
     createLpLink: 'https://librax.finance/add/'+'0xAeaaf0e2c81Af264101B9129C00F4440cCF0F720'+'/'+'0x6a2d262D56735DbA19Dd70682B39F6bE9a931D98',
     sort: 1,
-    closedForStaking: false,
+    closedForStaking: true,
   },
 
   JpycGenesisRewardPool: {
@@ -92,7 +92,7 @@ export const bankDefinitions: { [contractName: string]: BankInfo } = {
     buyLink: 'https://librax.finance/swap/'+'0x431D5dfF03120AFA4bDf332c61A6e1766eF37BDB',
     createLpLink: '',
     sort: 1,
-    closedForStaking: false,
+    closedForStaking: true,
   },
 
   UsdcGenesisRewardPool: {
@@ -108,7 +108,7 @@ export const bankDefinitions: { [contractName: string]: BankInfo } = {
     buyLink: 'https://librax.finance/swap/'+'0x6a2d262D56735DbA19Dd70682B39F6bE9a931D98',
     createLpLink: '',
     sort: 1,
-    closedForStaking: false,
+    closedForStaking: true,
   },
   
   AstarGenesisRewardPool: {
@@ -124,7 +124,7 @@ export const bankDefinitions: { [contractName: string]: BankInfo } = {
     buyLink: 'https://librax.finance/swap/'+'0xAeaaf0e2c81Af264101B9129C00F4440cCF0F720', //[LIBRA FINANCE]token address will be added
     createLpLink: '',
     sort: 1,
-    closedForStaking: false,
+    closedForStaking: true,
   },
 
   
