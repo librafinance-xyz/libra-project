@@ -286,7 +286,7 @@ export class LibraFinance {
       }
       const poolStartTime = await poolContract.poolStartTime();
       const startDateTime = new Date(poolStartTime.toNumber() * 1000);
-      const FOUR_DAYS = 4 * 24 * 60 * 60 * 1000;
+      const FOUR_DAYS = 1 * 24 * 60 * 60 * 1000; // TEST 1DAY (Production is 4 DAYS)
       if (Date.now() - startDateTime.getTime() > FOUR_DAYS) {
         return await poolContract.epochLibraPerSecond(1);
       }
