@@ -143,7 +143,7 @@ const Stake: React.FC<StakeProps> = ({ bank }) => {
                   <RemoveIcon />
                 </IconButton>
                 <StyledActionSpacer />
-                {/* {bank.depositTokenName === 'ASTR-USDC-LP-LIBRAX' ? (
+                {/* {bank.depositTokenName === 'WASTR-USDC-LP-LIBRAX' ? (
                   <>
                     <IconButton
                       disabled={bank.closedForStaking}

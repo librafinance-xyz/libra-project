@@ -352,7 +352,7 @@ const Home = () => {
               <Box mt={2} style={{ backgroundColor: 'transparent !important' }}>
                 <CardIcon style={{ backgroundColor: 'transparent !important' }}>
                   {/* <TokenSymbol symbol="WASTR" style={{ backgroundColor: 'transparent !important' }} /> */}
-                  <TokenSymbol symbol="WASTR" style={{ backgroundColor: 'transparent !important' }} />
+                  <TokenSymbol symbol="ASTR" style={{ backgroundColor: 'transparent !important' }} />
                 </CardIcon>
               </Box>
               Current Price

@@ -33,7 +33,7 @@ const configurations: { [env: string]: Configuration } = {
       WASTR: ['0xAeaaf0e2c81Af264101B9129C00F4440cCF0F720', 18],
 
       'ASTR-USDC-LP': ['0xBB1290c1829007F440C771b37718FAbf309cd527', 18],
-      'ASTR-USDC-LP-LIBRAX': ['0x139B81e5728026FAA8d7Ef6C79bb07f4d912641B', 18], // LibraX Pair
+      'WASTR-USDC-LP-LIBRAX': ['0x139B81e5728026FAA8d7Ef6C79bb07f4d912641B', 18], // LibraX Pair
       'LIBRA-ASTR-LP': ['0xa34484BE25889A5188Fa42059Af3ceeA428D8e7e', 18], //DUMMY
       'LSHARE-ASTR-LP': ['0x0A8ae90fCd8A4534AbB0013A7Dd79A42073b3dA9', 18], //DUMMY
       LIBRA: ['0x467E086e506C76381D3B8C74BfDCE9D3bB36Ca6D', 18], // DUMMY
@@ -68,7 +68,7 @@ export const bankDefinitions: { [contractName: string]: BankInfo } = {
     poolId: 3, // Must check
     sectionInUI: 0,
     contract: 'UsdcAstarLPGenesisRewardPool',
-    depositTokenName: 'ASTR-USDC-LP-LIBRAX',
+    depositTokenName: 'WASTR-USDC-LP-LIBRAX',
     earnTokenName: 'LIBRA',
     finished: false,
     multiplier: '250x',
