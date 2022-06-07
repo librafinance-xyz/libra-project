@@ -142,7 +142,7 @@ export const bankDefinitions: { [contractName: string]: BankInfo } = {
     createLpLink: 'https://librax.finance/add/'+'0xAeaaf0e2c81Af264101B9129C00F4440cCF0F720'+'/'+'0x467E086e506C76381D3B8C74BfDCE9D3bB36Ca6D',
     site: '',
     sort: 2,
-    closedForStaking: true,
+    closedForStaking: false,
   },
 
   LibraAstarLPLShareRewardPool: {
