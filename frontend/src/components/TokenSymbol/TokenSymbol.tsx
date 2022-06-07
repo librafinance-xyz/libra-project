@@ -13,6 +13,7 @@ import LshareAstrLPlogo from '../../assets/img/LSHARE-WASTR.png';
 import AstrUsdcLPlogo from '../../assets/img/WASTR-USDC.png';
 
 import astrLogo from '../../assets/libra/ASTR.png';
+import wastrLogo from '../../assets/libra/WASTR.png';
 // import booLogo from '../../assets/img/spooky.png';
 // import belugaLogo from '../../assets/img/BELUGA.png';
 // import twoshareLogo from '../../assets/img/t_2SHARE-01.png';
@@ -50,11 +51,11 @@ const logosBySymbol: { [title: string]: string } = {
   JPYC: JpycLogo,
   // BLOOM: bloomLogo,
   ASTR: astrLogo,
-  WASTR: astrLogo,
-  'LIBRA-ASTR-LP': LibraAstrLPlogo,
+  WASTR: wastrLogo,
+  'LIBRA-WASTR-LP': LibraAstrLPlogo,
   'LSHARE-ASTR-LP': LshareAstrLPlogo,
   'ASTR-USDC-LP': AstrUsdcLPlogo,
-  'ASTR-USDC-LP-LIBRAX': AstrUsdcLPlogo,
+  'WASTR-USDC-LP-LIBRAX': AstrUsdcLPlogo,
 };
 
 type LogoProps = {

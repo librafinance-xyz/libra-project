@@ -36,8 +36,8 @@ const ProvideLiquidity = () => {
   const libraBalance = useTokenBalance(libraFinance.LIBRA);
   const ftmBalance = (balance / 1e18).toFixed(4);
   const { onProvideLibraAstrLP } = useProvideLibraAstrLP();
-  // const libraAstarLpStats = useLpStats('LIBRA-ASTR-LP');
-  const libraAstarLpStats = useLpStats('LIBRA-ASTR-LP');
+  // const libraAstarLpStats = useLpStats('LIBRA-WASTR-LP');
+  const libraAstarLpStats = useLpStats('LIBRA-WASTR-LP');
 
   const libraLPStats = useMemo(() => (libraAstarLpStats ? libraAstarLpStats : null), [libraAstarLpStats]);
   const libraPriceInASTR = useMemo(
@@ -99,7 +99,7 @@ const ProvideLiquidity = () => {
               <a href="https://spookyswap.finance/" rel="noopener noreferrer" target="_blank">
                 Spookyswap
               </a>{' '}
-              are the only ways to provide Liquidity on LIBRA-ASTR pair without paying tax.
+              are the only ways to provide Liquidity on LIBRA-WASTR pair without paying tax.
             </b>
           </Alert>
           <Grid item xs={12} sm={12}>

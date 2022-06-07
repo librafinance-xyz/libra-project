@@ -56,12 +56,12 @@ export class LibraFinance {
     this.LIBRA = new ERC20(deployments.libra.address, provider, 'LIBRA');
     this.LSHARE = new ERC20(deployments.LShare.address, provider, 'LSHARE');
     this.LBOND = new ERC20(deployments.LBond.address, provider, 'LBOND');
-    this.ASTR_USDC_LP_LIBRAX = new ERC20('0x139B81e5728026FAA8d7Ef6C79bb07f4d912641B', provider, 'ASTR-USDC-LP-LIBRAX');
+    this.ASTR_USDC_LP_LIBRAX = new ERC20('0x139B81e5728026FAA8d7Ef6C79bb07f4d912641B', provider, 'WASTR-USDC-LP-LIBRAX');
     this.USDC = new ERC20('0x6a2d262D56735DbA19Dd70682B39F6bE9a931D98', provider, 'USDC');
     this.ASTR = this.externalTokens['WASTR'];
 
     // Uniswap V2 Pair
-    this.LIBRAWASTR_LP = new Contract(externalTokens['LIBRA-ASTR-LP'][0], IUniswapV2PairABI, provider);
+    this.LIBRAWASTR_LP = new Contract(externalTokens['LIBRA-WASTR-LP'][0], IUniswapV2PairABI, provider);
 
     this.config = cfg;
     this.provider = provider;
@@ -292,6 +292,7 @@ export class LibraFinance {
    * @param poolContract the actual contract of the pool
    * @returns
    */
+
   // async getTokenPerSecond(
   //   earnTokenName: string,
   //   contractName: string,
@@ -328,6 +329,7 @@ export class LibraFinance {
   //   }
   // }
 
+
   /**
    * Method to calculate the tokenPrice of the deposited asset in a pool/bank
    * If the deposited token is an LP it will find the price of its pieces
@@ -342,11 +344,11 @@ export class LibraFinance {
     if (tokenName === 'WASTR') {
       tokenPrice = priceOfOneAstarInDollars;
     } else {
-      if (tokenName === 'LIBRA-ASTR-LP') {
+      if (tokenName === 'LIBRA-WASTR-LP') {
         tokenPrice = await this.getLPTokenPrice(token, this.LIBRA, true);
       } else if (tokenName === 'LSHARE-ASTR-LP') {
         tokenPrice = await this.getLPTokenPrice(token, this.LSHARE, false);
-      } else if (tokenName === 'ASTR-USDC-LP-LIBRAX') {
+      } else if (tokenName === 'WASTR-USDC-LP-LIBRAX') {
         // tokenPrice=1;
         //これで、LPに入っているUSDC*2が取得できる。 6 decimals
         const a = (await this.USDC.balanceOf(token.address)).mul(2);
@@ -566,7 +568,7 @@ export class LibraFinance {
     const ready = await this.provider.ready;
     if (!ready) return;
     const { WASTR, LIBRA } = this.externalTokens;
-    const libra_astr_lp_pair = this.externalTokens['LIBRA-ASTR-LP'];
+    const libra_astr_lp_pair = this.externalTokens['LIBRA-WASTR-LP'];
     let astr_amount_BN = await WASTR.balanceOf(libra_astr_lp_pair.address);
     let astr_amount = Number(getFullDisplayBalance(astr_amount_BN, WASTR.decimal));
     let LIBRA_amount_BN = await LIBRA.balanceOf(libra_astr_lp_pair.address);
