@@ -35,7 +35,7 @@ const ZapModal: React.FC<ZapProps> = ({ onConfirm, onDismiss, tokenName = '', de
   const [zappingTokenBalance, setZappingTokenBalance] = useState(ftmBalance);
   const [estimate, setEstimate] = useState({ token0: '0', token1: '0' }); // token0 will always be ASTR in this case
   const [approveZapperStatus, approveZapper] = useApproveZapper(zappingToken);
-  const libraAstarLpStats = useLpStats('LIBRA-ASTR-LP');
+  const libraAstarLpStats = useLpStats('LIBRA-WASTR-LP');
   const lShareAstarLpStats = useLpStats('LSHARE-ASTR-LP');
   const libraLPStats = useMemo(() => (libraAstarLpStats ? libraAstarLpStats : null), [libraAstarLpStats]);
   const lshareLPStats = useMemo(() => (lShareAstarLpStats ? lShareAstarLpStats : null), [lShareAstarLpStats]);

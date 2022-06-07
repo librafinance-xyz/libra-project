@@ -56,8 +56,8 @@ const useStyles = makeStyles((theme) => ({
 const Home = () => {
   const classes = useStyles();
   const TVL = useTotalValueLocked();
-  // const libraAstarLpStats = useLpStats('LIBRA-ASTR-LP');
-  const libraAstarLpStats = useLpStats('LIBRA-ASTR-LP');
+  // const libraAstarLpStats = useLpStats('LIBRA-WASTR-LP');
+  const libraAstarLpStats = useLpStats('LIBRA-WASTR-LP');
 
   const lShareAstarLpStats = useLpStats('LSHARE-ASTR-LP');
   const libraStats = useLibraStats();
@@ -132,7 +132,7 @@ const Home = () => {
   );
   const LBondTotalSupply = useMemo(() => (LBondStats ? String(LBondStats.totalSupply) : null), [LBondStats]);
 
-  const libraLpZap = useZap({ depositTokenName: 'LIBRA-ASTR-LP' });
+  const libraLpZap = useZap({ depositTokenName: 'LIBRA-WASTR-LP' });
   const lshareLpZap = useZap({ depositTokenName: 'LSHARE-ASTR-LP' });
 
   const StyledLink = styled.a`
@@ -149,7 +149,7 @@ const Home = () => {
         libraLpZap.onZap(zappingToken, tokenName, amount);
         onDissmissLibraZap();
       }}
-      tokenName={'LIBRA-ASTR-LP'}
+      tokenName={'LIBRA-WASTR-LP'}
     />,
   );
 
@@ -503,7 +503,7 @@ const Home = () => {
               <h2>LIBRA-WASTR LP</h2>
               <Box mt={2}>
                 <CardIcon>
-                  <TokenSymbol symbol="LIBRA-ASTR-LP" />
+                  <TokenSymbol symbol="LIBRA-WASTR-LP" />
                 </CardIcon>
               </Box>
 
