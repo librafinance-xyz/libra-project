@@ -214,9 +214,9 @@ const Home = () => {
                 .
               </p> */}
               <p>
-                {/* Stake your LIBRA-ASTR LP in the <StyledLink href="/farms">Farms</StyledLink> to earn LSHARE rewards.
+                {/* Stake your LIBRA-WASTR LP in the <StyledLink href="/farms">Farms</StyledLink> to earn LSHARE rewards.
                 Then stake your earned LSHARE in the <StyledLink href="/">Room</StyledLink> to maximize profits! */}
-                Stake your LIBRA-ASTR LP in the Farms to earn LSHARE seigniorage rewards.
+                Stake your LIBRA-WASTR LP in the Farms to earn LSHARE seigniorage rewards.
                 {/* Then stake your earned LSHARE in the Room to maximize profits! */}
                 Then stake your earned LSHARE to earn more LIBRA!
               </p>

@@ -126,7 +126,7 @@ const Stake: React.FC<StakeProps> = ({ bank }) => {
             {approveStatus !== ApprovalState.APPROVED ? (
               <Button
                 disabled={
-                  bank.closedForStaking ||
+                  // bank.closedForStaking ||
                   approveStatus === ApprovalState.PENDING ||
                   approveStatus === ApprovalState.UNKNOWN
                 }

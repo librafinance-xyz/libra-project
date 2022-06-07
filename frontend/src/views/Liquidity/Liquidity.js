@@ -99,7 +99,7 @@ const ProvideLiquidity = () => {
               <a href="https://spookyswap.finance/" rel="noopener noreferrer" target="_blank">
                 Spookyswap
               </a>{' '}
-              are the only ways to provide Liquidity on LIBRA-ASTR pair without paying tax.
+              are the only ways to provide Liquidity on LIBRA-WASTR pair without paying tax.
             </b>
           </Alert>
           <Grid item xs={12} sm={12}>

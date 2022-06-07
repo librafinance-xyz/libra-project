@@ -26,7 +26,7 @@ const assetList = [
   //   depositTokenName: 'LSHARE-WASTR LP',
   // },
   {
-    depositTokenName: 'LIBRA-ASTR LP',
+    depositTokenName: 'LIBRA-WASTR LP',
   },
   // {
   //   depositTokenName: 'LSHARE',

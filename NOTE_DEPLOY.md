@@ -9,10 +9,10 @@ day 1
 - ASTR pool ( LIBRA reward )
   day 2-5
 - close genesis pool
-- open LIBRA-ASTR farm ( LIBRA reward )
+- open LIBRA-WASTR farm ( LIBRA reward )
   day 6-10
-- LIBRA-ASTR farm ( LIBRA reward ) ( going on )
-- LIBRA-ASTR farm ( LSHARE reward )
+- LIBRA-WASTR farm ( LIBRA reward ) ( going on )
+- LIBRA-WASTR farm ( LSHARE reward )
 - LSHARE-ASTR farm ( LSHARE reward )
   day 11
 - $LIBRA/$ASTR to get $LIBRA closed on Day 11
