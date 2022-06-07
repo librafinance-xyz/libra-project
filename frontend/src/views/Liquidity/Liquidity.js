@@ -36,8 +36,8 @@ const ProvideLiquidity = () => {
   const libraBalance = useTokenBalance(libraFinance.LIBRA);
   const ftmBalance = (balance / 1e18).toFixed(4);
   const { onProvideLibraAstrLP } = useProvideLibraAstrLP();
-  // const libraAstarLpStats = useLpStats('LIBRA-ASTR-LP');
-  const libraAstarLpStats = useLpStats('LIBRA-ASTR-LP');
+  // const libraAstarLpStats = useLpStats('LIBRA-WASTR-LP');
+  const libraAstarLpStats = useLpStats('LIBRA-WASTR-LP');
 
   const libraLPStats = useMemo(() => (libraAstarLpStats ? libraAstarLpStats : null), [libraAstarLpStats]);
   const libraPriceInASTR = useMemo(

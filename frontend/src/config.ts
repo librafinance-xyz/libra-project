@@ -34,7 +34,7 @@ const configurations: { [env: string]: Configuration } = {
 
       'ASTR-USDC-LP': ['0xBB1290c1829007F440C771b37718FAbf309cd527', 18],
       'WASTR-USDC-LP-LIBRAX': ['0x139B81e5728026FAA8d7Ef6C79bb07f4d912641B', 18], // LibraX Pair
-      'LIBRA-ASTR-LP': ['0xa34484BE25889A5188Fa42059Af3ceeA428D8e7e', 18], //DUMMY
+      'LIBRA-WASTR-LP': ['0xa34484BE25889A5188Fa42059Af3ceeA428D8e7e', 18], //DUMMY
       'LSHARE-ASTR-LP': ['0x0A8ae90fCd8A4534AbB0013A7Dd79A42073b3dA9', 18], //DUMMY
       LIBRA: ['0x467E086e506C76381D3B8C74BfDCE9D3bB36Ca6D', 18], // DUMMY
       LBOND: ['0x7E9a97Fd2dEDC13a719F630502feCA5bf812C86f', 18], // DUMMY
@@ -134,7 +134,7 @@ export const bankDefinitions: { [contractName: string]: BankInfo } = {
     poolId: 0,
     sectionInUI: 1,
     contract: 'LibraRewardPool',
-    depositTokenName: 'LIBRA-ASTR-LP',
+    depositTokenName: 'LIBRA-WASTR-LP',
     earnTokenName: 'LIBRA',
     finished: false,
     multiplier: '0',
@@ -150,7 +150,7 @@ export const bankDefinitions: { [contractName: string]: BankInfo } = {
     poolId: 1,
     sectionInUI: 2,
     contract: 'LibraAstarLPLShareRewardPool',
-    depositTokenName: 'LIBRA-ASTR-LP',
+    depositTokenName: 'LIBRA-WASTR-LP',
     earnTokenName: 'LSHARE',
     finished: false,
     multiplier: '24000x',
