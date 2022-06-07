@@ -13,7 +13,7 @@ const useProvideLibraAstrLP = () => {
       const libraAmountBn = parseUnits(libraAmount);
       handleTransactionReceipt(
         libraFinance.provideLibraAstrLP(astarAmount, libraAmountBn),
-        `Provide Libra-ASTR LP ${libraAmount} ${astarAmount} using ${TAX_OFFICE_ADDR}`,
+        `Provide LIBRA-WASTR LP ${libraAmount} ${astarAmount} using ${TAX_OFFICE_ADDR}`,
       );
     },
     [libraFinance, handleTransactionReceipt],

@@ -130,7 +130,7 @@ export const bankDefinitions: { [contractName: string]: BankInfo } = {
   
  
   LibraAstarLPLibraRewardPool: {
-    name: 'Earn LIBRA by LIBRA-ASTR LP',
+    name: 'Earn LIBRA by LIBRA-WASTR LP',
     poolId: 0,
     sectionInUI: 1,
     contract: 'LibraRewardPool',
