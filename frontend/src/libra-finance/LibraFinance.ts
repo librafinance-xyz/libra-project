@@ -276,6 +276,7 @@ export class LibraFinance {
       }
     } else {
       // LShare reward
+      // TODO
     }
 
     console.log('getPoolAPRs.............rewardPerSecond=', rewardPerSecond.toString());
