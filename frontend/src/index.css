@@ -99,7 +99,7 @@ code {
 }
 
 .wallet-button {
-    color: #2c2560 !important;
+    color: #3d3d3d !important;
     font-family: 'Avenir', sans-serif !important;
     font-size: 1.1rem !important;
     text-align: left !important;
@@ -109,8 +109,8 @@ code {
 }
 
 .wallet-button:hover {
-    background-color: black !important;
-    color: #757ce8 !important;
+    background-color: #308FFF !important;
+    color: #ffffff !important;
 }
 
 @media (max-width: 600px) {
