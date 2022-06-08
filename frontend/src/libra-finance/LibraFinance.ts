@@ -241,12 +241,21 @@ export class LibraFinance {
     console.log('getPoolAPRs.........');
     // CHECK......!
     const depositTokenPrice = await this.getDepositTokenPriceInDollars(bank.depositTokenName, depositToken);
-    console.log('getPoolAPRs..........');
+    console.log('getPoolAPRs..........depositTokenPrice.bank.depositTokenName=', bank.depositTokenName);
+    console.log('getPoolAPRs..........depositTokenPrice.depositToken=', depositToken);
+
     const stakeInPool = await depositToken.balanceOf(bank.address);
     console.log('getPoolAPRs...........');
     // CHECK..
     const TVL = Number(depositTokenPrice) * Number(getDisplayBalance(stakeInPool, depositToken.decimal));
-    console.log('getPoolAPRs............');
+
+    console.log('getPoolAPRs............TVL=', TVL);
+    console.log('getPoolAPRs............TVL.stakeInPool=', stakeInPool.toString());
+    console.log('getPoolAPRs............TVL=.depositToken.decimal', depositToken.decimal);
+    console.log('getPoolAPRs............TVL=.depositTokenPrice', depositTokenPrice.toString());
+    // 133 => 0.665 =>
+    // 24 => 0.12
+
     const stat = bank.earnTokenName === 'LIBRA' ? await this.getLibraStat() : await this.getShareStat();
     console.log('getPoolAPRs.............');
     const totalAllocPoint = await poolContract.totalAllocPoint();
@@ -278,13 +287,18 @@ export class LibraFinance {
       // LShareRewardPool
       // TODO
       rewardPerSecond = await poolContract.lSharePerSecond();
+      console.log('getPoolAPRs..............bank.poolId=', bank.poolId);
+      console.log('getPoolAPRs..............poolContract.address=', poolContract.address);
       console.log('getPoolAPRs...........lSharePerSecond', rewardPerSecond.toString());
-      if (bank.depositTokenName.startsWith('LIBRA')) {
-        poolRewardPerSecond = rewardPerSecond.mul(35500).div(59500);
-      } else {
-        poolRewardPerSecond = rewardPerSecond.mul(24000).div(59500);
-      }
-      
+
+      const totalAllocApoint = await poolContract.totalAllocPoint();
+      poolRewardPerSecond = rewardPerSecond.mul(poolinfo['allocPoint']).div(totalAllocApoint);
+
+      // if (bank.depositTokenName.startsWith('LIBRA')) {
+      //   poolRewardPerSecond = rewardPerSecond.mul(35500).div(59500);
+      // } else {
+      //   poolRewardPerSecond = rewardPerSecond.mul(24000).div(59500);
+      // }
     }
 
     console.log('getPoolAPRs.............rewardPerSecond=', rewardPerSecond.toString());
