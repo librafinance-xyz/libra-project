@@ -109,16 +109,14 @@ const LPTokenHelpText: React.FC<{ bank: BankEntity }> = ({ bank }) => {
   let pairName: string;
   let uniswapUrl: string;
   if (bank.depositTokenName.includes('USDC')) {
-    pairName = 'LIBRA-WASTR pair';
-    uniswapUrl = 'https://librax.finance/add/ASTR/' + libraAddr;
     pairName = 'WASTR-USDC pair';
     uniswapUrl = 'https://librax.finance/add/' + WastrAddr + '/' + UsdcAddr;
   } else if (bank.depositTokenName.includes('LIBRA')) {
     pairName = 'LIBRA-WASTR pair';
-    uniswapUrl = 'https://librax.finance/add/ASTR/' + libraAddr;
+    uniswapUrl = 'https://librax.finance/add/' + WastrAddr + '/' + libraAddr;
   } else {
     pairName = 'LSHARE-WASTR pair';
-    uniswapUrl = 'https://librax.finance/add/ASTR/' + lshareAddr;
+    uniswapUrl = 'https://librax.finance/add/' + WastrAddr + '/' + lshareAddr;
   }
   return (
     <Card>
