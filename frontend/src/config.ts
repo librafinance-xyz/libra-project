@@ -147,7 +147,7 @@ export const bankDefinitions: { [contractName: string]: BankInfo } = {
 
   LibraAstarLPLShareRewardPool: {
     name: 'Earn LSHARE by LIBRA-WASTR LP',
-    poolId: 1,
+    poolId: 0,
     sectionInUI: 2,
     contract: 'LibraAstarLPLShareRewardPool',
     depositTokenName: 'LIBRA-WASTR-LP',
