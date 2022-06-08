@@ -270,13 +270,21 @@ export class LibraFinance {
         }
         poolRewardPerSecond = rewardPerSecond.mul(poolinfo['allocPoint']).div(totalAllocPoint);
       } else {
-        // genesis
+        // GenesisPool
         rewardPerSecond = await poolContract.libraPerSecond();
         poolRewardPerSecond = rewardPerSecond.mul(poolinfo['allocPoint']).div(totalAllocPoint);
       }
     } else {
-      // LShare reward
+      // LShareRewardPool
       // TODO
+      rewardPerSecond = await poolContract.lSharePerSecond();
+      console.log('getPoolAPRs...........lSharePerSecond', rewardPerSecond.toString());
+      if (bank.depositTokenName.startsWith('LIBRA')) {
+        poolRewardPerSecond = rewardPerSecond.mul(35500).div(59500);
+      } else {
+        poolRewardPerSecond = rewardPerSecond.mul(24000).div(59500);
+      }
+      
     }
 
     console.log('getPoolAPRs.............rewardPerSecond=', rewardPerSecond.toString());
