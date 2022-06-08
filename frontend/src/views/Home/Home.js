@@ -59,7 +59,7 @@ const Home = () => {
   // const libraAstarLpStats = useLpStats('LIBRA-WASTR-LP');
   const libraAstarLpStats = useLpStats('LIBRA-WASTR-LP');
 
-  const lShareAstarLpStats = useLpStats('LSHARE-ASTR-LP');
+  const lShareAstarLpStats = useLpStats('LSHARE-WASTR-LP');
   const libraStats = useLibraStats();
   const LShareStats = useLShareStats();
   const LBondStats = useBondStats();
@@ -133,7 +133,7 @@ const Home = () => {
   const LBondTotalSupply = useMemo(() => (LBondStats ? String(LBondStats.totalSupply) : null), [LBondStats]);
 
   const libraLpZap = useZap({ depositTokenName: 'LIBRA-WASTR-LP' });
-  const lshareLpZap = useZap({ depositTokenName: 'LSHARE-ASTR-LP' });
+  const lshareLpZap = useZap({ depositTokenName: 'LSHARE-WASTR-LP' });
 
   const StyledLink = styled.a`
     font-weight: 700;
@@ -161,7 +161,7 @@ const Home = () => {
         lshareLpZap.onZap(zappingToken, tokenName, amount);
         onDissmissLshareZap();
       }}
-      tokenName={'LSHARE-ASTR-LP'}
+      tokenName={'LSHARE-WASTR-LP'}
     />,
   );
 
@@ -532,7 +532,7 @@ const Home = () => {
               <h2>LSHARE-WASTR LP</h2>
               <Box mt={2}>
                 <CardIcon>
-                  <TokenSymbol symbol="LSHARE-ASTR-LP" />
+                  <TokenSymbol symbol="LSHARE-WASTR-LP" />
                 </CardIcon>
               </Box>
               <Box mt={2}>

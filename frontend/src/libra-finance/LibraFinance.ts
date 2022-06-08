@@ -428,7 +428,7 @@ export class LibraFinance {
     } else {
       if (tokenName === 'LIBRA-WASTR-LP') {
         tokenPrice = await this.getLPTokenPrice(token, this.LIBRA, true);
-      } else if (tokenName === 'LSHARE-ASTR-LP') {
+      } else if (tokenName === 'LSHARE-WASTR-LP') {
         tokenPrice = await this.getLPTokenPrice(token, this.LSHARE, false);
       } else if (tokenName === 'WASTR-USDC-LP-LIBRAX') {
         // tokenPrice=1;
@@ -638,7 +638,7 @@ export class LibraFinance {
     const ready = await this.provider.ready;
     if (!ready) return;
     const { WASTR, LSHARE } = this.externalTokens;
-    const lshare_astr_lp_pair = this.externalTokens['LSHARE-ASTR-LP'];
+    const lshare_astr_lp_pair = this.externalTokens['LSHARE-WASTR-LP'];
 
     let astr_amount_BN = await WASTR.balanceOf(lshare_astr_lp_pair.address);
     let astr_amount = Number(getFullDisplayBalance(astr_amount_BN, WASTR.decimal));
