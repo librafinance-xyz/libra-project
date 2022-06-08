@@ -57,7 +57,7 @@ const Cemetery = () => {
                         </React.Fragment>
                       ))}
                   </Grid>
-                </div> 
+                </div>
 
                 {/* <Alert variant="filled" severity="warning" style={{ marginTop: '60px' }}>
                   All below pools have ended. Please unstake and collect your rewards.
@@ -77,11 +77,11 @@ const Cemetery = () => {
                         </React.Fragment>
                       ))}
                   </Grid>
-                </div> 
+                </div>
 
                 <Alert variant="filled" severity="warning" style={{ marginTop: '60px' }}>
                   All below pools have ended. Please unstake and collect your rewards.
-                </Alert> 
+                </Alert>
 
                 <div hidden={activeBanks.filter((bank) => bank.sectionInUI === 0).length === 0}>
                   <Typography
