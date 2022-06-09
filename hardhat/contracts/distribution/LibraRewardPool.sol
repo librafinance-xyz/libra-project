@@ -63,11 +63,11 @@ contract LibraRewardPool {
 
         poolStartTime = _poolStartTime;
 
-        epochEndTimes[0] = poolStartTime + 1 days; // Day 2(LIBRA TEST)
-        epochEndTimes[1] = epochEndTimes[0] + 1 days; // Day 3(LIBRA TEST)
+        epochEndTimes[0] = poolStartTime + 12 hours; // [Test] Step 2 => [Prodiction]4 days; // Day 2-5
+        epochEndTimes[1] = epochEndTimes[0] + 12 hours; // [Test] Step 3 => [Prodiction]5 days; // Day 6-10
 
-        epochLibraPerSecond[0] = epochTotalRewards[0].div(1 days);  // Day 2(LIBRA TEST)
-        epochLibraPerSecond[1] = epochTotalRewards[1].div(1 days);  // Day 3(LIBRA TEST)
+        epochLibraPerSecond[0] = epochTotalRewards[0].div(12 hours);  // [Test] Step 2 => [Prodiction]4 days; // Day 2-5
+        epochLibraPerSecond[1] = epochTotalRewards[1].div(12 hours);  // [Test] Step 3 => [Prodiction]5 days; // Day 6-10
 
         epochLibraPerSecond[2] = 0;
         operator = msg.sender;
