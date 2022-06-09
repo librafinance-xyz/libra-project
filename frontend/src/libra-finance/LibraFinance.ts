@@ -295,9 +295,9 @@ export class LibraFinance {
       poolRewardPerSecond = rewardPerSecond.mul(poolinfo['allocPoint']).div(totalAllocApoint);
 
       // if (bank.depositTokenName.startsWith('LIBRA')) {
-      //   poolRewardPerSecond = rewardPerSecond.mul(35500).div(59500);
+      //   poolRewardPerSecond = rewardPerSecond.mul(27300).div(45500);
       // } else {
-      //   poolRewardPerSecond = rewardPerSecond.mul(24000).div(59500);
+      //   poolRewardPerSecond = rewardPerSecond.mul(18200).div(45500);
       // }
     }
 
@@ -406,9 +406,9 @@ export class LibraFinance {
   //   }
   //   const rewardPerSecond = await poolContract.lSharePerSecond();
   //   if (depositTokenName.startsWith('LIBRA')) {
-  //     return rewardPerSecond.mul(35500).div(59500);
+  //     return rewardPerSecond.mul(27300).div(45500);
   //   } else {
-  //     return rewardPerSecond.mul(24000).div(59500);
+  //     return rewardPerSecond.mul(18200).div(45500);
   //   }
   // }
 

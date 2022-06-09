@@ -619,9 +619,9 @@ contract DummyLShareRewardPool {
     // The time when lSHARE mining ends.
     uint256 public poolEndTime;
 
-    uint256 public lSharePerSecond = 0.00187687 ether; // 60000 Lshare / (370 days * 24h * 60min * 60s)
+    uint256 public lSharePerSecond = 0.00142329 ether; // 45500 Lshare / (370 days * 24h * 60min * 60s)
     uint256 public runningTime = 370 days; // 370 days
-    uint256 public constant TOTAL_REWARDS = 60000 ether;
+    uint256 public constant TOTAL_REWARDS = 45500 ether; 
 
     event Deposit(address indexed user, uint256 indexed pid, uint256 amount);
     event Withdraw(address indexed user, uint256 indexed pid, uint256 amount);
