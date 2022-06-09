@@ -7,7 +7,7 @@ import "@openzeppelin/contracts/token/ERC20/SafeERC20.sol";
 import "@openzeppelin/contracts/math/SafeMath.sol";
 
 // Note that this pool has no minter key of LIBRA (rewards).
-// Instead, the governance will call TOLIBRAMB distributeReward method and send reward to this pool at the beginning.
+// Instead, the governance will call LIBRA distributeReward method and send reward to this pool at the beginning.
 contract LibraRewardPool {
     using SafeMath for uint256;
     using SafeERC20 for IERC20;

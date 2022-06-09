@@ -186,7 +186,7 @@ const func: DeployFunction = async function (hre: HardhatRuntimeEnvironment) {
   }
   if ((await LibraRewardPool.totalAllocPoint()) == 0) {
     //
-    await (await LibraRewardPool.add("100", LibraAstarPair, false, 0)).wait();
+    await (await LibraRewardPool.add("140000", LibraAstarPair, false, 0)).wait();
   }
 
   //////////////////////////////
