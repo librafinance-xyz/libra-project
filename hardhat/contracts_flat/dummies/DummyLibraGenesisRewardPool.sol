@@ -620,7 +620,7 @@ contract DummyLibraGenesisRewardPool {
     uint256 public poolEndTime;
 
     // MAINNET
-    uint256 public libraPerSecond = 000254 ether; // [TEST] 110 LIBRA / (12h * 60min * 60s) => [Procution] 0.12731 , 11000 LIBRA / 24h * 60min * 60s 
+    uint256 public libraPerSecond = 0.00254 ether; // [TEST] 110 LIBRA / (12h * 60min * 60s) => [Procution] 0.12731 , 11000 LIBRA / 24h * 60min * 60s 
     uint256 public runningTime = 12 hours; // [TEST] 12hours => [Production] 24hours
     uint256 public constant TOTAL_REWARDS = 110 ether; // [Test]110 => [Production] 11000
     // END MAINNET
