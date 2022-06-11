@@ -1,1 +1,1 @@
-export const LBond = "0x7E9a97Fd2dEDC13a719F630502feCA5bf812C86f";
+export const LBond = "0xaD321F85b4b289b6313616bC89B4681373C2C8e6";

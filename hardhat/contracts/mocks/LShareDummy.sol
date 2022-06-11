@@ -32,7 +32,7 @@ contract LShareDummy is ERC20Burnable, Operator {
 
     bool public rewardPoolDistributed = false;
 
-    constructor(uint256 _startTime, address _communityFund, address _devFund, address _treasuryFund) public ERC20("LSHAREDUMMY", "LSHAREDUMMY") {
+    constructor(uint256 _startTime, address _communityFund, address _devFund, address _treasuryFund) public ERC20("LSHAREDUMMY2", "LSHAREDUMMY2") {
         _mint(msg.sender, 1 ether); // mint 1 LSHARE for initial pools deployment
 
         startTime = _startTime;

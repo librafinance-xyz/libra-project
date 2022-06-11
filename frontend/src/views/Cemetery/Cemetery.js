@@ -44,7 +44,7 @@ const Cemetery = () => {
               </Typography>
 
               <Box mt={5}>
-                <div hidden={activeBanks.filter((bank) => bank.sectionInUI === 2).length === 0}>
+                {/* <div hidden={activeBanks.filter((bank) => bank.sectionInUI === 2).length === 0}>
                   <Typography color="textPrimary" variant="h4" gutterBottom>
                     Earn LSHARE by staking LP Tokens
                   </Typography>
@@ -57,13 +57,13 @@ const Cemetery = () => {
                         </React.Fragment>
                       ))}
                   </Grid>
-                </div>
+                </div> */}
 
                 {/* <Alert variant="filled" severity="warning" style={{ marginTop: '60px' }}>
                   All below pools have ended. Please unstake and collect your rewards.
                 </Alert> */}
 
-                <div hidden={activeBanks.filter((bank) => bank.sectionInUI === 1).length === 0}>
+                {/* <div hidden={activeBanks.filter((bank) => bank.sectionInUI === 1).length === 0}>
                   <Typography color="textPrimary" variant="h4" gutterBottom style={{ marginTop: '20px' }}>
                     Earn LIBRA by staking LP
                   </Typography>
@@ -77,11 +77,11 @@ const Cemetery = () => {
                         </React.Fragment>
                       ))}
                   </Grid>
-                </div>
+                </div> */}
 
-                <Alert variant="filled" severity="warning" style={{ marginTop: '60px' }}>
+                {/* <Alert variant="filled" severity="warning" style={{ marginTop: '60px' }}>
                   All below pools have ended. Please unstake and collect your rewards.
-                </Alert>
+                </Alert> */}
 
                 <div hidden={activeBanks.filter((bank) => bank.sectionInUI === 0).length === 0}>
                   <Typography

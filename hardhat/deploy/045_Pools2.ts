@@ -257,9 +257,9 @@ const func: DeployFunction = async function (hre: HardhatRuntimeEnvironment) {
   if ((await LShareRewardPool.totalAllocPoint()) == 0) {
     //
     console.log("LShareRewardPool.add.. LibraAstarPair = " + LibraAstarPair);
-    await (await LShareRewardPool.add("35500", LibraAstarPair, false, 0)).wait();
+    await (await LShareRewardPool.add("27300", LibraAstarPair, false, 0)).wait();
     console.log("LShareRewardPool.add.. LShareAstarPair = " + LShareAstarPair);
-    await (await LShareRewardPool.add("24000", LShareAstarPair, false, 0)).wait();
+    await (await LShareRewardPool.add("18200", LShareAstarPair, false, 0)).wait();
   } else {
   }
 };

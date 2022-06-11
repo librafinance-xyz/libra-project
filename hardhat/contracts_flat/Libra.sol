@@ -1027,11 +1027,11 @@ contract Libra is ERC20Burnable, Operator {
     using SafeMath for uint256;
 
     // Initial distribution for the first 24h genesis pools
-    uint256 public constant INITIAL_GENESIS_POOL_DISTRIBUTION = 11000 ether;
+    uint256 public constant INITIAL_GENESIS_POOL_DISTRIBUTION = 110 ether;  // [TEST] 110 => [Production] 11000
     // Initial distribution for the day 2-5 LIBRA-WASTR LP -> LIBRA pool
-    uint256 public constant INITIAL_LIBRA_POOL_DISTRIBUTION = 140000 ether;
+    uint256 public constant INITIAL_LIBRA_POOL_DISTRIBUTION = 1400 ether; // [TEST] 1400 => [Production] 140000
     // Distribution for airdrops wallet
-    uint256 public constant INITIAL_AIRDROP_WALLET_DISTRIBUTION = 10000 ether;
+    uint256 public constant INITIAL_AIRDROP_WALLET_DISTRIBUTION = 100 ether;  // [TEST] 100 => [Production] 10000
 
     // Have the rewards been distributed to the pools
     bool public rewardPoolDistributed = false;
@@ -1074,7 +1074,7 @@ contract Libra is ERC20Burnable, Operator {
     /**
      * @notice Constructs the LIBRA ERC-20 contract.
      */
-    constructor(uint256 _taxRate, address _taxCollectorAddress) public ERC20("LIBRA", "LIBRA Token") {
+    constructor(uint256 _taxRate, address _taxCollectorAddress) public ERC20("LIBRADUMMY2", "LIBRADUMMY2") {
         // Mints 1 LIBRA to contract creator for initial pool setup
         require(_taxRate < 10000, "tax equal or bigger to 100%");
         //require(_taxCollectorAddress != address(0), "tax collector address must be non-zero address");

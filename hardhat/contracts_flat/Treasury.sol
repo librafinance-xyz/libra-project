@@ -1239,9 +1239,9 @@ contract Treasury is ContractGuard {
         boardroom = _boardroom;
     }
 
-    function setBondTreasury(address _bondTreasury) external onlyOperator {
-        bondTreasury = _bondTreasury;
-    }
+    // function setBondTreasury(address _bondTreasury) external onlyOperator {
+    //     bondTreasury = _bondTreasury;
+    // }
 
     function setLibraOracle(address _libraOracle) external onlyOperator {
         libraOracle = _libraOracle;
