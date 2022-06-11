@@ -134,7 +134,7 @@ const SingleTokenHelpText: React.FC<{ bank: BankEntity }> = ({ bank }) => {
     <Card>
       <CardContent>
         <StyledLink href={bank.buyLink} target="_blank">
-          {`👾 Don't you have ${bank.depositTokenName}? Let's swap on LibraX 👾`}
+          {`👾 Don't you have ${bank.depositTokenName}? Let's swap on  AMM 👾`}
         </StyledLink>
       </CardContent>
     </Card>

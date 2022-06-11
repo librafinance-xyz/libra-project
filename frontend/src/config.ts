@@ -108,7 +108,7 @@ export const bankDefinitions: { [contractName: string]: BankInfo } = {
     finished: false,
     multiplier: '100x',
     site: 'https://astar.network',
-    buyLink: 'https://librax.finance/swap/' + '0x6a2d262D56735DbA19Dd70682B39F6bE9a931D98',
+    buyLink: 'https://app.arthswap.org/#/swap?outputCurrency=0x6a2d262D56735DbA19Dd70682B39F6bE9a931D98',
     createLpLink: '',
     sort: 1,
     closedForStaking: false,
