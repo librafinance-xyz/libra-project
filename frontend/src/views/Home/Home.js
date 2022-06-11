@@ -180,7 +180,7 @@ const Home = () => {
             <Box p={4}>
               <h2>Welcome to Libra Finance! (TEST VERSION)</h2>
               <Countdown
-                date={1654520400 * 1000} // Monday, June 6, 2022 1:00:00 PM
+                date={1654956000 * 1000} // Saturday, June 11, 2022 2:00:00 PM
                 intervalDelay={0}
                 precision={3}
                 renderer={(props) => (
