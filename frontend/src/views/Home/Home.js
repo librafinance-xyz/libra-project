@@ -277,7 +277,7 @@ const Home = () => {
                 style={{ marginRight: '10px' }}
                 onClick={() => registerToken(libra.address, 'LIBRADUMMY2', 18)}
               >
-                LIBRA to Wallet
+                LIBRA(D2) to Wallet
               </Button>
 
               <Button
@@ -286,7 +286,7 @@ const Home = () => {
                 style={{ marginRight: '10px' }}
                 onClick={() => registerToken(LShare.address, 'LSHAREDUM2', 18)}
               >
-                LSHARE to Wallet
+                LSHARE(D2) to Wallet
               </Button>
               <Button color="primary" href="/farms" variant="contained" style={{ marginRight: '8px' }}>
                 Farms
