@@ -62,25 +62,25 @@ export const bankDefinitions: { [contractName: string]: BankInfo } = {
   sort: the order of the pool
   */
 
-  UsdcAstarLPGenesisRewardPool: {
-    name: 'Earn LIBRA by staking ASTR-USDC-LP on LibraX',
-    poolId: 3, // Must check
-    sectionInUI: 0,
-    contract: 'UsdcAstarLPGenesisRewardPool',
-    depositTokenName: 'WASTR-USDC-LP-LIBRAX',
-    earnTokenName: 'LIBRA',
-    finished: false,
-    multiplier: '250x',
-    site: 'https://astar.network',
-    buyLink: '',
-    createLpLink:
-      'https://librax.finance/add/' +
-      '0xAeaaf0e2c81Af264101B9129C00F4440cCF0F720' +
-      '/' +
-      '0x6a2d262D56735DbA19Dd70682B39F6bE9a931D98',
-    sort: 1,
-    closedForStaking: true,
-  },
+  // UsdcAstarLPGenesisRewardPool: {
+  //   name: 'Earn LIBRA by staking ASTR-USDC-LP on LibraX',
+  //   poolId: 3, // Must check
+  //   sectionInUI: 0,
+  //   contract: 'UsdcAstarLPGenesisRewardPool',
+  //   depositTokenName: 'WASTR-USDC-LP-LIBRAX',
+  //   earnTokenName: 'LIBRA',
+  //   finished: false,
+  //   multiplier: '250x',
+  //   site: 'https://astar.network',
+  //   buyLink: '',
+  //   createLpLink:
+  //     'https://librax.finance/add/' +
+  //     '0xAeaaf0e2c81Af264101B9129C00F4440cCF0F720' +
+  //     '/' +
+  //     '0x6a2d262D56735DbA19Dd70682B39F6bE9a931D98',
+  //   sort: 1,
+  //   closedForStaking: true,
+  // },
 
   JpycGenesisRewardPool: {
     name: 'Earn LIBRA by staking JPYC',
