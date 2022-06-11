@@ -284,7 +284,7 @@ const Home = () => {
                 color="white"
                 variant="contained"
                 style={{ marginRight: '10px' }}
-                onClick={() => registerToken(LShare.address, 'LSHAREDUMMY2', 18)}
+                onClick={() => registerToken(LShare.address, 'LSHAREDUM2', 18)}
               >
                 LSHARE to Wallet
               </Button>
