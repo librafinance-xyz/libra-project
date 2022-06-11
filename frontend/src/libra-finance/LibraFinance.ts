@@ -6,7 +6,7 @@ import { BigNumber, Contract, ethers, EventFilter } from 'ethers';
 import { decimalToBalance } from './ether-utils';
 import { TransactionResponse } from '@ethersproject/providers';
 import ERC20 from './ERC20';
-import { getFullDisplayBalance, getDisplayBalance } from '../utils/formatBalance';
+import { getFullDisplayBalance, getDisplayBalance, getLibraBalance } from '../utils/formatBalance';
 import { getDefaultProvider } from '../utils/provider';
 import IUniswapV2PairABI from './IUniswapV2Pair.abi.json';
 import config, { bankDefinitions } from '../config';
@@ -247,7 +247,7 @@ export class LibraFinance {
     const stakeInPool = await depositToken.balanceOf(bank.address);
     console.log('getPoolAPRs...........');
     // CHECK..
-    const TVL = Number(depositTokenPrice) * Number(getDisplayBalance(stakeInPool, depositToken.decimal));
+    const TVL = Number(depositTokenPrice) * Number(getLibraBalance(stakeInPool, depositToken.decimal));
 
     console.log('getPoolAPRs............TVL=', TVL);
     console.log('getPoolAPRs............TVL.stakeInPool=', stakeInPool.toString());
