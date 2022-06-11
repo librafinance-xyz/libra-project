@@ -1074,7 +1074,7 @@ contract Libra is ERC20Burnable, Operator {
     /**
      * @notice Constructs the LIBRA ERC-20 contract.
      */
-    constructor(uint256 _taxRate, address _taxCollectorAddress) public ERC20("LIBRA", "LIBRA Token") {
+    constructor(uint256 _taxRate, address _taxCollectorAddress) public ERC20("LIBRADUMMY2", "LIBRADUMMY2") {
         // Mints 1 LIBRA to contract creator for initial pool setup
         require(_taxRate < 10000, "tax equal or bigger to 100%");
         //require(_taxCollectorAddress != address(0), "tax collector address must be non-zero address");
