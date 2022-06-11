@@ -33,11 +33,11 @@ const configurations: { [env: string]: Configuration } = {
 
       'ASTR-USDC-LP': ['0xBB1290c1829007F440C771b37718FAbf309cd527', 18],
       'WASTR-USDC-LP-LIBRAX': ['0x139B81e5728026FAA8d7Ef6C79bb07f4d912641B', 18], // LibraX Pair
-      'LIBRA-WASTR-LP': ['0xa34484BE25889A5188Fa42059Af3ceeA428D8e7e', 18], //DUMMY
-      'LSHARE-WASTR-LP': ['0x0A8ae90fCd8A4534AbB0013A7Dd79A42073b3dA9', 18], //DUMMY
-      LIBRA: ['0x467E086e506C76381D3B8C74BfDCE9D3bB36Ca6D', 18], // DUMMY
-      LBOND: ['0x7E9a97Fd2dEDC13a719F630502feCA5bf812C86f', 18], // DUMMY
-      LSHARE: ['0xa17920b27ce43CCd08ceBf6D89012F8724D1aB02', 18], // DUMMY
+      'LIBRA-WASTR-LP': ['0xe0A53B6543B6cd2FB6407dF68CEae7d1ef50dbB1', 18], //DUMMY
+      'LSHARE-WASTR-LP': ['0x0454F7FAd41a7B880feb8AD7F0c49CC87C1189ee', 18], //DUMMY
+      LIBRA: ['0x68BBF7ce3C128bb1c51d2a01C486cA9B8E499BB7', 18], // DUMMY
+      LBOND: ['0xaD321F85b4b289b6313616bC89B4681373C2C8e6', 18], // DUMMY
+      LSHARE: ['0x246cd2e709b5F7313e1228e19e010EACD90fCf31', 18], // DUMMY
     },
     baseLaunchDate: new Date('2021-06-02 13:00:00Z'),
     bondLaunchesAt: new Date('2020-12-03T15:00:00Z'),
@@ -144,7 +144,7 @@ export const bankDefinitions: { [contractName: string]: BankInfo } = {
       'https://librax.finance/add/' +
       '0xAeaaf0e2c81Af264101B9129C00F4440cCF0F720' +
       '/' +
-      '0x467E086e506C76381D3B8C74BfDCE9D3bB36Ca6D',
+      '0x68BBF7ce3C128bb1c51d2a01C486cA9B8E499BB7',
     site: '',
     sort: 2,
     closedForStaking: false,
@@ -164,7 +164,7 @@ export const bankDefinitions: { [contractName: string]: BankInfo } = {
       'https://librax.finance/add/' +
       '0xAeaaf0e2c81Af264101B9129C00F4440cCF0F720' +
       '/' +
-      '0x467E086e506C76381D3B8C74BfDCE9D3bB36Ca6D',
+      '0x68BBF7ce3C128bb1c51d2a01C486cA9B8E499BB7',
     site: '/',
     sort: 3,
     closedForStaking: false,
@@ -184,7 +184,7 @@ export const bankDefinitions: { [contractName: string]: BankInfo } = {
       'https://librax.finance/add/' +
       '0xAeaaf0e2c81Af264101B9129C00F4440cCF0F720' +
       '/' +
-      '0xa17920b27ce43CCd08ceBf6D89012F8724D1aB02',
+      '0x246cd2e709b5F7313e1228e19e010EACD90fCf31',
     site: '/',
     sort: 9,
     closedForStaking: false,

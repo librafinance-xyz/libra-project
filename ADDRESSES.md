@@ -1,41 +1,41 @@
 
 LIBRA(DUMMY):
-0x467E086e506C76381D3B8C74BfDCE9D3bB36Ca6D
-https://blockscout.com/astar/address/0x467E086e506C76381D3B8C74BfDCE9D3bB36Ca6D/transactions
+0x68BBF7ce3C128bb1c51d2a01C486cA9B8E499BB7
+https://blockscout.com/astar/address/0x68BBF7ce3C128bb1c51d2a01C486cA9B8E499BB7/transactions
 
 LBOND(DUMMY):
-0x7E9a97Fd2dEDC13a719F630502feCA5bf812C86f
-<!-- https://astar.subscan.io/account/0x7E9a97Fd2dEDC13a719F630502feCA5bf812C86f?tab=contract -->
-https://blockscout.com/astar/address/0x7E9a97Fd2dEDC13a719F630502feCA5bf812C86f/transactions
+0xaD321F85b4b289b6313616bC89B4681373C2C8e6
+<!-- https://astar.subscan.io/account/0xaD321F85b4b289b6313616bC89B4681373C2C8e6?tab=contract -->
+https://blockscout.com/astar/address/0xaD321F85b4b289b6313616bC89B4681373C2C8e6/transactions
 
 Boardroom:
-0x17154728C05EBc1849B83B233bAbb3721D465dC0
-https://blockscout.com/astar/address/0x17154728C05EBc1849B83B233bAbb3721D465dC0/transactions
+0xcaCeFc99C25F996FFb49DC09946b76eE2E59De06
+https://blockscout.com/astar/address/0xcaCeFc99C25F996FFb49DC09946b76eE2E59De06/transactions
 
 Treasury:
-0x2a665d24854d3BEa4ADf1586bB78d0796f4b184a
-<!-- https://astar.subscan.io/account/0x2a665d24854d3BEa4ADf1586bB78d0796f4b184a?tab=contract -->
-https://blockscout.com/astar/address/0x2a665d24854d3BEa4ADf1586bB78d0796f4b184a/transactions
+0x5cE1b0d337546DeB96631faa6196618F4e2921eb
+<!-- https://astar.subscan.io/account/0x5cE1b0d337546DeB96631faa6196618F4e2921eb?tab=contract -->
+https://blockscout.com/astar/address/0x5cE1b0d337546DeB96631faa6196618F4e2921eb/transactions
 
 LSHARE(DUMMY):
-0xa17920b27ce43CCd08ceBf6D89012F8724D1aB02
-https://blockscout.com/astar/address/0xa17920b27ce43CCd08ceBf6D89012F8724D1aB02/transactions
+0x246cd2e709b5F7313e1228e19e010EACD90fCf31
+https://blockscout.com/astar/address/0x246cd2e709b5F7313e1228e19e010EACD90fCf31/transactions
 
 ORACLE:
-0xa34484BE25889A5188Fa42059Af3ceeA428D8e7e
-https://blockscout.com/astar/address/0xa34484BE25889A5188Fa42059Af3ceeA428D8e7e/transactions
+0xe0A53B6543B6cd2FB6407dF68CEae7d1ef50dbB1
+https://blockscout.com/astar/address/0xe0A53B6543B6cd2FB6407dF68CEae7d1ef50dbB1/transactions
 
 LibraGenesisRewardPool:
-0x1cC0bcC44C218156aaFc917CBDd443982471E271
-https://blockscout.com/astar/address/0x1cC0bcC44C218156aaFc917CBDd443982471E271/transactions
+0xB638bfA981548e2708c2d42c3aEd1854C5633EBa
+https://blockscout.com/astar/address/0xB638bfA981548e2708c2d42c3aEd1854C5633EBa/transactions
 
 LibraRewardPool:
-0x31E973F389f9DEcEf8f7Dd0E7cD7cf37135Ae8cC
-https://blockscout.com/astar/address/0x31E973F389f9DEcEf8f7Dd0E7cD7cf37135Ae8cC/transactions
+0x66C3B43577ae140A19fb73dfA31A8E9D28Ef29CC
+https://blockscout.com/astar/address/0x66C3B43577ae140A19fb73dfA31A8E9D28Ef29CC/transactions
 
 LShareRewardPool:
-0x906ac9dD49dFA38eC8b1F0F2a97e9A81Ee15cCE5
-https://blockscout.com/astar/address/0x906ac9dD49dFA38eC8b1F0F2a97e9A81Ee15cCE5/transactions
+0xfFcd3ea30323455790EC2Ae93201d45e7db29eb9
+https://blockscout.com/astar/address/0xfFcd3ea30323455790EC2Ae93201d45e7db29eb9/transactions
 
 
 Zap:
