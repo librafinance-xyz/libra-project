@@ -483,6 +483,11 @@ export class LibraFinance {
     return await Treasury.redeemBonds(decimalToBalance(amount), priceForLibra);
   }
 
+  async allocateSeigniorage(): Promise<TransactionResponse> {
+    const { Treasury } = this.contracts;
+    return await Treasury.allocateSeigniorage();
+  }
+
   async getTotalValueLocked(): Promise<Number> {
     let totalValue = 0;
     for (const bankInfo of Object.values(bankDefinitions)) {

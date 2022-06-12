@@ -27,6 +27,7 @@ import useTreasuryAllocationTimes from '../../hooks/useTreasuryAllocationTimes';
 import useTotalStakedOnBoardroom from '../../hooks/useTotalStakedOnBoardroom';
 import useClaimRewardCheck from '../../hooks/boardroom/useClaimRewardCheck';
 import useWithdrawCheck from '../../hooks/boardroom/useWithdrawCheck';
+import useAllocateSeigniorage from '../../hooks/treasury/useAllocateSeigniorage';
 import ProgressCountdown from './components/ProgressCountdown';
 import BoardroomImage from '../../assets/img/home.png'; //  Subject to change;
 import { createGlobalStyle } from 'styled-components';
@@ -61,6 +62,8 @@ const Boardroom = () => {
   const boardroomAPR = useFetchBoardroomAPR();
   const canClaimReward = useClaimRewardCheck();
   const canWithdraw = useWithdrawCheck();
+  const { onSeigniorage } = useAllocateSeigniorage();
+
   const scalingFactor = useMemo(() => (cashStat ? Number(cashStat.priceInDollars).toFixed(4) : null), [cashStat]);
   const { to } = useTreasuryAllocationTimes();
   const rebateStats = useRebateTreasury();
@@ -182,6 +185,19 @@ const Boardroom = () => {
                 variant="contained"
               >
                 Claim and Withdraw
+              </Button>
+            </Grid>
+          </Box>
+
+          <Box mt={5}>
+            <Grid container justifyContent="center" spacing={3} mt={10} style={{ marginBottom: '96px' }}>
+              <Button
+                disabled={false}
+                onClick={onSeigniorage}
+                color="secondary"
+                variant="contained"
+              >
+                Allocate Seigniorage
               </Button>
             </Grid>
           </Box>
