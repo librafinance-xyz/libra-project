@@ -123,28 +123,7 @@ const Boardroom = () => {
               </Grid>
             </Grid>
 
-            <Grid container justifyContent="center">
-              <Box mt={3} style={{ width: '525px' }}>
-                <Alert variant="transparent" severity="info">
-                  Staked LSHARE can only be withdrawn after 3 epochs since deposit.
-                </Alert>
-                <Alert variant="transparent" severity="info">
-                  Next Epoch has alredy passed? The epoch must be updated manually by community.
-                  <Button
-                    disabled={false}
-                    onClick={onSeigniorage}
-                    size={'sm'}
-                    variant="contained"
-                    style={{backgroundColor: 'rgba(0, 0, 0, 0.001)', color: '#ffffff', padding: '0px', textDecoration: 'underline'}}
-                  >
-                    Allocate Seigniorage
-                  </Button>
-                   can update Epoch Time.
-                </Alert>
-               
-                
-              </Box>
-            </Grid>
+          
 
             <Box mt={4}>
               <StyledBoardroom>
@@ -192,7 +171,7 @@ const Boardroom = () => {
           </Box>
 
           <Box mt={5}>
-            <Grid container justifyContent="center" spacing={3} mt={10} style={{ marginBottom: '96px' }}>
+            <Grid container justifyContent="center" spacing={3} mt={10} >
               <Button
                 disabled={stakedBalance.eq(0) || (!canWithdraw && !canClaimReward)}
                 onClick={onRedeem}
@@ -203,6 +182,28 @@ const Boardroom = () => {
               </Button>
             </Grid>
           </Box>
+          <Grid container justifyContent="center" style={{ marginBottom: '96px' }}>
+              <Box mt={3} style={{ width: '525px' }}>
+                <Alert variant="transparent" severity="info">
+                  Staked LSHARE can only be withdrawn after 3 epochs since deposit.
+                </Alert>
+                <Alert variant="transparent" severity="info">
+                  Next Epoch has alredy passed? The epoch must be updated manually by community.
+                  <Button
+                    disabled={false}
+                    onClick={onSeigniorage}
+                    size={'sm'}
+                    variant="contained"
+                    style={{backgroundColor: 'rgba(0, 0, 0, 0.001)', color: '#ffffff', padding: '0px', textDecoration: 'underline'}}
+                  >
+                    Allocate Seigniorage
+                  </Button>
+                   can update Epoch Time. (Only the time has passed can use.)
+                </Alert>
+               
+                
+              </Box>
+            </Grid>
 
          
         </>
