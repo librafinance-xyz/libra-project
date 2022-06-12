@@ -615,7 +615,8 @@ contract LibraRewardPool {
 
     // The time when LIBRA mining starts.
     uint256 public poolStartTime;
-
+    
+    // TEST 800 600, Production 80000, 60000
     uint256[] public epochTotalRewards = [80000 ether, 60000 ether];
 
     // Time when each epoch ends.
