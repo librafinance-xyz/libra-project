@@ -21,9 +21,9 @@ import useAstarPrice from '../../hooks/useAstarPrice';
 // import { libra as libraStag, LShare as lShareStag } from '../../libra-finance/deployments/deployments.stag.json';
 // import { libra as libraProd, LShare as lShareProd } from '../../libra-finance/deployments/deployments.prod.json';
 // temporary
-import { libra as libraStag, LShare as lShareStag } from '../../libra-finance/deployments/deployments.dev.json';
-import { libra as libraProd, LShare as lShareProd } from '../../libra-finance/deployments/deployments.dev.json';
-import { libra as libraDev, LShare as lShareDev } from '../../libra-finance/deployments/deployments.dev.json';
+import { libra as libraStag, LShare as lShareStag , LBond as lBondStag } from '../../libra-finance/deployments/deployments.dev.json';
+import { libra as libraProd, LShare as lShareProd, LBond as lBondProd } from '../../libra-finance/deployments/deployments.dev.json';
+import { libra as libraDev, LShare as lShareDev, LBond as lBondDev } from '../../libra-finance/deployments/deployments.dev.json';
 import AppHostEnv from '../../config';
 
 import Countdown from 'react-countdown';
@@ -70,19 +70,23 @@ const Home = () => {
 
   let libra;
   let LShare;
+  let LBond;
   // if (!process.env.NODE_ENV || process.env.NODE_ENV === 'development') {
   if (AppHostEnv == 'stag') {
     // stag
     libra = libraStag;
     LShare = lShareStag;
+    LBond = lBondStag;
   } else if (AppHostEnv == 'prod') {
     // prod
     libra = libraProd;
     LShare = lShareProd;
+    LBond = lBondProd;
   } else {
     // dev
     libra = libraDev;
     LShare = lShareDev;
+    LBond = lBondDev;
   }
 
   const buyLibraAddress = 'https://www.librax.finance/swap?outputCurrency=' + libra.address;
@@ -287,6 +291,14 @@ const Home = () => {
                 onClick={() => registerToken(LShare.address, 'LSHAREDUM2', 18)}
               >
                 LSHARE(D2) to Wallet
+              </Button>
+              <Button
+                color="white"
+                variant="contained"
+                style={{ marginRight: '10px' }}
+                onClick={() => registerToken(LBond.address, 'LBONDDUMMY2', 18)}
+              >
+                LBOND(D2) to Wallet
               </Button>
               <Button color="primary" href="/farms" variant="contained" style={{ marginRight: '8px' }}>
                 Farms
