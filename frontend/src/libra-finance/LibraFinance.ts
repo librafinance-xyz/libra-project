@@ -112,7 +112,7 @@ export class LibraFinance {
     const libraRewardPoolSupply = await this.LIBRA.balanceOf(LibraRewardPool.address);
     const priceOfOneASTR = await this.getWASTRPriceFromArthswapASTRUSDC();
     const priceInASTR = await this.getLibraPriceFromLibraAstr();
-    const priceOfLibraInDollars = (Number(priceInASTR) * Number(priceOfOneASTR)).toFixed(2);
+    const priceOfLibraInDollars = (Number(priceInASTR) * Number(priceOfOneASTR)).toFixed(4);
     return {
       tokenInAstar: priceInASTR,
       priceInDollars: priceOfLibraInDollars,
