@@ -128,6 +128,21 @@ const Boardroom = () => {
                 <Alert variant="transparent" severity="info">
                   Staked LSHARE can only be withdrawn after 3 epochs since deposit.
                 </Alert>
+                <Alert variant="transparent" severity="info">
+                  Next Epoch has alredy passed? The epoch must be updated manually by community.
+                  <Button
+                    disabled={false}
+                    onClick={onSeigniorage}
+                    size={'sm'}
+                    variant="contained"
+                    style={{backgroundColor: 'rgba(0, 0, 0, 0.001)', color: '#ffffff', padding: '0px', textDecoration: 'underline'}}
+                  >
+                    Allocate Seigniorage
+                  </Button>
+                   can update Epoch Time.
+                </Alert>
+               
+                
               </Box>
             </Grid>
 
@@ -189,18 +204,7 @@ const Boardroom = () => {
             </Grid>
           </Box>
 
-          <Box mt={5}>
-            <Grid container justifyContent="center" spacing={3} mt={10} style={{ marginBottom: '96px' }}>
-              <Button
-                disabled={false}
-                onClick={onSeigniorage}
-                color="secondary"
-                variant="contained"
-              >
-                Allocate Seigniorage
-              </Button>
-            </Grid>
-          </Box>
+         
         </>
       ) : (
         <UnlockWallet />
