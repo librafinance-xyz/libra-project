@@ -158,7 +158,7 @@ export const bankDefinitions: { [contractName: string]: BankInfo } = {
     depositTokenName: 'LIBRA-WASTR-LP',
     earnTokenName: 'LSHARE',
     finished: false,
-    multiplier: '100x',
+    multiplier: '27300x',
     buyLink: '',
     createLpLink:
       'https://librax.finance/add/' +
@@ -178,7 +178,7 @@ export const bankDefinitions: { [contractName: string]: BankInfo } = {
     depositTokenName: 'LSHARE-WASTR-LP',
     earnTokenName: 'LSHARE',
     finished: false,
-    multiplier: '100x',
+    multiplier: '18200x',
     buyLink: '',
     createLpLink:
       'https://librax.finance/add/' +
