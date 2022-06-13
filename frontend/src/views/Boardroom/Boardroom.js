@@ -188,7 +188,7 @@ const Boardroom = () => {
                   Staked LSHARE can only be withdrawn after 3 epochs since deposit.
                 </Alert>
                 <Alert variant="transparent" severity="info">
-                  Next Epoch has alredy passed? The epoch must be updated manually by community.
+                  Next Epoch has already passed? The epoch must be updated manually by community.
                   <Button
                     disabled={false}
                     onClick={onSeigniorage}
