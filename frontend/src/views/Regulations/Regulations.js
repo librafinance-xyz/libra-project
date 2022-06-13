@@ -54,7 +54,7 @@ const Regulations = () => {
   const libraFinance = useLibraFinance();
   const [rows, setRows] = useState(null);
   function createData(epoch, dao, dev, insurance, boardroom, bondsBought, bondsRedeemed) {
-    var sum = (Number(dao) + Number(dev) + Number(insurance) + Number(boardroom)).toFixed(2);
+    var sum = ((Number(dao)? Number(dao) : 0) + (Number(dev)? Number(dev) : 0) + (Number(insurance)? Number(insurance) : 0) + Number(boardroom)).toFixed(2);
     return { epoch, dao, dev, insurance, boardroom, sum, bondsBought, bondsRedeemed };
   }
   useEffect(() => {

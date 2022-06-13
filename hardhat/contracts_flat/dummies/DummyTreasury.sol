@@ -1445,6 +1445,15 @@ contract DummyTreasury is ContractGuard {
             emit DevFundFunded(now, _devFundSharedAmount);
         }
 
+        uint256 _insuranceFundSharedAmount = 0;
+        if (insuranceFundSharedPercent > 0) {
+            _insuranceFundSharedAmount = _amount.mul(insuranceFundSharedPercent).div(10000);
+            IERC20(libra).transfer(insuranceFund, _insuranceFundSharedAmount);
+            emit InsuranceFundFunded(now, _insuranceFundSharedAmount);
+        }
+
+       _amount = _amount.sub(_daoFundSharedAmount).sub(_devFundSharedAmount).sub(_insuranceFundSharedAmount);
+
         _amount = _amount.sub(_daoFundSharedAmount).sub(_devFundSharedAmount);
 
         IERC20(libra).safeApprove(boardroom, 0);
