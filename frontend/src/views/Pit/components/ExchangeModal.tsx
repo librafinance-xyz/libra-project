@@ -45,7 +45,7 @@ const ExchangeModal: React.FC<ExchangeModalProps> = ({
         max={fullBalance}
         symbol={tokenName}
       />
-      <Label text={description} />
+      <Label text={description} color="primary" />
       <ModalActions>
         <Button text="Cancel" variant="secondary" onClick={onDismiss} />
         <Button text={action} onClick={() => onConfirm(val)} />
