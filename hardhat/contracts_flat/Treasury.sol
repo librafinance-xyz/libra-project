@@ -1445,7 +1445,14 @@ contract Treasury is ContractGuard {
             emit DevFundFunded(now, _devFundSharedAmount);
         }
 
-        _amount = _amount.sub(_daoFundSharedAmount).sub(_devFundSharedAmount);
+        uint256 _insuranceFundSharedAmount = 0;
+        if (insuranceFundSharedPercent > 0) {
+            _insuranceFundSharedAmount = _amount.mul(insuranceFundSharedPercent).div(10000);
+            IERC20(libra).transfer(devFund, _insuranceFundSharedAmount);
+            emit InsuranceFundFunded(now, _insuranceFundSharedAmount);
+        }
+
+       _amount = _amount.sub(_daoFundSharedAmount).sub(_devFundSharedAmount).sub(_insuranceFundSharedAmount);
 
         IERC20(libra).safeApprove(boardroom, 0);
         IERC20(libra).safeApprove(boardroom, _amount);
