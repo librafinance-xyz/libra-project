@@ -2,6 +2,7 @@ import { Libra as LibraAddress } from "../../addresses/astar/Libra";
 import { LShare as LShareAddress } from "../../addresses/astar/LShare";
 import { LibraRewardPool as LibraRewardPool } from "../../addresses/astar/LibraRewardPool";
 import { LibraGenesisRewardPool as LibraGenesisRewardPool } from "../../addresses/astar/LibraGenesisRewardPool";
+import { LShareRewardPool as LShareRewardPool } from "../../addresses/astar/LShareRewardPool";
 import { Treasury as TreasuryAddress } from "../../addresses/astar/Treasury";
 import { Boardroom as Boardroom } from "../../addresses/astar/Boardroom";
 import { LBond as LBondAddress } from "../../addresses/astar/LBond";
@@ -59,9 +60,9 @@ const LibraDeployConfig = {
   LibraRewardPool: LibraRewardPool,
   LibraGenesisRewardPool: LibraGenesisRewardPool,
   Boardroom: Boardroom,
-  AirdropWallet: "0x6eA8D23189aE68F1423c6Fc8f93b602B5C0524A7",
+  AirdropWallet: "0x72E5Aab0f8A41eA6b9F729d86F17D044cA9b3DD2", 
   // LShareDistributeRewards
-  farmingIncentiveFund: farmingIncentiveFund,
+  farmingIncentiveFund: LShareRewardPool,
   // TreasuryInitilize
   TreasuryAddress: TreasuryAddress,
   TraesuryStartTime: TraesuryStartTime,

@@ -11,9 +11,9 @@ contract LShareDummy is ERC20Burnable, Operator {
     using SafeMath for uint256;
 
     // TOTAL MAX SUPPLY = 70,000 LSHAREs
-    uint256 public constant FARMING_POOL_REWARD_ALLOCATION = 49000 ether;
+    uint256 public constant FARMING_POOL_REWARD_ALLOCATION = 45500 ether;
     uint256 public constant TREASURY_FUND_POOL_ALLOCATION = 3500 ether;
-    uint256 public constant COMMUNITY_FUND_POOL_ALLOCATION = 10500 ether;
+    uint256 public constant COMMUNITY_FUND_POOL_ALLOCATION = 14000 ether;
     uint256 public constant DEV_FUND_POOL_ALLOCATION = 7000 ether;
 
     uint256 public constant VESTING_DURATION = 365 days;
