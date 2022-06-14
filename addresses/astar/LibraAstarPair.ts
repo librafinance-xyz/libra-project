@@ -1,1 +1,1 @@
-export const LibraAstarPair = "0xe0A53B6543B6cd2FB6407dF68CEae7d1ef50dbB1";
+export const LibraAstarPair = "0x86DbDb6BfB6bB9137Bf1845611238AfA21A88149";

@@ -1,1 +1,1 @@
-export const LibraGenesisRewardPool = "0xB638bfA981548e2708c2d42c3aEd1854C5633EBa";
+export const LibraGenesisRewardPool = "0xd327bc0D9034f6C4c87f371333FE56efC17E1E4d";
