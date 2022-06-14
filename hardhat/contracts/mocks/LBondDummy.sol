@@ -10,7 +10,7 @@ contract LBondDummy is ERC20Burnable, Operator {
     /**
      * @notice Constructs the LIBRA Bond ERC-20 contract.
      */
-    constructor() public ERC20("LBONDDUMMY2", "LBONDDUMMY2") {}
+    constructor() public ERC20("LBONDDUMMY3", "LBONDDUMMY3") {}
 
     /**
      * @notice Operator mints basis bonds to a recipient

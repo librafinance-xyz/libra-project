@@ -279,7 +279,7 @@ const Home = () => {
                 color="white"
                 variant="contained"
                 style={{ marginRight: '10px' }}
-                onClick={() => registerToken(libra.address, 'LIBRADUMMY2', 18)}
+                onClick={() => registerToken(libra.address, 'LIBRADUMMY3', 18)}
               >
                 LIBRA(D2) to Wallet
               </Button>
@@ -288,7 +288,7 @@ const Home = () => {
                 color="white"
                 variant="contained"
                 style={{ marginRight: '10px' }}
-                onClick={() => registerToken(LShare.address, 'LSHAREDUM2', 18)}
+                onClick={() => registerToken(LShare.address, 'LSHAREDUM3', 18)}
               >
                 LSHARE(D2) to Wallet
               </Button>
@@ -296,7 +296,7 @@ const Home = () => {
                 color="white"
                 variant="contained"
                 style={{ marginRight: '10px' }}
-                onClick={() => registerToken(LBond.address, 'LBONDDUMMY2', 18)}
+                onClick={() => registerToken(LBond.address, 'LBONDDUMMY3', 18)}
               >
                 LBOND(D2) to Wallet
               </Button>
