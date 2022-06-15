@@ -9,17 +9,17 @@ import { LBond as LBondAddress } from "../../addresses/astar/LBond";
 import { Oracle as OracleAddress } from "../../addresses/astar/Oracle";
 
 
-const genesisStartTime = 1654956000; // [TEST] Saturday, June 11, 2022 2:00:00 PM => [Production]  ?????????????????
+const genesisStartTime = 1655643600; // Sunday, June 19, 2022 1:00:00 PM GMT
 
 
 
 // CHECK!!!
 const startTimeLShare = genesisStartTime;
-const startTimeLSharePool = genesisStartTime + 3600 * 12;  // [TEST]12 hours => [Production]  3600 * 24 * 5
+const startTimeLSharePool = genesisStartTime + 3600 * 24 * 5;  // DAY6-
 // day 1
 const poolStartTimeForLibraGenesisRewardPool = genesisStartTime;
 // day 2-
-const poolStartTimeForLibraRewardPool = genesisStartTime + 3600 * 12;  // [TEST]12 hours => [Production]  3600 * 24
+const poolStartTimeForLibraRewardPool = genesisStartTime + 3600 * 24;  // DAY2-
 const OraclePeriod = 3600; //
 const OracleStartTime = genesisStartTime;
 // CHECK !!!
