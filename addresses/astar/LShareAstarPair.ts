@@ -1,1 +1,1 @@
-export const LShareAstarPair = "0x936A5B635f4b2A58137f66f15376119639Dc7f5c";
+export const LShareAstarPair = "0x3F98ebF526FFD4Ec05A4845F346D93015A6617a9";
