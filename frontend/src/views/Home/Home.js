@@ -182,9 +182,9 @@ const Home = () => {
         <Grid item xs={12} sm={8}>
           <Paper style={{ backgroundColor: 'transparent', boxShadow: 'none' }}>
             <Box p={4}>
-              <h2>!!!!!Dev Test 2nd!!!!!  Welcome to Libra Finance! </h2>
+              <h2>Welcome to Libra Finance! </h2>
               <Countdown
-                date={1654956000 * 1000} // Saturday, June 11, 2022 2:00:00 PM
+                date={1655643600 * 1000} // Sunday, June 19, 2022 1:00:00 PM
                 intervalDelay={0}
                 precision={3}
                 renderer={(props) => (
@@ -227,25 +227,25 @@ const Home = () => {
             </Box>
           </Paper>
         </Grid>
-        <Grid container justifyContent="center">
+        {/* <Grid container justifyContent="center">
           <Box mt={3} style={{ width: '98%' }}>
             <Alert variant="filled" severity="error">
               THIS IS CURRENRY UNDER TEST VERSION. YOU MIGHT BE ABLE TO GET "DUMMY TOKEN", HOWEVER IT'S ZERO VALUE.
-              {/* By using libra, you agree that the 2omb and libra team is not responsible
+              By using libra, you agree that the 2omb and libra team is not responsible
               for any financial losses from investing in 2omb or libra.
-               */}
+               
             </Alert>
           </Box>
-        </Grid>
+        </Grid> */}
 
-        {/* <Grid container spacing={3}>
-    <Grid item  xs={12} sm={12} justifyContent="center"  style={{ margin: '12px', display: 'flex' }}>
+        <Grid container spacing={3}>
+        <Grid item  xs={12} sm={12} justifyContent="center"  style={{ margin: '12px', display: 'flex' }}>
             <Alert severity="warning" style={{ backgroundColor: "transparent", border: "1px solid var(--white)" }}>
               <b>
-      Please visit our <StyledLink target="_blank" href="https://docs.libra.finance">documentation</StyledLink> before purchasing LIBRA or LSHARE!</b>
+      Please visit our <StyledLink target="_blank" href="https://docs.librafinance.xyz">documentation</StyledLink> before purchasing LIBRA or LSHARE!</b>
             </Alert>
         </Grid>
-        </Grid> */}
+        </Grid> 
 
         {/* TVL */}
         <Grid item xs={12} sm={4}>
@@ -279,27 +279,27 @@ const Home = () => {
                 color="white"
                 variant="contained"
                 style={{ marginRight: '10px' }}
-                onClick={() => registerToken(libra.address, 'LIBRADUMMY2', 18)}
+                onClick={() => registerToken(libra.address, 'LIBRA', 18)}
               >
-                LIBRA(D2) to Wallet
+                LIBRA to Wallet
               </Button>
 
               <Button
                 color="white"
                 variant="contained"
                 style={{ marginRight: '10px' }}
-                onClick={() => registerToken(LShare.address, 'LSHAREDUM2', 18)}
+                onClick={() => registerToken(LShare.address, 'LSHARE', 18)}
               >
-                LSHARE(D2) to Wallet
+                LSHARE to Wallet
               </Button>
-              <Button
+              {/* <Button
                 color="white"
                 variant="contained"
                 style={{ marginRight: '10px' }}
-                onClick={() => registerToken(LBond.address, 'LBONDDUMMY2', 18)}
+                onClick={() => registerToken(LBond.address, 'LBOND', 18)}
               >
-                LBOND(D2) to Wallet
-              </Button>
+                LBOND to Wallet
+              </Button> */}
               <Button color="primary" href="/farms" variant="contained" style={{ marginRight: '8px' }}>
                 Farms
               </Button>
