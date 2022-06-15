@@ -36,7 +36,7 @@ const func: DeployFunction = async function (hre: HardhatRuntimeEnvironment) {
   const gasLimit = 5000000;
   console.log("deployer = " + deployer);
 
-  // LShare ( DUMMY )
+  // LShare
   const startTimeLShare = LibraDeployConfig.startTimeLShare;
   const communityFund = LibraDeployConfig.communityFund;
   const devFund = LibraDeployConfig.devFund;
@@ -44,7 +44,7 @@ const func: DeployFunction = async function (hre: HardhatRuntimeEnvironment) {
 
   const LShare = await mydeploy(
     hre,
-    "LShareDummy",
+    "LShare",
     deployer,
     [startTimeLShare, communityFund, devFund, treasuryFund],
     true,
@@ -65,7 +65,7 @@ const func: DeployFunction = async function (hre: HardhatRuntimeEnvironment) {
       " " +
       treasuryFund +
       " " +
-      " --contract contracts/mocks/LShareDummy.sol:LShareDummy "
+      " --contract contracts/LShare.sol:LShare"
   );
 
   fs.writeFileSync(
