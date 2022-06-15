@@ -25,7 +25,6 @@ const OracleStartTime = genesisStartTime;
 // CHECK !!!
 const TraesuryStartTime = genesisStartTime;
 
-const farmingIncentiveFund = "0x6eA8D23189aE68F1423c6Fc8f93b602B5C0524A7";
 const LibraDeployConfig = {
   WETH: "0xAeaaf0e2c81Af264101B9129C00F4440cCF0F720", // WASTR
   UniswapV2Router: "0x13381C52765EaB0a2A132a79Cc27798ef80ca6A2", // LibraX
