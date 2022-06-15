@@ -1,1 +1,1 @@
-export const Treasury = "0xCCf92Ff1eE03810357BDF63CAC2be2618043d7cE";
+export const Treasury = "0x0477b8165BF5d0b547D2595F670115ac9E155495";

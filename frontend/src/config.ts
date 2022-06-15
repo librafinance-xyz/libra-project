@@ -33,11 +33,11 @@ const configurations: { [env: string]: Configuration } = {
 
       'ASTR-USDC-LP': ['0xBB1290c1829007F440C771b37718FAbf309cd527', 18],
       'WASTR-USDC-LP-LIBRAX': ['0x139B81e5728026FAA8d7Ef6C79bb07f4d912641B', 18], // LibraX Pair
-      'LIBRA-WASTR-LP': ['0x596EB79591e71a12B4aAc28fE87226756D411488', 18], 
-      'LSHARE-WASTR-LP': ['0x29f377E6A28DFF1F486ED655b0D514fAD99cD12b', 18], 
-      LIBRA: ['0x034aB85222Df9199429aE6c8CD233956980b3660', 18],
-      LBOND: ['0xfa527014Bcd6E87a879A82Fb967Bbd4eC8F23669', 18], 
-      LSHARE: ['0x79852668dA2AA25296300A621718201062feF291', 18], 
+      'LIBRA-WASTR-LP': ['0x38838f2059a5213E82dA0fCDa9297706b7D10ba3', 18], 
+      'LSHARE-WASTR-LP': ['0x936A5B635f4b2A58137f66f15376119639Dc7f5c', 18], 
+      LIBRA: ['0x13D8b0Ea8A52CE44cce904b41ab1F1B78B5D3779', 18],
+      LBOND: ['0xAd0C707459191f7ff6a41d4840Fc5F956ad23957', 18], 
+      LSHARE: ['0xDb9e31C99E89EEa4770b8794A3D0d757f4Bc3978', 18], 
     },
     baseLaunchDate: new Date('2021-06-02 13:00:00Z'),
     bondLaunchesAt: new Date('2020-12-03T15:00:00Z'),
@@ -144,7 +144,7 @@ export const bankDefinitions: { [contractName: string]: BankInfo } = {
       'https://librax.finance/add/' +
       '0xAeaaf0e2c81Af264101B9129C00F4440cCF0F720' +
       '/' +
-      '0x034aB85222Df9199429aE6c8CD233956980b3660',
+      '0x13D8b0Ea8A52CE44cce904b41ab1F1B78B5D3779',
     site: '',
     sort: 2,
     closedForStaking: false,
@@ -164,7 +164,7 @@ export const bankDefinitions: { [contractName: string]: BankInfo } = {
       'https://librax.finance/add/' +
       '0xAeaaf0e2c81Af264101B9129C00F4440cCF0F720' +
       '/' +
-      '0x034aB85222Df9199429aE6c8CD233956980b3660',
+      '0x13D8b0Ea8A52CE44cce904b41ab1F1B78B5D3779',
     site: '/',
     sort: 3,
     closedForStaking: false,
@@ -184,7 +184,7 @@ export const bankDefinitions: { [contractName: string]: BankInfo } = {
       'https://librax.finance/add/' +
       '0xAeaaf0e2c81Af264101B9129C00F4440cCF0F720' +
       '/' +
-      '0x79852668dA2AA25296300A621718201062feF291',
+      '0xDb9e31C99E89EEa4770b8794A3D0d757f4Bc3978',
     site: '/',
     sort: 9,
     closedForStaking: false,
