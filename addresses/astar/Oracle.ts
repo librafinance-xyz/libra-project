@@ -1,1 +1,1 @@
-export const Oracle = "0x8EBbF0986c38f514734c15B8996B96e9C0c1c8F3";
+export const Oracle = "0x6932cff82E5C341D9a5f06e55aD4dA3905c0423D";

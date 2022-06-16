@@ -616,7 +616,6 @@ contract DummyLibraRewardPool {
     // The time when LIBRA mining starts.
     uint256 public poolStartTime;
 
-    // TEST 800 600, Production 80000, 60000 
     uint256[] public epochTotalRewards = [80000 ether, 60000 ether];
 
     // Time when each epoch ends.
@@ -636,11 +635,11 @@ contract DummyLibraRewardPool {
 
         poolStartTime = _poolStartTime;
 
-        epochEndTimes[0] = poolStartTime  + 1 days; // Day 2(LIBRA TEST)
-        epochEndTimes[1] = epochEndTimes[0] + 1 days; // Day 3(LIBRA TEST)
+        epochEndTimes[0] = poolStartTime  + 4 days;  // Day 2-5
+        epochEndTimes[1] = epochEndTimes[0] + 5 days;  // Day 6-10
 
-        epochLibraPerSecond[0] = epochTotalRewards[0].div(1 days);  // Day 2(LIBRA TEST)
-        epochLibraPerSecond[1] = epochTotalRewards[1].div(1 days);  // Day 3(LIBRA TEST)
+        epochLibraPerSecond[0] = epochTotalRewards[0].div(4 days);  
+        epochLibraPerSecond[1] = epochTotalRewards[1].div(5 days); 
 
         epochLibraPerSecond[2] = 0;
         operator = msg.sender;

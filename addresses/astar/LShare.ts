@@ -1,1 +1,1 @@
-export const LShare = "0x246cd2e709b5F7313e1228e19e010EACD90fCf31";
+export const LShare = "0x4d5Cd109Bc091fDa9c958a0d1341824597b02Cb9";
