@@ -238,11 +238,11 @@ const Home = () => {
           </Box>
         </Grid> */}
 
-        <Grid container spacing={3}>
+        <Grid container spacing={6}>
         <Grid item  xs={12} sm={12} justifyContent="center"  style={{ margin: '12px', display: 'flex' }}>
-            <Alert severity="warning" style={{ backgroundColor: "transparent", border: "1px solid var(--white)" }}>
+            <Alert severity="warning" style={{ color: "#ffffff", backgroundColor: "rgba(255,255,255,0.2)", border: "1px solid var(--white)" }}>
               <b>
-      Please visit our <StyledLink target="_blank" href="https://docs.librafinance.xyz">documentation</StyledLink> before purchasing LIBRA or LSHARE!</b>
+      Please visit our <StyledLink style={{ textDecoration: "underline" }} target="_blank" href="https://docs.librafinance.xyz">documentation</StyledLink> before purchasing LIBRA or LSHARE!</b>
             </Alert>
         </Grid>
         </Grid> 
