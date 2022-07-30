@@ -37,6 +37,8 @@ const func: DeployFunction = async function (hre: HardhatRuntimeEnvironment) {
 
   const deployer = signers[0].address;
   const gasLimit = 5000000;
+  const depositFee = 200;
+  const communityFund = LibraDeployConfig.communityFund;
   console.log("deployer = " + deployer);
   const WASTRAddress = LibraDeployConfig.WETH;
 
@@ -56,7 +58,7 @@ const func: DeployFunction = async function (hre: HardhatRuntimeEnvironment) {
     hre,
     "LibraGenesisRewardPool",
     deployer,
-    [LibraAddress, poolStartTimeForLibraGenesisRewardPool],
+    [LibraAddress, poolStartTimeForLibraGenesisRewardPool, communityFund, depositFee],
     true,
     gasLimit
   );
