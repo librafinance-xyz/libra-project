@@ -68,6 +68,8 @@ contract LShareRewardPool {
     ) public {
         require(block.timestamp < _poolStartTime, "late");
         if (_lshare != address(0)) lshare = IERC20(_lshare);
+        require(_daoFund != address(0), "_daoFund");
+        daoFund = _daoFund;
         poolStartTime = _poolStartTime;
         poolEndTime = poolStartTime + runningTime;
         operator = msg.sender;
