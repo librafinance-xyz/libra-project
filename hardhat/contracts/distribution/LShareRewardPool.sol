@@ -14,6 +14,7 @@ contract LShareRewardPool {
 
     // governance
     address public operator;
+    address public daoFund;
 
     // Info of each user.
     struct UserInfo {
@@ -51,6 +52,10 @@ contract LShareRewardPool {
     uint256 public runningTime = 370 days; // 370 days
     uint256 public constant TOTAL_REWARDS = 45500 ether; 
 
+    bool enableTaxes = true;
+    uint256[] public stakingTires = [1 weeks, 2 weeks, 3 weeks, 4 weeks];
+    uint256[] public withdrawTaxTires = [500, 400, 300, 200];
+
     event Deposit(address indexed user, uint256 indexed pid, uint256 amount);
     event Withdraw(address indexed user, uint256 indexed pid, uint256 amount);
     event EmergencyWithdraw(address indexed user, uint256 indexed pid, uint256 amount);
@@ -58,6 +63,7 @@ contract LShareRewardPool {
 
     constructor(
         address _lshare,
+        address _daoFund,
         uint256 _poolStartTime
     ) public {
         require(block.timestamp < _poolStartTime, "late");
@@ -212,6 +218,48 @@ contract LShareRewardPool {
         emit Deposit(_sender, _pid, _amount);
     }
 
+    function setTaxesStatus(bool _enableTaxes) external onlyOperator {
+        enableTaxes = _enableTaxes;
+    }
+
+    function setStakingTiersEntry(uint8 _index, uint256 _value) external onlyOperator {
+        require(_index >= 0, "Index has to be higher than 0");
+        require(_index < stakingTires.length, "Index has to be lower than count of tiers");
+        if (_index > 0) {
+            require(_value < stakingTires[_index - 1]);
+        }
+
+        if (_index < stakingTires.length - 1) {
+            require(_value > stakingTires[_index + 1]);
+        }
+
+        stakingTires[_index] = _value;
+    }
+
+    function setTaxTiersEntry(uint8 _index, uint256 _value) external onlyOperator {
+        require(_index >= 0, "Index has to be higher than 0");
+        require(_index < withdrawTaxTires.length, "Index has to be lower than count of tiers");
+        require(_value >= 10 && _value <= 2000, "_value: out of range"); // [0.1%, 20%]
+        withdrawTaxTires[_index] = _value;
+    }
+
+    function getWithdrawFeePercent() public view returns (uint256) {
+        if (poolStartTime > block.timestamp) {
+            return 0;
+        }
+
+        uint256 timePassed = block.timestamp - poolStartTime;
+        uint256 taxPercent;
+        for (uint256 i = 0; i < stakingTires.length; i++) {
+            if (timePassed <= stakingTires[i]) {
+                taxPercent = withdrawTaxTires[i];
+                break;
+            }
+        }
+
+        return taxPercent;
+    }
+
     // Withdraw LP tokens.
     function withdraw(uint256 _pid, uint256 _amount) public {
         address _sender = msg.sender;
@@ -226,7 +274,13 @@ contract LShareRewardPool {
         }
         if (_amount > 0) {
             user.amount = user.amount.sub(_amount);
-            pool.token.safeTransfer(_sender, _amount);
+            uint256 taxAmount = _amount.mul(getWithdrawFeePercent()).div(10000);
+            if (enableTaxes && taxAmount != 0) {
+                pool.token.safeTransfer(daoFund, taxAmount);
+                pool.token.safeTransfer(_sender, _amount.sub(taxAmount));
+            } else {
+                pool.token.safeTransfer(_sender, _amount);
+            }
         }
         user.rewardDebt = user.amount.mul(pool.accLSharePerShare).div(1e18);
         emit Withdraw(_sender, _pid, _amount);
@@ -239,7 +293,9 @@ contract LShareRewardPool {
         uint256 _amount = user.amount;
         user.amount = 0;
         user.rewardDebt = 0;
-        pool.token.safeTransfer(msg.sender, _amount);
+        uint256 taxAmount = _amount.mul(getWithdrawFeePercent()).div(10000);
+        pool.token.safeTransfer(daoFund, taxAmount);
+        pool.token.safeTransfer(msg.sender, _amount.sub(taxAmount));
         emit EmergencyWithdraw(msg.sender, _pid, _amount);
     }
 
@@ -257,6 +313,10 @@ contract LShareRewardPool {
 
     function setOperator(address _operator) external onlyOperator {
         operator = _operator;
+    }
+
+    function setDaoFund(address _daoFund) external onlyOperator {
+        daoFund = _daoFund;
     }
 
     function governanceRecoverUnsupported(IERC20 _token, uint256 amount, address to) external onlyOperator {
