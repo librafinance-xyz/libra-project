@@ -3,10 +3,10 @@ import styled from 'styled-components';
 
 export interface IconProps {
   color?: string;
-  children?: string;
+  children?: React.ReactNode;
 }
 
-const Icon: React.FC = ({ children }) => <StyledIcon>{children}</StyledIcon>;
+const Icon = (props: IconProps)  => <StyledIcon>{props.children}</StyledIcon>;
 
 const StyledIcon = styled.div``;
 

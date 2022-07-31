@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useState } from 'react';
-import { useWallet } from '@librafinance-xyz/use-wallet';
+import { useWallet } from '@libra_finance/use-wallet';
 import { BigNumber } from 'ethers';
 import ERC20 from '../libra-finance/ERC20';
 

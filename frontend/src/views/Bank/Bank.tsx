@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import styled from 'styled-components';
 
 import { useParams } from 'react-router-dom';
-import { useWallet } from '@librafinance-xyz/use-wallet';
+import { useWallet } from '@libra_finance/use-wallet';
 import { makeStyles } from '@material-ui/core/styles';
 
 import { Box, Button, Card, CardContent, Typography, Grid } from '@material-ui/core';

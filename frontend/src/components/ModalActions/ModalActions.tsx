@@ -1,11 +1,15 @@
 import React from 'react';
 import styled from 'styled-components';
 
-const ModalActions: React.FC = ({ children }) => {
-  const l = React.Children.toArray(children).length;
+type ModalActionsProp = {
+  children: React.ReactNode; // 👈️ type children
+};
+
+const ModalActions = (props: ModalActionsProp) => {
+  const l = React.Children.toArray(props.children).length;
   return (
     <StyledModalActions>
-      {React.Children.map(children, (child, i) => (
+      {React.Children.map(props.children, (child, i) => (
         <>
           <StyledModalAction>{child}</StyledModalAction>
           {i < l - 1 && <StyledSpacer />}

@@ -32,7 +32,7 @@ import ZapModal from './ZapModal';
 import TokenSymbol from '../../../components/TokenSymbol';
 import { Bank } from '../../../libra-finance';
 
-import { ConnectionRejectedError, UseWalletProvider, useWallet } from '@librafinance-xyz/use-wallet';
+import { ConnectionRejectedError, UseWalletProvider, useWallet } from '@libra_finance/use-wallet';
 import { BigNumber } from 'ethers';
 
 interface StakeProps {

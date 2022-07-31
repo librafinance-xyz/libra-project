@@ -13,7 +13,11 @@ export const Context = createContext<ModalsContext>({
   onDismiss: () => {},
 });
 
-const Modals: React.FC = ({ children }) => {
+type ModalsProps = {
+  children: React.ReactNode; 
+};
+
+const Modals = (props: ModalsProps) => {
   const [isOpen, setIsOpen] = useState(false);
   const [content, setContent] = useState<React.ReactNode>();
 
@@ -39,7 +43,7 @@ const Modals: React.FC = ({ children }) => {
         onDismiss: handleDismiss,
       }}
     >
-      {children}
+      {props.children}
       {isOpen && (
         <StyledModalWrapper>
           <StyledModalBackdrop onClick={handleDismiss} />

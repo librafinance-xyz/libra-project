@@ -1,7 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
-
-const CardContent: React.FC = ({ children }) => <StyledCardContent>{children}</StyledCardContent>;
+type CardContentProps = {
+  children: React.ReactNode; 
+};
+const CardContent = (props: CardContentProps) => <StyledCardContent>{props.children}</StyledCardContent>;
 
 const StyledCardContent = styled.div`
   display: flex;
