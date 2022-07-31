@@ -11074,7 +11074,7 @@
     "type-check" "~0.3.2"
 
 "libra-sdk@github:librafinance-xyz/libra-sdk#main":
-  "resolved" "git+ssh://git@github.com/librafinance-xyz/libra-sdk.git#16accb3630737d4892224d3426e117137dca8de9"
+  "resolved" "git+ssh://git@github.com/librafinance-xyz/libra-sdk.git#5a13f3b4572cb2cd4e10352443f6c6431bb99c42"
   "version" "1.2.1"
   dependencies:
     "@uniswap/v2-core" "1.0.0"
