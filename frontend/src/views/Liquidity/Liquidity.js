@@ -7,7 +7,7 @@ import { Box, Button, Grid, Paper, Typography } from '@material-ui/core';
 import useLibraStats from '../../hooks/useLibraStats';
 import TokenInput from '../../components/TokenInput';
 import useLibraFinance from '../../hooks/useLibraFinance';
-import { useWallet } from '@librafinance-xyz/use-wallet';
+import { useWallet } from '@libra_finance/use-wallet';
 import useTokenBalance from '../../hooks/useTokenBalance';
 import { getDisplayBalance } from '../../utils/formatBalance';
 import useApproveTaxOffice from '../../hooks/useApproveTaxOffice';

@@ -1,4 +1,6 @@
 import React, { useContext } from 'react';
+import { ReactElement } from "react";
+
 import { ThemeContext } from 'styled-components';
 
 import Icon, { IconProps } from '../Icon';

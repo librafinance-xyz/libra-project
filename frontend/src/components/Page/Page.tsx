@@ -5,7 +5,12 @@ import useEagerConnect from '../../hooks/useEagerConnect';
 import Footer from '../Footer';
 import Nav from '../Nav';
 
-const Page: React.FC = ({ children }) => {
+
+type PageProps = {
+  children: React.ReactNode; 
+};
+
+const Page: React.FC<PageProps> = ({ children }) => {
   useEagerConnect();
   return (
     <div

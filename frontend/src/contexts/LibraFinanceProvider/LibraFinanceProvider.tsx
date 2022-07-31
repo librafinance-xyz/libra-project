@@ -1,5 +1,5 @@
 import React, { createContext, useEffect, useState } from 'react';
-import { useWallet } from '@librafinance-xyz/use-wallet';
+import { useWallet } from '@libra_finance/use-wallet';
 import LibraFinance from '../../libra-finance';
 import config from '../../config';
 
@@ -9,7 +9,11 @@ export interface LibraFinanceContext {
 
 export const Context = createContext<LibraFinanceContext>({ libraFinance: null });
 
-export const LibraFinanceProvider: React.FC = ({ children }) => {
+type LibraFinanceProviderProps = {
+  children: React.ReactNode; 
+};
+
+export const LibraFinanceProvider = (props: LibraFinanceProviderProps) => {
   const { ethereum, account } = useWallet();
   const [libraFinance, setLibraFinance] = useState<LibraFinance>();
 
@@ -26,5 +30,5 @@ export const LibraFinanceProvider: React.FC = ({ children }) => {
     }
   }, [account, ethereum, libraFinance]);
 
-  return <Context.Provider value={{ libraFinance }}>{children}</Context.Provider>;
+  return <Context.Provider value={{ libraFinance }}>{props.children}</Context.Provider>;
 };

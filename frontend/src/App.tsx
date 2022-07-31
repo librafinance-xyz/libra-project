@@ -3,7 +3,7 @@ import { Provider } from 'react-redux';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { ThemeProvider as TP } from '@material-ui/core/styles';
 import { ThemeProvider as TP1 } from 'styled-components';
-import { UseWalletProvider } from '@librafinance-xyz/use-wallet';
+import { UseWalletProvider } from '@libra_finance/use-wallet';
 import usePromptNetwork from './hooks/useNetworkPrompt';
 import BanksProvider from './contexts/Banks';
 import LibraFinanceProvider from './contexts/LibraFinanceProvider';
@@ -85,7 +85,12 @@ const App: React.FC = () => {
   );
 };
 
-const Providers: React.FC = ({ children }) => {
+type ProvidersProps = {
+  children: React.ReactNode; //👈 children prop typr
+};
+
+
+const Providers = (props: ProvidersProps) => {
   return (
     <TP1 theme={theme}>
       <TP theme={newTheme}>
@@ -109,7 +114,7 @@ const Providers: React.FC = ({ children }) => {
                   <BanksProvider>
                     <>
                       <Popups />
-                      {children}
+                      {props.children}
                     </>
                   </BanksProvider>
                 </ModalsProvider>

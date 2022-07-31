@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import { AlertCircle, CheckCircle } from 'react-feather';
 import styled, { ThemeContext } from 'styled-components';
-import { useWallet } from '@librafinance-xyz/use-wallet';
+import { useWallet } from '@libra_finance/use-wallet';
 import config from '../../config';
 
 const RowNoFlex = styled.div`

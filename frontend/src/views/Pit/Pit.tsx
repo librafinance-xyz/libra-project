@@ -3,7 +3,7 @@ import Page from '../../components/Page';
 import PitImage from '../../assets/img/home.png'; //  Subject to change;
 import { createGlobalStyle } from 'styled-components';
 import { Route, Switch, useRouteMatch } from 'react-router-dom';
-import { useWallet } from '@librafinance-xyz/use-wallet';
+import { useWallet } from '@libra_finance/use-wallet';
 import UnlockWallet from '../../components/UnlockWallet';
 import PageHeader from '../../components/PageHeader';
 import ExchangeCard from './components/ExchangeCard';

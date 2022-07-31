@@ -4,7 +4,11 @@ import useLibraFinance from '../../hooks/useLibraFinance';
 import { Bank } from '../../libra-finance';
 import config, { bankDefinitions } from '../../config';
 
-const Banks: React.FC = ({ children }) => {
+type BanksProps = {
+  children: React.ReactNode; 
+};
+
+const Banks = (props: BanksProps) => {
   const [banks, setBanks] = useState<Bank[]>([]);
   const libraFinance = useLibraFinance();
   const isUnlocked = libraFinance?.isUnlocked;
@@ -51,7 +55,7 @@ const Banks: React.FC = ({ children }) => {
     }
   }, [isUnlocked, libraFinance, fetchPools]);
 
-  return <Context.Provider value={{ banks }}>{children}</Context.Provider>;
+  return <Context.Provider value={{ banks }}>{props.children}</Context.Provider>;
 };
 
 export default Banks;

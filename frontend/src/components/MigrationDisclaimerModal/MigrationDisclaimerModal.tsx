@@ -17,6 +17,23 @@ const MigrationDisclaimerModal: React.FC<MigrationDisclaimerModalProps> = ({ onC
     // onDismiss();
   }, [onConfirm, onDismiss]);
   const handleDismiss = useCallback(() => onDismiss(), [onDismiss]);
+  
+  type ModalProps = {
+    children: React.ReactNode; // 👈️ type children
+  };
+  
+  const Modal = (props: ModalProps) => {
+    return <div>{props.children}</div>;
+  };
+
+  type ModalActionsProps = {
+    children: React.ReactNode; // 👈️ type children
+  };
+  
+  const ModalActions = (props: ModalActionsProps) => {
+    return <div>{props.children}</div>;
+  };
+
 
   return (
     <Modal>

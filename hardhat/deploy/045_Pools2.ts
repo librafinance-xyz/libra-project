@@ -49,6 +49,7 @@ const func: DeployFunction = async function (hre: HardhatRuntimeEnvironment) {
   const LibraAddress = LibraDeployConfig.LibraAddress;
   const UniswapV2FactoryAddress = LibraDeployConfig.UniswapV2Factory;
   const UniswapV2RouterAddress = LibraDeployConfig.UniswapV2Router;
+  const communityFund = LibraDeployConfig.communityFund;
 
   // // const poolStartTimeForLibraRewardPool = ""; // DAY 2-5 & Day 6-10
   // //////////////////////////////////////////////////////////////////////////////////////////
@@ -154,7 +155,7 @@ const func: DeployFunction = async function (hre: HardhatRuntimeEnvironment) {
     hre,
     "LShareRewardPool",
     deployer,
-    [LShareAddress, startTimeLSharePool],
+    [LShareAddress, communityFund, startTimeLSharePool],
     true,
     gasLimit
   );

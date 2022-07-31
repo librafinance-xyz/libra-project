@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useWallet } from '@librafinance-xyz/use-wallet';
+import { useWallet } from '@libra_finance/use-wallet';
 import { useAddPopup, useBlockNumber } from '../application/hooks';
 import { AppDispatch, AppState } from '../index';
 import { checkedTransaction, finalizeTransaction } from './actions';
