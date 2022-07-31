@@ -2218,10 +2218,10 @@
   "resolved" "https://registry.npmjs.org/@ledgerhq/logs/-/logs-4.72.0.tgz"
   "version" "4.72.0"
 
-"@libra_finance/sdk@^1.2.0":
-  "integrity" "sha512-mx2OifWPxxijtavUcFxJKlcMgwixLxBtyszJdRZikX9KzDmE++jEcQC/0rw1VoX3B1h0vp6g07LlkYJqx2jIaQ=="
-  "resolved" "https://registry.npmjs.org/@libra_finance/sdk/-/sdk-1.2.0.tgz"
-  "version" "1.2.0"
+"@libra_finance/sdk@^1.2.1":
+  "integrity" "sha512-n/NNhpXqOdcZC6Cb7qiUQ3e9PDn5o0iZtUuHTY4CiNGygkvmKYUpF4Tmz6O4Oe4m9UYRiuLKkm08S2vN/IA/Ow=="
+  "resolved" "https://registry.npmjs.org/@libra_finance/sdk/-/sdk-1.2.1.tgz"
+  "version" "1.2.1"
   dependencies:
     "@uniswap/v2-core" "1.0.0"
     "big.js" "^5.2.2"
