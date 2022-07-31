@@ -2218,6 +2218,19 @@
   "resolved" "https://registry.npmjs.org/@ledgerhq/logs/-/logs-4.72.0.tgz"
   "version" "4.72.0"
 
+"@libra_finance/sdk@^1.2.0":
+  "integrity" "sha512-mx2OifWPxxijtavUcFxJKlcMgwixLxBtyszJdRZikX9KzDmE++jEcQC/0rw1VoX3B1h0vp6g07LlkYJqx2jIaQ=="
+  "resolved" "https://registry.npmjs.org/@libra_finance/sdk/-/sdk-1.2.0.tgz"
+  "version" "1.2.0"
+  dependencies:
+    "@uniswap/v2-core" "1.0.0"
+    "big.js" "^5.2.2"
+    "decimal.js-light" "^2.5.0"
+    "jsbi" "^3.1.1"
+    "tiny-invariant" "^1.1.0"
+    "tiny-warning" "^1.0.3"
+    "toformat" "^2.0.0"
+
 "@libra_finance/use-wallet@^0.13.6":
   "integrity" "sha512-HvmvgSaqcAQJEUhCx8EPXePGkCpU5AZ7kajUB1+wlpPlSFNI3cDL/l4CurYDQKlodnb8llIO4x5u4zkzuCK95w=="
   "resolved" "https://registry.npmjs.org/@libra_finance/use-wallet/-/use-wallet-0.13.6.tgz"
@@ -2238,19 +2251,6 @@
     "prop-types" "^15.7.2"
     "regenerator-runtime" "^0.13.7"
     "rollup-plugin-image-files" "^1.4.2"
-
-"@librafinance-xyz/sdk@^1.2.1":
-  "integrity" "sha512-ZCHT3KsHin9crF2t43yeisJnKj1IWANtuOsTikDvbNLsjmZYSToHKRI5EtKUI7d+AA5WFGN/JU4cOci+6HCTqw=="
-  "resolved" "https://registry.npmjs.org/@librafinance-xyz/sdk/-/sdk-1.2.1.tgz"
-  "version" "1.2.1"
-  dependencies:
-    "@uniswap/v2-core" "1.0.0"
-    "big.js" "^5.2.2"
-    "decimal.js-light" "^2.5.0"
-    "jsbi" "^3.1.1"
-    "tiny-invariant" "^1.1.0"
-    "tiny-warning" "^1.0.3"
-    "toformat" "^2.0.0"
 
 "@librax/sdk@^0.0.9":
   "integrity" "sha512-4apqbE8YxTZsAJV0X2gOuPCK+dZ5We2vHvL+oJ+zDEO+vf5LA/BZ6FMAfklhEwu9D9AzMclQCuksjdO9mFay8w=="
