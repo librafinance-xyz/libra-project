@@ -11073,18 +11073,6 @@
     "prelude-ls" "~1.1.2"
     "type-check" "~0.3.2"
 
-"libra-sdk@github:librafinance-xyz/libra-sdk#main":
-  "resolved" "git+ssh://git@github.com/librafinance-xyz/libra-sdk.git#5a13f3b4572cb2cd4e10352443f6c6431bb99c42"
-  "version" "1.2.1"
-  dependencies:
-    "@uniswap/v2-core" "1.0.0"
-    "big.js" "^5.2.2"
-    "decimal.js-light" "^2.5.0"
-    "jsbi" "^3.1.1"
-    "tiny-invariant" "^1.1.0"
-    "tiny-warning" "^1.0.3"
-    "toformat" "^2.0.0"
-
 "lines-and-columns@^1.1.6":
   "integrity" "sha512-7ylylesZQ/PV29jhEDl3Ufjo6ZX7gCqJr5F7PKrqc93v7fzSymt1BpwEU8nAUXs8qzzvqhbjhK5QZg6Mt/HkBg=="
   "resolved" "https://registry.npmjs.org/lines-and-columns/-/lines-and-columns-1.2.4.tgz"
