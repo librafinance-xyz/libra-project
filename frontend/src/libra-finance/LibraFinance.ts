@@ -232,32 +232,15 @@ export class LibraFinance {
    * @returns
    */
   async getPoolAPRs(bank: Bank): Promise<PoolStats> {
-    console.log('getPoolAPRs....');
     if (this.myAccount === undefined) return;
-    console.log('getPoolAPRs.......');
     const depositToken = bank.depositToken;
-    console.log('getPoolAPRs........');
     const poolContract = this.contracts[bank.contract];
-    console.log('getPoolAPRs.........');
     // CHECK......!
     const depositTokenPrice = await this.getDepositTokenPriceInDollars(bank.depositTokenName, depositToken);
-    console.log('getPoolAPRs..........depositTokenPrice.bank.depositTokenName=', bank.depositTokenName);
-    console.log('getPoolAPRs..........depositTokenPrice.depositToken=', depositToken);
-
     const stakeInPool = await depositToken.balanceOf(bank.address);
-    console.log('getPoolAPRs...........');
-    // CHECK..
     const TVL = Number(depositTokenPrice) * Number(getLibraBalance(stakeInPool, depositToken.decimal));
 
-    console.log('getPoolAPRs............TVL=', TVL);
-    console.log('getPoolAPRs............TVL.stakeInPool=', stakeInPool.toString());
-    console.log('getPoolAPRs............TVL=.depositToken.decimal', depositToken.decimal);
-    console.log('getPoolAPRs............TVL=.depositTokenPrice', depositTokenPrice.toString());
-    // 133 => 0.665 =>
-    // 24 => 0.12
-
     const stat = bank.earnTokenName === 'LIBRA' ? await this.getLibraStat() : await this.getShareStat();
-    console.log('getPoolAPRs.............');
     const totalAllocPoint = await poolContract.totalAllocPoint();
     const poolinfo = await poolContract.poolInfo(bank.poolId);
     let rewardPerSecond = BigNumber.from(0);
@@ -287,24 +270,11 @@ export class LibraFinance {
       // LShareRewardPool
       // TODO
       rewardPerSecond = await poolContract.lSharePerSecond();
-      console.log('getPoolAPRs..............bank.poolId=', bank.poolId);
-      console.log('getPoolAPRs..............poolContract.address=', poolContract.address);
-      console.log('getPoolAPRs...........lSharePerSecond', rewardPerSecond.toString());
 
       const totalAllocApoint = await poolContract.totalAllocPoint();
       poolRewardPerSecond = rewardPerSecond.mul(poolinfo['allocPoint']).div(totalAllocApoint);
 
-      // if (bank.depositTokenName.startsWith('LIBRA')) {
-      //   poolRewardPerSecond = rewardPerSecond.mul(27300).div(45500);
-      // } else {
-      //   poolRewardPerSecond = rewardPerSecond.mul(18200).div(45500);
-      // }
     }
-
-    console.log('getPoolAPRs.............rewardPerSecond=', rewardPerSecond.toString());
-    console.log('getPoolAPRs.............totalAllocPoint=', totalAllocPoint.toString());
-    console.log('getPoolAPRs.............poolRewardPerSecond=', poolRewardPerSecond.toString());
-    console.log('getPoolAPRs.............poolContract.address=', poolContract.address);
 
     // 1日排出
     const poolRewardPerDay = poolRewardPerSecond.mul(3600).mul(24);
@@ -313,54 +283,10 @@ export class LibraFinance {
     //  トークン価格
     const price = stat.priceInDollars;
     // APR
-
     const blockscouturl = 'https://blockscout.com/astar/address/' + poolContract.address;
-    // console.log('getPoolAPRs.............libraPerSecond=', libraPerSecond.toString());
-    console.log('getPoolAPRs.............contract bank.contract=', bank.contract);
-    console.log('getPoolAPRs.............contract blockscouturl=', blockscouturl);
-    console.log('getPoolAPRs.............TVL=', TVL);
-
     const dailyAPR = Number(getDisplayBalance(poolRewardPerDay, 18)) * Number(price);
     const yearlyAPR = Number(getDisplayBalance(poolRewardPerYear, 18)) * Number(price);
 
-    // console.log('getPoolAPRs.............poolRewardPerSecond=', poolRewardPerSecond.toString());
-    // console.log('getPoolAPRs.............poolRewardPerSecond=', poolRewardPerSecond.toString());
-    // console.log('getPoolAPRs.............poolRewardPerSecond=', poolRewardPerSecond.toString());
-
-    // const tokenPerSecond = await this.getTokenPerSecond(
-    //   bank.earnTokenName,
-    //   bank.contract,
-    //   poolContract,
-    //   bank.depositTokenName,
-    // // );
-
-    // console.log('getPoolAPRs.tokenPerSecond=', poolRewardPerSecond.toString());
-    // console.log('getPoolAPRs stat.priceInDollars=', stat.priceInDollars);
-    // const tokenPerHour = poolRewardPerSecond.mul(60).mul(60);
-    // const totalRewardPricePerYear =
-    //   Number(stat.priceInDollars) * Number(getDisplayBalance(tokenPerHour.mul(24).mul(365)));
-    // const totalRewardPricePerDay = Number(stat.priceInDollars) * Number(getDisplayBalance(tokenPerHour.mul(24)));
-    // const totalStakingTokenInPool =
-    //   Number(depositTokenPrice) * Number(getDisplayBalance(stakeInPool, depositToken.decimal));
-    // console.log('getPoolAPRs.stat.priceInDollars=', stat.priceInDollars);
-    // console.log('getPoolAPRs.totalRewardPricePerDay=', totalRewardPricePerDay);
-    // console.log(
-    //   'getPoolAPRs.totalRewardPricePerYear.toFixed(2).toString()=',
-    //   totalRewardPricePerYear.toFixed(2).toString(),
-    // );
-    // console.log(
-    //   'getPoolAPRs.totalRewardPricePerDay.toFixed(2).toString()=',
-    //   totalRewardPricePerDay.toFixed(2).toString(),
-    // );
-    // console.log('getPoolAPRs.totalRewardPricePerYear=', totalRewardPricePerYear);
-    // console.log('getPoolAPRs.totalRewardPriTVLcePerYear=', TVL.toString());
-    // const dailyAPR = (totalRewardPricePerDay / totalStakingTokenInPool) * 100;
-    // const yearlyAPR = (totalRewardPricePerYear / totalStakingTokenInPool) * 100;
-    // return {
-    //   dailyAPR: dailyAPR.toFixed(2).toString(),
-    //   yearlyAPR: yearlyAPR.toFixed(2).toString(),
-    //   TVL: TVL.toFixed(2).toString(),
-    // };
     return {
       dailyAPR: dailyAPR.toString(),
       yearlyAPR: yearlyAPR.toString(),
