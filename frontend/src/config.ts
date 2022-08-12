@@ -232,6 +232,21 @@ export const bankDefinitions: { [contractName: string]: BankInfo } = {
   //   sort: 3,
   //   closedForStaking: false,
   // },
+  LibraNode: {
+    name: 'Generate Grave with Nodes',
+    poolId: 0,
+    sectionInUI: 3,
+    contract: 'LibraNode',
+    depositTokenName: 'LIBRA',
+    earnTokenName: 'LIBRA',
+    finished: false,
+    multiplier: '14400x',
+    buyLink: null,
+    createLpLink: null,
+    site: '/',
+    sort: 2,
+    closedForStaking: false,
+  },
 };
 
 export default configurations['production'];

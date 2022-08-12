@@ -1,7 +1,7 @@
 import { Fetcher, Route, Token } from '@librax/sdk';
 
 import { Configuration } from './config';
-import { ContractName, TokenStat, AllocationTime, LPStat, Bank, PoolStats, LShareSwapperStat } from './types';
+import { ContractName, TokenStat, AllocationTime, LPStat, Bank, NodesRewardWalletBalance, PoolStats, LShareSwapperStat } from './types';
 import { BigNumber, Contract, ethers, EventFilter } from 'ethers';
 import { decimalToBalance } from './ether-utils';
 import { TransactionResponse } from '@ethersproject/providers';
@@ -121,6 +121,15 @@ export class LibraFinance {
     };
   }
 
+  async getNodesRewardWalletBalance(nodesRewardWallet: string): Promise<NodesRewardWalletBalance> {
+    const libra = await this.LIBRA.balanceOf(nodesRewardWallet);
+    const lshare = await this.LSHARE.balanceOf(nodesRewardWallet);
+    return {
+      libras: getDisplayBalance(libra, 18, 2),
+      lshares: getDisplayBalance(lshare, 18, 2),
+    };
+  }
+
   /**
    * Calculates various stats for the requested LP
    * @param name of the LP token to load stats for
@@ -226,6 +235,27 @@ export class LibraFinance {
     return Treasury.getBurnableLibraLeft();
   }
 
+  async getNodes(contract: string, user: string): Promise<BigNumber[]> {
+    return await this.contracts[contract].getNodes(user);
+  }
+
+  async getMaxPayout(contract: string, user: string): Promise<BigNumber[]> {
+    return await this.contracts[contract].maxPayout(user);
+  }
+
+  async getUserDetails(contract: string, user: string): Promise<BigNumber[]> {
+    return await this.contracts[contract].users(user);
+  }
+
+  async getTotalNodes(contract: string): Promise<BigNumber[]> {
+    return await this.contracts[contract].getTotalNodes();
+  }
+
+  async getLibraNodes(): Promise<BigNumber[]> {
+    const { LibraNode } = this.contracts;
+    return await LibraNode.getTotalNodes();
+  }
+
   /**
    * Calculates the TVL, APR and daily APR of a provided pool/bank
    * @param bank
@@ -235,7 +265,41 @@ export class LibraFinance {
     if (this.myAccount === undefined) return;
     const depositToken = bank.depositToken;
     const poolContract = this.contracts[bank.contract];
-    // CHECK......!
+
+    if (bank.sectionInUI === 3) {
+        const [depositTokenPrice, points, totalPoints, tierAmount, poolBalance, totalBalance, dripRate, dailyUserDrip] =
+          await Promise.all([
+            this.getDepositTokenPriceInDollars(bank.depositTokenName, depositToken),
+            poolContract.tierAllocPoints(bank.poolId),
+            poolContract.totalAllocPoints(),
+            poolContract.tierAmounts(bank.poolId),
+            poolContract.getBalancePool(),
+            depositToken.balanceOf(bank.address),
+            poolContract.dripRate(),
+            poolContract.getDayDripEstimate(this.myAccount),
+          ]);
+        const stakeAmount = Number(getDisplayBalance(tierAmount));
+        const dailyDrip =
+          totalPoints && +totalPoints > 0
+            ? getDisplayBalance(poolBalance.mul(BigNumber.from(0)).mul(points).div(totalPoints).div(dripRate))
+            : 0;
+        const dailyDripAPR = (Number(dailyDrip) / stakeAmount) * 100;
+        const yearlyDripAPR = ((Number(dailyDrip) * 365) / stakeAmount) * 100;
+
+        const dailyDripUser = Number(getDisplayBalance(dailyUserDrip));
+        const yearlyDripUser = Number(dailyDripUser) * 365;
+
+        const TVL = Number(depositTokenPrice) * Number(getDisplayBalance(totalBalance, depositToken.decimal));
+
+        return {
+          userDailyBurst: dailyDripUser.toFixed(2).toString(),
+          userYearlyBurst: yearlyDripUser.toFixed(2).toString(),
+          dailyAPR: dailyDripAPR.toFixed(2).toString(),
+          yearlyAPR: yearlyDripAPR.toFixed(2).toString(),
+          TVL: TVL.toFixed(2).toString(),
+        };
+    } else {
+        // CHECK......!
     const depositTokenPrice = await this.getDepositTokenPriceInDollars(bank.depositTokenName, depositToken);
     const stakeInPool = await depositToken.balanceOf(bank.address);
     const TVL = Number(depositTokenPrice) * Number(getLibraBalance(stakeInPool, depositToken.decimal));
@@ -292,6 +356,8 @@ export class LibraFinance {
       yearlyAPR: yearlyAPR.toString(),
       TVL: TVL.toString(),
     };
+    }
+    
   }
 
   /**
@@ -460,7 +526,9 @@ export class LibraFinance {
   ): Promise<BigNumber> {
     const pool = this.contracts[poolName];
     try {
-      if (earnTokenName === 'LIBRA') {
+      if (earnTokenName === 'LIBRA' && poolName.includes('Node')) {
+        return await pool.getTotalRewards(account);
+      } else if (earnTokenName === 'LIBRA') {
         return await pool.pendingLIBRA(poolId, account);
       } else {
         return await pool.pendingShare(poolId, account);
@@ -482,17 +550,54 @@ export class LibraFinance {
     }
   }
 
+  async claimedBalanceNode(poolName: ContractName, account = this.myAccount): Promise<BigNumber> {
+    const pool = this.contracts[poolName];
+    try {
+      let userInfo = await pool.users(account);
+      return await userInfo.total_claims;
+    } catch (err) {
+      console.error(`Failed to call userInfo() on pool ${pool.address}: ${err}`);
+      return BigNumber.from(0);
+    }
+  }
+
+  async getNodePrice(poolName: ContractName, poolId: Number): Promise<BigNumber> {
+    const pool = this.contracts[poolName];
+    try {
+      return await pool.tierAmounts(poolId);
+    } catch (err) {
+      console.error(`Failed to call tierAmounts on contract ${pool.address}: ${err}`);
+      return BigNumber.from(0);
+    }
+  }
+
   /**
    * Deposits token to given pool.
    * @param poolName A name of pool contract.
    * @param amount Number of tokens with decimals applied. (e.g. 1.45 DAI * 10^18)
    * @returns {string} Transaction hash
    */
-  async stake(poolName: ContractName, poolId: Number, amount: BigNumber): Promise<TransactionResponse> {
+   async stake(
+    poolName: ContractName,
+    poolId: Number,
+    sectionInUI: Number,
+    amount: BigNumber,
+  ): Promise<TransactionResponse> {
     const pool = this.contracts[poolName];
-    // return await pool.deposit(poolId, amount);
-    const gas = await pool.estimateGas.deposit(poolId, amount);
-    return await pool.deposit(poolId, amount, { gasLimit: gas.mul(5).toString() });
+    console.log(poolId, amount);
+    return sectionInUI !== 3 ? await pool.deposit(poolId, amount) : await pool.create(poolId, amount);
+  }
+
+  async setTierValues(poolName: ContractName): Promise<TransactionResponse> {
+    const pool = this.contracts[poolName];
+    console.log([BigNumber.from('1000000000000000000')], [BigNumber.from('5000000000000000000')]);
+    return await pool.setTierValues(
+      [BigNumber.from('1000000000000000000')], [BigNumber.from('5000000000000000000')]
+    );
+  }
+
+  async getTierValues(poolName: ContractName): Promise<void> {
+    const pool = this.contracts[poolName];
   }
 
   /**
@@ -511,12 +616,16 @@ export class LibraFinance {
   /**
    * Transfers earned token reward from given pool to my account.
    */
-  async harvest(poolName: ContractName, poolId: Number): Promise<TransactionResponse> {
+   async harvest(poolName: ContractName, poolId: Number, sectionInUI: Number): Promise<TransactionResponse> {
     const pool = this.contracts[poolName];
     //By passing 0 as the amount, we are asking the contract to only redeem the reward and not the currently staked token
-    // return await pool.withdraw(poolId, 0);
-    const gas = await pool.estimateGas.withdraw(poolId, 0);
-    return await pool.withdraw(poolId, 0, { gasLimit: gas.mul(5).toString() });
+    return sectionInUI !== 3 ? await pool.withdraw(poolId, 0) : await pool.claim();
+  }
+
+  async compound(poolName: ContractName, poolId: Number, sectionInUI: Number): Promise<TransactionResponse> {
+    const pool = this.contracts[poolName];
+    //By passing 0 as the amount, we are asking the contract to only redeem the reward and not the currently staked token
+    return sectionInUI !== 3 ? await pool.withdraw(poolId, 0) : await pool.compound();
   }
 
   /**
