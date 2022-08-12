@@ -3,18 +3,18 @@ import useLibraFinance from './useLibraFinance';
 import useHandleTransactionReceipt from './useHandleTransactionReceipt';
 import { Bank } from '../libra-finance';
 
-const useHarvest = (bank: Bank) => {
+const useCompound = (bank: Bank) => {
   const libraFinance = useLibraFinance();
   const handleTransactionReceipt = useHandleTransactionReceipt();
 
   const handleReward = useCallback(() => {
     handleTransactionReceipt(
-      libraFinance.harvest(bank.contract, bank.poolId, bank.sectionInUI),
-      `Claim ${bank.earnTokenName} from ${bank.contract}`,
+        libraFinance.compound(bank.contract, bank.poolId, bank.sectionInUI),
+      `Compound Node rewards`,
     );
   }, [bank, libraFinance, handleTransactionReceipt]);
 
-  return { onReward: handleReward };
+  return { onCompound: handleReward };
 };
 
-export default useHarvest;
+export default useCompound;
